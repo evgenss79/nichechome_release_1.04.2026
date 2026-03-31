@@ -1,0 +1,129 @@
+{
+    "fragrance": {
+        "cherry_blossom": {
+            "name": "Cherry Blossom",
+            "short": "A sweet and spicy aroma of rich cherry liqueur and spring flowers.",
+            "full": "An intensely saturated fragrance that enhances the entire atmosphere of the room. The top notes of cherry and bitter almond evolve into a vibrant, tangy cherry liqueur scent. Rose and jasmine accords blend into a soft floral trail, enriched with a sweet touch of vanilla.\n\nYou'll fall in love with CHERRY BLOSSOM if you enjoy delicate, sweet fragrances and the scent of ripe, juicy cherries.\n\nOlfactory Pyramid:\nTop notes: Cherry, Liqueur, Bitter almond\nHeart notes: Cherry, Turkish rose, Jasmine sambac, Plum\nBase notes: Peru balsam, Tonka beans, Sandalwood, Vetiver, Vanilla"
+        },
+        "bellini": {
+            "name": "Bellini",
+            "short": "A velvety scent of juicy peach and intense rum.",
+            "full": "This powdery fragrance, rich in aromatic compounds, quickly fills your space with playful notes of sweet peach, blood orange and vanilla. The bitter-spicy accords of cognac, rum and cashmere add a subtle edge and deepen its character.\n\nBELLINI is perfect if you want to maintain a festive, celebratory atmosphere.\n\nOlfactory Pyramid:\nTop Notes: Peach, Blood Orange, Cardamom, Heliotrope\nHeart Notes: Rum, Cognac, Davana, Jasmine\nBase Notes: Patchouli, Sandalwood, Vanilla, Tonka Bean"
+        },
+        "eden": {
+            "name": "Eden",
+            "short": "A fruity fragrance with a soft floral trail.",
+            "full": "Intense and vibrant, this aroma fills the entire space. Passion fruit and raspberry notes unfold into a juicy, fresh scent of ripe fruits and berries. Sweetness is enhanced by lily and vanilla accords.\n\nOlfactory Pyramid:\nTop notes: Passion fruit, Peach, Pear, Raspberry\nHeart notes: Lily\nBase notes: Vanilla, Musk, Sandalwood"
+        },
+        "rosso": {
+            "name": "Rosso",
+            "short": "A lush aroma of ripe red grapes and juicy berries.",
+            "full": "This fragrance fills the entire space with a vegetal scent of raspberry and birch bark. The dominant accord of juicy red grapes permeates the room with the penetrating aroma of dry wine.\n\nOlfactory Pyramid:\nTop notes: Orange, Violet, Magnolia\nHeart notes: Plum, Strawberry, Wild berries\nBase notes: Dry wood, Birch"
+        },
+        "salted_caramel": {
+            "name": "Salted Caramel",
+            "short": "A bright composition with notes of wheat and vanilla.",
+            "full": "Notes of wheat and vanilla fill the fragrance with sweetness and a delicious, mouthwatering trail. Caramel and salt blend into a rich, enveloping scent familiar from childhood.\n\nOlfactory Pyramid:\nTop notes: Sea salt\nHeart notes: Pear, Vanilla, Powdery notes, Wheat\nBase notes: Toffee, Brown sugar"
+        },
+        "santal": {
+            "name": "Santal",
+            "short": "A powdery fragrance with leather, cardamom, and oriental sandalwood.",
+            "full": "This aromatic scent diffuses slowly and gently throughout the space. Emerging notes of cardamom and sandalwood blend with strong accords of iris and amber.\n\nOlfactory Pyramid:\nTop notes: Sandalwood, Papyrus, Leather\nHeart notes: Virginia cedar, Cardamom, Violet\nBase notes: Iris, Amber"
+        },
+        "lime_basil": {
+            "name": "Lime Basil",
+            "short": "A fresh citrus scent of juicy lime and aromatic basil.",
+            "full": "This intensely saturated fragrance quickly unfolds in the air. Notes of lime and ripe mandarin create a slightly sweet aroma, while spicy basil and thyme accords dissolve into pleasant bitterness.\n\nOlfactory Pyramid:\nTop notes: Mandarin, Bergamot\nHeart notes: Basil, Iris, Lilac, Thyme\nBase notes: Lime, Patchouli, Vetiver"
+        },
+        "bamboo": {
+            "name": "Bamboo",
+            "short": "A green, fresh scent of spring flowers and bamboo stalks.",
+            "full": "This moderately intense fragrance gently fills your space without overpowering it. Top notes of bergamot and bamboo create a delicate vegetal mist.\n\nOlfactory Pyramid:\nTop Notes: Bamboo, Bergamot\nHeart Notes: Ylang-ylang, Lily, Orange Blossom\nBase Notes: Vanilla, Sandalwood, Amber"
+        },
+        "tobacco_vanilla": {
+            "name": "Tobacco Vanilla",
+            "short": "A warm and smooth scent of tobacco leaves and sweet vanilla.",
+            "full": "Notes of spices and tobacco leaves gradually unfold into a rich, delicate vanilla and cocoa scent. The trail is revealed with light woody bark and dried fruit notes.\n\nOlfactory Pyramid:\nTop notes: Tobacco leaves, Spices\nHeart notes: Tonka beans, Vanilla, Cocoa, Tobacco flower\nBase notes: Woody notes, Dried fruits"
+        },
+        "salty_water": {
+            "name": "Salty Water",
+            "short": "A fresh scent of salty water and ancient minerals.",
+            "full": "This is a light-intensity fragrance, the most delicate of the entire line. Marine salt and amber dissolve into a refreshing salty dew aroma.\n\nOlfactory Pyramid:\nTop notes: Amber, Sea salt\nHeart notes: Sage\nBase notes: Grapefruit, Seaweed"
+        },
+        "christmas_tree": {
+            "name": "Christmas Tree",
+            "short": "A soft and festive scent of Christmas pine and juicy tangerines.",
+            "full": "This is a medium-intensity fragrance that gently fills the room. The bright and sweet tangerine note unfolds into a familiar and nostalgic aroma.\n\nOlfactory Pyramid:\nTop notes: Vanilla\nHeart notes: Orange, Cinnamon\nBase notes: Pine, Tangerine"
+        },
+        "fleur": {
+            "name": "Fleur",
+            "short": "A cool, juicy, floral-fruity aroma.",
+            "full": "The composition opens with bright notes of bergamot, lychee, and peach, leading into a floral heart of orange blossom, jasmine, and peony.\n\nOlfactory Pyramid:\nTop notes: Bergamot, Lychee, Peach\nHeart notes: Orange blossom, Jasmine, Peony\nBase notes: Woody notes, Moss, Musk"
+        },
+        "blanc": {
+            "name": "Blanc",
+            "short": "A soft, fresh fragrance of white cotton and purity.",
+            "full": "This moderately concentrated scent blends light floral accords with bright aldehydes, evoking the aroma of a crisp white shirt and freshly laundered sheets.\n\nOlfactory Pyramid:\nTop Notes: Aldehydes, Rose, Pink Pepper\nHeart Notes: Peony, Violet, Orange Blossom\nBase Notes: White Musk, Woody Notes, Sandalwood"
+        },
+        "green_mango": {
+            "name": "Green Mango",
+            "short": "A juicy fragrance of fresh mango and crisp pineapple.",
+            "full": "This highly concentrated scent fills the entire space with bright and fresh aroma of freshly cut fruits.\n\nOlfactory Pyramid:\nTop notes: Mango, Melon\nHeart notes: Peach, Pineapple\nBase notes: Mango peel, Pine needles"
+        },
+        "carolina": {
+            "name": "Carolina",
+            "short": "A delicate, light aroma of sweet cappuccino and spring blooms.",
+            "full": "Coffee and almond notes dissolve into a warm, enveloping sweet-bitter accord. Jasmine, iris and bergamot create fresh floral highlights.\n\nOlfactory Pyramid:\nTop Notes: Almond, Coffee, Bergamot, Lemon\nHeart Notes: Jasmine sambac, Tuberose, Iris, Bulgarian Rose\nBase Notes: Tonka Bean, Cocoa, Sandalwood, Vanilla"
+        },
+        "sugar": {
+            "name": "Sugar",
+            "short": "A sweet and sticky scent of burnt sugar and woody resin.",
+            "full": "Pronounced notes of saffron and jasmine melt into a sweet and spicy aroma. The main woody amber accord envelops the air with sweetness.\n\nOlfactory Pyramid:\nTop notes: Jasmine, Saffron\nHeart notes: Woody amber\nBase notes: White cedar, Pine resin"
+        },
+        "dubai": {
+            "name": "Dubai",
+            "short": "A rich oriental fragrance of Damask rose and oud wood.",
+            "full": "An intense and highly concentrated aroma. Notes of geranium and violet gently envelop the space with a slightly bitter floral scent.\n\nOlfactory Pyramid:\nTop notes: Geranium, Violet\nHeart notes: Cinnamon, Damask rose, Turkish rose\nBase notes: Oud, Vanilla"
+        },
+        "africa": {
+            "name": "Africa",
+            "short": "A warm, spicy scent of cardamom wood and soft leather.",
+            "full": "This intensely concentrated fragrance fills the entire room. Bright notes of bergamot and musk are enhanced by a luminous woody nuance.\n\nOlfactory Pyramid:\nTop Notes: Bergamot, Vetiver, Geranium\nHeart Notes: Cardamom, Leather, Musk\nBase Notes: Patchouli, Cumin, Oud, Saffron"
+        },
+        "dune": {
+            "name": "Dune",
+            "short": "A bold and spicy scent of blazing sun and hot pepper.",
+            "full": "Citrus notes of orange and grapefruit add a pleasantly sweet trail. Distinct pepper accords dissolve into a bright, fiery aroma.\n\nOlfactory Pyramid:\nTop notes: Orange, Grapefruit\nHeart notes: Pepper, Pink Pepper\nBase notes: Vetiver, Cedar, Patchouli, Benzoin"
+        },
+        "valencia": {
+            "name": "Valencia",
+            "short": "An airy fragrance of fresh citrus and delicate jasmine.",
+            "full": "Notes of lemon and bergamot fill the space with a fresh citrus scent. The main accords of jasmine and rose melt into a sweet floral composition.\n\nOlfactory Pyramid:\nTop notes: Bergamot, Lemon\nHeart notes: Jasmine, White Acacia, Rose\nBase notes: Woody notes, Musk"
+        },
+        "etna": {
+            "name": "Etna",
+            "short": "A spicy and warm aroma of leather, tobacco, and caramel.",
+            "full": "Strong leather and black pepper notes emerge instantly, while clove, sage, and honey blend into an intense composition.\n\nOlfactory Pyramid:\nTop notes: Leather, Saffron, Black pepper\nHeart notes: Honey, Clove, Iris, Sage\nBase notes: Tobacco, Oud, Caramel, Patchouli"
+        },
+        "new_york": {
+            "name": "New York",
+            "short": "A vibrant party, sharp cocktails, and spicy freshness.",
+            "full": "A vibrant party, sharp cocktails, and the spicy freshness of the city of lights, skyscrapers, and unexpected encounters…\n\nYour night will be remembered by the scent of dark wood, smoky amber, and bold citrus notes.\n\nDesigned in an elegant minimalist style, this candle suits both modern and classic interiors. It brings the atmosphere of a big city evening and serves as a chic decorative accent for your home.\n\nCrafted using only high-quality vegetable waxes — coconut and soy — it offers excellent scent diffusion. Within minutes of lighting, your space is filled with a deep, rich, and long-lasting fragrance trail.\n\nThis limited edition BY VELCHEVA candle is both a stylish home décor piece and a wonderful gift for friends, loved ones, or colleagues.\n\nFeatures:\nVolume: 270 ml\nBurn time: approx. 40 hours\nPremium vegetable waxes: coconut and soy\nFragrance: woody-amber with citrus notes\nDesign: elegant and minimalist"
+        },
+        "abu_dhabi": {
+            "name": "Abu Dhabi",
+            "short": "Embracing warm nights under a starlit sky.",
+            "full": "Embracing warm nights under a starlit sky and soft sand beneath your feet…\n\nRich spicy notes blend with gentle lavender and a lush bouquet of florals — this is the scent of your unforgettable weekend in Abu Dhabi.\n\nCrafted in an elegant, minimalist design, this candle will complement any interior — from modern to classic. More than just a source of fragrance, it's a refined decorative accent for your home.\n\nWe use only high-quality plant-based waxes — coconut and soy — known for their excellent ability to retain and release fragrance. Within minutes of lighting, your space is filled with a rich, long-lasting, and sophisticated perfumed trail.\n\nA scented candle from the BY VELCHEVA limited collection is a stylish decor element for your home and also a perfect gift for friends, loved ones, or colleagues.\n\nDetails:\nVolume: 270 ml\nBurn time: approx. 40 hours\nPremium plant-based waxes: coconut and soy\nFragrance: oriental-floral with notes of lavender and spices\nDesign: elegant and minimalist"
+        },
+        "palermo": {
+            "name": "Palermo",
+            "short": "Gentle rays of sunshine and refreshing coastal breeze.",
+            "full": "Gentle rays of sunshine, a refreshing coastal breeze, and an abundance of citrus fruits you can pick by hand…\n\nRadiant notes of mandarin and bitter orange blend with the soft scent of peonies and vibrant basil — this is how you'll remember a walk through Palermo.\n\nThe candle is designed in a refined minimalist style and will beautifully complement both modern and classic interiors. Its fragrance fills the space with lightness, joy, and a sunny mood.\n\nWe use only high-quality vegetable waxes — coconut and soy. They ensure even burning and excellent fragrance diffusion, which begins to unfold within the first minutes of lighting.\n\nThe limited-edition BY VELCHEVA scented candle is a stylish piece of home décor and a perfect gift for friends, loved ones, or colleagues.\n\nSpecifications:\nVolume: 270 ml\nBurn time: approximately 40 hours\nPremium vegetable waxes: coconut and soy\nFragrance: citrus-floral with notes of peony and basil\nDesign: elegant and minimalist"
+        },
+        "guggul_louban": {
+            "name": "Guggul and Louban",
+            "short": "A warm resinous blend of guggul and louban.",
+            "full": "A mystical and deeply aromatic fragrance that transports you to ancient ritual spaces. Rich notes of guggul resin and frankincense (louban) create a warm, smoky trail that fills your space with a sense of tranquility and spiritual depth.\n\nThis intensely concentrated scent combines the earthy warmth of guggul with the sacred sweetness of louban, creating a harmonious balance that has been treasured for centuries. The woody and resinous base notes linger long after the initial impression, leaving a subtle yet profound presence.\n\nGUGGUL AND LOUBAN is perfect for meditation, relaxation, or creating a contemplative atmosphere in your home.\n\nOlfactory Pyramid:\nTop notes: Guggul resin, Frankincense\nHeart notes: Louban, Amber\nBase notes: Woody notes, Smoky resins"
+        }
+    }
+}

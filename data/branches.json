@@ -1,0 +1,20 @@
+{
+    "branch_1": {
+        "id": "branch_1",
+        "name": "Beauty Lounge Tritto",
+        "address": "Landstrasse 74, 5430 Wettingen",
+        "active": true
+    },
+    "branch_2": {
+        "id": "branch_2",
+        "name": "Beauty Point Kosmetik",
+        "address": "Badenerstrasse 7c, 5442 Fislisbach",
+        "active": true
+    },
+    "branch_3": {
+        "id": "branch_3",
+        "name": "Coiffeur Salon Dragana",
+        "address": "Badenerstrasse 5c, 5442 Fislisbach",
+        "active": true
+    }
+}

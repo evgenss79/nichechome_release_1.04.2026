@@ -1,0 +1,129 @@
+{
+    "fragrance": {
+        "cherry_blossom": {
+            "name": "Cherry Blossom",
+            "short": "Un aroma dolce e speziato di ricco liquore di ciliegia e fiori primaverili.",
+            "full": "Una fragranza intensamente satura che esalta l'intera atmosfera della stanza. Le note di testa di ciliegia e mandorla amara evolvono in un vibrante profumo di liquore di ciliegia. Gli accordi di rosa e gelsomino si fondono in una morbida scia floreale, arricchita da un dolce tocco di vaniglia.\n\nTi innamorerai di CHERRY BLOSSOM se ami le fragranze delicate e dolci e il profumo delle ciliegie mature e succose.\n\nPiramide olfattiva:\nNote di testa: Ciliegia, Liquore, Mandorla amara\nNote di cuore: Ciliegia, Rosa turca, Gelsomino sambac, Prugna\nNote di fondo: Balsamo del Perù, Fave di tonka, Legno di sandalo, Vetiver, Vaniglia"
+        },
+        "bellini": {
+            "name": "Bellini",
+            "short": "Un profumo vellutato di pesca succosa e rum intenso.",
+            "full": "Questa fragranza cipriata, ricca di composti aromatici, riempie rapidamente il tuo spazio con note giocose di pesca dolce, arancia sanguigna e vaniglia. Gli accordi amaro-speziati di cognac, rum e cashmere aggiungono una sottile sfumatura e approfondiscono il suo carattere.\n\nBELLINI è perfetto se vuoi mantenere un'atmosfera festiva e celebrativa.\n\nPiramide olfattiva:\nNote di testa: Pesca, Arancia sanguigna, Cardamomo, Eliotropio\nNote di cuore: Rum, Cognac, Davana, Gelsomino\nNote di fondo: Patchouli, Legno di sandalo, Vaniglia, Fava di tonka"
+        },
+        "eden": {
+            "name": "Eden",
+            "short": "Una fragranza fruttata con una morbida scia floreale.",
+            "full": "Intenso e vibrante, questo aroma riempie l'intero spazio. Le note di frutto della passione e lampone si sviluppano in un profumo succoso e fresco di frutti maturi e bacche. La dolcezza è esaltata dagli accordi di giglio e vaniglia.\n\nPiramide olfattiva:\nNote di testa: Frutto della passione, Pesca, Pera, Lampone\nNote di cuore: Giglio\nNote di fondo: Vaniglia, Muschio, Legno di sandalo"
+        },
+        "rosso": {
+            "name": "Rosso",
+            "short": "Un aroma lussureggiante di uva rossa matura e bacche succose.",
+            "full": "Questa fragranza riempie l'intero spazio con un profumo vegetale di lampone e corteccia di betulla. L'accordo dominante di uva rossa succosa permea la stanza con l'aroma penetrante del vino secco.\n\nPiramide olfattiva:\nNote di testa: Arancia, Violetta, Magnolia\nNote di cuore: Prugna, Fragola, Bacche selvatiche\nNote di fondo: Legno secco, Betulla"
+        },
+        "salted_caramel": {
+            "name": "Salted Caramel",
+            "short": "Una composizione luminosa con note di grano e vaniglia.",
+            "full": "Le note di grano e vaniglia riempiono la fragranza di dolcezza e una deliziosa scia appetitosa. Il caramello e il sale si fondono in un profumo ricco e avvolgente, familiare dall'infanzia.\n\nPiramide olfattiva:\nNote di testa: Sale marino\nNote di cuore: Pera, Vaniglia, Note cipriate, Grano\nNote di fondo: Toffee, Zucchero di canna"
+        },
+        "santal": {
+            "name": "Santal",
+            "short": "Una fragranza cipriata con cuoio, cardamomo e legno di sandalo orientale.",
+            "full": "Questo profumo aromatico si diffonde lentamente e delicatamente nello spazio. Le note emergenti di cardamomo e legno di sandalo si mescolano con forti accordi di iris e ambra.\n\nPiramide olfattiva:\nNote di testa: Legno di sandalo, Papiro, Cuoio\nNote di cuore: Cedro della Virginia, Cardamomo, Violetta\nNote di fondo: Iris, Ambra"
+        },
+        "lime_basil": {
+            "name": "Lime Basil",
+            "short": "Un fresco profumo agrumato di lime succoso e basilico aromatico.",
+            "full": "Questa fragranza intensamente satura si sviluppa rapidamente nell'aria. Le note di lime e mandarino maturo creano un aroma leggermente dolce, mentre gli accordi speziati di basilico e timo si dissolvono in una piacevole amarezza.\n\nPiramide olfattiva:\nNote di testa: Mandarino, Bergamotto\nNote di cuore: Basilico, Iris, Lillà, Timo\nNote di fondo: Lime, Patchouli, Vetiver"
+        },
+        "bamboo": {
+            "name": "Bamboo",
+            "short": "Un profumo verde e fresco di fiori primaverili e steli di bambù.",
+            "full": "Questa fragranza moderatamente intensa riempie delicatamente il tuo spazio senza sopraffarlo. Le note di testa di bergamotto e bambù creano una delicata nebbia vegetale.\n\nPiramide olfattiva:\nNote di testa: Bambù, Bergamotto\nNote di cuore: Ylang-ylang, Giglio, Fiori d'arancio\nNote di fondo: Vaniglia, Legno di sandalo, Ambra"
+        },
+        "tobacco_vanilla": {
+            "name": "Tobacco Vanilla",
+            "short": "Un profumo caldo e morbido di foglie di tabacco e vaniglia dolce.",
+            "full": "Le note di spezie e foglie di tabacco si sviluppano gradualmente in un ricco e delicato profumo di vaniglia e cacao. La scia si rivela con leggere note di corteccia legnosa e frutta secca.\n\nPiramide olfattiva:\nNote di testa: Foglie di tabacco, Spezie\nNote di cuore: Fave di tonka, Vaniglia, Cacao, Fiore di tabacco\nNote di fondo: Note legnose, Frutta secca"
+        },
+        "salty_water": {
+            "name": "Salty Water",
+            "short": "Un profumo fresco di acqua salata e minerali antichi.",
+            "full": "Questa è una fragranza di leggera intensità, la più delicata dell'intera linea. Il sale marino e l'ambra si dissolvono in un rinfrescante aroma di rugiada salata.\n\nPiramide olfattiva:\nNote di testa: Ambra, Sale marino\nNote di cuore: Salvia\nNote di fondo: Pompelmo, Alghe marine"
+        },
+        "christmas_tree": {
+            "name": "Christmas Tree",
+            "short": "Un profumo morbido e festivo di pino natalizio e mandarini succosi.",
+            "full": "Questa è una fragranza di media intensità che riempie delicatamente la stanza. La nota luminosa e dolce del mandarino si sviluppa in un aroma familiare e nostalgico.\n\nPiramide olfattiva:\nNote di testa: Vaniglia\nNote di cuore: Arancia, Cannella\nNote di fondo: Pino, Mandarino"
+        },
+        "fleur": {
+            "name": "Fleur",
+            "short": "Un aroma fresco, succoso, floreale-fruttato.",
+            "full": "La composizione si apre con note luminose di bergamotto, litchi e pesca, portando a un cuore floreale di fiori d'arancio, gelsomino e peonia.\n\nPiramide olfattiva:\nNote di testa: Bergamotto, Litchi, Pesca\nNote di cuore: Fiori d'arancio, Gelsomino, Peonia\nNote di fondo: Note legnose, Muschio, Muschiato"
+        },
+        "blanc": {
+            "name": "Blanc",
+            "short": "Una fragranza morbida e fresca di cotone bianco e purezza.",
+            "full": "Questo profumo moderatamente concentrato mescola leggeri accordi floreali con aldeidi brillanti, evocando l'aroma di una camicia bianca croccante e lenzuola appena lavate.\n\nPiramide olfattiva:\nNote di testa: Aldeidi, Rosa, Pepe rosa\nNote di cuore: Peonia, Violetta, Fiori d'arancio\nNote di fondo: Muschio bianco, Note legnose, Legno di sandalo"
+        },
+        "green_mango": {
+            "name": "Green Mango",
+            "short": "Una fragranza succosa di mango fresco e ananas croccante.",
+            "full": "Questo profumo altamente concentrato riempie l'intero spazio con un aroma luminoso e fresco di frutta appena tagliata.\n\nPiramide olfattiva:\nNote di testa: Mango, Melone\nNote di cuore: Pesca, Ananas\nNote di fondo: Buccia di mango, Aghi di pino"
+        },
+        "carolina": {
+            "name": "Carolina",
+            "short": "Un aroma delicato e leggero di cappuccino dolce e fiori primaverili.",
+            "full": "Le note di caffè e mandorla si dissolvono in un accordo caldo, avvolgente e dolce-amaro. Gelsomino, iris e bergamotto creano freschi accenti floreali.\n\nPiramide olfattiva:\nNote di testa: Mandorla, Caffè, Bergamotto, Limone\nNote di cuore: Gelsomino sambac, Tuberosa, Iris, Rosa bulgara\nNote di fondo: Fava di tonka, Cacao, Legno di sandalo, Vaniglia"
+        },
+        "sugar": {
+            "name": "Sugar",
+            "short": "Un profumo dolce e appiccicoso di zucchero bruciato e resina legnosa.",
+            "full": "Le note pronunciate di zafferano e gelsomino si fondono in un aroma dolce e speziato. L'accordo principale legnoso-ambrato avvolge l'aria di dolcezza.\n\nPiramide olfattiva:\nNote di testa: Gelsomino, Zafferano\nNote di cuore: Ambra legnosa\nNote di fondo: Cedro bianco, Resina di pino"
+        },
+        "dubai": {
+            "name": "Dubai",
+            "short": "Una ricca fragranza orientale di rosa damascena e legno di oud.",
+            "full": "Un aroma intenso e altamente concentrato. Le note di geranio e violetta avvolgono delicatamente lo spazio con un profumo floreale leggermente amaro.\n\nPiramide olfattiva:\nNote di testa: Geranio, Violetta\nNote di cuore: Cannella, Rosa damascena, Rosa turca\nNote di fondo: Oud, Vaniglia"
+        },
+        "africa": {
+            "name": "Africa",
+            "short": "Un profumo caldo e speziato di legno di cardamomo e cuoio morbido.",
+            "full": "Questa fragranza intensamente concentrata riempie l'intera stanza. Le note luminose di bergamotto e muschio sono esaltate da una sfumatura legnosa luminosa.\n\nPiramide olfattiva:\nNote di testa: Bergamotto, Vetiver, Geranio\nNote di cuore: Cardamomo, Cuoio, Muschio\nNote di fondo: Patchouli, Cumino, Oud, Zafferano"
+        },
+        "dune": {
+            "name": "Dune",
+            "short": "Un profumo audace e speziato di sole cocente e pepe piccante.",
+            "full": "Le note agrumate di arancia e pompelmo aggiungono una scia piacevolmente dolce. Gli accordi distinti di pepe si dissolvono in un aroma luminoso e ardente.\n\nPiramide olfattiva:\nNote di testa: Arancia, Pompelmo\nNote di cuore: Pepe, Pepe rosa\nNote di fondo: Vetiver, Cedro, Patchouli, Benzoino"
+        },
+        "valencia": {
+            "name": "Valencia",
+            "short": "Una fragranza ariosa di agrumi freschi e gelsomino delicato.",
+            "full": "Le note di limone e bergamotto riempiono lo spazio con un fresco profumo agrumato. Gli accordi principali di gelsomino e rosa si fondono in una dolce composizione floreale.\n\nPiramide olfattiva:\nNote di testa: Bergamotto, Limone\nNote di cuore: Gelsomino, Acacia bianca, Rosa\nNote di fondo: Note legnose, Muschio"
+        },
+        "etna": {
+            "name": "Etna",
+            "short": "Un aroma speziato e caldo di cuoio, tabacco e caramello.",
+            "full": "Le forti note di cuoio e pepe nero emergono istantaneamente, mentre chiodi di garofano, salvia e miele si fondono in una composizione intensa.\n\nPiramide olfattiva:\nNote di testa: Cuoio, Zafferano, Pepe nero\nNote di cuore: Miele, Chiodi di garofano, Iris, Salvia\nNote di fondo: Tabacco, Oud, Caramello, Patchouli"
+        },
+        "new_york": {
+            "name": "New York",
+            "short": "Una festa vibrante, cocktail piccanti e freschezza speziata.",
+            "full": "A vibrant party, sharp cocktails, and the spicy freshness of the city of lights, skyscrapers, and unexpected encounters…\n\nYour night will be remembered by the scent of dark wood, smoky amber, and bold citrus notes.\n\nDesigned in an elegant minimalist style, this candle suits both modern and classic interiors. It brings the atmosphere of a big city evening and serves as a chic decorative accent for your home.\n\nCrafted using only high-quality vegetable waxes — coconut and soy — it offers excellent scent diffusion. Within minutes of lighting, your space is filled with a deep, rich, and long-lasting fragrance trail.\n\nThis limited edition BY VELCHEVA candle is both a stylish home décor piece and a wonderful gift for friends, loved ones, or colleagues.\n\nFeatures:\nVolume: 270 ml\nBurn time: approx. 40 hours\nPremium vegetable waxes: coconut and soy\nFragrance: woody-amber with citrus notes\nDesign: elegant and minimalist"
+        },
+        "abu_dhabi": {
+            "name": "Abu Dhabi",
+            "short": "Abbracciando le calde notti sotto un cielo stellato.",
+            "full": "Embracing warm nights under a starlit sky and soft sand beneath your feet…\n\nRich spicy notes blend with gentle lavender and a lush bouquet of florals — this is the scent of your unforgettable weekend in Abu Dhabi.\n\nCrafted in an elegant, minimalist design, this candle will complement any interior — from modern to classic. More than just a source of fragrance, it's a refined decorative accent for your home.\n\nWe use only high-quality plant-based waxes — coconut and soy — known for their excellent ability to retain and release fragrance. Within minutes of lighting, your space is filled with a rich, long-lasting, and sophisticated perfumed trail.\n\nA scented candle from the BY VELCHEVA limited collection is a stylish decor element for your home and also a perfect gift for friends, loved ones, or colleagues.\n\nDetails:\nVolume: 270 ml\nBurn time: approx. 40 hours\nPremium plant-based waxes: coconut and soy\nFragrance: oriental-floral with notes of lavender and spices\nDesign: elegant and minimalist"
+        },
+        "palermo": {
+            "name": "Palermo",
+            "short": "Dolci raggi di sole e brezza costiera rinfrescante.",
+            "full": "Gentle rays of sunshine, a refreshing coastal breeze, and an abundance of citrus fruits you can pick by hand…\n\nRadiant notes of mandarin and bitter orange blend with the soft scent of peonies and vibrant basil — this is how you'll remember a walk through Palermo.\n\nThe candle is designed in a refined minimalist style and will beautifully complement both modern and classic interiors. Its fragrance fills the space with lightness, joy, and a sunny mood.\n\nWe use only high-quality vegetable waxes — coconut and soy. They ensure even burning and excellent fragrance diffusion, which begins to unfold within the first minutes of lighting.\n\nThe limited-edition BY VELCHEVA scented candle is a stylish piece of home décor and a perfect gift for friends, loved ones, or colleagues.\n\nSpecifications:\nVolume: 270 ml\nBurn time: approximately 40 hours\nPremium vegetable waxes: coconut and soy\nFragrance: citrus-floral with notes of peony and basil\nDesign: elegant and minimalist"
+        },
+        "guggul_louban": {
+            "name": "Guggul e Louban",
+            "short": "Una miscela resinosa calda di guggul e louban.",
+            "full": "Una fragranza mistica e profondamente aromatica che ti trasporta in antichi spazi rituali. Note ricche di resina di guggul e incenso (louban) creano una scia calda e affumicata che riempie il tuo spazio con un senso di tranquillità e profondità spirituale.\n\nQuesto profumo intensamente concentrato combina il calore terroso del guggul con la dolcezza sacra del louban, creando un equilibrio armonioso che è stato apprezzato per secoli. Le note di base legnose e resinose persistono a lungo dopo la prima impressione, lasciando una presenza sottile ma profonda.\n\nGUGGUL E LOUBAN è perfetto per la meditazione, il rilassamento o per creare un'atmosfera contemplativa nella tua casa.\n\nPiramide Olfattiva:\nNote di testa: Resina di guggul, Incenso\nNote di cuore: Louban, Ambra\nNote di base: Note legnose, Resine affumicate"
+        }
+    }
+}

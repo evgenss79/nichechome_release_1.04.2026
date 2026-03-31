@@ -1,0 +1,129 @@
+{
+    "aroma_sashe": {
+        "id": "aroma_sashe",
+        "name_key": "product.aroma_sashe.name",
+        "desc_key": "product.aroma_sashe.desc",
+        "images": [
+            "2-Sashe.jpg",
+            "sashe_ward.jpg"
+        ],
+        "priceCHF": 11.9,
+        "active": true,
+        "allowed_fragrances": [
+            "cherry_blossom",
+            "bellini",
+            "eden",
+            "rosso",
+            "santal",
+            "lime_basil",
+            "bamboo",
+            "tobacco_vanilla",
+            "salty_water",
+            "christmas_tree",
+            "fleur",
+            "blanc",
+            "green_mango",
+            "carolina",
+            "sugar",
+            "dubai",
+            "africa",
+            "dune",
+            "valencia",
+            "etna"
+        ]
+    },
+    "christ_toy": {
+        "id": "christ_toy",
+        "name_key": "product.christ_toy.name",
+        "desc_key": "product.christ_toy.desc",
+        "images": [
+            "christ_1.jpg",
+            "christ_2.jpg",
+            "christ_3.jpg"
+        ],
+        "priceCHF": 22.9,
+        "active": true,
+        "allowed_fragrances": [
+            "christmas_tree"
+        ],
+        "has_volume_selector": false,
+        "volumes": []
+    },
+    "refill_125": {
+        "id": "refill_125",
+        "name_key": "product.refill_125.name",
+        "desc_key": "product.refill_125.desc",
+        "images": [
+            "Recarga.jpg",
+            "Refill-box.jpg"
+        ],
+        "priceCHF": 11.9,
+        "active": true,
+        "has_fragrance_selector": true,
+        "allowed_fragrances": [
+            "bamboo",
+            "salty_water",
+            "fleur",
+            "blanc",
+            "carolina",
+            "dubai",
+            "africa"
+        ],
+        "has_volume_selector": false,
+        "volumes": [],
+        "volume_prices": []
+    },
+    "sticks": {
+        "id": "sticks",
+        "name_key": "product.sticks.name",
+        "desc_key": "product.sticks.desc",
+        "images": [
+            "sticks.jpg",
+            "sticks_1.jpg"
+        ],
+        "priceCHF": 0,
+        "active": true,
+        "has_fragrance_selector": false,
+        "allowed_fragrances": [],
+        "has_volume_selector": true,
+        "volumes": [
+            "5 guggul + 5 louban",
+            "10 guggul + 10 louban"
+        ],
+        "volume_prices": {
+            "5 guggul + 5 louban": 2.99,
+            "10 guggul + 10 louban": 3.99
+        }
+    },
+    "car_s8007": {
+        "id": "car_s8007",
+        "name_key": "product.car_s8007.name",
+        "desc_key": "product.car_s8007.desc",
+        "images": [
+            "s8007.jpg"
+        ],
+        "priceCHF": 69.99,
+        "active": true,
+        "has_fragrance_selector": false,
+        "allowed_fragrances": [],
+        "has_volume_selector": false,
+        "volumes": [],
+        "volume_prices": []
+    },
+    "smart": {
+        "id": "smart",
+        "name_key": "product.smart.name",
+        "desc_key": "product.smart.desc",
+        "images": [
+            "smart_1.jpg",
+            "smart_2.jpg"
+        ],
+        "priceCHF": 79.99,
+        "active": true,
+        "has_fragrance_selector": false,
+        "allowed_fragrances": [],
+        "has_volume_selector": false,
+        "volumes": [],
+        "volume_prices": []
+    }
+}

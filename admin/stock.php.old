@@ -1,0 +1,353 @@
+<?php
+/**
+ * Admin - Stock Management
+ */
+
+require_once __DIR__ . '/../init.php';
+
+if (!isAdminLoggedIn()) {
+    header('Location: login.php');
+    exit;
+}
+
+// Prevent browser caching to ensure fresh stock data is always displayed
+// This is critical because Safari and other browsers may cache the page,
+// showing stale stock quantities even after orders are placed.
+// Without these headers, different browsers/tabs may show different stock levels.
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
+
+$products = loadJSON('products.json');
+$accessories = loadJSON('accessories.json');
+$success = '';
+$error = '';
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sku'])) {
+    // CRITICAL FIX: Reload stock.json inside POST handler to get the latest data
+    // This prevents overwriting stock quantities that were decreased by checkouts
+    // between the time the page was loaded and the time the form was submitted.
+    // Without this, updating one SKU would revert all other SKUs to their old values.
+    $stock = loadJSON('stock.json');
+    
+    $sku = $_POST['sku'];
+    $productId = $_POST['product_id'] ?? '';
+    $volume = $_POST['volume'] ?? '';
+    $fragrance = $_POST['fragrance'] ?? '';
+    
+    // RACE CONDITION PROTECTION: Check if stock.json was modified since page load
+    // This prevents admin from unknowingly overwriting stock changes made by checkouts
+    $stockFilePath = __DIR__ . '/../data/stock.json';
+    $currentFileTime = filemtime($stockFilePath);
+    $pageLoadFileTime = intval($_POST['file_mtime'] ?? 0);
+    
+    error_log("ADMIN STOCK UPDATE: Updating SKU '$sku' - ProductID: $productId, Volume: $volume, Fragrance: $fragrance");
+    error_log("ADMIN STOCK UPDATE: File time check - Page load: $pageLoadFileTime, Current: $currentFileTime");
+    
+    if ($pageLoadFileTime > 0 && $currentFileTime > $pageLoadFileTime) {
+        // File was modified by another process (likely a checkout) since page load
+        $oldQty = $stock[$sku]['quantity'] ?? 0;
+        $attemptedQty = max(0, intval($_POST['quantity'] ?? 0));
+        
+        error_log("ADMIN STOCK UPDATE: WARNING - Stock file was modified since page load!");
+        error_log("ADMIN STOCK UPDATE: SKU '$sku' - Page showed quantity, but current file has: $oldQty");
+        error_log("ADMIN STOCK UPDATE: Admin attempted to set: $attemptedQty");
+        
+        $error = "Warning: Stock was modified by another process (likely a customer order) since you loaded this page. " .
+                 "The current quantity for SKU '$sku' is $oldQty. Please refresh the page and try again if you still want to modify it.";
+    } else {
+        // Safe to proceed - file hasn't changed, or this is a new entry
+        
+        // Initialize stock entry if it doesn't exist
+        if (!isset($stock[$sku])) {
+            $stock[$sku] = [
+                'productId' => $productId,
+                'volume' => $volume,
+                'fragrance' => $fragrance,
+                'quantity' => 0,
+                'lowStockThreshold' => 3
+            ];
+            error_log("ADMIN STOCK UPDATE: Created new stock entry for SKU '$sku'");
+        }
+        
+        $oldQty = $stock[$sku]['quantity'] ?? 0;
+        $newQty = max(0, intval($_POST['quantity'] ?? 0));
+        $stock[$sku]['quantity'] = $newQty;
+        $stock[$sku]['lowStockThreshold'] = max(0, intval($_POST['threshold'] ?? 3));
+        
+        error_log("ADMIN STOCK UPDATE: SKU '$sku' quantity changed from $oldQty to $newQty");
+        
+        if (saveJSON('stock.json', $stock)) {
+            $success = 'Stock updated successfully.';
+            error_log("ADMIN STOCK UPDATE: Successfully saved stock.json");
+        } else {
+            $error = 'Failed to save stock.json';
+            error_log("ADMIN STOCK UPDATE: ERROR - Failed to save stock.json");
+        }
+    }
+}
+
+// Load stock for display (after POST processing to show updated values)
+$stock = loadJSON('stock.json');
+
+// Capture file modification time for race condition detection
+// This timestamp will be included in each form, allowing us to detect if the file
+// was modified between page load and form submission
+$stockFilePath = __DIR__ . '/../data/stock.json';
+$stockFileMtime = file_exists($stockFilePath) ? filemtime($stockFilePath) : 0;
+
+// Build comprehensive product list with all variants and fragrances
+$stockItems = [];
+
+// Get filter parameters
+$filterCategory = $_GET['filter_category'] ?? '';
+$filterName = $_GET['filter_name'] ?? '';
+$sortBy = $_GET['sort_by'] ?? ''; // 'quantity_asc' or 'quantity_desc'
+
+foreach ($products as $productId => $product) {
+    if (empty($product['active'])) {
+        continue; // Skip inactive products
+    }
+    
+    $category = $product['category'] ?? '';
+    $nameKey = $product['name_key'] ?? ('product.' . $productId . '.name');
+    $productName = I18N::t($nameKey, ucfirst(str_replace('_', ' ', $productId)));
+    $variants = $product['variants'] ?? [];
+    
+    // Determine allowed fragrances for this product
+    $allowedFragrances = [];
+    if ($category === 'accessories') {
+        // For accessories, use allowed_fragrances from the product itself or accessories.json
+        if (isset($product['allowed_fragrances'])) {
+            $allowedFragrances = $product['allowed_fragrances'];
+        } elseif (isset($accessories[$productId]['allowed_fragrances'])) {
+            $allowedFragrances = $accessories[$productId]['allowed_fragrances'];
+        } else {
+            // Default: all standard fragrances
+            $allowedFragrances = allowedFragrances($category);
+        }
+    } elseif ($category === 'limited_edition') {
+        // Limited edition has fixed fragrance
+        if (isset($product['fragrance'])) {
+            $allowedFragrances = [$product['fragrance']];
+        } else {
+            $allowedFragrances = allowedFragrances($category);
+        }
+    } else {
+        // Regular products: use category-based fragrance list
+        $allowedFragrances = allowedFragrances($category);
+    }
+    
+    // Generate entries for each variant × fragrance combination
+    foreach ($variants as $variant) {
+        $volume = $variant['volume'] ?? 'standard';
+        
+        foreach ($allowedFragrances as $fragranceCode) {
+            $sku = generateSKU($productId, $volume, $fragranceCode);
+            $fragranceName = I18N::t('fragrance.' . $fragranceCode . '.name', ucfirst(str_replace('_', ' ', $fragranceCode)));
+            
+            // Get stock data if exists
+            $stockData = $stock[$sku] ?? null;
+            $quantity = $stockData['quantity'] ?? 0;
+            $threshold = $stockData['lowStockThreshold'] ?? 3;
+            
+            $stockItems[] = [
+                'sku' => $sku,
+                'productId' => $productId,
+                'productName' => $productName,
+                'category' => $category,
+                'volume' => $volume,
+                'fragrance' => $fragranceCode,
+                'fragranceName' => $fragranceName,
+                'quantity' => $quantity,
+                'lowStockThreshold' => $threshold
+            ];
+        }
+    }
+}
+
+// Apply filters
+$filteredStockItems = $stockItems;
+
+// Filter by category
+if (!empty($filterCategory)) {
+    $filteredStockItems = array_filter($filteredStockItems, function($item) use ($filterCategory) {
+        return $item['category'] === $filterCategory;
+    });
+}
+
+// Filter by product name
+if (!empty($filterName)) {
+    $filteredStockItems = array_filter($filteredStockItems, function($item) use ($filterName) {
+        return stripos($item['productName'], $filterName) !== false;
+    });
+}
+
+// Sort based on sort parameter
+if ($sortBy === 'quantity_asc') {
+    usort($filteredStockItems, function($a, $b) {
+        return $a['quantity'] - $b['quantity'];
+    });
+} elseif ($sortBy === 'quantity_desc') {
+    usort($filteredStockItems, function($a, $b) {
+        return $b['quantity'] - $a['quantity'];
+    });
+} else {
+    // Default sort: by category, then product name
+    usort($filteredStockItems, function($a, $b) {
+        $catCompare = strcmp($a['category'], $b['category']);
+        if ($catCompare !== 0) return $catCompare;
+        return strcmp($a['productName'], $b['productName']);
+    });
+}
+
+// Get unique categories for filter dropdown
+$categories = array_unique(array_column($stockItems, 'category'));
+sort($categories);
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock - Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar__logo">NicheHome Admin</div>
+            <nav class="admin-sidebar__nav">
+                <a href="index.php" class="admin-sidebar__link">Dashboard</a>
+                <a href="products.php" class="admin-sidebar__link">Products</a>
+                <a href="accessories.php" class="admin-sidebar__link">Accessories</a>
+                <a href="fragrances.php" class="admin-sidebar__link">Fragrances</a>
+                <a href="categories.php" class="admin-sidebar__link">Categories</a>
+                <a href="stock.php" class="admin-sidebar__link active">Stock</a>
+                <a href="orders.php" class="admin-sidebar__link">Orders</a>
+                <a href="shipping.php" class="admin-sidebar__link">Shipping</a>
+                <a href="branches.php" class="admin-sidebar__link">Branches</a>
+                <a href="notifications.php" class="admin-sidebar__link">Notifications</a>
+                <a href="email.php" class="admin-sidebar__link">Email Settings</a>
+                <a href="logout.php" class="admin-sidebar__link">Logout</a>
+            </nav>
+        </aside>
+        
+        <main class="admin-content">
+            <div class="admin-header">
+                <h1>Stock Management</h1>
+                <p style="color: #666; margin-top: 0.5rem;">Total items: <?php echo count($stockItems); ?> | Filtered: <?php echo count($filteredStockItems); ?></p>
+            </div>
+            
+            <?php if ($success): ?>
+                <div class="alert alert--success"><?php echo htmlspecialchars($success); ?></div>
+            <?php endif; ?>
+            
+            <?php if ($error): ?>
+                <div class="alert alert--error"><?php echo htmlspecialchars($error); ?></div>
+            <?php endif; ?>
+            
+            <!-- Filters -->
+            <div class="admin-card" style="margin-bottom: 1.5rem;">
+                <form method="get" action="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: end;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Filter by Category</label>
+                        <select name="filter_category" style="width: 100%; padding: 0.5rem;">
+                            <option value="">All Categories</option>
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?php echo htmlspecialchars($cat); ?>" <?php echo $filterCategory === $cat ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars(ucfirst(str_replace('_', ' ', $cat))); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Filter by Product Name</label>
+                        <input type="text" name="filter_name" value="<?php echo htmlspecialchars($filterName); ?>" 
+                               placeholder="Search products..." style="width: 100%; padding: 0.5rem;">
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Sort by Quantity</label>
+                        <select name="sort_by" style="width: 100%; padding: 0.5rem;">
+                            <option value="">Default (Category, Name)</option>
+                            <option value="quantity_asc" <?php echo $sortBy === 'quantity_asc' ? 'selected' : ''; ?>>Quantity: Low to High</option>
+                            <option value="quantity_desc" <?php echo $sortBy === 'quantity_desc' ? 'selected' : ''; ?>>Quantity: High to Low</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button type="submit" class="btn btn--gold">Apply Filters</button>
+                        <a href="stock.php" class="btn" style="text-align: center; padding: 0.5rem 1rem; text-decoration: none;">Clear</a>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="admin-card">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Product</th>
+                            <th>Volume</th>
+                            <th>Fragrance</th>
+                            <th>SKU</th>
+                            <th>Quantity</th>
+                            <th>Low Stock</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($filteredStockItems as $item): ?>
+                            <?php
+                            $isLowStock = $item['quantity'] <= $item['lowStockThreshold'];
+                            $isOutOfStock = $item['quantity'] <= 0;
+                            ?>
+                            <tr style="<?php echo $isLowStock ? 'background: rgba(199, 74, 74, 0.1);' : ''; ?>">
+                                <td><?php echo htmlspecialchars($item['category']); ?></td>
+                                <td><?php echo htmlspecialchars($item['productName']); ?></td>
+                                <td><?php echo htmlspecialchars($item['volume']); ?></td>
+                                <td><?php echo htmlspecialchars($item['fragranceName']); ?></td>
+                                <td><code><?php echo htmlspecialchars($item['sku']); ?></code></td>
+                                <td>
+                                    <form method="post" action="" style="display: flex; gap: 0.5rem; align-items: center;">
+                                        <input type="hidden" name="sku" value="<?php echo htmlspecialchars($item['sku']); ?>">
+                                        <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($item['productId']); ?>">
+                                        <input type="hidden" name="volume" value="<?php echo htmlspecialchars($item['volume']); ?>">
+                                        <input type="hidden" name="fragrance" value="<?php echo htmlspecialchars($item['fragrance']); ?>">
+                                        <!-- File modification time for race condition detection -->
+                                        <input type="hidden" name="file_mtime" value="<?php echo $stockFileMtime; ?>">
+                                        <input type="number" name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>" 
+                                               style="width: 70px; padding: 0.25rem; text-align: center;" min="0">
+                                </td>
+                                <td>
+                                        <input type="number" name="threshold" value="<?php echo htmlspecialchars($item['lowStockThreshold']); ?>" 
+                                               style="width: 60px; padding: 0.25rem; text-align: center;" min="0">
+                                </td>
+                                <td>
+                                    <?php if ($isOutOfStock): ?>
+                                        <span style="color: var(--color-error); font-weight: 600;">Out of Stock</span>
+                                    <?php elseif ($isLowStock): ?>
+                                        <span style="color: #d4a017; font-weight: 600;">Low Stock</span>
+                                    <?php else: ?>
+                                        <span style="color: var(--color-success);">In Stock</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                        <button type="submit" class="btn btn--text">Save</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

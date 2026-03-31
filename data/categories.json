@@ -1,0 +1,93 @@
+{
+    "aroma_diffusers": {
+        "id": "aroma_diffusers",
+        "name_key": "category.aroma_diffusers.name",
+        "short_key": "category.aroma_diffusers.short",
+        "long_key": "category.aroma_diffusers.long",
+        "image": "Mikado-category.jpg",
+        "volumes": ["125ml", "250ml", "500ml"],
+        "has_fragrance": true,
+        "sort_order": 1
+    },
+    "scented_candles": {
+        "id": "scented_candles",
+        "name_key": "category.scented_candles.name",
+        "short_key": "category.scented_candles.short",
+        "long_key": "category.scented_candles.long",
+        "image": "Candels category.jpg",
+        "volumes": ["160ml", "500ml"],
+        "has_fragrance": true,
+        "sort_order": 2
+    },
+    "home_perfume": {
+        "id": "home_perfume",
+        "name_key": "category.home_perfume.name",
+        "short_key": "category.home_perfume.short",
+        "long_key": "category.home_perfume.long",
+        "image": "home pefume.jpg",
+        "volumes": ["10ml", "50ml"],
+        "has_fragrance": true,
+        "sort_order": 3
+    },
+    "car_perfume": {
+        "id": "car_perfume",
+        "name_key": "category.car_perfume.name",
+        "short_key": "category.car_perfume.short",
+        "long_key": "category.car_perfume.long",
+        "image": "AutoParf.jpg",
+        "volumes": [],
+        "has_fragrance": true,
+        "fixed_price": 14.90,
+        "sort_order": 4
+    },
+    "textile_perfume": {
+        "id": "textile_perfume",
+        "name_key": "category.textile_perfume.name",
+        "short_key": "category.textile_perfume.short",
+        "long_key": "category.textile_perfume.long",
+        "image": "Textil-spray.jpg",
+        "volumes": [],
+        "has_fragrance": true,
+        "fixed_price": 19.90,
+        "sort_order": 5
+    },
+    "limited_edition": {
+        "id": "limited_edition",
+        "name_key": "category.limited_edition.name",
+        "short_key": "category.limited_edition.short",
+        "long_key": "category.limited_edition.long",
+        "image": "3 velas.jpg",
+        "volumes": [],
+        "has_fragrance": true,
+        "fixed_price": 39.90,
+        "sort_order": 6
+    },
+    "gift_sets": {
+        "id": "gift_sets",
+        "name_key": "category.gift_sets.name",
+        "short_key": "category.gift_sets.short",
+        "long_key": "category.gift_sets.long",
+        "image": "IMG_7321.jpg",
+        "redirect": "gift-sets.php",
+        "sort_order": 7
+    },
+    "accessories": {
+        "id": "accessories",
+        "name_key": "category.accessories.name",
+        "short_key": "category.accessories.short",
+        "long_key": "category.accessories.long",
+        "image": "IMG_7321.jpg",
+        "volumes": [],
+        "has_fragrance": false,
+        "sort_order": 8
+    },
+    "aroma_marketing": {
+        "id": "aroma_marketing",
+        "name_key": "category.aroma_marketing.name",
+        "short_key": "category.aroma_marketing.short",
+        "long_key": "category.aroma_marketing.long",
+        "image": "IMG_7348.jpg",
+        "redirect": "aroma-marketing.php",
+        "sort_order": 9
+    }
+}

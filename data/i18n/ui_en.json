@@ -1,0 +1,424 @@
+{
+    "site": {
+        "title": "NicheHome.ch - Premium Home Fragrances"
+    },
+    "ui": {
+        "fragrance": {
+            "read_more": "Read more",
+            "collapse": "Collapse"
+        },
+        "category": {
+            "read_more": "Read more",
+            "collapse": "Collapse"
+        },
+        "product": {
+            "volume": "Volume",
+            "fragrance": "Fragrance",
+            "price": "Price"
+        }
+    },
+    "common": {
+        "utilityShipping": "Free shipping from CHF 80",
+        "utilityDelivery": "Delivery within 1-3 business days",
+        "menuToggle": "Toggle menu",
+        "mainMenu": "Main menu",
+        "cart": "Cart",
+        "search": "Search",
+        "wishlist": "Wishlist",
+        "account": "Account",
+        "addToCart": "Add to cart",
+        "buyNow": "Buy now",
+        "outOfStock": "Out of stock",
+        "notifyMe": "Notify me when available",
+        "price": "Price",
+        "quantity": "Quantity",
+        "total": "Total",
+        "subtotal": "Subtotal",
+        "shipping": "Shipping",
+        "freeShipping": "Free",
+        "shippingInfo": "Free shipping over CHF 80",
+        "amountToFreeShipping": "Add CHF {amount} for free shipping",
+        "increaseOrderForFreeShipping": "increase order for CHF {amount} for a FREE shipping",
+        "proceedToCheckout": "Proceed to checkout",
+        "continueShopping": "Continue shopping",
+        "remove": "Remove",
+        "update": "Update",
+        "volume": "Volume",
+        "fragrance": "Fragrance",
+        "selectFragrance": "Select fragrance",
+        "selectVolume": "Select volume",
+        "noFragrance": "No fragrance",
+        "moreInfo": "More info",
+        "lessInfo": "Less info",
+        "accessory": "Accessory",
+        "myAccount": "My Account",
+        "loginRegister": "Login",
+        "addToFavorites": "Add to favorites",
+        "removeFromFavorites": "Remove from favorites",
+        "product": "Product",
+        "available": "available"
+    },
+    "nav": {
+        "catalog": "Catalog",
+        "giftSets": "Gift Sets",
+        "aromaMarketing": "Aroma Marketing",
+        "about": "About Us",
+        "contacts": "Contact",
+        "support": "Support"
+    },
+    "page": {
+        "about": {
+            "title": "About Us",
+            "subtitle": "Premium Home Fragrances by By Velcheva",
+            "content": "NicheHome.ch presents a carefully curated selection of home fragrances developed for discerning residential and hospitality concepts. Each creation arises from a passion for exceptional accords and long-lasting performance.\n\nOur boutique serves interior designers, boutiques and private clients throughout Switzerland with flexible terms, customized consulting and ready-to-use collections.\n\nBy Velcheva combines elegance and warmth in a sophisticated format. Perfect for those who want premium fragrances that transform any space into a sensory experience."
+        },
+        "catalog": {
+            "title": "Catalog",
+            "subtitle": "Discover our premium home fragrance categories"
+        },
+        "contacts": {
+            "title": "Contact Us",
+            "subtitle": "Get in touch with our team",
+            "formName": "Your name",
+            "formEmail": "Email address",
+            "formPhone": "Phone number",
+            "formMessage": "Your message",
+            "formSubmit": "Send message",
+            "formSuccess": "Thank you for your message. We will get back to you soon.",
+            "errorRequired": "All fields are required.",
+            "errorInvalidEmail": "Please enter a valid email address.",
+            "emailLabel": "Email"
+        },
+        "support": {
+            "title": "Support",
+            "subtitle": "Get in touch with us",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "email": "Email",
+            "phone": "Phone number",
+            "subject": "Subject",
+            "message": "Message",
+            "attachment": "Attachment",
+            "attachmentNote": "Maximum file size: 5 MB. Allowed types: PDF, JPEG, PNG",
+            "phoneOptional": "Optional",
+            "submit": "Send Request",
+            "firstNameRequired": "First name is required",
+            "lastNameRequired": "Last name is required",
+            "emailRequired": "Email is required",
+            "emailInvalid": "Please enter a valid email address",
+            "phoneInvalid": "Please enter a valid phone number",
+            "subjectRequired": "Subject is required",
+            "messageRequired": "Message is required",
+            "fileUploadError": "Error uploading file",
+            "fileTooLarge": "File size must not exceed 5 MB",
+            "fileTypeInvalid": "File must be PDF, JPEG, or PNG",
+            "successTitle": "Thank you!",
+            "successMessage": "Your request has been received. We will contact you as soon as possible."
+        },
+        "cart": {
+            "title": "Shopping Cart",
+            "empty": "Your cart is empty",
+            "item": "Item",
+            "price": "Price",
+            "quantity": "Qty",
+            "total": "Total",
+            "subtotal": "Subtotal",
+            "shipping": "Shipping",
+            "freeShippingHint": "Add CHF {amount} for free shipping",
+            "proceedToCheckout": "Proceed to checkout",
+            "continueShopping": "Continue shopping",
+            "remove": "Remove",
+            "free": "Free",
+            "calculatedAtCheckout": "Calculated at checkout"
+        },
+        "checkout": {
+            "title": "Checkout",
+            "shipping": "Shipping Address",
+            "billing": "Billing Address",
+            "sameAsShipping": "Billing address same as shipping",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "email": "Email",
+            "phone": "Phone",
+            "street": "Street",
+            "houseNumber": "House number",
+            "zip": "ZIP code",
+            "city": "City",
+            "country": "Country",
+            "comment": "Order comment (optional)",
+            "payment": "Payment Method",
+            "paymentTwint": "TWINT",
+            "paymentCard": "Credit Card (coming soon)",
+            "paymentPaypal": "PayPal (coming soon)",
+            "placeOrder": "Place Order",
+            "orderSuccess": "Thank you for your order!",
+            "orderConfirmation": "Order #{orderId} has been placed successfully. You will receive a confirmation email shortly.",
+            "pickupInBranch": "Pickup in branch",
+            "selectBranch": "Select branch for pickup",
+            "pickupNote": "When you select pickup, shipping is free",
+            "orderSummary": "Order Summary",
+            "shippingCost": "Shipping",
+            "subtotal": "Subtotal",
+            "total": "Total",
+            "branchStockError": "Some items are not available for pickup at this branch",
+            "requiredField": "is required",
+            "consentLabel": "I have read and agree to the {terms} and {privacy}, and consent to the processing of my personal data for order processing purposes.",
+            "consentTermsLink": "Terms and Conditions",
+            "consentPrivacyLink": "Privacy Policy",
+            "consentError": "You must accept the Terms and Conditions and Privacy Policy to place an order.",
+            "stockError": "Some items are not available in requested quantity",
+            "stockNotFound": "%s: not available",
+            "stockInsufficient": "%s: %d requested, %d available",
+            "registerAccount": "Register an account automatically",
+            "password": "Password",
+            "passwordMinLength": "Password must be at least 8 characters",
+            "emailExists": "An account with this email already exists",
+            "registrationSuccess": "Account created successfully",
+            "autoRegistrationWarning": "To create an account automatically, please provide Email, Address and Password.",
+            "newsletterOptIn": "I agree to receive newsletters and promotional emails",
+            "giftSetComponentMissing": "%s - Component: %s: required %d, available %d at %s",
+            "giftSetComponentMissingDelivery": "%s - Component: %s: required %d, available %d for delivery",
+            "branchStockItemError": "%s: required %d, available %d at %s"
+        },
+        "giftSets": {
+            "title": "Create Your Gift Set",
+            "subtitle": "Combine your favorite products with a 5% discount",
+            "slot": "Slot",
+            "selectCategory": "Select category",
+            "selectProduct": "Select product",
+            "totalPrice": "Total price",
+            "discount": "5% gift set discount",
+            "addToCart": "Add gift set to cart",
+            "duplicateError": "You cannot add the same item twice",
+            "addedAlert": "Gift set added to cart!",
+            "selectToSeePrice": "Select options to see price",
+            "errorProductMissing": "Please choose a product for this slot",
+            "errorVariantMissing": "Please choose a size or pack option",
+            "errorFragranceMissing": "Please choose a fragrance",
+            "errorAddingGiftset": "Error adding gift set to cart",
+            "errorSelectAtLeastOne": "Please select at least one product for your gift set.",
+            "errorIncomplete": "Complete all 3 slots to add Gift Set (5% discount applies only to 3 items)."
+        },
+        "aromaMarketing": {
+            "title": "Aroma Marketing",
+            "subtitle": "Professional scenting solutions for your business",
+            "content": "Transform your business environment with our professional aroma marketing services. We offer customized scenting solutions for hotels, retail stores, offices, and other commercial spaces.\n\nOur team works with you to create a unique olfactory identity that enhances customer experience and brand recognition.",
+            "services": [
+                "Custom scent development",
+                "Professional installation",
+                "Regular maintenance",
+                "Training and consultation"
+            ],
+            "contactTitle": "Request Information",
+            "formCompany": "Company name",
+            "formName": "Contact person",
+            "formEmail": "Email address",
+            "formMessage": "Tell us about your needs",
+            "formSubmit": "Send request",
+            "formSuccess": "Thank you for your inquiry. Our team will contact you within 24 hours."
+        }
+    },
+    "footer": {
+        "catalogTitle": "Catalog",
+        "infoTitle": "Information",
+        "legalTitle": "Legal",
+        "newsletterTitle": "Newsletter",
+        "newsletterText": "Exclusive launches, placement tips and invitations to scent sessions.",
+        "newsletterPlaceholder": "Your email",
+        "newsletterButton": "Subscribe",
+        "socialLabel": "Follow us",
+        "about": "About the Brand",
+        "corporate": "Corporate Services",
+        "faq": "FAQ",
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions",
+        "shipping": "Shipping & Returns",
+        "paymentTitle": "We accept Visa, Mastercard, TWINT",
+        "copyright": "© NicheHome.ch – Official Swiss Representative of By Velcheva"
+    },
+    "product": {
+        "diffuser_classic": {
+            "name": "Aroma Diffuser",
+            "desc": "Elegant aroma diffuser with natural rattan sticks that continuously releases your chosen fragrance throughout the space.\n\nPerfect for any room in your home or office, this diffuser provides long-lasting, subtle fragrance without the need for electricity or flames.\n\nAvailable in three sizes to suit different room dimensions:\n• 125ml - ideal for small spaces (bathrooms, closets) - lasts approximately 4-6 weeks\n• 250ml - perfect for medium rooms (bedrooms, offices) - lasts approximately 8-10 weeks\n• 500ml - best for large spaces (living rooms, lobbies) - lasts approximately 16-20 weeks\n\nSimply place the rattan sticks into the bottle and the fragrance will gradually diffuse into your space. Turn the sticks weekly for optimal fragrance distribution."
+        },
+        "candle_classic": {
+            "name": "Scented Candle",
+            "desc": "Premium scented candle crafted with high-quality vegetable waxes (coconut and soy) for clean, even burning and excellent fragrance diffusion.\n\nElegant minimalist design complements any interior style from modern to classic. Each candle fills your space with rich, long-lasting fragrance within minutes of lighting.\n\nAvailable in two sizes:\n• 160ml - burn time approximately 25-30 hours, perfect for bedrooms and small spaces\n• 500ml - burn time approximately 70-80 hours, ideal for living rooms and large areas\n\nOur candles make a wonderful gift and serve as both a fragrance source and stylish home décor accent."
+        },
+        "home_spray": {
+            "name": "Interior Spray",
+            "desc": "Instant home fragrance spray that quickly refreshes any space with a fine mist of your favorite scent.\n\nPerfect for quick touch-ups before guests arrive or whenever you want an immediate burst of fragrance. Use in living rooms, bathrooms, entryways, or any space that needs instant freshening.\n\nAvailable in two convenient sizes:\n• 10ml - travel-sized, perfect for your purse or car\n• 50ml - regular size for home use\n\nSimply spray 2-3 times into the air and enjoy the immediate transformation of your space. Safe for use around fabrics and furniture when sprayed into the air."
+        },
+        "car_clip": {
+            "name": "Car Perfume",
+            "desc": "Stylish car air freshener that clips easily onto your car's air vent, delivering continuous fragrance while you drive.\n\nCompact and elegant design blends seamlessly with your car's interior. The fragrance intensity adjusts naturally with your air conditioning or heating - stronger airflow means more fragrance.\n\nEach car perfume lasts approximately 4-6 weeks depending on usage and climate conditions. Simply clip it onto any air vent and enjoy your favorite scent during every journey.\n\nPerfect for keeping your car fresh and welcoming, or as a thoughtful gift for car owners."
+        },
+        "textile_spray": {
+            "name": "Textile Perfume Spray",
+            "desc": "A gentle scented spray for curtains, carpets, furniture and bedding."
+        },
+        "limited_new_york": {
+            "name": "New York Limited Edition",
+            "desc": "A vibrant party, sharp cocktails, and the spicy freshness of the city of lights, skyscrapers, and unexpected encounters…\n\nYour night will be remembered by the scent of dark wood, smoky amber, and bold citrus notes.\n\nDesigned in an elegant minimalist style, this candle suits both modern and classic interiors. It brings the atmosphere of a big city evening and serves as a chic decorative accent for your home.\n\nCrafted using only high-quality vegetable waxes — coconut and soy — it offers excellent scent diffusion. Within minutes of lighting, your space is filled with a deep, rich, and long-lasting fragrance trail.\n\nThis limited edition BY VELCHEVA candle is both a stylish home décor piece and a wonderful gift for friends, loved ones, or colleagues.\n\nFeatures:\nVolume: 270 ml\nBurn time: approx. 40 hours\nPremium vegetable waxes: coconut and soy\nFragrance: woody-amber with citrus notes\nDesign: elegant and minimalist"
+        },
+        "limited_abu_dhabi": {
+            "name": "Abu Dhabi Limited Edition",
+            "desc": "Embracing warm nights under a starlit sky and soft sand beneath your feet…\n\nRich spicy notes blend with gentle lavender and a lush bouquet of florals — this is the scent of your unforgettable weekend in Abu Dhabi.\n\nCrafted in an elegant, minimalist design, this candle will complement any interior — from modern to classic. More than just a source of fragrance, it's a refined decorative accent for your home.\n\nWe use only high-quality plant-based waxes — coconut and soy — known for their excellent ability to retain and release fragrance. Within minutes of lighting, your space is filled with a rich, long-lasting, and sophisticated perfumed trail.\n\nA scented candle from the BY VELCHEVA limited collection is a stylish decor element for your home and also a perfect gift for friends, loved ones, or colleagues.\n\nDetails:\nVolume: 270 ml\nBurn time: approx. 40 hours\nPremium plant-based waxes: coconut and soy\nFragrance: oriental-floral with notes of lavender and spices\nDesign: elegant and minimalist"
+        },
+        "limited_palermo": {
+            "name": "Palermo Limited Edition",
+            "desc": "Gentle rays of sunshine, a refreshing coastal breeze, and an abundance of citrus fruits you can pick by hand…\n\nRadiant notes of mandarin and bitter orange blend with the soft scent of peonies and vibrant basil — this is how you'll remember a walk through Palermo.\n\nThe candle is designed in a refined minimalist style and will beautifully complement both modern and classic interiors. Its fragrance fills the space with lightness, joy, and a sunny mood.\n\nWe use only high-quality vegetable waxes — coconut and soy. They ensure even burning and excellent fragrance diffusion, which begins to unfold within the first minutes of lighting.\n\nThe limited-edition BY VELCHEVA scented candle is a stylish piece of home décor and a perfect gift for friends, loved ones, or colleagues.\n\nSpecifications:\nVolume: 270 ml\nBurn time: approximately 40 hours\nPremium vegetable waxes: coconut and soy\nFragrance: citrus-floral with notes of peony and basil\nDesign: elegant and minimalist"
+        },
+        "aroma_sashe": {
+            "name": "Aroma Sashé",
+            "desc": "Our home perfumes come in the form of solid air fresheners. We have created them concise and aesthetic.\n\nTherefore, this product will be a very pleasant addition to your home. The fragrance of the solid air freshener is more delicate than that of a regular home perfume.\n\nThis type of product will not declare itself as loudly. But it can subtly and effectively highlight individual details.\n\nIn other words, you have the opportunity to selectively scent any object by simply placing or hanging an aromatic air freshener there. For example, you can place it in a wardrobe with clothes. Every time you open the doors of your wardrobe, you will feel a light trace of your favorite fragrance.\n\nThere is a rule: the smaller the distribution area, the longer the fragrance lasts."
+        },
+        "christ_toy": {
+            "name": "Flavored Christmas tree toys BY VELCHEVA",
+            "desc": "The most festive and magical novelty from BY VELCHEVA.\r\nStylish minimalist ornaments will make a wonderful decoration for your Christmas tree.\r\nMade from white plaster, these ornaments will fit into any interior. A soft and subtle fragrant trail will envelop your tree and give you a festive mood.\r\nFragrant ornaments are the best solution for owners of artificial trees. Moreover, they can also be used as a standalone decorative element.\r\nThe ornaments are available in holiday, Christmas scents.\r\n\r\nFill your space with coziness and a magical atmosphere with BY VELCHEVA!"
+        },
+        "refill_125": {
+            "name": "Refill for Aroma Diffusers and car aroma device (125ml)",
+            "desc": "A bottle of additional aromatic liquid.\r\nA bottle with a fragrance composition included in the aroma diffuser set.\r\nAlso available for separate purchase – when the aromatic liquid from your set runs out, you won’t need to buy a new aroma diffuser; simply purchase an additional refill.\r\nVolume: 125 ml."
+        },
+        "sticks": {
+            "name": "Incense sticks",
+            "desc": "Incense sticks are aromatic sticks used to create a pleasant atmosphere and freshen the air. Lovingly made in India, they have a special Eastern spirit.\r\nEach set of incense sticks contains half red guggul sticks and half white louban sticks.\r\nThe red sticks made from guggul have an intense and passionate aroma that helps create an energetic and stimulating atmosphere.\r\nThe white sticks, made from louban, emit a delicate and calming fragrance, promoting relax and meditation.\r\nExpress your individuality and choose the number of incense sticks that suit you best to create a unique atmosphere in your home.\r\nImmerse yourself in the magic of incense sticks and enjoy their amazing aromas!"
+        },
+        "car_s8007": {
+            "name": "Aroma device for the car",
+            "desc": "• Coverage area up to 10 sq m\r\n• Works and charges via USB 2.0 cable - charge lasts up to 4 hours\r\n• Manual control and customization\r\n• Can be placed in a cup holder\r\n\r\nThe compact car aroma machine is the best solution for scenting your car.\r\nYou can personally choose the interval and duration of aroma diffusion. As a result, the device operates only when you need it.\r\nThe aroma is diffused using dry mist technology, which helps eliminate unpleasant odors quickly and effectively.\r\nAdditionally, the scent fills the car's interior, creating the desired atmosphere and mood.\r\nThe device can be charged using the provided USB 2.0 cable. A single charge lasts for 4 hours of continuous operation.\r\nConveniently, you can place the aroma machine in a cup holder, as it takes up minimal space and operates silently.\r\nThis compact and user-friendly aroma machine will make an ideal gift for all car enthusiasts."
+        },
+        "smart": {
+            "name": "Aroma Smart",
+            "desc": "Aromasmart is the best solution for you.\r\nThe equipment is easy to transport and install - you can place the scent machine on a surface or mount it on a wall using the included bracket.\r\nThe device operates both from a power source and AA batteries, which are available in any store or supermarket. If using batteries, you'll need around 6 pieces for one month of usage.\r\nAromasmart is an ideal choice for small business spaces."
+        }
+    },
+    "account": {
+        "title": "My Account",
+        "tab": {
+            "login": "Login",
+            "register": "Register",
+            "profile": "Profile",
+            "orders": "My Orders",
+            "favorites": "My Favorites"
+        },
+        "field": {
+            "email": "Email",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "salutation": "Salutation",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "phone": "Phone",
+            "shippingAddress": "Shipping Address",
+            "billingAddress": "Billing Address",
+            "street": "Street",
+            "houseNumber": "House Number",
+            "zip": "ZIP Code",
+            "city": "City",
+            "country": "Country",
+            "emailReadonly": "Email cannot be changed",
+            "billingHint": "Leave empty if same as shipping"
+        },
+        "salutation": {
+            "none": "Please select",
+            "mr": "Mr",
+            "mrs": "Mrs"
+        },
+        "placeholder": {
+            "street": "Street name",
+            "houseNumber": "12A",
+            "zip": "8000",
+            "city": "City name",
+            "selectCountry": "Select a country"
+        },
+        "btn": {
+            "login": "Login",
+            "register": "Register",
+            "logout": "Logout",
+            "save": "Save Profile"
+        },
+        "error": {
+            "emptyFields": "Please fill in all fields.",
+            "invalidEmail": "Invalid email address.",
+            "passwordTooShort": "Password must be at least 6 characters.",
+            "passwordMismatch": "Passwords do not match.",
+            "emailExists": "An account with this email already exists.",
+            "invalidCredentials": "Invalid email or password.",
+            "registrationFailed": "Registration failed. Please try again.",
+            "notLoggedIn": "You must be logged in to update your profile.",
+            "mustAcceptTerms": "You must accept the Privacy Policy and Terms & Conditions before saving your profile.",
+            "updateFailed": "Failed to update profile.",
+            "noEmail": "Cannot update profile: your session is missing email information. Please log out and log in again.",
+            "saveFailed": "Failed to update profile due to an internal server error. Please try again later."
+        },
+        "success": {
+            "registered": "Account created successfully! Welcome!",
+            "profileUpdated": "Profile updated successfully!"
+        },
+        "info": {
+            "loginForFavorites": "Please login or register to use favorites."
+        },
+        "welcome": "Welcome",
+        "profile": "Profile",
+        "orders": {
+            "empty": "No orders yet",
+            "emptyDesc": "Your order history will appear here.",
+            "browseCatalog": "Browse Catalog"
+        },
+        "favorites": {
+            "title": "My Favorites",
+            "empty": "No favorites yet",
+            "emptyDesc": "Start adding products to your favorites by clicking the heart icon.",
+            "browseCatalog": "Browse Catalog"
+        },
+        "logout": "Logout",
+        "acceptTerms": "I agree with the Privacy Policy and Terms & Conditions",
+        "consentLabel": "I have read and agree to the {terms} and {privacy}, and consent to the processing of my personal data for profile management purposes.",
+        "consentTermsLink": "Terms and Conditions",
+        "consentPrivacyLink": "Privacy Policy",
+        "backToOrders": "Back to orders",
+        "orderDetails": "Order Details",
+        "orderId": "Order ID",
+        "orderDate": "Date",
+        "orderStatus": "Status",
+        "orderTotal": "Total",
+        "orderItems": "Items",
+        "forgotPassword": "Forgot password?",
+        "resetPassword": "Reset Password",
+        "sendResetCode": "Send Reset Code",
+        "enterResetCode": "Enter Reset Code",
+        "verificationCode": "Verification Code",
+        "newPassword": "New Password",
+        "confirmNewPassword": "Confirm New Password",
+        "resetPasswordInstructions": "Enter your email address and we will send you a verification code to reset your password.",
+        "codeEmailSent": "A verification code has been sent to your email address.",
+        "enterCodeInstructions": "Enter the verification code we sent to your email, along with your new password.",
+        "passwordResetSuccess": "Your password has been reset successfully. You can now log in with your new password.",
+        "invalidCode": "Invalid or expired verification code.",
+        "codeSentRecently": "A code was sent recently. Please wait before requesting another.",
+        "tooManyAttempts": "Too many attempts. Please request a new code.",
+        "acceptTermsAndPrivacy": "I agree to the {terms} and {privacy}",
+        "termsAndConditions": "Terms & Conditions",
+        "privacyPolicy": "Privacy Policy",
+        "mustAcceptTerms": "You must accept the Terms & Conditions and Privacy Policy to register",
+        "backToLogin": "Back to Login",
+        "newsletterOptIn": "I agree to receive newsletters and promotional emails"
+    },
+    "contact": {
+        "address": "Address"
+    },
+    "validation": {
+        "acceptTermsTooltip": "To continue, please check this checkbox."
+    },
+    "email": {
+        "passwordReset": {
+            "subject": "Password Reset Code",
+            "greeting": "Hello",
+            "body": "You requested to reset your password. Your verification code is:",
+            "expiry": "This code will expire in 15 minutes.",
+            "ignore": "If you did not request this, please ignore this email."
+        }
+    }
+}

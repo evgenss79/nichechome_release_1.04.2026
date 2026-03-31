@@ -1,0 +1,3484 @@
+{
+    "ORD-20251219-DED977": {
+        "id": "ORD-20251219-DED977",
+        "customer_id": null,
+        "date": "2025-12-19 13:08:29",
+        "created_at": "2025-12-19T13:08:29+02:00",
+        "status": "completed",
+        "language": "en",
+        "customer": {
+            "first_name": "Maria",
+            "last_name": "BeautyLounge",
+            "email": "evgenss79@gmail.com",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen Dorf",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen Dorf",
+            "country": "Switzerland"
+        },
+        "comment": "оплачено заранее на TWINT 25.80 со скидкой за предзаказ",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "CP-STA-DUB",
+                "productId": "car_clip",
+                "name": "Car Perfume",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "dubai",
+                "price": 14.9,
+                "quantity": 1
+            },
+            {
+                "sku": "CP-STA-TOB",
+                "productId": "car_clip",
+                "name": "Car Perfume",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "tobacco_vanilla",
+                "price": 14.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 29.8,
+        "shipping_cost": 0,
+        "total": 29.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "unpaid",
+        "updated_at": "2025-12-28 14:31:41"
+    },
+    "ORD-20251219-1AFD16": {
+        "id": "ORD-20251219-1AFD16",
+        "customer_id": null,
+        "date": "2025-12-19 17:17:05",
+        "created_at": "2025-12-19T17:17:05+02:00",
+        "status": "paid",
+        "language": "en",
+        "customer": {
+            "first_name": "Irina",
+            "last_name": "Lehmann",
+            "email": "evgenss79@gmail.com",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "Bireggring",
+            "house": "14",
+            "zip": "6005",
+            "city": "Luzern",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bireggring",
+            "house": "14",
+            "zip": "6005",
+            "city": "Luzern",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-500-ROS",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffuser",
+                "category": "aroma_diffusers",
+                "volume": "500ml",
+                "fragrance": "rosso",
+                "price": 50.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-ROS",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "rosso",
+                "price": 11.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-TOB",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "tobacco_vanilla",
+                "price": 11.9,
+                "quantity": 2
+            }
+        ],
+        "subtotal": 86.6,
+        "shipping_cost": 0,
+        "total": 86.6,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "unpaid",
+        "updated_at": "2026-02-11 03:16:56"
+    },
+    "ORD-20251219-D94D5A": {
+        "id": "ORD-20251219-D94D5A",
+        "customer_id": null,
+        "date": "2025-12-19 17:26:29",
+        "created_at": "2025-12-19T17:26:29+02:00",
+        "status": "paid",
+        "language": "en",
+        "customer": {
+            "first_name": "Ksenia",
+            "last_name": "Nusbaumer",
+            "email": "evgenss79@gmail.com",
+            "phone": "0763675825"
+        },
+        "shipping": {
+            "street": "Barzstrasse",
+            "house": "9",
+            "zip": "5330",
+            "city": "Bad Zurzach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Barzstrasse",
+            "house": "9",
+            "zip": "5330",
+            "city": "Bad Zurzach",
+            "country": "Switzerland"
+        },
+        "comment": "Оплачено TWINT заранее",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "CD-500-AFR",
+                "productId": "candle_classic",
+                "name": "Scented Candle",
+                "category": "scented_candles",
+                "volume": "500ml",
+                "fragrance": "africa",
+                "price": 59.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-TOB",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "tobacco_vanilla",
+                "price": 11.9,
+                "quantity": 2
+            },
+            {
+                "sku": "TP-STA-AFR",
+                "productId": "textile_spray",
+                "name": "Textile Perfume Spray",
+                "category": "textile_perfume",
+                "volume": "standard",
+                "fragrance": "africa",
+                "price": 0,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 83.7,
+        "shipping_cost": 0,
+        "total": 83.7,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "unpaid",
+        "updated_at": "2026-02-11 03:16:49"
+    },
+    "ORD-20251219-1F2042": {
+        "id": "ORD-20251219-1F2042",
+        "customer_id": "cust_69458b0bf23b52.65985091",
+        "date": "2025-12-19 19:32:30",
+        "created_at": "2025-12-19T19:32:30+02:00",
+        "status": "cancelled",
+        "language": "it",
+        "customer": {
+            "first_name": "Sofia",
+            "last_name": "Nikolovska",
+            "email": "nikolovskassofia@gmail.com",
+            "phone": "0787047021"
+        },
+        "shipping": {
+            "street": "Ziegeleistrasse",
+            "house": "5",
+            "zip": "8406",
+            "city": "Winterthur",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Ziegeleistrasse",
+            "house": "5",
+            "zip": "8406",
+            "city": "Winterthur",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-BEL",
+                "productId": "diffuser_classic",
+                "name": "Diffusore Aromatico",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "bellini",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "failed"
+    },
+    "ORD-20251219-0580D6": {
+        "id": "ORD-20251219-0580D6",
+        "customer_id": "cust_69458d4e11b2c4.89646308",
+        "date": "2025-12-19 19:38:26",
+        "created_at": "2025-12-19T19:38:26+02:00",
+        "status": "completed",
+        "language": "it",
+        "customer": {
+            "first_name": "Sofia",
+            "last_name": "Nikolovska",
+            "email": "nikolovskassofia@gmail.com",
+            "phone": "0787047021"
+        },
+        "shipping": {
+            "street": "Ziegeleistrasse",
+            "house": "5",
+            "zip": "8406",
+            "city": "Winterthur",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Ziegeleistrasse",
+            "house": "5",
+            "zip": "8406",
+            "city": "Winterthur",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-BEL",
+                "productId": "diffuser_classic",
+                "name": "Diffusore Aromatico",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "bellini",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2025-12-19 19:38:52",
+        "transaction_id": 32255059,
+        "updated_at": "2025-12-28 14:32:54"
+    },
+    "ORD-20251219-ACB58B": {
+        "id": "ORD-20251219-ACB58B",
+        "customer_id": "cust_69458ebd6ba041.87981028",
+        "date": "2025-12-19 19:45:50",
+        "created_at": "2025-12-19T19:45:50+02:00",
+        "status": "completed",
+        "language": "ru",
+        "customer": {
+            "first_name": "Tatiana",
+            "last_name": "Lebedeva",
+            "email": "lededevatatiana213@gmail.com",
+            "phone": "0762135432"
+        },
+        "shipping": {
+            "street": "Landstrasse",
+            "house": "74",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Landstrasse",
+            "house": "74",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CP-STA-ETN",
+                "productId": "car_clip",
+                "name": "Автопарфюм",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "etna",
+                "price": 14.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 14.9,
+        "shipping_cost": 0,
+        "total": 14.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2025-12-19 19:46:55",
+        "transaction_id": 32255294,
+        "updated_at": "2025-12-28 14:33:10"
+    },
+    "ORD-20251230-C913B8": {
+        "id": "ORD-20251230-C913B8",
+        "customer_id": "cust_6953bb4253df96.49825742",
+        "date": "2025-12-30 13:45:06",
+        "created_at": "2025-12-30T13:45:06+02:00",
+        "status": "paid",
+        "language": "ru",
+        "customer": {
+            "first_name": "Tatiana",
+            "last_name": "Tritto",
+            "email": "tritto.tatiana555@gmail.com",
+            "phone": "0762483132"
+        },
+        "shipping": {
+            "street": "Kreuzstrasse",
+            "house": "29",
+            "zip": "5420",
+            "city": "Ehrendingen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Kreuzstrasse",
+            "house": "29",
+            "zip": "5420",
+            "city": "Ehrendingen",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CP-STA-BAM",
+                "productId": "car_clip",
+                "name": "Profumo Auto",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "bamboo",
+                "price": 14.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-BAM",
+                "productId": "aroma_sashe",
+                "name": "Арома саше",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "bamboo",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 26.8,
+        "shipping_cost": 0,
+        "total": 26.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2025-12-30 13:46:17",
+        "transaction_id": 32509589
+    },
+    "ORD-20251230-93CAE8": {
+        "id": "ORD-20251230-93CAE8",
+        "customer_id": null,
+        "date": "2025-12-30 19:44:44",
+        "created_at": "2025-12-30T19:44:44+02:00",
+        "status": "completed",
+        "language": "ru",
+        "customer": {
+            "first_name": "Irina",
+            "last_name": "Lehmann",
+            "email": "",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-250-BEL",
+                "productId": "diffuser_classic",
+                "name": "Арома-диффузор",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "bellini",
+                "price": 29.9,
+                "quantity": 1
+            },
+            {
+                "sku": "DF-250-ROS",
+                "productId": "diffuser_classic",
+                "name": "Арома-диффузор",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "rosso",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 59.8,
+        "shipping_cost": 0,
+        "total": 59.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260105-B73F5F": {
+        "id": "ORD-20260105-B73F5F",
+        "customer_id": null,
+        "date": "2026-01-05 12:52:19",
+        "created_at": "2026-01-05T12:52:19+02:00",
+        "status": "cancelled",
+        "language": "de",
+        "customer": {
+            "first_name": "Ev",
+            "last_name": "Ev",
+            "email": "",
+            "phone": "123"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-TOB",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "failed"
+    },
+    "ORD-20260107-C9D049": {
+        "id": "ORD-20260107-C9D049",
+        "customer_id": "cust_695e2bfc385828.76734938",
+        "date": "2026-01-07 11:52:24",
+        "created_at": "2026-01-07T11:52:24+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Russer",
+            "last_name": "Andrea",
+            "email": "ifo@blumenlaedeli.ch",
+            "phone": "0797752236"
+        },
+        "shipping": {
+            "street": "Kesselackerstrasse",
+            "house": "14",
+            "zip": "5611",
+            "city": "Anglikon",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Kesselackerstrasse",
+            "house": "14",
+            "zip": "5611",
+            "city": "Anglikon",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "TP-STA-BLA",
+                "productId": "textile_spray",
+                "name": "Textilparfum-Spray",
+                "category": "textile_perfume",
+                "volume": "standard",
+                "fragrance": "blanc",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "paid",
+        "paid_at": "2026-01-07 11:53:24",
+        "transaction_id": 32727005
+    },
+    "ORD-20260108-4CA3AE": {
+        "id": "ORD-20260108-4CA3AE",
+        "customer_id": "cust_6953bb4253df96.49825742",
+        "date": "2026-01-08 18:51:20",
+        "created_at": "2026-01-08T18:51:20+02:00",
+        "status": "paid",
+        "language": "ru",
+        "customer": {
+            "first_name": "Tatiana",
+            "last_name": "Tritto",
+            "email": "tritto.tatiana555@gmail.com",
+            "phone": "0762483132"
+        },
+        "shipping": {
+            "street": "Kreuzstrasse",
+            "house": "29",
+            "zip": "5420",
+            "city": "Ehrendingen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Kreuzstrasse",
+            "house": "29",
+            "zip": "5420",
+            "city": "Ehrendingen",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-CAR",
+                "productId": "diffuser_classic",
+                "name": "Арома-диффузор",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "carolina",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-01-08 18:52:07",
+        "transaction_id": 32767553
+    },
+    "ORD-20260109-0297D3": {
+        "id": "ORD-20260109-0297D3",
+        "customer_id": "cust_695e2bfc385828.76734938",
+        "date": "2026-01-09 11:50:25",
+        "created_at": "2026-01-09T11:50:25+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Naira",
+            "last_name": "Zehnder",
+            "email": "naira.zehnder@gmail.com",
+            "phone": "0799338231"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CP-STA-FLE",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "fleur",
+                "price": 14.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 14.9,
+        "shipping_cost": 0,
+        "total": 14.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "paid",
+        "paid_at": "2026-01-09 11:51:07",
+        "transaction_id": 32782530
+    },
+    "ORD-20260109-3F2383": {
+        "id": "ORD-20260109-3F2383",
+        "customer_id": "cust_695e2bfc385828.76734938",
+        "date": "2026-01-09 16:37:15",
+        "created_at": "2026-01-09T16:37:15+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Rada",
+            "last_name": "Fuglistaler",
+            "email": "rada.f973@gmail.com",
+            "phone": "0765591234"
+        },
+        "shipping": {
+            "street": "Sohnenstrasse 7",
+            "house": "7",
+            "zip": "5622",
+            "city": "Waltenschwil",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Sohnenstrasse 7",
+            "house": "7",
+            "zip": "5622",
+            "city": "Waltenschwil",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CP-STA-TOB",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "tobacco_vanilla",
+                "price": 14.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 14.9,
+        "shipping_cost": 0,
+        "total": 14.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "paid",
+        "paid_at": "2026-01-09 16:37:55",
+        "transaction_id": 32790365
+    },
+    "ORD-20260115-0F0761": {
+        "id": "ORD-20260115-0F0761",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-01-15 18:20:20",
+        "created_at": "2026-01-15T18:20:20+02:00",
+        "status": "cancelled",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-250-VAL",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "valencia",
+                "price": 29.9,
+                "quantity": 1
+            },
+            {
+                "sku": "CD-160-TOB",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "160ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 19.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 49.8,
+        "shipping_cost": 0,
+        "total": 49.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "pending"
+    },
+    "ORD-20260115-4F7A84": {
+        "id": "ORD-20260115-4F7A84",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-01-15 18:22:04",
+        "created_at": "2026-01-15T18:22:04+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CD-160-TOB",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "160ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 19.9,
+                "quantity": 1
+            },
+            {
+                "sku": "DF-250-VAL",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "valencia",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 49.8,
+        "shipping_cost": 0,
+        "total": 49.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "paid",
+        "paid_at": "2026-01-15 18:26:09",
+        "transaction_id": 32954812
+    },
+    "ORD-20260116-071AB0": {
+        "id": "ORD-20260116-071AB0",
+        "customer_id": "cust_6969f97da33885.49238190",
+        "date": "2026-01-16 10:41:05",
+        "created_at": "2026-01-16T10:41:05+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Eleonora",
+            "last_name": "Murdzeva",
+            "email": "eleonorakocheva@gmail.com",
+            "phone": "0762210496"
+        },
+        "shipping": {
+            "street": "Mellingerstr",
+            "house": "10 a",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Mellingerstr",
+            "house": "10 a",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "Fdgfn",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "CP-STA-CAR",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "carolina",
+                "price": 14.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 14.9,
+        "shipping_cost": 0,
+        "total": 14.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260116-6E08C6": {
+        "id": "ORD-20260116-6E08C6",
+        "customer_id": "cust_6969f97da33885.49238190",
+        "date": "2026-01-16 15:08:02",
+        "created_at": "2026-01-16T15:08:02+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Eleonora",
+            "last_name": "Murdzeva",
+            "email": "eleonorakocheva@gmail.com",
+            "phone": "0762210496"
+        },
+        "shipping": {
+            "street": "Mellingerstr",
+            "house": "10 a",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Mellingerstr",
+            "house": "10 a",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-250-TOB",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 29.9,
+        "shipping_cost": 0,
+        "total": 29.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260120-77B418": {
+        "id": "ORD-20260120-77B418",
+        "customer_id": "cust_6969f97da33885.49238190",
+        "date": "2026-01-20 11:59:26",
+        "created_at": "2026-01-20T11:59:26+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Bea",
+            "last_name": "Schranz",
+            "email": "trix.schranz4@gmail.com",
+            "phone": "0793358592"
+        },
+        "shipping": {
+            "street": "Steigstrasse",
+            "house": "13",
+            "zip": "5452",
+            "city": "Oberrohrdorf",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Steigstrasse",
+            "house": "13",
+            "zip": "5452",
+            "city": "Oberrohrdorf",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-125-DUB",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "dubai",
+                "price": 20.9,
+                "quantity": 1
+            },
+            {
+                "sku": "CD-160-DUB",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "160ml",
+                "fragrance": "dubai",
+                "price": 19.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 40.8,
+        "shipping_cost": 0,
+        "total": 40.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260120-F9F5B3": {
+        "id": "ORD-20260120-F9F5B3",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-01-20 20:20:11",
+        "created_at": "2026-01-20T20:20:11+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "TP-STA-VAL",
+                "productId": "textile_spray",
+                "name": "Textilparfum-Spray",
+                "category": "textile_perfume",
+                "volume": "standard",
+                "fragrance": "valencia",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260122-3120B4": {
+        "id": "ORD-20260122-3120B4",
+        "customer_id": null,
+        "date": "2026-01-22 17:07:08",
+        "created_at": "2026-01-22T17:07:08+02:00",
+        "status": "cancelled",
+        "language": "en",
+        "customer": {
+            "first_name": "Evgen",
+            "last_name": "Smelyanskiy",
+            "email": "evgenss79@gmail.com",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen Dorf",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen Dorf",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "ARO-STA-FLE",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "fleur",
+                "price": 11.9,
+                "quantity": 1
+            },
+            {
+                "sku": "HP-10-TOB",
+                "productId": "home_spray",
+                "name": "Interior Spray",
+                "category": "home_perfume",
+                "volume": "10ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 9.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 21.8,
+        "shipping_cost": 0,
+        "total": 21.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "pending"
+    },
+    "ORD-20260122-ADC804": {
+        "id": "ORD-20260122-ADC804",
+        "customer_id": "cust_6953bb4253df96.49825742",
+        "date": "2026-01-22 17:08:27",
+        "created_at": "2026-01-22T17:08:27+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Tatiana",
+            "last_name": "Tritto",
+            "email": "tritto.tatiana555@gmail.com",
+            "phone": "0762483132"
+        },
+        "shipping": {
+            "street": "Kreuzstrasse",
+            "house": "29",
+            "zip": "5420",
+            "city": "Ehrendingen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Kreuzstrasse",
+            "house": "29",
+            "zip": "5420",
+            "city": "Ehrendingen",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "ARO-STA-FLE",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "fleur",
+                "price": 11.9,
+                "quantity": 1
+            },
+            {
+                "sku": "HP-10-TOB",
+                "productId": "home_spray",
+                "name": "Raumspray",
+                "category": "home_perfume",
+                "volume": "10ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 9.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 21.8,
+        "shipping_cost": 0,
+        "total": 21.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-01-22 17:09:27",
+        "transaction_id": 33144958,
+        "updated_at": "2026-02-11 03:49:48"
+    },
+    "ORD-20260126-B88416": {
+        "id": "ORD-20260126-B88416",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-01-26 18:15:33",
+        "created_at": "2026-01-26T18:15:33+02:00",
+        "status": "pending_payment",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CD-500-TOB",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "500ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 41.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 41.9,
+        "shipping_cost": 0,
+        "total": 41.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "pending"
+    },
+    "ORD-20260127-00CA03": {
+        "id": "ORD-20260127-00CA03",
+        "customer_id": "cust_6969f97da33885.49238190",
+        "date": "2026-01-27 19:04:35",
+        "created_at": "2026-01-27T19:04:35+02:00",
+        "status": "cancelled",
+        "language": "de",
+        "customer": {
+            "first_name": "Shivangi",
+            "last_name": "Walke",
+            "email": "",
+            "phone": "0786484218"
+        },
+        "shipping": {
+            "street": "Mellingerstr",
+            "house": "10 a",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Mellingerstr",
+            "house": "10 a",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-VAL",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "valencia",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "failed"
+    },
+    "ORD-20260129-1C8C74": {
+        "id": "ORD-20260129-1C8C74",
+        "customer_id": "cust_6969f97da33885.49238190",
+        "date": "2026-01-29 18:35:19",
+        "created_at": "2026-01-29T18:35:19+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Serap",
+            "last_name": "Babatas",
+            "email": "bluerose75@gmx.ch",
+            "phone": "0763438383"
+        },
+        "shipping": {
+            "street": "Kornfeldstrasse",
+            "house": "1",
+            "zip": "5210",
+            "city": "Windisch",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Kornfeldstrasse",
+            "house": "1",
+            "zip": "5210",
+            "city": "Windisch",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-250-CHE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "cherry_blossom",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 29.9,
+        "shipping_cost": 0,
+        "total": 29.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "paid",
+        "paid_at": "2026-01-29 18:37:51",
+        "transaction_id": 33355346
+    },
+    "ORD-20260130-D98D3A": {
+        "id": "ORD-20260130-D98D3A",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-01-30 09:06:42",
+        "created_at": "2026-01-30T09:06:42+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "CD-500-DUB",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "500ml",
+                "fragrance": "dubai",
+                "price": 41.9,
+                "quantity": 1
+            },
+            {
+                "sku": "DF-250-DUB",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "dubai",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 71.8,
+        "shipping_cost": 0,
+        "total": 71.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260130-6CBE1C": {
+        "id": "ORD-20260130-6CBE1C",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-01-30 09:09:02",
+        "created_at": "2026-01-30T09:09:02+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-125-BAM",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "bamboo",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260202-6A1A38": {
+        "id": "ORD-20260202-6A1A38",
+        "customer_id": null,
+        "date": "2026-02-02 09:39:18",
+        "created_at": "2026-02-02T09:39:18+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "CD-500-BAM",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "500ml",
+                "fragrance": "bamboo",
+                "price": 41.9,
+                "quantity": 1
+            },
+            {
+                "sku": "CD-160-CAR",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "160ml",
+                "fragrance": "carolina",
+                "price": 19.9,
+                "quantity": 1
+            },
+            {
+                "sku": "CD-160-CHE",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "160ml",
+                "fragrance": "cherry_blossom",
+                "price": 19.9,
+                "quantity": 1
+            },
+            {
+                "sku": "CD-160-DUB",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "160ml",
+                "fragrance": "dubai",
+                "price": 19.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 101.6,
+        "shipping_cost": 0,
+        "total": 101.6,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260208-18E07B": {
+        "id": "ORD-20260208-18E07B",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-02-08 14:15:45",
+        "created_at": "2026-02-08T14:15:45+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-250-EDE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "eden",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 29.9,
+        "shipping_cost": 0,
+        "total": 29.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260211-644011": {
+        "id": "ORD-20260211-644011",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-02-11 16:48:06",
+        "created_at": "2026-02-11T16:48:06+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-125-TOB",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 20.9,
+                "quantity": 1
+            },
+            {
+                "sku": "DF-125-DUB",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "dubai",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 41.8,
+        "shipping_cost": 0,
+        "total": 41.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260211-671BAE": {
+        "id": "ORD-20260211-671BAE",
+        "customer_id": null,
+        "date": "2026-02-11 17:21:23",
+        "created_at": "2026-02-11T17:21:23+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-500-TOB",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "500ml",
+                "fragrance": "tobacco_vanilla",
+                "price": 50.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 50.9,
+        "shipping_cost": 0,
+        "total": 50.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260212-EF9D99": {
+        "id": "ORD-20260212-EF9D99",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-02-12 18:17:07",
+        "created_at": "2026-02-12T18:17:07+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-250-CAR",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "carolina",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 29.9,
+        "shipping_cost": 0,
+        "total": 29.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260212-4BA518": {
+        "id": "ORD-20260212-4BA518",
+        "customer_id": null,
+        "date": "2026-02-12 19:21:26",
+        "created_at": "2026-02-12T19:21:26+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Eleonora",
+            "last_name": "Murdzeva",
+            "email": "eleonorakocheva@gmail.com",
+            "phone": "0762210496"
+        },
+        "shipping": {
+            "street": "Mellingerstrasse",
+            "house": "10a",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Mellingerstrasse",
+            "house": "10a",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-125-CAR",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "carolina",
+                "price": 20.9,
+                "quantity": 1
+            },
+            {
+                "sku": "HP-50-VAL",
+                "productId": "home_spray",
+                "name": "Raumspray",
+                "category": "home_perfume",
+                "volume": "50ml",
+                "fragrance": "valencia",
+                "price": 19.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 40.8,
+        "shipping_cost": 0,
+        "total": 40.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260215-FF2183": {
+        "id": "ORD-20260215-FF2183",
+        "customer_id": null,
+        "date": "2026-02-15 06:32:20",
+        "created_at": "2026-02-15T06:32:20+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-VAL",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "valencia",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-02-15 06:32:41",
+        "transaction_id": 33875762
+    },
+    "ORD-20260215-314AD7": {
+        "id": "ORD-20260215-314AD7",
+        "customer_id": null,
+        "date": "2026-02-15 06:33:59",
+        "created_at": "2026-02-15T06:33:59+02:00",
+        "status": "pending_payment",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-VAL",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "valencia",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "pending"
+    },
+    "ORD-20260215-39875B": {
+        "id": "ORD-20260215-39875B",
+        "customer_id": null,
+        "date": "2026-02-15 06:34:41",
+        "created_at": "2026-02-15T06:34:41+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-VAL",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "valencia",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "paid",
+        "paid_at": "2026-02-15 06:34:54",
+        "transaction_id": 33875808
+    },
+    "ORD-20260219-5A4445": {
+        "id": "ORD-20260219-5A4445",
+        "customer_id": null,
+        "date": "2026-02-19 12:58:18",
+        "created_at": "2026-02-19T12:58:18+02:00",
+        "status": "paid",
+        "language": "ru",
+        "customer": {
+            "first_name": "Tatiana",
+            "last_name": "Tritto",
+            "email": "",
+            "phone": "0762483132"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "giftset:3f589286b7bed33bf66372343715f501665e2655",
+                "productId": "gift_set",
+                "name": "Custom Gift Set",
+                "category": "gift_sets",
+                "volume": "standard",
+                "fragrance": "none",
+                "price": 70.015,
+                "quantity": 1,
+                "isGiftSet": true,
+                "items": [
+                    {
+                        "slot": 1,
+                        "category": "scented_candles",
+                        "productId": "candle_classic",
+                        "productName": "Ароматическая свеча",
+                        "variant": "500ml",
+                        "fragrance": "rosso",
+                        "price": 41.9,
+                        "qty": 1
+                    },
+                    {
+                        "slot": 2,
+                        "category": "home_perfume",
+                        "productId": "home_spray",
+                        "productName": "Спрей для интерьера",
+                        "variant": "50ml",
+                        "fragrance": "christmas_tree",
+                        "price": 19.9,
+                        "qty": 1
+                    },
+                    {
+                        "slot": 3,
+                        "category": "accessories",
+                        "productId": "aroma_sashe",
+                        "productName": "Арома саше",
+                        "variant": "standard",
+                        "fragrance": "eden",
+                        "price": 11.9,
+                        "qty": 1
+                    }
+                ],
+                "breakdown": "(1× Ароматическая свеча 500ml Rosso; 1× Спрей для интерьера 50ml Christmas Tree; 1× Арома саше Eden)",
+                "meta": {
+                    "gift_set_items": [
+                        {
+                            "slot": 1,
+                            "category": "scented_candles",
+                            "productId": "candle_classic",
+                            "productName": "Ароматическая свеча",
+                            "variant": "500ml",
+                            "fragrance": "rosso",
+                            "price": 41.9,
+                            "qty": 1
+                        },
+                        {
+                            "slot": 2,
+                            "category": "home_perfume",
+                            "productId": "home_spray",
+                            "productName": "Спрей для интерьера",
+                            "variant": "50ml",
+                            "fragrance": "christmas_tree",
+                            "price": 19.9,
+                            "qty": 1
+                        },
+                        {
+                            "slot": 3,
+                            "category": "accessories",
+                            "productId": "aroma_sashe",
+                            "productName": "Арома саше",
+                            "variant": "standard",
+                            "fragrance": "eden",
+                            "price": 11.9,
+                            "qty": 1
+                        }
+                    ],
+                    "breakdown": "(1× Ароматическая свеча 500ml Rosso; 1× Спрей для интерьера 50ml Christmas Tree; 1× Арома саше Eden)"
+                }
+            }
+        ],
+        "subtotal": 70.02,
+        "shipping_cost": 0,
+        "total": 70.02,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-02-19 12:58:46",
+        "transaction_id": 33995200
+    },
+    "ORD-20260219-404A3D": {
+        "id": "ORD-20260219-404A3D",
+        "customer_id": null,
+        "date": "2026-02-19 13:07:06",
+        "created_at": "2026-02-19T13:07:06+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "ru",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "Забрал Женя для Ларисы",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-250-VAL",
+                "productId": "diffuser_classic",
+                "name": "Арома-диффузор",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "valencia",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 29.9,
+        "shipping_cost": 0,
+        "total": 29.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260219-AC7BDC": {
+        "id": "ORD-20260219-AC7BDC",
+        "customer_id": null,
+        "date": "2026-02-19 21:00:59",
+        "created_at": "2026-02-19T21:00:59+02:00",
+        "status": "paid",
+        "language": "ru",
+        "customer": {
+            "first_name": "ТАТЬЯНА",
+            "last_name": "ТРИТТО",
+            "email": "",
+            "phone": "0762483132"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "ARO-STA-DUB",
+                "productId": "aroma_sashe",
+                "name": "Арома саше",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "dubai",
+                "price": 11.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-CAR",
+                "productId": "aroma_sashe",
+                "name": "Арома саше",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "carolina",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 23.8,
+        "shipping_cost": 0,
+        "total": 23.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-02-19 21:01:48",
+        "transaction_id": 34008021
+    },
+    "ORD-20260221-A8371D": {
+        "id": "ORD-20260221-A8371D",
+        "customer_id": null,
+        "date": "2026-02-21 16:18:27",
+        "created_at": "2026-02-21T16:18:27+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Zlata",
+            "last_name": "Honic",
+            "email": "zlata.bg@gmail.com",
+            "phone": "0765607915"
+        },
+        "shipping": {
+            "street": "Kirchweg",
+            "house": "27a",
+            "zip": "5415",
+            "city": "Nussbaumen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Kirchweg",
+            "house": "27a",
+            "zip": "5415",
+            "city": "Nussbaumen",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "ARO-STA-DUB",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "dubai",
+                "price": 11.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-BLA",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "blanc",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 23.8,
+        "shipping_cost": 0,
+        "total": 23.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260223-5E7CE6": {
+        "id": "ORD-20260223-5E7CE6",
+        "customer_id": null,
+        "date": "2026-02-23 17:27:28",
+        "created_at": "2026-02-23T17:27:28+02:00",
+        "status": "paid",
+        "language": "ru",
+        "customer": {
+            "first_name": "Татьяна",
+            "last_name": "Тритто",
+            "email": "",
+            "phone": "0762483132"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-AFR",
+                "productId": "diffuser_classic",
+                "name": "Арома-диффузор",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "africa",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-02-23 17:28:15",
+        "transaction_id": 34110664
+    },
+    "ORD-20260304-D8A764": {
+        "id": "ORD-20260304-D8A764",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-04 08:18:21",
+        "created_at": "2026-03-04T08:18:21+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "TP-STA-FLE",
+                "productId": "textile_spray",
+                "name": "Textilparfum-Spray",
+                "category": "textile_perfume",
+                "volume": "standard",
+                "fragrance": "fleur",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260305-7B56F0": {
+        "id": "ORD-20260305-7B56F0",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-05 11:50:54",
+        "created_at": "2026-03-05T11:50:54+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "ARO-STA-CAR",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "carolina",
+                "price": 11.9,
+                "quantity": 2
+            }
+        ],
+        "subtotal": 23.8,
+        "shipping_cost": 0,
+        "total": 23.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260305-A6A66C": {
+        "id": "ORD-20260305-A6A66C",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-05 16:31:19",
+        "created_at": "2026-03-05T16:31:19+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "ARO-STA-GRE",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "green_mango",
+                "price": 11.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-FLE",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "fleur",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 23.8,
+        "shipping_cost": 0,
+        "total": 23.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260307-5247DA": {
+        "id": "ORD-20260307-5247DA",
+        "customer_id": null,
+        "date": "2026-03-07 19:33:11",
+        "created_at": "2026-03-07T19:33:11+02:00",
+        "status": "paid",
+        "language": "ru",
+        "customer": {
+            "first_name": "Evgen",
+            "last_name": "Smelyanskiy",
+            "email": "evgenss79@gmail.com",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen Dorf",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen Dorf",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "ARO-STA-FLE",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "fleur",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 11.9,
+        "shipping_cost": 0,
+        "total": 11.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-03-07 19:33:46",
+        "transaction_id": 34497617
+    },
+    "ORD-20260314-2A83E9": {
+        "id": "ORD-20260314-2A83E9",
+        "customer_id": null,
+        "date": "2026-03-14 12:38:32",
+        "created_at": "2026-03-14T12:38:32+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Sofce",
+            "last_name": "Minova",
+            "email": "",
+            "phone": "0766813804"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CP-STA-AFR",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "africa",
+                "price": 14.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 14.9,
+        "shipping_cost": 0,
+        "total": 14.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_3",
+        "payment_status": "paid",
+        "paid_at": "2026-03-14 12:39:19",
+        "transaction_id": 34696167
+    },
+    "ORD-20260314-FB63BC": {
+        "id": "ORD-20260314-FB63BC",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-14 17:19:31",
+        "created_at": "2026-03-14T17:19:31+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "ARO-STA-TOB",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "tobacco_vanilla",
+                "price": 11.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-DUB",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "dubai",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 23.8,
+        "shipping_cost": 0,
+        "total": 23.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260315-DB1DFA": {
+        "id": "ORD-20260315-DB1DFA",
+        "customer_id": "cust_6942db20621484.69470964",
+        "date": "2026-03-15 17:51:07",
+        "created_at": "2026-03-15T17:51:07+02:00",
+        "status": "pending_payment",
+        "language": "de",
+        "customer": {
+            "first_name": "Evgen",
+            "last_name": "Smelyanskiy",
+            "email": "evgenss79@gmail.com",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CD-500-BEL",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "500ml",
+                "fragrance": "bellini",
+                "price": 41.9,
+                "quantity": 1
+            },
+            {
+                "sku": "HP-50-BEL",
+                "productId": "home_spray",
+                "name": "Raumspray",
+                "category": "home_perfume",
+                "volume": "50ml",
+                "fragrance": "bellini",
+                "price": 19.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 61.8,
+        "shipping_cost": 0,
+        "total": 61.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "pending"
+    },
+    "ORD-20260315-2DBC7E": {
+        "id": "ORD-20260315-2DBC7E",
+        "customer_id": "cust_6942db20621484.69470964",
+        "date": "2026-03-15 17:54:01",
+        "created_at": "2026-03-15T17:54:01+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Evgen",
+            "last_name": "Smelyanskiy",
+            "email": "evgenss79@gmail.com",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "HP-50-BEL",
+                "productId": "home_spray",
+                "name": "Raumspray",
+                "category": "home_perfume",
+                "volume": "50ml",
+                "fragrance": "bellini",
+                "price": 19.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 19.9,
+        "shipping_cost": 0,
+        "total": 19.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260316-92EB37": {
+        "id": "ORD-20260316-92EB37",
+        "customer_id": "cust_6942db20621484.69470964",
+        "date": "2026-03-16 20:24:32",
+        "created_at": "2026-03-16T20:24:32+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Evgen",
+            "last_name": "Smelyanskiy",
+            "email": "evgenss79@gmail.com",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "comment": "Ksenia Nussbaumen",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CD-500-BEL",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "500ml",
+                "fragrance": "bellini",
+                "price": 41.9,
+                "quantity": 1
+            },
+            {
+                "sku": "HP-50-BEL",
+                "productId": "home_spray",
+                "name": "Raumspray",
+                "category": "home_perfume",
+                "volume": "50ml",
+                "fragrance": "bellini",
+                "price": 19.9,
+                "quantity": 2
+            }
+        ],
+        "subtotal": 81.7,
+        "shipping_cost": 0,
+        "total": 81.7,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-03-16 20:27:30",
+        "transaction_id": 34763466
+    },
+    "ORD-20260316-175D82": {
+        "id": "ORD-20260316-175D82",
+        "customer_id": "cust_6942db20621484.69470964",
+        "date": "2026-03-16 20:38:22",
+        "created_at": "2026-03-16T20:38:22+02:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Tatiana",
+            "last_name": "Tritto",
+            "email": "evgenss79@gmail.com",
+            "phone": "0797256259"
+        },
+        "shipping": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Hardstrasse",
+            "house": "39",
+            "zip": "5430",
+            "city": "Wettingen",
+            "country": "Switzerland"
+        },
+        "comment": "List of Tritto",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "CP-STA-CAR",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "carolina",
+                "price": 14.9,
+                "quantity": 2
+            },
+            {
+                "sku": "CP-STA-BEL",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "bellini",
+                "price": 14.9,
+                "quantity": 1
+            },
+            {
+                "sku": "CP-STA-AFR",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "africa",
+                "price": 14.9,
+                "quantity": 1
+            },
+            {
+                "sku": "CP-STA-TOB",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "tobacco_vanilla",
+                "price": 14.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-CAR",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "carolina",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 86.4,
+        "shipping_cost": 0,
+        "total": 86.4,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "paid",
+        "paid_at": "2026-03-16 20:38:53",
+        "transaction_id": 34763856
+    },
+    "ORD-20260325-267223": {
+        "id": "ORD-20260325-267223",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-25 08:30:36",
+        "created_at": "2026-03-25T08:30:36+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-125-FLE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "fleur",
+                "price": 20.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-FLE",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "fleur",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 32.8,
+        "shipping_cost": 0,
+        "total": 32.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260325-B57198": {
+        "id": "ORD-20260325-B57198",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-25 08:38:58",
+        "created_at": "2026-03-25T08:38:58+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "REF-STA-DUB",
+                "productId": "refill_125",
+                "name": "Nachfüllpackung für Aromadiffusoren und Autoaromagärat(125 ml)",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "dubai",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 11.9,
+        "shipping_cost": 0,
+        "total": 11.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260325-218AAA": {
+        "id": "ORD-20260325-218AAA",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-25 08:44:03",
+        "created_at": "2026-03-25T08:44:03+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "giftset:b69145cee43ca8facd1de93613c42e1fb30afb75",
+                "productId": "gift_set",
+                "name": "Custom Gift Set",
+                "category": "gift_sets",
+                "volume": "standard",
+                "fragrance": "none",
+                "price": 66.21499999999999,
+                "quantity": 1,
+                "isGiftSet": true,
+                "items": [
+                    {
+                        "slot": 1,
+                        "category": "aroma_diffusers",
+                        "productId": "diffuser_classic",
+                        "productName": "Aroma Diffusor",
+                        "variant": "250ml",
+                        "fragrance": "salty_water",
+                        "price": 29.9,
+                        "qty": 1
+                    },
+                    {
+                        "slot": 2,
+                        "category": "home_perfume",
+                        "productId": "home_spray",
+                        "productName": "Raumspray",
+                        "variant": "50ml",
+                        "fragrance": "salty_water",
+                        "price": 19.9,
+                        "qty": 1
+                    },
+                    {
+                        "slot": 3,
+                        "category": "home_perfume",
+                        "productId": "home_spray",
+                        "productName": "Raumspray",
+                        "variant": "50ml",
+                        "fragrance": "eden",
+                        "price": 19.9,
+                        "qty": 1
+                    }
+                ],
+                "meta": {
+                    "gift_set_items": [
+                        {
+                            "slot": 1,
+                            "category": "aroma_diffusers",
+                            "productId": "diffuser_classic",
+                            "productName": "Aroma Diffusor",
+                            "variant": "250ml",
+                            "fragrance": "salty_water",
+                            "price": 29.9,
+                            "qty": 1
+                        },
+                        {
+                            "slot": 2,
+                            "category": "home_perfume",
+                            "productId": "home_spray",
+                            "productName": "Raumspray",
+                            "variant": "50ml",
+                            "fragrance": "salty_water",
+                            "price": 19.9,
+                            "qty": 1
+                        },
+                        {
+                            "slot": 3,
+                            "category": "home_perfume",
+                            "productId": "home_spray",
+                            "productName": "Raumspray",
+                            "variant": "50ml",
+                            "fragrance": "eden",
+                            "price": 19.9,
+                            "qty": 1
+                        }
+                    ]
+                }
+            }
+        ],
+        "subtotal": 66.22,
+        "shipping_cost": 0,
+        "total": 66.22,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260325-ADE0FE": {
+        "id": "ORD-20260325-ADE0FE",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-25 08:45:56",
+        "created_at": "2026-03-25T08:45:56+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "CD-160-FLE",
+                "productId": "candle_classic",
+                "name": "Duftkerze",
+                "category": "scented_candles",
+                "volume": "160ml",
+                "fragrance": "fleur",
+                "price": 19.9,
+                "quantity": 1
+            },
+            {
+                "sku": "HP-50-FLE",
+                "productId": "home_spray",
+                "name": "Raumspray",
+                "category": "home_perfume",
+                "volume": "50ml",
+                "fragrance": "fleur",
+                "price": 19.9,
+                "quantity": 1
+            },
+            {
+                "sku": "DF-125-FLE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "fleur",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 60.7,
+        "shipping_cost": 0,
+        "total": 60.7,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260325-BE299E": {
+        "id": "ORD-20260325-BE299E",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-25 08:47:48",
+        "created_at": "2026-03-25T08:47:48+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "ARO-STA-DUB",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "dubai",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 11.9,
+        "shipping_cost": 0,
+        "total": 11.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260325-9E316E": {
+        "id": "ORD-20260325-9E316E",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-25 09:24:02",
+        "created_at": "2026-03-25T09:24:02+02:00",
+        "status": "awaiting_cash_pickup",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "DF-125-AFR",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "africa",
+                "price": 20.9,
+                "quantity": 1
+            },
+            {
+                "sku": "ARO-STA-EDE",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "eden",
+                "price": 11.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 32.8,
+        "shipping_cost": 0,
+        "total": 32.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "unpaid"
+    },
+    "ORD-20260330-F302C2": {
+        "id": "ORD-20260330-F302C2",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-30 09:16:13",
+        "created_at": "2026-03-30T09:16:13+03:00",
+        "status": "pending_payment",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-250-FLE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "fleur",
+                "price": 29.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 29.9,
+        "shipping_cost": 0,
+        "total": 29.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "pending"
+    },
+    "ORD-20260330-529731": {
+        "id": "ORD-20260330-529731",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-30 09:24:21",
+        "created_at": "2026-03-30T09:24:21+03:00",
+        "status": "pending_payment",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-500-VAL",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "500ml",
+                "fragrance": "valencia",
+                "price": 50.9,
+                "quantity": 1
+            },
+            {
+                "sku": "DF-250-GRE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "green_mango",
+                "price": 29.9,
+                "quantity": 1
+            },
+            {
+                "sku": "DF-125-GRE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "green_mango",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 101.7,
+        "shipping_cost": 0,
+        "total": 101.7,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "pending"
+    },
+    "ORD-20260330-95AB0D": {
+        "id": "ORD-20260330-95AB0D",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-30 09:28:16",
+        "created_at": "2026-03-30T09:28:16+03:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-125-EDE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "eden",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 20.9,
+        "shipping_cost": 0,
+        "total": 20.9,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "paid",
+        "paid_at": "2026-03-30 09:31:34",
+        "transaction_id": 35162107
+    },
+    "ORD-20260331-47B066": {
+        "id": "ORD-20260331-47B066",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-31 18:24:29",
+        "created_at": "2026-03-31T18:24:29+03:00",
+        "status": "pending_payment",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "ARO-STA-DUB",
+                "productId": "aroma_sashe",
+                "name": "Aroma Sashé",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "dubai",
+                "price": 11.9,
+                "quantity": 1
+            },
+            {
+                "sku": "REF-STA-CAR",
+                "productId": "refill_125",
+                "name": "Nachfüllpackung für Aromadiffusoren und Autoaromagärat(125 ml)",
+                "category": "accessories",
+                "volume": "standard",
+                "fragrance": "carolina",
+                "price": 11.9,
+                "quantity": 2
+            },
+            {
+                "sku": "CP-STA-CAR",
+                "productId": "car_clip",
+                "name": "Autoparfum",
+                "category": "car_perfume",
+                "volume": "standard",
+                "fragrance": "carolina",
+                "price": 14.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 50.6,
+        "shipping_cost": 0,
+        "total": 50.6,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "pending"
+    },
+    "ORD-20260331-F192F3": {
+        "id": "ORD-20260331-F192F3",
+        "customer_id": "cust_696913c3ee66f8.27805804",
+        "date": "2026-03-31 18:28:37",
+        "created_at": "2026-03-31T18:28:37+03:00",
+        "status": "paid",
+        "language": "de",
+        "customer": {
+            "first_name": "Larysa",
+            "last_name": "Kahraman",
+            "email": "ekahraman12@hotmail.com",
+            "phone": "0786493169"
+        },
+        "shipping": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "Bollstrasse",
+            "house": "8",
+            "zip": "5442",
+            "city": "Fislisbach",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "twint",
+        "items": [
+            {
+                "sku": "DF-250-FLE",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "250ml",
+                "fragrance": "fleur",
+                "price": 29.9,
+                "quantity": 1
+            },
+            {
+                "sku": "DF-125-AFR",
+                "productId": "diffuser_classic",
+                "name": "Aroma Diffusor",
+                "category": "aroma_diffusers",
+                "volume": "125ml",
+                "fragrance": "africa",
+                "price": 20.9,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 50.8,
+        "shipping_cost": 0,
+        "total": 50.8,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_2",
+        "payment_status": "paid",
+        "paid_at": "2026-03-31 18:34:19",
+        "transaction_id": 35207996
+    }
+}

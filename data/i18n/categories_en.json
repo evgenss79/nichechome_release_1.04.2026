@@ -1,0 +1,49 @@
+{
+    "category": {
+        "aroma_diffusers": {
+            "name": "Aroma Diffusors",
+            "short": "A diffuser is a stylish and effective way to fill your home with pleasant aromas. Modern sets with reeds help create a cozy atmosphere and emphasize the individuality of any interior. The online store offers a variety of reed diffusers for the home and gift sets.",
+            "long": "A diffuser is a stylish and effective way to fill your home with pleasant aromas. Modern sets with reeds help create a cozy atmosphere and emphasize the individuality of any interior. The online store offers a variety of reed diffusers for the home and gift sets.\n\nHow does it work?\nA reed diffuser works by capillary action on bamboo or synthetic reeds. This method of distributing the scent allows the air to remain fragrant for a long time. Aroma diffusers with essential oils are especially popular: they not only smell good but also have a positive effect on emotions."
+        },
+        "scented_candles": {
+            "name": "Scented Candles",
+            "short": "Scented candles create a unique atmosphere, serve as an elegant accent in the interior and fill the space with an enchanting aroma. They are not simple home accessories: they are small sources of harmony and deep relaxation: they can transform your home, giving you warmth, tranquility and inspiration. The sweet sparkle of fire, wrapped in exciting notes of lavender, vanilla or sandalwood, immerses you in an atmosphere of peace, where you will forget all your worries and enjoy every moment.",
+            "long": "Scented candles create a unique atmosphere, serve as an elegant accent in the interior and fill the space with an enchanting aroma. They are not simple home accessories: they are small sources of harmony and deep relaxation: they can transform your home, giving you warmth, tranquility and inspiration. The sweet sparkle of fire, wrapped in exciting notes of lavender, vanilla or sandalwood, immerses you in an atmosphere of peace, where you will forget all your worries and enjoy every moment.\n\nOur online shop offers a wide selection of scented candles that will fit perfectly in any room and will provide you with unique moments of relaxation. We carefully select our products so that you can enjoy all their benefits. Our gift sets of aromatic candles will become a source of warmth and harmony in your home. Discover a collection that will inspire you."
+        },
+        "home_perfume": {
+            "name": "Interior Perfume",
+            "short": "Smells can affect mood, performance, and overall well‑being. Interior fragrances are a simple and effective way to create a welcoming environment and fill your home and office with unusual aromas. Choosing the right home fragrance will help you relax after a tiring day, get rid of anxiety and insomnia, and create a harmonious space that's a pleasure to be in.",
+            "long": "Smells can affect mood, performance, and overall well‑being. Home fragrances are a simple and effective way to create a welcoming environment and fill your home and office with unusual aromas. Choosing the right home fragrance will help you relax after a tiring day, get rid of anxiety and insomnia, and create a harmonious space that's a pleasure to be in.\n\nBenefits of Using Interior Fragrances\n\nPerfumes are often used in homes to fill the space with pleasant aromas, creating a comfortable living and working environment. They help solve the following problems:\n• Creating a favorable environment. Fragrances help make a space more welcoming and comfortable, evoking associations with freshness, warmth, and cleanliness.\n• Improves mood. Natural essential oils can relieve stress, improve mood, and help with depression.\n• Air freshening and purification. Some home fragrances have antiseptic properties. They can be used to cleanse the air of unpleasant odors.\n• Increased concentration and performance. Aromas with citrus and menthol notes help you focus and improve brain activity, which is especially important for working in offices or commercial spaces.\n• Relaxation and improved sleep. Home fragrances such as lavender, vanilla, and sandalwood help you calm, relax, and prepare for a deep sleep.\nIf you use perfume to deodorize your home, you can not only ensure a pleasant aroma is diffused in the room but also fill yourself with positive emotions throughout the day."
+        },
+        "car_perfume": {
+            "name": "Car Perfume",
+            "short": "Car perfume provides a vibrant and constant fragrance for your car's interior. With regular and proper use, one bottle of car perfume lasts for 3–6 months. A magnetic holder for your car's air vent or an elegant cord for your rearview mirror with replaceable scent capsules.",
+            "long": "Car perfume provides a vibrant and constant fragrance for your car's interior. With regular and proper use, one bottle of car perfume lasts for 3–6 months. A magnetic holder for your car's air vent or an elegant cord for your rearview mirror with replaceable scent capsules.\n\nThe car perfume consists of a dark brown glass bottle, a wooden cap, leather straps for tying with branded steel fittings and a length regulator. Inside the bottle, there is also a protective plastic stopper.\n*To ensure the car perfume lasts long and provides daily enjoyment, it's important to follow the included instructions carefully."
+        },
+        "textile_perfume": {
+            "name": "Textile Perfume",
+            "short": "Long-term storage of fabric products in a closet or dresser does not bring them freshness: on the contrary, unpleasant musty and moldy odors appear. This is especially true when dealing with an unfavorable microclimate inside the premises (high humidity, dust, suspended particles, etc.).",
+            "long": "Long-term storage of fabric products in a closet or dresser does not bring them freshness: on the contrary, unpleasant musty and moldy odors appear. This is especially true when dealing with an unfavorable microclimate inside the premises (high humidity, dust, suspended particles, etc.).\n\nThe good news is that there is an effective means to achieve a comprehensive effect on the material and eliminate the negative consequences of long-term storage: a scented fabric spray.\n\nTextile spray is a complex product made up of numerous concentrated components. The main ingredients in the composition are essential oils, which are dissolved in an aqueous medium with the help of solubilizers.\n\n*Important: When using essential oils in their pure form, there is a high probability of greasy stains appearing on the material. Solubilizers, by dissolving the oil in water, reduce its concentration and allow the solution to be used on any type of textile product without causing damage to these accessories and the skin."
+        },
+        "limited_edition": {
+            "name": "Limited Edition",
+            "short": "A collection of three exclusive scented candles – a limited edition inspired by the fragrances of the world's most luxurious locations. The city of a million lights – New York, the mysterious and opulent Abu Dhabi, the sunny and gentle Palermo – choose the direction of your journey.",
+            "long": "A collection of three exclusive scented candles – a limited edition inspired by the fragrances of the world's most luxurious locations. The city of a million lights – New York, the mysterious and opulent Abu Dhabi, the sunny and gentle Palermo – choose the direction of your journey.\n\nEach candle in the collection is crafted in a minimalist and elegant style, blending seamlessly into your interior.\n\nWe use premium coconut and soy waxes, which provide the best fragrance diffusion – a rich perfumed trail will fill your room shortly after lighting the candle."
+        },
+        "gift_sets": {
+            "name": "Gift Sets",
+            "short": "Curated boxes with coordinated fragrances for special moments.",
+            "long": "Create the perfect gift with our customizable gift sets. Choose any three products and receive a 5% discount on the total."
+        },
+        "aroma_marketing": {
+            "name": "Aroma Marketing",
+            "short": "Scalable sets for retail, hospitality and offices including installation.",
+            "long": "Professional scenting solutions for businesses. We offer custom scent development, professional installation, and ongoing maintenance for commercial spaces."
+        },
+        "accessories": {
+            "name": "Accessories",
+            "short": "Complement your home fragrance with elegant accessories.",
+            "long": "Discover our collection of accessories to enhance your home fragrance experience. From decorative trays to replacement sticks and more."
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "new_order": {
+        "enabled": true,
+        "recipients": [
+            "order@nichehome.ch"
+        ]
+    },
+    "new_support_request": {
+        "enabled": true,
+        "recipients": [
+            "support@nichehome.ch"
+        ]
+    }
+}

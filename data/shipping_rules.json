@@ -1,0 +1,17 @@
+[
+    {
+        "minTotal": 0,
+        "maxTotal": 30,
+        "shippingCost": 10.5
+    },
+    {
+        "minTotal": 31,
+        "maxTotal": 79,
+        "shippingCost": 12.5
+    },
+    {
+        "minTotal": 80,
+        "maxTotal": 999999,
+        "shippingCost": 0
+    }
+]

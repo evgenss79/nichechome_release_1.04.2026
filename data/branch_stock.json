@@ -1,0 +1,2339 @@
+{
+    "branch_1": {
+        "ARO-STA-AFR": {
+            "quantity": 1
+        },
+        "ARO-STA-BAM": {
+            "quantity": 0
+        },
+        "ARO-STA-BEL": {
+            "quantity": 1
+        },
+        "ARO-STA-BLA": {
+            "quantity": 0
+        },
+        "ARO-STA-CAR": {
+            "quantity": 0
+        },
+        "ARO-STA-CHE": {
+            "quantity": 0
+        },
+        "ARO-STA-CHR": {
+            "quantity": 0
+        },
+        "ARO-STA-DUB": {
+            "quantity": 0
+        },
+        "ARO-STA-DUN": {
+            "quantity": 1
+        },
+        "ARO-STA-EDE": {
+            "quantity": 1
+        },
+        "ARO-STA-ETN": {
+            "quantity": 1
+        },
+        "ARO-STA-FLE": {
+            "quantity": 0
+        },
+        "ARO-STA-GRE": {
+            "quantity": 0
+        },
+        "ARO-STA-LIM": {
+            "quantity": 0
+        },
+        "ARO-STA-ROS": {
+            "quantity": 0
+        },
+        "ARO-STA-SW": {
+            "quantity": 1
+        },
+        "ARO-STA-SAN": {
+            "quantity": 1
+        },
+        "ARO-STA-SUG": {
+            "quantity": 2
+        },
+        "ARO-STA-TOB": {
+            "quantity": 0
+        },
+        "ARO-STA-VAL": {
+            "quantity": 0
+        },
+        "SMA-STA-NA": {
+            "quantity": 2
+        },
+        "CAR-STA-NA": {
+            "quantity": 1
+        },
+        "CHR-STA-CHR": {
+            "quantity": 2
+        },
+        "REF-STA-AFR": {
+            "quantity": 0
+        },
+        "REF-STA-BAM": {
+            "quantity": 1
+        },
+        "REF-STA-BLA": {
+            "quantity": 1
+        },
+        "REF-STA-CAR": {
+            "quantity": 0
+        },
+        "REF-STA-DUB": {
+            "quantity": 0
+        },
+        "STI-5GU-NA": {
+            "quantity": 6
+        },
+        "STI-10G-NA": {
+            "quantity": 6
+        },
+        "DF-125-AFR": {
+            "quantity": 0
+        },
+        "DF-125-BAM": {
+            "quantity": 1
+        },
+        "DF-125-BEL": {
+            "quantity": 0
+        },
+        "DF-125-BLA": {
+            "quantity": 1
+        },
+        "DF-125-CAR": {
+            "quantity": 0
+        },
+        "DF-125-CHE": {
+            "quantity": 1
+        },
+        "DF-125-CHR": {
+            "quantity": 0
+        },
+        "DF-125-DUB": {
+            "quantity": 1
+        },
+        "DF-125-DUN": {
+            "quantity": 1
+        },
+        "DF-125-EDE": {
+            "quantity": 0
+        },
+        "DF-125-ETN": {
+            "quantity": 1
+        },
+        "DF-125-FLE": {
+            "quantity": 0
+        },
+        "DF-125-GRE": {
+            "quantity": 1
+        },
+        "DF-125-LIM": {
+            "quantity": 0
+        },
+        "DF-125-ROS": {
+            "quantity": 0
+        },
+        "DF-125-SC": {
+            "quantity": 1
+        },
+        "DF-125-SW": {
+            "quantity": 1
+        },
+        "DF-125-SAN": {
+            "quantity": 1
+        },
+        "DF-125-SUG": {
+            "quantity": 1
+        },
+        "DF-125-TOB": {
+            "quantity": 1
+        },
+        "DF-125-VAL": {
+            "quantity": 0
+        },
+        "DF-250-AFR": {
+            "quantity": 0
+        },
+        "DF-250-BAM": {
+            "quantity": 1
+        },
+        "DF-250-BEL": {
+            "quantity": 0
+        },
+        "DF-250-BLA": {
+            "quantity": 0
+        },
+        "DF-250-CAR": {
+            "quantity": 1
+        },
+        "DF-250-CHE": {
+            "quantity": 1
+        },
+        "DF-250-CHR": {
+            "quantity": 1
+        },
+        "DF-250-DUB": {
+            "quantity": 1
+        },
+        "DF-250-DUN": {
+            "quantity": 0
+        },
+        "DF-250-EDE": {
+            "quantity": 0
+        },
+        "DF-250-ETN": {
+            "quantity": 1
+        },
+        "DF-250-FLE": {
+            "quantity": 0
+        },
+        "DF-250-GRE": {
+            "quantity": 1
+        },
+        "DF-250-LIM": {
+            "quantity": 0
+        },
+        "DF-250-ROS": {
+            "quantity": 0
+        },
+        "DF-250-SC": {
+            "quantity": 1
+        },
+        "DF-250-SW": {
+            "quantity": 0
+        },
+        "DF-250-SAN": {
+            "quantity": 1
+        },
+        "DF-250-SUG": {
+            "quantity": 1
+        },
+        "DF-250-TOB": {
+            "quantity": 0
+        },
+        "DF-250-VAL": {
+            "quantity": 0
+        },
+        "DF-500-AFR": {
+            "quantity": 1
+        },
+        "DF-500-BAM": {
+            "quantity": 0
+        },
+        "DF-500-BEL": {
+            "quantity": 0
+        },
+        "DF-500-BLA": {
+            "quantity": 1
+        },
+        "DF-500-CAR": {
+            "quantity": 0
+        },
+        "DF-500-CHE": {
+            "quantity": 0
+        },
+        "DF-500-CHR": {
+            "quantity": 1
+        },
+        "DF-500-DUB": {
+            "quantity": 0
+        },
+        "DF-500-DUN": {
+            "quantity": 1
+        },
+        "DF-500-EDE": {
+            "quantity": 0
+        },
+        "DF-500-ETN": {
+            "quantity": 0
+        },
+        "DF-500-FLE": {
+            "quantity": 0
+        },
+        "DF-500-GRE": {
+            "quantity": 1
+        },
+        "DF-500-LIM": {
+            "quantity": 0
+        },
+        "DF-500-ROS": {
+            "quantity": 0
+        },
+        "DF-500-SC": {
+            "quantity": 1
+        },
+        "DF-500-SW": {
+            "quantity": 0
+        },
+        "DF-500-SAN": {
+            "quantity": 0
+        },
+        "DF-500-SUG": {
+            "quantity": 1
+        },
+        "DF-500-TOB": {
+            "quantity": 0
+        },
+        "DF-500-VAL": {
+            "quantity": 0
+        },
+        "CP-STA-AFR": {
+            "quantity": 1
+        },
+        "CP-STA-BAM": {
+            "quantity": 2
+        },
+        "CP-STA-BEL": {
+            "quantity": 0
+        },
+        "CP-STA-BLA": {
+            "quantity": 0
+        },
+        "CP-STA-CAR": {
+            "quantity": 0
+        },
+        "CP-STA-CHE": {
+            "quantity": 0
+        },
+        "CP-STA-CHR": {
+            "quantity": 1
+        },
+        "CP-STA-DUB": {
+            "quantity": 0
+        },
+        "CP-STA-DUN": {
+            "quantity": 0
+        },
+        "CP-STA-EDE": {
+            "quantity": 0
+        },
+        "CP-STA-ETN": {
+            "quantity": 1
+        },
+        "CP-STA-FLE": {
+            "quantity": 0
+        },
+        "CP-STA-GRE": {
+            "quantity": 1
+        },
+        "CP-STA-LIM": {
+            "quantity": 0
+        },
+        "CP-STA-ROS": {
+            "quantity": 0
+        },
+        "CP-STA-SC": {
+            "quantity": 0
+        },
+        "CP-STA-SW": {
+            "quantity": 0
+        },
+        "CP-STA-SAN": {
+            "quantity": 0
+        },
+        "CP-STA-SUG": {
+            "quantity": 1
+        },
+        "CP-STA-TOB": {
+            "quantity": 1
+        },
+        "CP-STA-VAL": {
+            "quantity": 0
+        },
+        "HP-10-AFR": {
+            "quantity": 1
+        },
+        "HP-10-BAM": {
+            "quantity": 1
+        },
+        "HP-10-BEL": {
+            "quantity": 0
+        },
+        "HP-10-BLA": {
+            "quantity": 1
+        },
+        "HP-10-CAR": {
+            "quantity": 1
+        },
+        "HP-10-CHE": {
+            "quantity": 0
+        },
+        "HP-10-CHR": {
+            "quantity": 1
+        },
+        "HP-10-DUB": {
+            "quantity": 0
+        },
+        "HP-10-DUN": {
+            "quantity": 1
+        },
+        "HP-10-EDE": {
+            "quantity": 1
+        },
+        "HP-10-ETN": {
+            "quantity": 1
+        },
+        "HP-10-FLE": {
+            "quantity": 0
+        },
+        "HP-10-GRE": {
+            "quantity": 1
+        },
+        "HP-10-LIM": {
+            "quantity": 1
+        },
+        "HP-10-ROS": {
+            "quantity": 0
+        },
+        "HP-10-SC": {
+            "quantity": 1
+        },
+        "HP-10-SW": {
+            "quantity": 1
+        },
+        "HP-10-SAN": {
+            "quantity": 0
+        },
+        "HP-10-SUG": {
+            "quantity": 1
+        },
+        "HP-10-TOB": {
+            "quantity": 0
+        },
+        "HP-10-VAL": {
+            "quantity": 1
+        },
+        "HP-50-AFR": {
+            "quantity": 1
+        },
+        "HP-50-BAM": {
+            "quantity": 1
+        },
+        "HP-50-BEL": {
+            "quantity": 0
+        },
+        "HP-50-BLA": {
+            "quantity": 1
+        },
+        "HP-50-CAR": {
+            "quantity": 1
+        },
+        "HP-50-CHE": {
+            "quantity": 1
+        },
+        "HP-50-CHR": {
+            "quantity": 0
+        },
+        "HP-50-DUB": {
+            "quantity": 1
+        },
+        "HP-50-DUN": {
+            "quantity": 0
+        },
+        "HP-50-EDE": {
+            "quantity": 1
+        },
+        "HP-50-ETN": {
+            "quantity": 1
+        },
+        "HP-50-FLE": {
+            "quantity": 1
+        },
+        "HP-50-GRE": {
+            "quantity": 1
+        },
+        "HP-50-LIM": {
+            "quantity": 1
+        },
+        "HP-50-ROS": {
+            "quantity": 1
+        },
+        "HP-50-SC": {
+            "quantity": 0
+        },
+        "HP-50-SW": {
+            "quantity": 1
+        },
+        "HP-50-SAN": {
+            "quantity": 1
+        },
+        "HP-50-SUG": {
+            "quantity": 1
+        },
+        "HP-50-TOB": {
+            "quantity": 1
+        },
+        "HP-50-VAL": {
+            "quantity": 0
+        },
+        "LE-270-ABU": {
+            "quantity": 2
+        },
+        "LE-270-NEW": {
+            "quantity": 2
+        },
+        "LE-270-PAL": {
+            "quantity": 2
+        },
+        "CD-160-AFR": {
+            "quantity": 1
+        },
+        "CD-160-BAM": {
+            "quantity": 1
+        },
+        "CD-160-BEL": {
+            "quantity": 1
+        },
+        "CD-160-BLA": {
+            "quantity": 1
+        },
+        "CD-160-CAR": {
+            "quantity": 1
+        },
+        "CD-160-CHE": {
+            "quantity": 1
+        },
+        "CD-160-CHR": {
+            "quantity": 1
+        },
+        "CD-160-DUB": {
+            "quantity": 1
+        },
+        "CD-160-DUN": {
+            "quantity": 1
+        },
+        "CD-160-EDE": {
+            "quantity": 1
+        },
+        "CD-160-FLE": {
+            "quantity": 0
+        },
+        "CD-160-GRE": {
+            "quantity": 1
+        },
+        "CD-160-LIM": {
+            "quantity": 1
+        },
+        "CD-160-ROS": {
+            "quantity": 0
+        },
+        "CD-160-SC": {
+            "quantity": 0
+        },
+        "CD-160-SW": {
+            "quantity": 1
+        },
+        "CD-160-SAN": {
+            "quantity": 1
+        },
+        "CD-160-SUG": {
+            "quantity": 1
+        },
+        "CD-160-TOB": {
+            "quantity": 1
+        },
+        "CD-500-AFR": {
+            "quantity": 0
+        },
+        "CD-500-BAM": {
+            "quantity": 0
+        },
+        "CD-500-BEL": {
+            "quantity": 0
+        },
+        "CD-500-BLA": {
+            "quantity": 0
+        },
+        "CD-500-CAR": {
+            "quantity": 1
+        },
+        "CD-500-CHE": {
+            "quantity": 1
+        },
+        "CD-500-CHR": {
+            "quantity": 0
+        },
+        "CD-500-DUB": {
+            "quantity": 1
+        },
+        "CD-500-DUN": {
+            "quantity": 1
+        },
+        "CD-500-EDE": {
+            "quantity": 0
+        },
+        "CD-500-FLE": {
+            "quantity": 0
+        },
+        "CD-500-GRE": {
+            "quantity": 0
+        },
+        "CD-500-LIM": {
+            "quantity": 1
+        },
+        "CD-500-ROS": {
+            "quantity": 0
+        },
+        "CD-500-SC": {
+            "quantity": 1
+        },
+        "CD-500-SW": {
+            "quantity": 1
+        },
+        "CD-500-SAN": {
+            "quantity": 1
+        },
+        "CD-500-SUG": {
+            "quantity": 1
+        },
+        "CD-500-TOB": {
+            "quantity": 1
+        },
+        "TP-STA-AFR": {
+            "quantity": 0
+        },
+        "TP-STA-BAM": {
+            "quantity": 1
+        },
+        "TP-STA-BEL": {
+            "quantity": 0
+        },
+        "TP-STA-BLA": {
+            "quantity": 2
+        },
+        "TP-STA-CAR": {
+            "quantity": 1
+        },
+        "TP-STA-DUN": {
+            "quantity": 0
+        },
+        "TP-STA-EDE": {
+            "quantity": 1
+        },
+        "TP-STA-ETN": {
+            "quantity": 0
+        },
+        "TP-STA-FLE": {
+            "quantity": 1
+        },
+        "TP-STA-GRE": {
+            "quantity": 1
+        },
+        "TP-STA-LIM": {
+            "quantity": 0
+        },
+        "TP-STA-SAN": {
+            "quantity": 0
+        },
+        "TP-STA-SUG": {
+            "quantity": 1
+        },
+        "TP-STA-TOB": {
+            "quantity": 1
+        },
+        "TP-STA-VAL": {
+            "quantity": 0
+        },
+        "DF-STA-CHE": {
+            "quantity": 0
+        },
+        "DF-STA-EDE": {
+            "quantity": 0
+        },
+        "ARO-STA-NA": {
+            "quantity": 1
+        },
+        "CHR-STA-AFR": {
+            "quantity": 0
+        },
+        "CHR-STA-BAM": {
+            "quantity": 0
+        },
+        "CHR-STA-BEL": {
+            "quantity": 0
+        },
+        "CHR-STA-BLA": {
+            "quantity": 0
+        },
+        "CHR-STA-CAR": {
+            "quantity": 0
+        },
+        "CHR-STA-CHE": {
+            "quantity": 0
+        },
+        "CHR-STA-DUB": {
+            "quantity": 0
+        },
+        "CHR-STA-DUN": {
+            "quantity": 0
+        },
+        "CHR-STA-EDE": {
+            "quantity": 0
+        },
+        "CHR-STA-ETN": {
+            "quantity": 0
+        },
+        "CHR-STA-FLE": {
+            "quantity": 0
+        },
+        "CHR-STA-GRE": {
+            "quantity": 0
+        },
+        "CHR-STA-LIM": {
+            "quantity": 0
+        },
+        "CHR-STA-ROS": {
+            "quantity": 0
+        },
+        "CHR-STA-SC": {
+            "quantity": 0
+        },
+        "CHR-STA-SAN": {
+            "quantity": 0
+        },
+        "CHR-STA-SUG": {
+            "quantity": 0
+        },
+        "CHR-STA-TOB": {
+            "quantity": 0
+        },
+        "CHR-STA-VAL": {
+            "quantity": 0
+        },
+        "STI-5GU-CHE": {
+            "quantity": 6
+        },
+        "STI-10G-CHE": {
+            "quantity": 6
+        },
+        "ARO-STA-SAL": {
+            "quantity": 0
+        },
+        "CD-160-SAL": {
+            "quantity": 1
+        },
+        "CD-500-SAL": {
+            "quantity": 1
+        },
+        "CP-STA-SAL": {
+            "quantity": 0
+        },
+        "DF-125-SAL": {
+            "quantity": 1
+        },
+        "DF-250-SAL": {
+            "quantity": 1
+        },
+        "DF-500-SAL": {
+            "quantity": 0
+        },
+        "HP-10-SAL": {
+            "quantity": 1
+        },
+        "HP-50-SAL": {
+            "quantity": 0
+        },
+        "STI-10 guggul + 10 louban-CHE": {
+            "quantity": 6
+        },
+        "STI-5 guggul + 5 louban-CHE": {
+            "quantity": 6
+        },
+        "TP-500 -AFR": {
+            "quantity": 1
+        },
+        "TP-500 -BAM": {
+            "quantity": 1
+        },
+        "TP-500 -BLA": {
+            "quantity": 2
+        },
+        "TP-500 -CAR": {
+            "quantity": 1
+        },
+        "TP-500 -EDE": {
+            "quantity": 1
+        },
+        "TP-500 -FLE": {
+            "quantity": 2
+        },
+        "TP-500 -GRE": {
+            "quantity": 1
+        },
+        "TP-500 -SUG": {
+            "quantity": 1
+        },
+        "TP-500 -TOB": {
+            "quantity": 1
+        },
+        "TP-500 -VAL": {
+            "quantity": 1
+        },
+        "REF-STA-FLE": {
+            "quantity": 0
+        },
+        "REF-STA-SW": {
+            "quantity": 0
+        }
+    },
+    "branch_2": {
+        "ARO-STA-AFR": {
+            "quantity": 0
+        },
+        "ARO-STA-BAM": {
+            "quantity": 0
+        },
+        "ARO-STA-BEL": {
+            "quantity": 1
+        },
+        "ARO-STA-BLA": {
+            "quantity": 0
+        },
+        "ARO-STA-CAR": {
+            "quantity": 0
+        },
+        "ARO-STA-CHE": {
+            "quantity": 1
+        },
+        "ARO-STA-CHR": {
+            "quantity": 1
+        },
+        "ARO-STA-DUB": {
+            "quantity": 1
+        },
+        "ARO-STA-DUN": {
+            "quantity": 0
+        },
+        "ARO-STA-EDE": {
+            "quantity": 1
+        },
+        "ARO-STA-ETN": {
+            "quantity": 1
+        },
+        "ARO-STA-FLE": {
+            "quantity": 0
+        },
+        "ARO-STA-GRE": {
+            "quantity": 0
+        },
+        "ARO-STA-LIM": {
+            "quantity": 0
+        },
+        "ARO-STA-ROS": {
+            "quantity": 0
+        },
+        "ARO-STA-SW": {
+            "quantity": 1
+        },
+        "ARO-STA-SAN": {
+            "quantity": 0
+        },
+        "ARO-STA-SUG": {
+            "quantity": 2
+        },
+        "ARO-STA-TOB": {
+            "quantity": 0
+        },
+        "ARO-STA-VAL": {
+            "quantity": 1
+        },
+        "SMA-STA-NA": {
+            "quantity": 0
+        },
+        "CAR-STA-NA": {
+            "quantity": 2
+        },
+        "CHR-STA-CHR": {
+            "quantity": 0
+        },
+        "REF-STA-AFR": {
+            "quantity": 1
+        },
+        "REF-STA-BAM": {
+            "quantity": 1
+        },
+        "REF-STA-BLA": {
+            "quantity": 1
+        },
+        "REF-STA-CAR": {
+            "quantity": 4
+        },
+        "REF-STA-DUB": {
+            "quantity": 0
+        },
+        "STI-5GU-NA": {
+            "quantity": 7
+        },
+        "STI-10G-NA": {
+            "quantity": 7
+        },
+        "DF-125-AFR": {
+            "quantity": 0
+        },
+        "DF-125-BAM": {
+            "quantity": 1
+        },
+        "DF-125-BEL": {
+            "quantity": 1
+        },
+        "DF-125-BLA": {
+            "quantity": 0
+        },
+        "DF-125-CAR": {
+            "quantity": 1
+        },
+        "DF-125-CHE": {
+            "quantity": 0
+        },
+        "DF-125-CHR": {
+            "quantity": 1
+        },
+        "DF-125-DUB": {
+            "quantity": 0
+        },
+        "DF-125-DUN": {
+            "quantity": 0
+        },
+        "DF-125-EDE": {
+            "quantity": 0
+        },
+        "DF-125-ETN": {
+            "quantity": 1
+        },
+        "DF-125-FLE": {
+            "quantity": 0
+        },
+        "DF-125-GRE": {
+            "quantity": 1
+        },
+        "DF-125-LIM": {
+            "quantity": 1
+        },
+        "DF-125-ROS": {
+            "quantity": 1
+        },
+        "DF-125-SC": {
+            "quantity": 1
+        },
+        "DF-125-SW": {
+            "quantity": 1
+        },
+        "DF-125-SAN": {
+            "quantity": 1
+        },
+        "DF-125-SUG": {
+            "quantity": 1
+        },
+        "DF-125-TOB": {
+            "quantity": 0
+        },
+        "DF-125-VAL": {
+            "quantity": 0
+        },
+        "DF-250-AFR": {
+            "quantity": 1
+        },
+        "DF-250-BAM": {
+            "quantity": 0
+        },
+        "DF-250-BEL": {
+            "quantity": 1
+        },
+        "DF-250-BLA": {
+            "quantity": 1
+        },
+        "DF-250-CAR": {
+            "quantity": 0
+        },
+        "DF-250-CHE": {
+            "quantity": 0
+        },
+        "DF-250-CHR": {
+            "quantity": 0
+        },
+        "DF-250-DUB": {
+            "quantity": 0
+        },
+        "DF-250-DUN": {
+            "quantity": 1
+        },
+        "DF-250-EDE": {
+            "quantity": 0
+        },
+        "DF-250-ETN": {
+            "quantity": 0
+        },
+        "DF-250-FLE": {
+            "quantity": 1
+        },
+        "DF-250-GRE": {
+            "quantity": 1
+        },
+        "DF-250-LIM": {
+            "quantity": 1
+        },
+        "DF-250-ROS": {
+            "quantity": 1
+        },
+        "DF-250-SC": {
+            "quantity": 0
+        },
+        "DF-250-SW": {
+            "quantity": 0
+        },
+        "DF-250-SAN": {
+            "quantity": 1
+        },
+        "DF-250-SUG": {
+            "quantity": 0
+        },
+        "DF-250-TOB": {
+            "quantity": 1
+        },
+        "DF-250-VAL": {
+            "quantity": 0
+        },
+        "DF-500-AFR": {
+            "quantity": 0
+        },
+        "DF-500-BAM": {
+            "quantity": 1
+        },
+        "DF-500-BEL": {
+            "quantity": 0
+        },
+        "DF-500-BLA": {
+            "quantity": 0
+        },
+        "DF-500-CAR": {
+            "quantity": 0
+        },
+        "DF-500-CHE": {
+            "quantity": 0
+        },
+        "DF-500-CHR": {
+            "quantity": 0
+        },
+        "DF-500-DUB": {
+            "quantity": 0
+        },
+        "DF-500-DUN": {
+            "quantity": 0
+        },
+        "DF-500-EDE": {
+            "quantity": 1
+        },
+        "DF-500-ETN": {
+            "quantity": 1
+        },
+        "DF-500-FLE": {
+            "quantity": 0
+        },
+        "DF-500-GRE": {
+            "quantity": 0
+        },
+        "DF-500-LIM": {
+            "quantity": 1
+        },
+        "DF-500-ROS": {
+            "quantity": 0
+        },
+        "DF-500-SC": {
+            "quantity": 0
+        },
+        "DF-500-SW": {
+            "quantity": 1
+        },
+        "DF-500-SAN": {
+            "quantity": 0
+        },
+        "DF-500-SUG": {
+            "quantity": 0
+        },
+        "DF-500-TOB": {
+            "quantity": 0
+        },
+        "DF-500-VAL": {
+            "quantity": 1
+        },
+        "CP-STA-AFR": {
+            "quantity": 2
+        },
+        "CP-STA-BAM": {
+            "quantity": 2
+        },
+        "CP-STA-BEL": {
+            "quantity": 0
+        },
+        "CP-STA-BLA": {
+            "quantity": 1
+        },
+        "CP-STA-CAR": {
+            "quantity": 2
+        },
+        "CP-STA-CHE": {
+            "quantity": 0
+        },
+        "CP-STA-CHR": {
+            "quantity": 0
+        },
+        "CP-STA-DUB": {
+            "quantity": 0
+        },
+        "CP-STA-DUN": {
+            "quantity": 1
+        },
+        "CP-STA-EDE": {
+            "quantity": 1
+        },
+        "CP-STA-ETN": {
+            "quantity": 2
+        },
+        "CP-STA-FLE": {
+            "quantity": 0
+        },
+        "CP-STA-GRE": {
+            "quantity": 0
+        },
+        "CP-STA-LIM": {
+            "quantity": 1
+        },
+        "CP-STA-ROS": {
+            "quantity": 0
+        },
+        "CP-STA-SC": {
+            "quantity": 0
+        },
+        "CP-STA-SW": {
+            "quantity": 1
+        },
+        "CP-STA-SAN": {
+            "quantity": 0
+        },
+        "CP-STA-SUG": {
+            "quantity": 0
+        },
+        "CP-STA-TOB": {
+            "quantity": 1
+        },
+        "CP-STA-VAL": {
+            "quantity": 0
+        },
+        "HP-10-AFR": {
+            "quantity": 1
+        },
+        "HP-10-BAM": {
+            "quantity": 0
+        },
+        "HP-10-BEL": {
+            "quantity": 1
+        },
+        "HP-10-BLA": {
+            "quantity": 1
+        },
+        "HP-10-CAR": {
+            "quantity": 0
+        },
+        "HP-10-CHE": {
+            "quantity": 1
+        },
+        "HP-10-CHR": {
+            "quantity": 1
+        },
+        "HP-10-DUB": {
+            "quantity": 1
+        },
+        "HP-10-DUN": {
+            "quantity": 1
+        },
+        "HP-10-EDE": {
+            "quantity": 0
+        },
+        "HP-10-ETN": {
+            "quantity": 1
+        },
+        "HP-10-FLE": {
+            "quantity": 1
+        },
+        "HP-10-GRE": {
+            "quantity": 1
+        },
+        "HP-10-LIM": {
+            "quantity": 0
+        },
+        "HP-10-ROS": {
+            "quantity": 1
+        },
+        "HP-10-SC": {
+            "quantity": 1
+        },
+        "HP-10-SW": {
+            "quantity": 0
+        },
+        "HP-10-SAN": {
+            "quantity": 1
+        },
+        "HP-10-SUG": {
+            "quantity": 1
+        },
+        "HP-10-TOB": {
+            "quantity": 0
+        },
+        "HP-10-VAL": {
+            "quantity": 1
+        },
+        "HP-50-AFR": {
+            "quantity": 1
+        },
+        "HP-50-BAM": {
+            "quantity": 1
+        },
+        "HP-50-BEL": {
+            "quantity": 0
+        },
+        "HP-50-BLA": {
+            "quantity": 1
+        },
+        "HP-50-CAR": {
+            "quantity": 1
+        },
+        "HP-50-CHE": {
+            "quantity": 0
+        },
+        "HP-50-CHR": {
+            "quantity": 1
+        },
+        "HP-50-DUB": {
+            "quantity": 1
+        },
+        "HP-50-DUN": {
+            "quantity": 1
+        },
+        "HP-50-EDE": {
+            "quantity": 0
+        },
+        "HP-50-ETN": {
+            "quantity": 0
+        },
+        "HP-50-FLE": {
+            "quantity": 0
+        },
+        "HP-50-GRE": {
+            "quantity": 0
+        },
+        "HP-50-LIM": {
+            "quantity": 0
+        },
+        "HP-50-ROS": {
+            "quantity": 0
+        },
+        "HP-50-SC": {
+            "quantity": 1
+        },
+        "HP-50-SW": {
+            "quantity": 0
+        },
+        "HP-50-SAN": {
+            "quantity": 1
+        },
+        "HP-50-SUG": {
+            "quantity": 1
+        },
+        "HP-50-TOB": {
+            "quantity": 1
+        },
+        "HP-50-VAL": {
+            "quantity": 1
+        },
+        "LE-270-ABU": {
+            "quantity": 2
+        },
+        "LE-270-NEW": {
+            "quantity": 2
+        },
+        "LE-270-PAL": {
+            "quantity": 2
+        },
+        "CD-160-AFR": {
+            "quantity": 0
+        },
+        "CD-160-BAM": {
+            "quantity": 0
+        },
+        "CD-160-BEL": {
+            "quantity": 1
+        },
+        "CD-160-BLA": {
+            "quantity": 1
+        },
+        "CD-160-CAR": {
+            "quantity": 0
+        },
+        "CD-160-CHE": {
+            "quantity": 0
+        },
+        "CD-160-CHR": {
+            "quantity": 1
+        },
+        "CD-160-DUB": {
+            "quantity": 0
+        },
+        "CD-160-DUN": {
+            "quantity": 0
+        },
+        "CD-160-EDE": {
+            "quantity": 1
+        },
+        "CD-160-FLE": {
+            "quantity": 1
+        },
+        "CD-160-GRE": {
+            "quantity": 1
+        },
+        "CD-160-LIM": {
+            "quantity": 1
+        },
+        "CD-160-ROS": {
+            "quantity": 1
+        },
+        "CD-160-SC": {
+            "quantity": 1
+        },
+        "CD-160-SW": {
+            "quantity": 0
+        },
+        "CD-160-SAN": {
+            "quantity": 0
+        },
+        "CD-160-SUG": {
+            "quantity": 1
+        },
+        "CD-160-TOB": {
+            "quantity": 0
+        },
+        "CD-500-AFR": {
+            "quantity": 1
+        },
+        "CD-500-BAM": {
+            "quantity": 0
+        },
+        "CD-500-BEL": {
+            "quantity": 0
+        },
+        "CD-500-BLA": {
+            "quantity": 1
+        },
+        "CD-500-CAR": {
+            "quantity": 0
+        },
+        "CD-500-CHE": {
+            "quantity": 0
+        },
+        "CD-500-CHR": {
+            "quantity": 1
+        },
+        "CD-500-DUB": {
+            "quantity": 0
+        },
+        "CD-500-DUN": {
+            "quantity": 1
+        },
+        "CD-500-EDE": {
+            "quantity": 1
+        },
+        "CD-500-FLE": {
+            "quantity": 1
+        },
+        "CD-500-GRE": {
+            "quantity": 1
+        },
+        "CD-500-LIM": {
+            "quantity": 0
+        },
+        "CD-500-ROS": {
+            "quantity": 0
+        },
+        "CD-500-SC": {
+            "quantity": 1
+        },
+        "CD-500-SW": {
+            "quantity": 1
+        },
+        "CD-500-SAN": {
+            "quantity": 1
+        },
+        "CD-500-SUG": {
+            "quantity": 0
+        },
+        "CD-500-TOB": {
+            "quantity": 0
+        },
+        "TP-STA-AFR": {
+            "quantity": 0
+        },
+        "TP-STA-BAM": {
+            "quantity": 1
+        },
+        "TP-STA-BEL": {
+            "quantity": 1
+        },
+        "TP-STA-BLA": {
+            "quantity": 1
+        },
+        "TP-STA-CAR": {
+            "quantity": 1
+        },
+        "TP-STA-DUN": {
+            "quantity": 0
+        },
+        "TP-STA-EDE": {
+            "quantity": 0
+        },
+        "TP-STA-ETN": {
+            "quantity": 1
+        },
+        "TP-STA-FLE": {
+            "quantity": 2
+        },
+        "TP-STA-GRE": {
+            "quantity": 0
+        },
+        "TP-STA-LIM": {
+            "quantity": 1
+        },
+        "TP-STA-SAN": {
+            "quantity": 0
+        },
+        "TP-STA-SUG": {
+            "quantity": 1
+        },
+        "TP-STA-TOB": {
+            "quantity": 1
+        },
+        "TP-STA-VAL": {
+            "quantity": 1
+        },
+        "DF-STA-CHE": {
+            "quantity": 0
+        },
+        "DF-STA-EDE": {
+            "quantity": 0
+        },
+        "ARO-STA-NA": {
+            "quantity": 0
+        },
+        "CHR-STA-AFR": {
+            "quantity": 0
+        },
+        "CHR-STA-BAM": {
+            "quantity": 0
+        },
+        "CHR-STA-BEL": {
+            "quantity": 0
+        },
+        "CHR-STA-BLA": {
+            "quantity": 0
+        },
+        "CHR-STA-CAR": {
+            "quantity": 0
+        },
+        "CHR-STA-CHE": {
+            "quantity": 0
+        },
+        "CHR-STA-DUB": {
+            "quantity": 0
+        },
+        "CHR-STA-DUN": {
+            "quantity": 0
+        },
+        "CHR-STA-EDE": {
+            "quantity": 0
+        },
+        "CHR-STA-ETN": {
+            "quantity": 0
+        },
+        "CHR-STA-FLE": {
+            "quantity": 0
+        },
+        "CHR-STA-GRE": {
+            "quantity": 0
+        },
+        "CHR-STA-LIM": {
+            "quantity": 0
+        },
+        "CHR-STA-ROS": {
+            "quantity": 0
+        },
+        "CHR-STA-SC": {
+            "quantity": 0
+        },
+        "CHR-STA-SAN": {
+            "quantity": 0
+        },
+        "CHR-STA-SUG": {
+            "quantity": 0
+        },
+        "CHR-STA-TOB": {
+            "quantity": 0
+        },
+        "CHR-STA-VAL": {
+            "quantity": 0
+        },
+        "STI-5GU-CHE": {
+            "quantity": 7
+        },
+        "STI-10G-CHE": {
+            "quantity": 7
+        },
+        "ARO-STA-SAL": {
+            "quantity": 0
+        },
+        "CD-160-SAL": {
+            "quantity": 0
+        },
+        "CD-500-SAL": {
+            "quantity": 0
+        },
+        "CP-STA-SAL": {
+            "quantity": 0
+        },
+        "DF-125-SAL": {
+            "quantity": 0
+        },
+        "DF-250-SAL": {
+            "quantity": 0
+        },
+        "DF-500-SAL": {
+            "quantity": 0
+        },
+        "HP-10-SAL": {
+            "quantity": 0
+        },
+        "HP-50-SAL": {
+            "quantity": 0
+        },
+        "STI-10 guggul + 10 louban-CHE": {
+            "quantity": 0
+        },
+        "STI-5 guggul + 5 louban-CHE": {
+            "quantity": 0
+        },
+        "TP-500 -AFR": {
+            "quantity": 0
+        },
+        "TP-500 -BAM": {
+            "quantity": 0
+        },
+        "TP-500 -BLA": {
+            "quantity": 0
+        },
+        "TP-500 -CAR": {
+            "quantity": 0
+        },
+        "TP-500 -EDE": {
+            "quantity": 0
+        },
+        "TP-500 -FLE": {
+            "quantity": 0
+        },
+        "TP-500 -GRE": {
+            "quantity": 0
+        },
+        "TP-500 -SUG": {
+            "quantity": 0
+        },
+        "TP-500 -TOB": {
+            "quantity": 0
+        },
+        "TP-500 -VAL": {
+            "quantity": 0
+        },
+        "REF-STA-FLE": {
+            "quantity": 1
+        },
+        "REF-STA-SW": {
+            "quantity": 2
+        }
+    },
+    "branch_3": {
+        "ARO-STA-AFR": {
+            "quantity": 0
+        },
+        "ARO-STA-BAM": {
+            "quantity": 0
+        },
+        "ARO-STA-BEL": {
+            "quantity": 1
+        },
+        "ARO-STA-BLA": {
+            "quantity": 0
+        },
+        "ARO-STA-CAR": {
+            "quantity": 2
+        },
+        "ARO-STA-CHE": {
+            "quantity": 0
+        },
+        "ARO-STA-CHR": {
+            "quantity": 1
+        },
+        "ARO-STA-DUB": {
+            "quantity": 1
+        },
+        "ARO-STA-DUN": {
+            "quantity": 1
+        },
+        "ARO-STA-EDE": {
+            "quantity": 1
+        },
+        "ARO-STA-ETN": {
+            "quantity": 1
+        },
+        "ARO-STA-FLE": {
+            "quantity": 2
+        },
+        "ARO-STA-GRE": {
+            "quantity": 1
+        },
+        "ARO-STA-LIM": {
+            "quantity": 1
+        },
+        "ARO-STA-ROS": {
+            "quantity": 0
+        },
+        "ARO-STA-SW": {
+            "quantity": 1
+        },
+        "ARO-STA-SAN": {
+            "quantity": 0
+        },
+        "ARO-STA-SUG": {
+            "quantity": 2
+        },
+        "ARO-STA-TOB": {
+            "quantity": 1
+        },
+        "ARO-STA-VAL": {
+            "quantity": 0
+        },
+        "SMA-STA-NA": {
+            "quantity": 0
+        },
+        "CAR-STA-NA": {
+            "quantity": 1
+        },
+        "CHR-STA-CHR": {
+            "quantity": 0
+        },
+        "REF-STA-AFR": {
+            "quantity": 0
+        },
+        "REF-STA-BAM": {
+            "quantity": 0
+        },
+        "REF-STA-BLA": {
+            "quantity": 0
+        },
+        "REF-STA-CAR": {
+            "quantity": 1
+        },
+        "REF-STA-DUB": {
+            "quantity": 1
+        },
+        "STI-5GU-NA": {
+            "quantity": 7
+        },
+        "STI-10G-NA": {
+            "quantity": 7
+        },
+        "DF-125-AFR": {
+            "quantity": 0
+        },
+        "DF-125-BAM": {
+            "quantity": 0
+        },
+        "DF-125-BEL": {
+            "quantity": 1
+        },
+        "DF-125-BLA": {
+            "quantity": 1
+        },
+        "DF-125-CAR": {
+            "quantity": 0
+        },
+        "DF-125-CHE": {
+            "quantity": 1
+        },
+        "DF-125-CHR": {
+            "quantity": 1
+        },
+        "DF-125-DUB": {
+            "quantity": 0
+        },
+        "DF-125-DUN": {
+            "quantity": 1
+        },
+        "DF-125-EDE": {
+            "quantity": 1
+        },
+        "DF-125-ETN": {
+            "quantity": 1
+        },
+        "DF-125-FLE": {
+            "quantity": 1
+        },
+        "DF-125-GRE": {
+            "quantity": 0
+        },
+        "DF-125-LIM": {
+            "quantity": 1
+        },
+        "DF-125-ROS": {
+            "quantity": 1
+        },
+        "DF-125-SC": {
+            "quantity": 0
+        },
+        "DF-125-SW": {
+            "quantity": 1
+        },
+        "DF-125-SAN": {
+            "quantity": 0
+        },
+        "DF-125-SUG": {
+            "quantity": 1
+        },
+        "DF-125-TOB": {
+            "quantity": 1
+        },
+        "DF-125-VAL": {
+            "quantity": 0
+        },
+        "DF-250-AFR": {
+            "quantity": 1
+        },
+        "DF-250-BAM": {
+            "quantity": 1
+        },
+        "DF-250-BEL": {
+            "quantity": 0
+        },
+        "DF-250-BLA": {
+            "quantity": 1
+        },
+        "DF-250-CAR": {
+            "quantity": 0
+        },
+        "DF-250-CHE": {
+            "quantity": 0
+        },
+        "DF-250-CHR": {
+            "quantity": 1
+        },
+        "DF-250-DUB": {
+            "quantity": 0
+        },
+        "DF-250-DUN": {
+            "quantity": 1
+        },
+        "DF-250-EDE": {
+            "quantity": 1
+        },
+        "DF-250-ETN": {
+            "quantity": 1
+        },
+        "DF-250-FLE": {
+            "quantity": 0
+        },
+        "DF-250-GRE": {
+            "quantity": 0
+        },
+        "DF-250-LIM": {
+            "quantity": 1
+        },
+        "DF-250-ROS": {
+            "quantity": 0
+        },
+        "DF-250-SC": {
+            "quantity": 1
+        },
+        "DF-250-SW": {
+            "quantity": 1
+        },
+        "DF-250-SAN": {
+            "quantity": 0
+        },
+        "DF-250-SUG": {
+            "quantity": 1
+        },
+        "DF-250-TOB": {
+            "quantity": 0
+        },
+        "DF-250-VAL": {
+            "quantity": 0
+        },
+        "DF-500-AFR": {
+            "quantity": 0
+        },
+        "DF-500-BAM": {
+            "quantity": 0
+        },
+        "DF-500-BEL": {
+            "quantity": 1
+        },
+        "DF-500-BLA": {
+            "quantity": 0
+        },
+        "DF-500-CAR": {
+            "quantity": 0
+        },
+        "DF-500-CHE": {
+            "quantity": 1
+        },
+        "DF-500-CHR": {
+            "quantity": 0
+        },
+        "DF-500-DUB": {
+            "quantity": 1
+        },
+        "DF-500-DUN": {
+            "quantity": 0
+        },
+        "DF-500-EDE": {
+            "quantity": 0
+        },
+        "DF-500-ETN": {
+            "quantity": 0
+        },
+        "DF-500-FLE": {
+            "quantity": 1
+        },
+        "DF-500-GRE": {
+            "quantity": 0
+        },
+        "DF-500-LIM": {
+            "quantity": 0
+        },
+        "DF-500-ROS": {
+            "quantity": 0
+        },
+        "DF-500-SC": {
+            "quantity": 0
+        },
+        "DF-500-SW": {
+            "quantity": 0
+        },
+        "DF-500-SAN": {
+            "quantity": 1
+        },
+        "DF-500-SUG": {
+            "quantity": 0
+        },
+        "DF-500-TOB": {
+            "quantity": 0
+        },
+        "DF-500-VAL": {
+            "quantity": 0
+        },
+        "CP-STA-AFR": {
+            "quantity": 1
+        },
+        "CP-STA-BAM": {
+            "quantity": 2
+        },
+        "CP-STA-BEL": {
+            "quantity": 0
+        },
+        "CP-STA-BLA": {
+            "quantity": 0
+        },
+        "CP-STA-CAR": {
+            "quantity": 1
+        },
+        "CP-STA-CHE": {
+            "quantity": 1
+        },
+        "CP-STA-CHR": {
+            "quantity": 0
+        },
+        "CP-STA-DUB": {
+            "quantity": 1
+        },
+        "CP-STA-DUN": {
+            "quantity": 0
+        },
+        "CP-STA-EDE": {
+            "quantity": 0
+        },
+        "CP-STA-ETN": {
+            "quantity": 2
+        },
+        "CP-STA-FLE": {
+            "quantity": 0
+        },
+        "CP-STA-GRE": {
+            "quantity": 0
+        },
+        "CP-STA-LIM": {
+            "quantity": 0
+        },
+        "CP-STA-ROS": {
+            "quantity": 1
+        },
+        "CP-STA-SC": {
+            "quantity": 0
+        },
+        "CP-STA-SW": {
+            "quantity": 0
+        },
+        "CP-STA-SAN": {
+            "quantity": 1
+        },
+        "CP-STA-SUG": {
+            "quantity": 0
+        },
+        "CP-STA-TOB": {
+            "quantity": 1
+        },
+        "CP-STA-VAL": {
+            "quantity": 1
+        },
+        "HP-10-AFR": {
+            "quantity": 0
+        },
+        "HP-10-BAM": {
+            "quantity": 1
+        },
+        "HP-10-BEL": {
+            "quantity": 0
+        },
+        "HP-10-BLA": {
+            "quantity": 0
+        },
+        "HP-10-CAR": {
+            "quantity": 1
+        },
+        "HP-10-CHE": {
+            "quantity": 1
+        },
+        "HP-10-CHR": {
+            "quantity": 0
+        },
+        "HP-10-DUB": {
+            "quantity": 1
+        },
+        "HP-10-DUN": {
+            "quantity": 0
+        },
+        "HP-10-EDE": {
+            "quantity": 1
+        },
+        "HP-10-ETN": {
+            "quantity": 1
+        },
+        "HP-10-FLE": {
+            "quantity": 1
+        },
+        "HP-10-GRE": {
+            "quantity": 0
+        },
+        "HP-10-LIM": {
+            "quantity": 1
+        },
+        "HP-10-ROS": {
+            "quantity": 1
+        },
+        "HP-10-SC": {
+            "quantity": 0
+        },
+        "HP-10-SW": {
+            "quantity": 1
+        },
+        "HP-10-SAN": {
+            "quantity": 1
+        },
+        "HP-10-SUG": {
+            "quantity": 0
+        },
+        "HP-10-TOB": {
+            "quantity": 1
+        },
+        "HP-10-VAL": {
+            "quantity": 1
+        },
+        "HP-50-AFR": {
+            "quantity": 1
+        },
+        "HP-50-BAM": {
+            "quantity": 1
+        },
+        "HP-50-BEL": {
+            "quantity": 1
+        },
+        "HP-50-BLA": {
+            "quantity": 1
+        },
+        "HP-50-CAR": {
+            "quantity": 1
+        },
+        "HP-50-CHE": {
+            "quantity": 1
+        },
+        "HP-50-CHR": {
+            "quantity": 0
+        },
+        "HP-50-DUB": {
+            "quantity": 1
+        },
+        "HP-50-DUN": {
+            "quantity": 1
+        },
+        "HP-50-EDE": {
+            "quantity": 1
+        },
+        "HP-50-ETN": {
+            "quantity": 1
+        },
+        "HP-50-FLE": {
+            "quantity": 1
+        },
+        "HP-50-GRE": {
+            "quantity": 1
+        },
+        "HP-50-LIM": {
+            "quantity": 0
+        },
+        "HP-50-ROS": {
+            "quantity": 1
+        },
+        "HP-50-SC": {
+            "quantity": 1
+        },
+        "HP-50-SW": {
+            "quantity": 1
+        },
+        "HP-50-SAN": {
+            "quantity": 1
+        },
+        "HP-50-SUG": {
+            "quantity": 1
+        },
+        "HP-50-TOB": {
+            "quantity": 1
+        },
+        "HP-50-VAL": {
+            "quantity": 0
+        },
+        "LE-270-ABU": {
+            "quantity": 2
+        },
+        "LE-270-NEW": {
+            "quantity": 2
+        },
+        "LE-270-PAL": {
+            "quantity": 2
+        },
+        "CD-160-AFR": {
+            "quantity": 1
+        },
+        "CD-160-BAM": {
+            "quantity": 1
+        },
+        "CD-160-BEL": {
+            "quantity": 1
+        },
+        "CD-160-BLA": {
+            "quantity": 0
+        },
+        "CD-160-CAR": {
+            "quantity": 1
+        },
+        "CD-160-CHE": {
+            "quantity": 0
+        },
+        "CD-160-CHR": {
+            "quantity": 1
+        },
+        "CD-160-DUB": {
+            "quantity": 0
+        },
+        "CD-160-DUN": {
+            "quantity": 1
+        },
+        "CD-160-EDE": {
+            "quantity": 1
+        },
+        "CD-160-FLE": {
+            "quantity": 1
+        },
+        "CD-160-GRE": {
+            "quantity": 0
+        },
+        "CD-160-LIM": {
+            "quantity": 0
+        },
+        "CD-160-ROS": {
+            "quantity": 1
+        },
+        "CD-160-SC": {
+            "quantity": 1
+        },
+        "CD-160-SW": {
+            "quantity": 1
+        },
+        "CD-160-SAN": {
+            "quantity": 1
+        },
+        "CD-160-SUG": {
+            "quantity": 1
+        },
+        "CD-160-TOB": {
+            "quantity": 1
+        },
+        "CD-500-AFR": {
+            "quantity": 0
+        },
+        "CD-500-BAM": {
+            "quantity": 1
+        },
+        "CD-500-BEL": {
+            "quantity": 1
+        },
+        "CD-500-BLA": {
+            "quantity": 1
+        },
+        "CD-500-CAR": {
+            "quantity": 1
+        },
+        "CD-500-CHE": {
+            "quantity": 1
+        },
+        "CD-500-CHR": {
+            "quantity": 1
+        },
+        "CD-500-DUB": {
+            "quantity": 0
+        },
+        "CD-500-DUN": {
+            "quantity": 0
+        },
+        "CD-500-EDE": {
+            "quantity": 1
+        },
+        "CD-500-FLE": {
+            "quantity": 1
+        },
+        "CD-500-GRE": {
+            "quantity": 1
+        },
+        "CD-500-LIM": {
+            "quantity": 1
+        },
+        "CD-500-ROS": {
+            "quantity": 1
+        },
+        "CD-500-SC": {
+            "quantity": 0
+        },
+        "CD-500-SW": {
+            "quantity": 0
+        },
+        "CD-500-SAN": {
+            "quantity": 0
+        },
+        "CD-500-SUG": {
+            "quantity": 1
+        },
+        "CD-500-TOB": {
+            "quantity": 1
+        },
+        "TP-STA-AFR": {
+            "quantity": 0
+        },
+        "TP-STA-BAM": {
+            "quantity": 1
+        },
+        "TP-STA-BEL": {
+            "quantity": 0
+        },
+        "TP-STA-BLA": {
+            "quantity": 0
+        },
+        "TP-STA-CAR": {
+            "quantity": 1
+        },
+        "TP-STA-DUN": {
+            "quantity": 1
+        },
+        "TP-STA-EDE": {
+            "quantity": 0
+        },
+        "TP-STA-ETN": {
+            "quantity": 0
+        },
+        "TP-STA-FLE": {
+            "quantity": 2
+        },
+        "TP-STA-GRE": {
+            "quantity": 0
+        },
+        "TP-STA-LIM": {
+            "quantity": 0
+        },
+        "TP-STA-SAN": {
+            "quantity": 1
+        },
+        "TP-STA-SUG": {
+            "quantity": 0
+        },
+        "TP-STA-TOB": {
+            "quantity": 1
+        },
+        "TP-STA-VAL": {
+            "quantity": 1
+        },
+        "DF-STA-CHE": {
+            "quantity": 0
+        },
+        "DF-STA-EDE": {
+            "quantity": 0
+        },
+        "ARO-STA-NA": {
+            "quantity": 0
+        },
+        "CHR-STA-AFR": {
+            "quantity": 0
+        },
+        "CHR-STA-BAM": {
+            "quantity": 0
+        },
+        "CHR-STA-BEL": {
+            "quantity": 0
+        },
+        "CHR-STA-BLA": {
+            "quantity": 0
+        },
+        "CHR-STA-CAR": {
+            "quantity": 0
+        },
+        "CHR-STA-CHE": {
+            "quantity": 0
+        },
+        "CHR-STA-DUB": {
+            "quantity": 0
+        },
+        "CHR-STA-DUN": {
+            "quantity": 0
+        },
+        "CHR-STA-EDE": {
+            "quantity": 0
+        },
+        "CHR-STA-ETN": {
+            "quantity": 0
+        },
+        "CHR-STA-FLE": {
+            "quantity": 0
+        },
+        "CHR-STA-GRE": {
+            "quantity": 0
+        },
+        "CHR-STA-LIM": {
+            "quantity": 0
+        },
+        "CHR-STA-ROS": {
+            "quantity": 0
+        },
+        "CHR-STA-SC": {
+            "quantity": 0
+        },
+        "CHR-STA-SAN": {
+            "quantity": 0
+        },
+        "CHR-STA-SUG": {
+            "quantity": 0
+        },
+        "CHR-STA-TOB": {
+            "quantity": 0
+        },
+        "CHR-STA-VAL": {
+            "quantity": 0
+        },
+        "STI-5GU-CHE": {
+            "quantity": 7
+        },
+        "STI-10G-CHE": {
+            "quantity": 7
+        },
+        "ARO-STA-SAL": {
+            "quantity": 0
+        },
+        "CD-160-SAL": {
+            "quantity": 0
+        },
+        "CD-500-SAL": {
+            "quantity": 0
+        },
+        "CP-STA-SAL": {
+            "quantity": 0
+        },
+        "DF-125-SAL": {
+            "quantity": 0
+        },
+        "DF-250-SAL": {
+            "quantity": 0
+        },
+        "DF-500-SAL": {
+            "quantity": 0
+        },
+        "HP-10-SAL": {
+            "quantity": 0
+        },
+        "HP-50-SAL": {
+            "quantity": 0
+        },
+        "STI-10 guggul + 10 louban-CHE": {
+            "quantity": 0
+        },
+        "STI-5 guggul + 5 louban-CHE": {
+            "quantity": 0
+        },
+        "TP-500 -AFR": {
+            "quantity": 0
+        },
+        "TP-500 -BAM": {
+            "quantity": 0
+        },
+        "TP-500 -BLA": {
+            "quantity": 0
+        },
+        "TP-500 -CAR": {
+            "quantity": 0
+        },
+        "TP-500 -EDE": {
+            "quantity": 0
+        },
+        "TP-500 -FLE": {
+            "quantity": 0
+        },
+        "TP-500 -GRE": {
+            "quantity": 0
+        },
+        "TP-500 -SUG": {
+            "quantity": 0
+        },
+        "TP-500 -TOB": {
+            "quantity": 0
+        },
+        "TP-500 -VAL": {
+            "quantity": 0
+        },
+        "REF-STA-FLE": {
+            "quantity": 0
+        },
+        "REF-STA-SW": {
+            "quantity": 0
+        }
+    }
+}

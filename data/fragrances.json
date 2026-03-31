@@ -1,0 +1,179 @@
+{
+    "cherry_blossom": {
+        "code": "cherry_blossom",
+        "image": "Cherry-Blossom.jpg",
+        "top_notes": ["Cherry", "Liqueur", "Bitter almond"],
+        "heart_notes": ["Cherry", "Turkish rose", "Jasmine sambac", "Plum"],
+        "base_notes": ["Peru balsam", "Tonka beans", "Sandalwood", "Vetiver", "White cedar", "Benzoin", "Cinnamon", "Clove", "Patchouli", "Vanilla"]
+    },
+    "bellini": {
+        "code": "bellini",
+        "image": "Bellini.jpg",
+        "top_notes": ["Peach", "Blood Orange", "Cardamom", "Heliotrope"],
+        "heart_notes": ["Rum", "Cognac", "Davana", "Jasmine"],
+        "base_notes": ["Patchouli", "Sandalwood", "Vanilla", "Tonka Bean", "Cashmere", "Benzoin", "Storax", "Labdanum", "Vetiver"]
+    },
+    "eden": {
+        "code": "eden",
+        "image": "Eden.jpg",
+        "top_notes": ["Passion fruit", "Peach", "Pear", "Raspberry", "Blackcurrant leaf", "Sand"],
+        "heart_notes": ["Lily"],
+        "base_notes": ["Vanilla", "Musk", "Sandalwood"]
+    },
+    "rosso": {
+        "code": "rosso",
+        "image": "Rosso.jpg",
+        "top_notes": ["Orange", "Violet", "Magnolia"],
+        "heart_notes": ["Plum", "Strawberry", "Wild berries"],
+        "base_notes": ["Dry wood", "Birch"]
+    },
+    "salted_caramel": {
+        "code": "salted_caramel",
+        "image": "Salted caramel.jpg",
+        "sku_suffix": "SC",
+        "top_notes": ["Sea salt"],
+        "heart_notes": ["Pear", "Vanilla", "Powdery notes", "Wheat"],
+        "base_notes": ["Toffee", "Brown sugar"]
+    },
+    "santal": {
+        "code": "santal",
+        "image": "Santal 2.jpg",
+        "top_notes": ["Sandalwood", "Papyrus", "Leather"],
+        "heart_notes": ["Virginia cedar", "Cardamom", "Violet"],
+        "base_notes": ["Iris", "Amber"]
+    },
+    "lime_basil": {
+        "code": "lime_basil",
+        "image": "Lime Basil.jpg",
+        "top_notes": ["Mandarin", "Bergamot"],
+        "heart_notes": ["Basil", "Iris", "Lilac", "Thyme"],
+        "base_notes": ["Lime", "Patchouli", "Vetiver"]
+    },
+    "bamboo": {
+        "code": "bamboo",
+        "image": "Bamboo.jpg",
+        "top_notes": ["Bamboo", "Bergamot"],
+        "heart_notes": ["Ylang-ylang", "Lily", "Orange Blossom"],
+        "base_notes": ["Vanilla", "Sandalwood", "Amber"]
+    },
+    "tobacco_vanilla": {
+        "code": "tobacco_vanilla",
+        "image": "Tob Van.jpg",
+        "top_notes": ["Tobacco leaves", "Spices"],
+        "heart_notes": ["Tonka beans", "Vanilla", "Cocoa", "Tobacco flower"],
+        "base_notes": ["Woody notes", "Dried fruits"]
+    },
+    "salty_water": {
+        "code": "salty_water",
+        "image": "Salty Water.jpg",
+        "sku_suffix": "SW",
+        "top_notes": ["Amber", "Sea salt"],
+        "heart_notes": ["Sage"],
+        "base_notes": ["Grapefruit", "Seaweed"]
+    },
+    "christmas_tree": {
+        "code": "christmas_tree",
+        "image": "Christmas Tree.jpg",
+        "top_notes": ["Vanilla"],
+        "heart_notes": ["Orange", "Cinnamon"],
+        "base_notes": ["Pine", "Tangerine"]
+    },
+    "fleur": {
+        "code": "fleur",
+        "image": "Fleur.jpg",
+        "top_notes": ["Bergamot", "Lychee", "Peach"],
+        "heart_notes": ["Orange blossom", "Jasmine", "Peony"],
+        "base_notes": ["Woody notes", "Moss", "Musk"]
+    },
+    "blanc": {
+        "code": "blanc",
+        "image": "Blanc.jpg",
+        "top_notes": ["Aldehydes", "Rose", "Pink Pepper"],
+        "heart_notes": ["Peony", "Violet", "Orange Blossom"],
+        "base_notes": ["White Musk", "Woody Notes", "Sandalwood"]
+    },
+    "green_mango": {
+        "code": "green_mango",
+        "image": "Green Mango 2.jpg",
+        "top_notes": ["Mango", "Melon"],
+        "heart_notes": ["Peach", "Pineapple"],
+        "base_notes": ["Mango peel", "Pine needles"]
+    },
+    "carolina": {
+        "code": "carolina",
+        "image": "Carolina-2.jpg",
+        "top_notes": ["Almond", "Coffee", "Bergamot", "Lemon"],
+        "heart_notes": ["Jasmine sambac", "Tuberose", "Iris", "Bulgarian Rose", "Orange Blossom"],
+        "base_notes": ["Tonka Bean", "Cocoa", "Sandalwood", "Vanilla", "Praline", "Cinnamon", "White Cedar", "Cashmere Wood", "Patchouli", "Amber", "Musk"]
+    },
+    "sugar": {
+        "code": "sugar",
+        "image": "Sugar.jpg",
+        "top_notes": ["Jasmine", "Saffron"],
+        "heart_notes": ["Woody amber"],
+        "base_notes": ["White cedar", "Pine resin"]
+    },
+    "dubai": {
+        "code": "dubai",
+        "image": "Dubai.jpg",
+        "top_notes": ["Geranium", "Violet"],
+        "heart_notes": ["Cinnamon", "Damask rose", "Turkish rose"],
+        "base_notes": ["Oud", "Vanilla"]
+    },
+    "africa": {
+        "code": "africa",
+        "image": "Africa.jpg",
+        "top_notes": ["Bergamot", "Vetiver", "Geranium"],
+        "heart_notes": ["Cardamom", "Leather", "Musk"],
+        "base_notes": ["Patchouli", "Cumin", "Oud", "Saffron"]
+    },
+    "dune": {
+        "code": "dune",
+        "image": "Dune.jpg",
+        "top_notes": ["Orange", "Grapefruit"],
+        "heart_notes": ["Pepper", "Pink Pepper"],
+        "base_notes": ["Vetiver", "Cedar", "Patchouli", "Benzoin"]
+    },
+    "valencia": {
+        "code": "valencia",
+        "image": "Valencia.jpg",
+        "top_notes": ["Bergamot", "Lemon"],
+        "heart_notes": ["Jasmine", "White Acacia", "Rose"],
+        "base_notes": ["Woody notes", "Musk"]
+    },
+    "etna": {
+        "code": "etna",
+        "image": "Etna.jpg",
+        "top_notes": ["Leather", "Tolu balsam", "Saffron", "Bay leaf", "Black pepper", "Earth tincture", "Lemon", "Thyme"],
+        "heart_notes": ["Honey", "Red pepper", "Clove", "Iris", "Sage", "Magnolia", "Peony"],
+        "base_notes": ["Tobacco", "Oud", "Caramel", "Leather", "Benzoin", "Pine", "Patchouli", "Canada balsam", "Cashmere wood", "Labdanum"]
+    },
+    "new_york": {
+        "code": "new_york",
+        "image": "New-York.jpg",
+        "top_notes": ["Citrus", "Bergamot"],
+        "heart_notes": ["Dark wood", "Smoky amber"],
+        "base_notes": ["Woody notes", "Amber"]
+    },
+    "abu_dhabi": {
+        "code": "abu_dhabi",
+        "image": "abu-dhabi.jpg",
+        "top_notes": ["Spices", "Lavender"],
+        "heart_notes": ["Florals", "Rose"],
+        "base_notes": ["Oriental notes", "Amber"]
+    },
+    "palermo": {
+        "code": "palermo",
+        "image": "Palermo.jpg",
+        "top_notes": ["Mandarin", "Bitter orange"],
+        "heart_notes": ["Peony", "Basil"],
+        "base_notes": ["Citrus", "Floral notes"]
+    },
+    "guggul_louban": {
+        "code": "guggul_louban",
+        "image": "Guggul-Louban.jpg",
+        "top_notes": ["Guggul resin", "Frankincense"],
+        "heart_notes": ["Louban", "Amber"],
+        "base_notes": ["Woody notes", "Smoky resins"]
+    }
+}

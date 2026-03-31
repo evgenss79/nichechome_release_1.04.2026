@@ -1,0 +1,254 @@
+{
+    "diffuser_classic": {
+        "id": "diffuser_classic",
+        "category": "aroma_diffusers",
+        "name_key": "product.diffuser_classic.name",
+        "desc_key": "product.diffuser_classic.desc",
+        "image": "Mikado-category.jpg",
+        "variants": [
+            {
+                "volume": "125ml",
+                "priceCHF": 20.9
+            },
+            {
+                "volume": "250ml",
+                "priceCHF": 29.9
+            },
+            {
+                "volume": "500ml",
+                "priceCHF": 50.9
+            }
+        ],
+        "active": true,
+        "description_en": "Elegant aroma diffuser with natural reed sticks. Creates a continuous, gentle fragrance that fills your space. Perfect for homes, offices, and boutiques. Available in multiple volumes to suit any room size. Long-lasting fragrance experience."
+    },
+    "candle_classic": {
+        "id": "candle_classic",
+        "category": "scented_candles",
+        "name_key": "product.candle_classic.name",
+        "desc_key": "product.candle_classic.desc",
+        "image": "Candels category.jpg",
+        "variants": [
+            {
+                "volume": "160ml",
+                "priceCHF": 19.9
+            },
+            {
+                "volume": "500ml",
+                "priceCHF": 41.9
+            }
+        ],
+        "active": true,
+        "description_en": "Premium scented candle made with natural soy wax. Provides clean, even burning and exceptional fragrance throw. Creates a warm, inviting atmosphere in any room. Available in two sizes for different spaces and occasions."
+    },
+    "home_spray": {
+        "id": "home_spray",
+        "category": "home_perfume",
+        "name_key": "product.home_spray.name",
+        "desc_key": "product.home_spray.desc",
+        "image": "home pefume.jpg",
+        "variants": [
+            {
+                "volume": "10ml",
+                "priceCHF": 9.9
+            },
+            {
+                "volume": "50ml",
+                "priceCHF": 19.9
+            }
+        ],
+        "active": true,
+        "description_en": "Instant home fragrance spray for quick refreshment. Perfect for eliminating odors and creating an inviting atmosphere. Convenient travel-friendly sizes. Ideal for bathrooms, bedrooms, living spaces, and fabrics."
+    },
+    "car_clip": {
+        "id": "car_clip",
+        "category": "car_perfume",
+        "name_key": "product.car_clip.name",
+        "desc_key": "product.car_clip.desc",
+        "image": "AutoParf.jpg",
+        "variants": [
+            {
+                "volume": "standard",
+                "priceCHF": 14.9
+            }
+        ],
+        "active": true,
+        "description_en": "Compact car air freshener clip. Easy to attach to car vents for continuous fragrance on the go. Long-lasting scent that doesn't overpower. Perfect for daily commutes and road trips. Sleek, discreet design."
+    },
+    "textile_spray": {
+        "id": "textile_spray",
+        "category": "textile_perfume",
+        "name_key": "product.textile_spray.name",
+        "desc_key": "product.textile_spray.desc",
+        "image": "Textil-spray.jpg",
+        "variants": [
+            {
+                "volume": "standard",
+                "priceCHF": 20.9
+            }
+        ],
+        "active": true,
+        "description_en": "Specialized textile and fabric spray. Refreshes curtains, upholstery, bedding, and clothing. Eliminates odors while leaving a pleasant, lasting fragrance. Safe for most fabrics. Professional-quality formula."
+    },
+    "limited_new_york": {
+        "id": "limited_new_york",
+        "category": "limited_edition",
+        "name_key": "product.limited_new_york.name",
+        "desc_key": "product.limited_new_york.desc",
+        "image": "New-York.jpg",
+        "fragrance": "new_york",
+        "variants": [
+            {
+                "volume": "270ml",
+                "priceCHF": 49.9
+            }
+        ],
+        "active": true,
+        "description_en": "Limited Edition New York inspired fragrance. Captures the vibrant energy and sophistication of the Big Apple. Exclusive blend available in limited quantities. Premium collectible design. A tribute to urban elegance."
+    },
+    "limited_abu_dhabi": {
+        "id": "limited_abu_dhabi",
+        "category": "limited_edition",
+        "name_key": "product.limited_abu_dhabi.name",
+        "desc_key": "product.limited_abu_dhabi.desc",
+        "image": "abu-dhabi.jpg",
+        "fragrance": "abu_dhabi",
+        "variants": [
+            {
+                "volume": "270ml",
+                "priceCHF": 49.9
+            }
+        ],
+        "active": true,
+        "description_en": "Limited Edition Abu Dhabi inspired fragrance. Evokes the luxury and exotic allure of the Arabian desert. Rich, oriental notes in an exclusive formula. Luxurious collectible edition. A journey to the Middle East."
+    },
+    "limited_palermo": {
+        "id": "limited_palermo",
+        "category": "limited_edition",
+        "name_key": "product.limited_palermo.name",
+        "desc_key": "product.limited_palermo.desc",
+        "image": "Palermo.jpg",
+        "fragrance": "palermo",
+        "variants": [
+            {
+                "volume": "270ml",
+                "priceCHF": 49.9
+            }
+        ],
+        "active": true,
+        "description_en": "Limited Edition Palermo inspired fragrance. Celebrates the Mediterranean charm and citrus groves of Sicily. Fresh, sunny notes in a unique blend. Exclusive collectible design. Italian elegance in a bottle."
+    },
+    "aroma_sashe": {
+        "id": "aroma_sashe",
+        "category": "accessories",
+        "name_key": "product.aroma_sashe.name",
+        "desc_key": "product.aroma_sashe.desc",
+        "image": "2-Sashe.jpg",
+        "hover_image": "sashe_ward.jpg",
+        "variants": [
+            {
+                "volume": "standard",
+                "priceCHF": 11.9
+            }
+        ],
+        "active": true,
+        "allowed_fragrances": [
+            "cherry_blossom",
+            "bellini",
+            "eden",
+            "rosso",
+            "santal",
+            "lime_basil",
+            "bamboo",
+            "tobacco_vanilla",
+            "salty_water",
+            "christmas_tree",
+            "fleur",
+            "blanc",
+            "green_mango",
+            "carolina",
+            "sugar",
+            "dubai",
+            "africa",
+            "dune",
+            "valencia",
+            "etna"
+        ],
+        "description_en": "Aromatic sachet for wardrobes, drawers, and small spaces. Slowly releases fragrance to keep clothes and linens fresh. Compact design fits anywhere. Perfect for closets, luggage, and cars. Long-lasting scent protection."
+    },
+    "christ_toy": {
+        "id": "christ_toy",
+        "category": "accessories",
+        "name_key": "product.christ_toy.name",
+        "desc_key": "product.christ_toy.desc",
+        "image": "christ_1.jpg",
+        "variants": [
+            {
+                "volume": "standard",
+                "priceCHF": 22.9
+            }
+        ],
+        "active": true
+    },
+    "refill_125": {
+        "id": "refill_125",
+        "category": "accessories",
+        "name_key": "product.refill_125.name",
+        "desc_key": "product.refill_125.desc",
+        "image": "Recarga.jpg",
+        "variants": [
+            {
+                "volume": "standard",
+                "priceCHF": 11.9
+            }
+        ],
+        "active": true
+    },
+    "sticks": {
+        "id": "sticks",
+        "category": "accessories",
+        "name_key": "product.sticks.name",
+        "desc_key": "product.sticks.desc",
+        "image": "sticks.jpg",
+        "variants": [
+            {
+                "volume": "5 guggul + 5 louban",
+                "priceCHF": 2.99
+            },
+            {
+                "volume": "10 guggul + 10 louban",
+                "priceCHF": 3.99
+            }
+        ],
+        "active": true,
+        "description_en": ""
+    },
+    "car_s8007": {
+        "id": "car_s8007",
+        "category": "accessories",
+        "name_key": "product.car_s8007.name",
+        "desc_key": "product.car_s8007.desc",
+        "image": "s8007.jpg",
+        "variants": [
+            {
+                "volume": "standard",
+                "priceCHF": 69.99
+            }
+        ],
+        "active": true
+    },
+    "smart": {
+        "id": "smart",
+        "category": "accessories",
+        "name_key": "product.smart.name",
+        "desc_key": "product.smart.desc",
+        "image": "smart_1.jpg",
+        "variants": [
+            {
+                "volume": "standard",
+                "priceCHF": 79.99
+            }
+        ],
+        "active": true
+    }
+}

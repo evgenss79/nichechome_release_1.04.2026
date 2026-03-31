@@ -1,0 +1,18 @@
+{
+    "enabled": true,
+    "smtp": {
+        "host": "s26.tuthost.com",
+        "port": 587,
+        "encryption": "tls",
+        "username": "mailer@nichehome.ch",
+        "password_encrypted": "7GoXahGkRxK17dGd5bjCzTdPaFVheUM3cTdEM2h3MEcrK20vZ0E9PQ==",
+        "from_email": "mailer@nichehome.ch",
+        "from_name": "NICHEHOME.CH"
+    },
+    "routing": {
+        "admin_orders_email": "order@nichehome.ch",
+        "support_email": "support@nichehome.ch",
+        "reply_to_email": "support@nichehome.ch"
+    },
+    "last_saved_at": "2026-01-12 16:03:07"
+}

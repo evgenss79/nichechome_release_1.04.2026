@@ -1,0 +1,2074 @@
+{
+    "DF-125-BEL": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "bellini",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-BEL": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "bellini",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-BEL": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "bellini",
+        "quantity": 1,
+        "lowStockThreshold": 2,
+        "total_qty": 1
+    },
+    "DF-125-CHE": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "cherry_blossom",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-CHE": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "cherry_blossom",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-500-CHE": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "cherry_blossom",
+        "quantity": 1,
+        "lowStockThreshold": 2,
+        "total_qty": 1
+    },
+    "DF-125-AFR": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "africa",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-250-AFR": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "africa",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-500-AFR": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "africa",
+        "quantity": 1,
+        "lowStockThreshold": 2,
+        "total_qty": 1
+    },
+    "CD-160-BEL": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "bellini",
+        "quantity": 3,
+        "lowStockThreshold": 5,
+        "total_qty": 3
+    },
+    "CD-500-BEL": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "bellini",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-TOB": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 2,
+        "lowStockThreshold": 5,
+        "total_qty": 2
+    },
+    "CD-500-TOB": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-BLA": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "blanc",
+        "quantity": 2,
+        "lowStockThreshold": 5,
+        "total_qty": 2
+    },
+    "HP-50-BLA": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "blanc",
+        "quantity": 3,
+        "lowStockThreshold": 5,
+        "total_qty": 3
+    },
+    "HP-50-SAN": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "santal",
+        "quantity": 3,
+        "lowStockThreshold": 5,
+        "total_qty": 3
+    },
+    "CP-STA-AFR": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "africa",
+        "quantity": 6,
+        "lowStockThreshold": 10,
+        "total_qty": 6
+    },
+    "CP-STA-DUB": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "dubai",
+        "quantity": 1,
+        "lowStockThreshold": 10,
+        "total_qty": 1
+    },
+    "TP-STA-BAM": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "bamboo",
+        "quantity": 3,
+        "lowStockThreshold": 5,
+        "total_qty": 3
+    },
+    "TP-STA-FLE": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "fleur",
+        "quantity": 5,
+        "lowStockThreshold": 5,
+        "total_qty": 5
+    },
+    "LE-270-NEW": {
+        "productId": "limited_new_york",
+        "volume": "270ml",
+        "fragrance": "new_york",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "LE-270-ABU": {
+        "productId": "limited_abu_dhabi",
+        "volume": "270ml",
+        "fragrance": "abu_dhabi",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "LE-270-PAL": {
+        "productId": "limited_palermo",
+        "volume": "270ml",
+        "fragrance": "palermo",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "ARO-STA-CHE": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "cherry_blossom",
+        "quantity": 1,
+        "lowStockThreshold": 2,
+        "total_qty": 1
+    },
+    "ARO-STA-BEL": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "bellini",
+        "quantity": 3,
+        "lowStockThreshold": 2,
+        "total_qty": 3
+    },
+    "ARO-STA-EDE": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "eden",
+        "quantity": 5,
+        "lowStockThreshold": 2,
+        "total_qty": 5
+    },
+    "ARO-STA-ROS": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "rosso",
+        "quantity": 0,
+        "lowStockThreshold": 2,
+        "total_qty": 0
+    },
+    "ARO-STA-SAN": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "santal",
+        "quantity": 1,
+        "lowStockThreshold": 2,
+        "total_qty": 1
+    },
+    "ARO-STA-LIM": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "lime_basil",
+        "quantity": 1,
+        "lowStockThreshold": 2,
+        "total_qty": 1
+    },
+    "ARO-STA-BAM": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "bamboo",
+        "quantity": 0,
+        "lowStockThreshold": 2,
+        "total_qty": 0
+    },
+    "ARO-STA-TOB": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 2,
+        "lowStockThreshold": 2,
+        "total_qty": 2
+    },
+    "CHR-STA-CHE": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "cherry_blossom",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-EDE": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "eden",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "DF-STA-CHE": {
+        "productId": "diffuser_classic",
+        "volume": "standard",
+        "fragrance": "cherry_blossom",
+        "quantity": 0,
+        "lowStockThreshold": 10,
+        "total_qty": 0
+    },
+    "DF-STA-EDE": {
+        "productId": "diffuser_classic",
+        "volume": "standard",
+        "fragrance": "eden",
+        "quantity": 0,
+        "lowStockThreshold": 10,
+        "total_qty": 0
+    },
+    "DF-125-EDE": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "eden",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-ROS": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "rosso",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-SC": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "salted_caramel",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-SAN": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "santal",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-LIM": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "lime_basil",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-BAM": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "bamboo",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-TOB": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "DF-125-CHR": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "christmas_tree",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-FLE": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "fleur",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "DF-125-BLA": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "blanc",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-GRE": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "green_mango",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-CAR": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "carolina",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-SUG": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "sugar",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "DF-125-DUB": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "dubai",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-DUN": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "dune",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-VAL": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "valencia",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-ETN": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "etna",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "DF-250-EDE": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "eden",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-ROS": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "rosso",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-250-SC": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "salted_caramel",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-SAN": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "santal",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-LIM": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "lime_basil",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-BAM": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "bamboo",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-TOB": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-250-CHR": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "christmas_tree",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-FLE": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "fleur",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-BLA": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "blanc",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-GRE": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "green_mango",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-CAR": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "carolina",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-SUG": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "sugar",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-DUB": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "dubai",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-DUN": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "dune",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-250-VAL": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "valencia",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-250-ETN": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "etna",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-500-EDE": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "eden",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-ROS": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "rosso",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "DF-500-SC": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "salted_caramel",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-SAN": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "santal",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-LIM": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "lime_basil",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-BAM": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "bamboo",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-TOB": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-CHR": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "christmas_tree",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-FLE": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "fleur",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-BLA": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "blanc",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-GRE": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "green_mango",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-CAR": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "carolina",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "DF-500-SUG": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "sugar",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-DUB": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "dubai",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-DUN": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "dune",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-VAL": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "valencia",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-ETN": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "etna",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CD-160-CHE": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "cherry_blossom",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-EDE": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "eden",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "CD-160-ROS": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "rosso",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-SC": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "salted_caramel",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-SAN": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "santal",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-LIM": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "lime_basil",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-BAM": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "bamboo",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-CHR": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "christmas_tree",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "CD-160-FLE": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "fleur",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "CD-160-BLA": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "blanc",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-GRE": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "green_mango",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-CAR": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "carolina",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "CD-160-SUG": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "sugar",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "CD-160-DUB": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "dubai",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-AFR": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "africa",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-160-DUN": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "dune",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-CHE": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "cherry_blossom",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-EDE": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "eden",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-ROS": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "rosso",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-SC": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "salted_caramel",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-SAN": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "santal",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-LIM": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "lime_basil",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-BAM": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "bamboo",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-CHR": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "christmas_tree",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-FLE": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "fleur",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-BLA": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "blanc",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-GRE": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "green_mango",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-CAR": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "carolina",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-SUG": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "sugar",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-DUB": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "dubai",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-AFR": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "africa",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CD-500-DUN": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "dune",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-CHE": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "cherry_blossom",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-BEL": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "bellini",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "HP-10-EDE": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "eden",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-ROS": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "rosso",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-SC": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "salted_caramel",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-SAN": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "santal",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-LIM": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "lime_basil",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-BAM": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "bamboo",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-TOB": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-CHR": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "christmas_tree",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-FLE": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "fleur",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-GRE": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "green_mango",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-CAR": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "carolina",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-SUG": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "sugar",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-DUB": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "dubai",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-AFR": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "africa",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-DUN": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "dune",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-10-VAL": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "valencia",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-10-ETN": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "etna",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-CHE": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "cherry_blossom",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-50-BEL": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "bellini",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-EDE": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "eden",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-ROS": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "rosso",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-50-SC": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "salted_caramel",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-50-LIM": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "lime_basil",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "HP-50-BAM": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "bamboo",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-TOB": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-CHR": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "christmas_tree",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-50-FLE": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "fleur",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-GRE": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "green_mango",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-50-CAR": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "carolina",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-SUG": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "sugar",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-DUB": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "dubai",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-AFR": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "africa",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "HP-50-DUN": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "dune",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-50-VAL": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "valencia",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "HP-50-ETN": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "etna",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CP-STA-CHE": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "cherry_blossom",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-BEL": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "bellini",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-EDE": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "eden",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-ROS": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "rosso",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-SC": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "salted_caramel",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CP-STA-SAN": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "santal",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-LIM": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "lime_basil",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-BAM": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "bamboo",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "CP-STA-TOB": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "CP-STA-CHR": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "christmas_tree",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-FLE": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "fleur",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CP-STA-BLA": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "blanc",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-GRE": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "green_mango",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-CAR": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "carolina",
+        "quantity": 5,
+        "lowStockThreshold": 3,
+        "total_qty": 5
+    },
+    "CP-STA-SUG": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "sugar",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-DUN": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "dune",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-VAL": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "valencia",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-ETN": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "etna",
+        "quantity": 5,
+        "lowStockThreshold": 3,
+        "total_qty": 5
+    },
+    "TP-STA-BEL": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "bellini",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-STA-EDE": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "eden",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-STA-SAN": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "santal",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-STA-LIM": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "lime_basil",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-STA-TOB": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "TP-STA-BLA": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "blanc",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "TP-STA-GRE": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "green_mango",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-STA-CAR": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "carolina",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "TP-STA-SUG": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "sugar",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "TP-STA-AFR": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "africa",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "TP-STA-DUN": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "dune",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-STA-VAL": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "valencia",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "TP-STA-ETN": {
+        "productId": "textile_spray",
+        "volume": "standard",
+        "fragrance": "etna",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "ARO-STA-SW": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "salty_water",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "ARO-STA-CHR": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "christmas_tree",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "ARO-STA-FLE": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "fleur",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "ARO-STA-BLA": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "blanc",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "ARO-STA-GRE": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "green_mango",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "ARO-STA-CAR": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "carolina",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "ARO-STA-SUG": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "sugar",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "ARO-STA-DUB": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "dubai",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "ARO-STA-AFR": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "africa",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "ARO-STA-DUN": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "dune",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "ARO-STA-VAL": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "valencia",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "ARO-STA-ETN": {
+        "productId": "aroma_sashe",
+        "volume": "standard",
+        "fragrance": "etna",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "CHR-STA-BEL": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "bellini",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-ROS": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "rosso",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-SC": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "salted_caramel",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-SAN": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "santal",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-LIM": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "lime_basil",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-BAM": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "bamboo",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-TOB": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "tobacco_vanilla",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-CHR": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "christmas_tree",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CHR-STA-FLE": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "fleur",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-BLA": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "blanc",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-GRE": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "green_mango",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-CAR": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "carolina",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-SUG": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "sugar",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-DUB": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "dubai",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-AFR": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "africa",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-DUN": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "dune",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-VAL": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "valencia",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CHR-STA-ETN": {
+        "productId": "christ_toy",
+        "volume": "standard",
+        "fragrance": "etna",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "STI-5GU-CHE": {
+        "productId": "sticks",
+        "volume": "5 guggul + 5 louban",
+        "fragrance": "cherry_blossom",
+        "quantity": 20,
+        "lowStockThreshold": 3,
+        "total_qty": 20
+    },
+    "STI-10G-CHE": {
+        "productId": "sticks",
+        "volume": "10 guggul + 10 louban",
+        "fragrance": "cherry_blossom",
+        "quantity": 20,
+        "lowStockThreshold": 3,
+        "total_qty": 20
+    },
+    "REF-STA-AFR": {
+        "productId": "refill_125",
+        "volume": "standard",
+        "fragrance": "africa",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "REF-STA-BAM": {
+        "productId": "refill_125",
+        "volume": "standard",
+        "fragrance": "bamboo",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "REF-STA-BLA": {
+        "productId": "refill_125",
+        "volume": "standard",
+        "fragrance": "blanc",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "REF-STA-CAR": {
+        "productId": "refill_125",
+        "volume": "standard",
+        "fragrance": "carolina",
+        "quantity": 5,
+        "lowStockThreshold": 3,
+        "total_qty": 5
+    },
+    "REF-STA-DUB": {
+        "productId": "refill_125",
+        "volume": "standard",
+        "fragrance": "dubai",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-125-SW": {
+        "productId": "diffuser_classic",
+        "volume": "125ml",
+        "fragrance": "salty_water",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "DF-250-SW": {
+        "productId": "diffuser_classic",
+        "volume": "250ml",
+        "fragrance": "salty_water",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "DF-500-SW": {
+        "productId": "diffuser_classic",
+        "volume": "500ml",
+        "fragrance": "salty_water",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-SW": {
+        "productId": "car_clip",
+        "volume": "standard",
+        "fragrance": "salty_water",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "HP-10-SW": {
+        "productId": "home_spray",
+        "volume": "10ml",
+        "fragrance": "salty_water",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "HP-50-SW": {
+        "productId": "home_spray",
+        "volume": "50ml",
+        "fragrance": "salty_water",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
+    },
+    "CD-160-SW": {
+        "productId": "candle_classic",
+        "volume": "160ml",
+        "fragrance": "salty_water",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "CD-500-SW": {
+        "productId": "candle_classic",
+        "volume": "500ml",
+        "fragrance": "salty_water",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "ARO-STA-NA": {
+        "productId": "aroma_smart",
+        "volume": "standard",
+        "fragrance": "NA",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "STI-5GU-NA": {
+        "productId": "sticks",
+        "volume": "5 guggul + 5 louban",
+        "fragrance": "NA",
+        "quantity": 20,
+        "lowStockThreshold": 3,
+        "total_qty": 20
+    },
+    "STI-10G-NA": {
+        "productId": "sticks",
+        "volume": "10 guggul + 10 louban",
+        "fragrance": "NA",
+        "quantity": 20,
+        "lowStockThreshold": 3,
+        "total_qty": 20
+    },
+    "ARO-STA-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "CD-160-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CD-500-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CP-STA-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "DF-125-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-250-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "DF-500-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "HP-10-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "HP-50-SAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 0,
+        "lowStockThreshold": 3,
+        "total_qty": 0
+    },
+    "STI-10 guggul + 10 louban-CHE": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "STI-5 guggul + 5 louban-CHE": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 6,
+        "lowStockThreshold": 3,
+        "total_qty": 6
+    },
+    "TP-500 -AFR": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-500 -BAM": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-500 -BLA": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "TP-500 -CAR": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-500 -EDE": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-500 -FLE": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "TP-500 -GRE": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-500 -SUG": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-500 -TOB": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "TP-500 -VAL": {
+        "productId": "",
+        "volume": "",
+        "fragrance": "",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "CAR-STA-NA": {
+        "productId": "car_s8007",
+        "volume": "standard",
+        "fragrance": "NA",
+        "quantity": 4,
+        "lowStockThreshold": 3,
+        "total_qty": 4
+    },
+    "SMA-STA-NA": {
+        "productId": "smart",
+        "volume": "standard",
+        "fragrance": "NA",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "REF-STA-FLE": {
+        "productId": "refill_125",
+        "volume": "standard",
+        "fragrance": "fleur",
+        "quantity": 1,
+        "lowStockThreshold": 3,
+        "total_qty": 1
+    },
+    "REF-STA-SW": {
+        "productId": "refill_125",
+        "volume": "standard",
+        "fragrance": "salty_water",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    }
+}

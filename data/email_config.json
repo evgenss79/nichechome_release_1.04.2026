@@ -1,0 +1,12 @@
+{
+    "enabled": false,
+    "from_email": "info@nichehome.ch",
+    "from_name": "NicheHome.ch",
+    "smtp_host": "",
+    "smtp_port": 587,
+    "smtp_encryption": "tls",
+    "smtp_username": "",
+    "smtp_password": "",
+    "order_confirmation_subject": "Order Confirmation #{order_id} - NicheHome.ch",
+    "order_confirmation_enabled": true
+}

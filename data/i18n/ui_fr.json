@@ -1,0 +1,424 @@
+{
+    "site": {
+        "title": "NicheHome.ch - Premium Home Fragrances"
+    },
+    "ui": {
+        "fragrance": {
+            "read_more": "Lire plus",
+            "collapse": "Réduire"
+        },
+        "category": {
+            "read_more": "Lire plus",
+            "collapse": "Réduire"
+        },
+        "product": {
+            "volume": "Volume",
+            "fragrance": "Parfum",
+            "price": "Prix"
+        }
+    },
+    "common": {
+        "utilityShipping": "Livraison gratuite dès CHF 80",
+        "utilityDelivery": "Livraison sous 1-3 jours ouvrables",
+        "menuToggle": "Menu",
+        "mainMenu": "Menu principal",
+        "cart": "Panier",
+        "search": "Rechercher",
+        "wishlist": "Favoris",
+        "account": "Compte",
+        "addToCart": "Ajouter au panier",
+        "buyNow": "Acheter maintenant",
+        "outOfStock": "Rupture de stock",
+        "notifyMe": "Me prévenir quand disponible",
+        "price": "Prix",
+        "quantity": "Quantité",
+        "total": "Total",
+        "subtotal": "Sous-total",
+        "shipping": "Livraison",
+        "freeShipping": "Gratuit",
+        "shippingInfo": "Livraison gratuite dès CHF 80",
+        "amountToFreeShipping": "Ajoutez CHF {amount} pour la livraison gratuite",
+        "increaseOrderForFreeShipping": "augmentez la commande de CHF {amount} pour une livraison GRATUITE",
+        "proceedToCheckout": "Commander",
+        "continueShopping": "Continuer vos achats",
+        "remove": "Supprimer",
+        "update": "Mettre à jour",
+        "volume": "Volume",
+        "fragrance": "Parfum",
+        "selectFragrance": "Choisir le parfum",
+        "selectVolume": "Choisir le volume",
+        "noFragrance": "Sans parfum",
+        "moreInfo": "Plus d'infos",
+        "lessInfo": "Moins d'infos",
+        "accessory": "Accessoire",
+        "available": "disponible",
+        "addToFavorites": "Add to favorites",
+        "loginRegister": "Login",
+        "myAccount": "My Account",
+        "product": "Product",
+        "removeFromFavorites": "Remove from favorites"
+    },
+    "nav": {
+        "catalog": "Catalogue",
+        "giftSets": "Coffrets Cadeaux",
+        "aromaMarketing": "Aroma Marketing",
+        "about": "À propos",
+        "contacts": "Contact",
+        "support": "Support"
+    },
+    "page": {
+        "about": {
+            "title": "About Us",
+            "subtitle": "Premium Home Fragrances by By Velcheva",
+            "content": "NicheHome.ch presents a carefully curated selection of home fragrances developed for discerning residential and hospitality concepts. Each creation arises from a passion for exceptional accords and long-lasting performance.\n\nOur boutique serves interior designers, boutiques and private clients throughout Switzerland with flexible terms, customized consulting and ready-to-use collections.\n\nBy Velcheva combines elegance and warmth in a sophisticated format. Perfect for those who want premium fragrances that transform any space into a sensory experience."
+        },
+        "catalog": {
+            "title": "Catalogue",
+            "subtitle": "Discover our premium home fragrance categories"
+        },
+        "contacts": {
+            "title": "Contact Us",
+            "subtitle": "Get in touch with our team",
+            "formName": "Your name",
+            "formEmail": "Email address",
+            "formPhone": "Phone number",
+            "formMessage": "Your message",
+            "formSubmit": "Send message",
+            "formSuccess": "Thank you for your message. We will get back to you soon.",
+            "errorRequired": "Tous les champs sont obligatoires.",
+            "errorInvalidEmail": "Veuillez entrer une adresse e-mail valide.",
+            "emailLabel": "E-mail"
+        },
+        "support": {
+            "title": "Support",
+            "subtitle": "Contactez-nous",
+            "firstName": "Prénom",
+            "lastName": "Nom",
+            "email": "Email",
+            "phone": "Numéro de téléphone",
+            "subject": "Sujet",
+            "message": "Message",
+            "attachment": "Pièce jointe",
+            "attachmentNote": "Taille maximale du fichier: 5 MB. Types autorisés: PDF, JPEG, PNG",
+            "phoneOptional": "Optionnel",
+            "submit": "Envoyer la demande",
+            "firstNameRequired": "Le prénom est requis",
+            "lastNameRequired": "Le nom est requis",
+            "emailRequired": "L'email est requis",
+            "emailInvalid": "Veuillez entrer une adresse email valide",
+            "phoneInvalid": "Veuillez entrer un numéro de téléphone valide",
+            "subjectRequired": "Le sujet est requis",
+            "messageRequired": "Le message est requis",
+            "fileUploadError": "Erreur lors du téléchargement du fichier",
+            "fileTooLarge": "La taille du fichier ne doit pas dépasser 5 MB",
+            "fileTypeInvalid": "Le fichier doit être au format PDF, JPEG ou PNG",
+            "successTitle": "Merci!",
+            "successMessage": "Votre demande a été reçue. Nous vous contacterons dès que possible."
+        },
+        "cart": {
+            "title": "Panier",
+            "empty": "Votre panier est vide",
+            "item": "Article",
+            "price": "Prix",
+            "quantity": "Qté",
+            "total": "Total",
+            "subtotal": "Sous-total",
+            "shipping": "Livraison",
+            "freeShippingHint": "Ajoutez CHF {amount} pour la livraison gratuite",
+            "proceedToCheckout": "Commander",
+            "continueShopping": "Continuer vos achats",
+            "remove": "Supprimer",
+            "free": "Gratuit",
+            "calculatedAtCheckout": "Calculé à la caisse"
+        },
+        "checkout": {
+            "title": "Paiement",
+            "shipping": "Adresse de livraison",
+            "billing": "Adresse de facturation",
+            "sameAsShipping": "Adresse de facturation identique à la livraison",
+            "firstName": "Prénom",
+            "lastName": "Nom",
+            "email": "E-mail",
+            "phone": "Téléphone",
+            "street": "Rue",
+            "houseNumber": "Numéro",
+            "zip": "Code postal",
+            "city": "Ville",
+            "country": "Pays",
+            "comment": "Commentaire de commande (optionnel)",
+            "payment": "Mode de paiement",
+            "paymentTwint": "TWINT",
+            "paymentCard": "Carte de crédit (bientôt)",
+            "paymentPaypal": "PayPal (bientôt)",
+            "placeOrder": "Passer la commande",
+            "orderSuccess": "Merci pour votre commande!",
+            "orderConfirmation": "La commande #{orderId} a été passée avec succès. Vous recevrez un e-mail de confirmation sous peu.",
+            "pickupInBranch": "Retrait en magasin",
+            "selectBranch": "Sélectionner le magasin pour le retrait",
+            "pickupNote": "Le retrait en magasin est gratuit",
+            "orderSummary": "Résumé de la commande",
+            "shippingCost": "Livraison",
+            "subtotal": "Sous-total",
+            "total": "Total",
+            "branchStockError": "Certains articles ne sont pas disponibles pour le retrait dans ce magasin",
+            "requiredField": "est requis",
+            "consentLabel": "J'ai lu et j'accepte les {terms} et la {privacy}, et je consens au traitement de mes données personnelles à des fins de traitement de commande.",
+            "consentTermsLink": "Conditions Générales",
+            "consentPrivacyLink": "Politique de confidentialité",
+            "consentError": "Vous devez accepter les Conditions Générales et la Politique de confidentialité pour passer une commande.",
+            "stockError": "Certains articles ne sont pas disponibles dans la quantité demandée",
+            "stockNotFound": "%s: non disponible",
+            "stockInsufficient": "%s: %d demandé, %d disponible",
+            "registerAccount": "Créer automatiquement un compte",
+            "password": "Mot de passe",
+            "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères",
+            "emailExists": "Un compte avec cette adresse e-mail existe déjà",
+            "registrationSuccess": "Compte créé avec succès",
+            "autoRegistrationWarning": "Pour créer un compte automatiquement, veuillez fournir un e-mail, une adresse et un mot de passe.",
+            "newsletterOptIn": "J'accepte de recevoir des newsletters et des e-mails promotionnels",
+            "giftSetComponentMissing": "%s - Composant: %s: requis %d, disponible %d à %s",
+            "giftSetComponentMissingDelivery": "%s - Composant: %s: requis %d, disponible %d pour livraison",
+            "branchStockItemError": "%s: requis %d, disponible %d à %s"
+        },
+        "giftSets": {
+            "title": "Créez votre coffret cadeau",
+            "subtitle": "Combinez vos produits préférés avec 5% de réduction",
+            "slot": "Emplacement",
+            "selectCategory": "Sélectionner une catégorie",
+            "selectProduct": "Sélectionner un produit",
+            "totalPrice": "Prix total",
+            "discount": "5% de réduction coffret cadeau",
+            "addToCart": "Ajouter le coffret cadeau au panier",
+            "duplicateError": "Vous ne pouvez pas ajouter le même article deux fois",
+            "addedAlert": "Coffret cadeau ajouté au panier!",
+            "selectToSeePrice": "Sélectionnez les options pour voir le prix",
+            "errorProductMissing": "Veuillez choisir un produit pour cet emplacement",
+            "errorVariantMissing": "Veuillez choisir une taille ou un format",
+            "errorFragranceMissing": "Veuillez choisir un parfum",
+            "errorAddingGiftset": "Erreur lors de l'ajout du coffret cadeau",
+            "errorSelectAtLeastOne": "Veuillez sélectionner au moins un produit pour votre coffret cadeau.",
+            "errorIncomplete": "Complétez les 3 emplacements pour ajouter le coffret cadeau (réduction de 5% applicable uniquement pour 3 articles)."
+        },
+        "aromaMarketing": {
+            "title": "Aroma Marketing",
+            "subtitle": "Professional scenting solutions for your business",
+            "content": "Transform your business environment with our professional aroma marketing services. We offer customized scenting solutions for hotels, retail stores, offices, and other commercial spaces.\n\nOur team works with you to create a unique olfactory identity that enhances customer experience and brand recognition.",
+            "services": [
+                "Custom scent development",
+                "Professional installation",
+                "Regular maintenance",
+                "Training and consultation"
+            ],
+            "contactTitle": "Request Information",
+            "formCompany": "Company name",
+            "formName": "Contact person",
+            "formEmail": "Email address",
+            "formMessage": "Tell us about your needs",
+            "formSubmit": "Send request",
+            "formSuccess": "Thank you for your inquiry. Our team will contact you within 24 hours."
+        }
+    },
+    "footer": {
+        "catalogTitle": "Catalogue",
+        "infoTitle": "Informations",
+        "legalTitle": "Légal",
+        "newsletterTitle": "Newsletter",
+        "newsletterText": "Lancements exclusifs, conseils de placement et invitations aux séances parfumées.",
+        "newsletterPlaceholder": "Votre email",
+        "newsletterButton": "S'abonner",
+        "socialLabel": "Suivez-nous",
+        "about": "À propos de la marque",
+        "corporate": "Services professionnels",
+        "faq": "FAQ",
+        "privacy": "Politique de confidentialité",
+        "terms": "Conditions générales",
+        "shipping": "Livraison et retours",
+        "paymentTitle": "Nous acceptons Visa, Mastercard, TWINT",
+        "copyright": "© NicheHome.ch – Représentant officiel suisse de By Velcheva"
+    },
+    "product": {
+        "diffuser_classic": {
+            "name": "Diffuseur Aromatique",
+            "desc": ""
+        },
+        "candle_classic": {
+            "name": "Bougie Parfumée",
+            "desc": ""
+        },
+        "home_spray": {
+            "name": "Spray d'Intérieur",
+            "desc": ""
+        },
+        "car_clip": {
+            "name": "Parfum Auto",
+            "desc": ""
+        },
+        "textile_spray": {
+            "name": "Spray Parfumé pour Textile",
+            "desc": "Un spray parfumé doux pour rideaux, tapis, meubles et literie."
+        },
+        "limited_new_york": {
+            "name": "Édition Limitée New York",
+            "desc": "Une fête vibrante, des cocktails corsés et la fraîcheur épicée de la ville des lumières, des gratte-ciel et des rencontres inattendues…\n\nVotre soirée sera marquée par le parfum de bois sombre, d'ambre fumé et d'audacieuses notes d'agrumes.\n\nConçue dans un style minimaliste élégant, cette bougie convient aux intérieurs modernes comme classiques. Elle apporte l'atmosphère d'une soirée dans une grande ville et sert d'accent décoratif chic pour votre maison.\n\nFabriquée uniquement avec des cires végétales de haute qualité — noix de coco et soja — elle offre une excellente diffusion du parfum. En quelques minutes après l'allumage, votre espace est rempli d'un sillage profond, riche et durable.\n\nCette bougie BY VELCHEVA en édition limitée est à la fois un élément de décoration élégant et un merveilleux cadeau pour les amis, les proches ou les collègues.\n\nCaractéristiques :\nVolume : 270 ml\nDurée de combustion : environ 40 heures\nCires végétales premium : noix de coco et soja\nParfum : boisé-ambré avec notes d'agrumes\nDesign : élégant et minimaliste"
+        },
+        "limited_abu_dhabi": {
+            "name": "Édition Limitée Abu Dhabi",
+            "desc": "Embrassant des nuits chaudes sous un ciel étoilé et du sable doux sous vos pieds…\n\nDes notes épicées riches se mêlent à la lavande douce et à un bouquet luxuriant de fleurs — c'est le parfum de votre week-end inoubliable à Abu Dhabi.\n\nFabriquée dans un design élégant et minimaliste, cette bougie complétera n'importe quel intérieur — du moderne au classique. Plus qu'une simple source de parfum, c'est un accent décoratif raffiné pour votre maison.\n\nNous utilisons uniquement des cires végétales de haute qualité — noix de coco et soja — connues pour leur excellente capacité à retenir et libérer le parfum. En quelques minutes après l'allumage, votre espace est rempli d'un sillage parfumé riche, durable et sophistiqué.\n\nUne bougie parfumée de la collection limitée BY VELCHEVA est un élément de décoration élégant pour votre maison et aussi un cadeau parfait pour les amis, les proches ou les collègues.\n\nDétails :\nVolume : 270 ml\nDurée de combustion : environ 40 heures\nCires végétales premium : noix de coco et soja\nParfum : oriental-floral avec notes de lavande et d'épices\nDesign : élégant et minimaliste"
+        },
+        "limited_palermo": {
+            "name": "Édition Limitée Palerme",
+            "desc": "De doux rayons de soleil, une brise côtière rafraîchissante et une abondance d'agrumes que vous pouvez cueillir à la main…\n\nDes notes radieuses de mandarine et d'orange amère se mêlent au doux parfum de pivoines et de basilic vibrant — c'est ainsi que vous vous souviendrez d'une promenade dans Palerme.\n\nLa bougie est conçue dans un style minimaliste raffiné et complétera magnifiquement les intérieurs modernes et classiques. Son parfum remplit l'espace de légèreté, de joie et d'une ambiance ensoleillée.\n\nNous utilisons uniquement des cires végétales de haute qualité — noix de coco et soja. Elles assurent une combustion uniforme et une excellente diffusion du parfum, qui commence à se déployer dès les premières minutes après l'allumage.\n\nLa bougie parfumée BY VELCHEVA en édition limitée est un élément de décoration élégant et un cadeau parfait pour les amis, les proches ou les collègues.\n\nSpécifications :\nVolume : 270 ml\nDurée de combustion : environ 40 heures\nCires végétales premium : noix de coco et soja\nParfum : agrumes-floral avec notes de pivoine et de basilic\nDesign : élégant et minimaliste"
+        },
+        "aroma_sashe": {
+            "name": "Aroma Sashé",
+            "desc": "Nos parfums d'intérieur se présentent sous forme de désodorisants solides. Nous les avons créés concis et esthétiques.\n\nPar conséquent, ce produit sera un ajout très agréable à votre maison. Le parfum du désodorisant solide est plus délicat que celui d'un parfum d'intérieur classique.\n\nCe type de produit ne se fera pas remarquer aussi fort. Mais il peut subtilement et efficacement mettre en valeur des détails individuels.\n\nEn d'autres termes, vous avez la possibilité de parfumer sélectivement n'importe quel objet en y plaçant ou suspendant simplement un désodorisant aromatique. Par exemple, vous pouvez le placer dans une armoire avec des vêtements. Chaque fois que vous ouvrirez les portes de votre armoire, vous sentirez une légère trace de votre parfum préféré.\n\nIl y a une règle : plus la zone de diffusion est petite, plus le parfum dure longtemps."
+        },
+        "christ_toy": {
+            "name": "Jouets de sapin de Noël aromatisés BY VELCHEVA ",
+            "desc": "La nouveauté la plus festive et magique de BY VELCHEVA.\r\nCes ornements minimalistes et élégants sublimeront votre sapin de Noël.\r\nFabriqués en plâtre blanc, ils s'intègrent à tous les intérieurs. Un doux sillage parfumé enveloppera votre sapin et créera une ambiance festive.\r\nCes ornements parfumés sont la solution idéale pour les propriétaires de sapins artificiels. Ils peuvent également être utilisés seuls comme élément décoratif.\r\nDisponibles avec des senteurs de fêtes et de Noël.\r\n\r\nEmplissez votre espace d'une atmosphère chaleureuse et magique avec BY VELCHEVA !"
+        },
+        "refill_125": {
+            "name": "Recharge pour diffuseurs d'arômes et parfums de voiture (125 ml)",
+            "desc": "Flacon de liquide aromatique supplémentaire.\r\nFlacon contenant la composition parfumée incluse dans le diffuseur d'arômes.\r\nÉgalement disponible séparément : lorsque le liquide aromatique de votre diffuseur est épuisé, inutile d'en acheter un nouveau ; il vous suffit d'acheter une recharge.\r\nContenance : 125 ml."
+        },
+        "sticks": {
+            "name": "Bâtonnets d'encens",
+            "desc": "Les bâtonnets d'encens sont des bâtonnets aromatiques utilisés pour créer une ambiance agréable et purifier l'air. Fabriqués artisanalement en Inde, ils sont imprégnés d'une atmosphère orientale unique.\r\nChaque coffret contient la moitié de bâtonnets de guggul rouges et l'autre moitié de bâtonnets de louban blancs.\r\nLes bâtonnets rouges, à base de guggul, dégagent un arôme intense et envoûtant qui contribue à créer une ambiance énergisante et stimulante.\r\nLes bâtonnets blancs, à base de louban, diffusent un parfum délicat et apaisant, favorisant la détente et la méditation.\r\nExprimez votre personnalité et choisissez le nombre de bâtonnets d'encens qui vous convient le mieux pour créer une ambiance unique chez vous.\r\nPlongez dans la magie des bâtonnets d'encens et laissez-vous envoûter par leurs arômes exceptionnels !"
+        },
+        "car_s8007": {
+            "name": "Diffuseur d'arômes pour voiture",
+            "desc": "• Zone de couverture jusqu'à 10 m²\r\n• Fonctionne et se recharge via un câble USB 2.0 - autonomie jusqu'à 4 heures\r\n• Contrôle manuel et personnalisation\r\n• Se place dans un porte-gobelet\r\n\r\nCe diffuseur d'arômes compact est la solution idéale pour parfumer votre voiture.\r\nVous pouvez choisir vous-même l'intervalle et la durée de diffusion. Ainsi, l'appareil ne fonctionne que lorsque vous le souhaitez.\r\nL'arôme est diffusé par brumisation sèche, ce qui permet d'éliminer rapidement et efficacement les odeurs désagréables.\r\nDe plus, le parfum embaume l'habitacle, créant l'ambiance et l'atmosphère souhaitées.\r\nL'appareil se recharge à l'aide du câble USB 2.0 fourni. Une seule charge offre jusqu'à 4 heures d'utilisation continue.\r\nPratique, ce diffuseur d'arômes se place facilement dans un porte-gobelet grâce à son format compact et son fonctionnement silencieux.\r\nCe diffuseur d'arômes compact et facile à utiliser est le cadeau idéal pour tous les passionnés d'automobile."
+        },
+        "smart": {
+            "name": "Aroma Smart",
+            "desc": "Aromasmart - la meilleure solution pour vous.\r\nL’appareil est facile à transporter et à installer : vous pouvez poser la machine à parfum sur une surface ou la fixer au mur à l’aide du support fourni.\r\nL’appareil fonctionne soit sur secteur, soit avec des piles AA, disponibles dans tous les magasins ou supermarchés.\r\nSi vous utilisez des piles, vous aurez besoin d’environ 6 piles pour un mois d’utilisation.\r\nAromasmart est le choix idéal pour les petits espaces commerciaux."
+        }
+    },
+    "account": {
+        "title": "Mon Compte",
+        "tab": {
+            "login": "Connexion",
+            "register": "S'inscrire",
+            "profile": "Profil",
+            "orders": "Mes Commandes",
+            "favorites": "Mes Favoris"
+        },
+        "field": {
+            "email": "E-mail",
+            "password": "Mot de passe",
+            "confirmPassword": "Confirmer le mot de passe",
+            "salutation": "Civilité",
+            "firstName": "Prénom",
+            "lastName": "Nom",
+            "phone": "Téléphone",
+            "shippingAddress": "Adresse de livraison",
+            "billingAddress": "Adresse de facturation",
+            "street": "Rue",
+            "houseNumber": "Numéro",
+            "zip": "Code postal",
+            "city": "Ville",
+            "country": "Pays",
+            "emailReadonly": "L'e-mail ne peut pas être modifié",
+            "billingHint": "Laisser vide si identique à l'adresse de livraison"
+        },
+        "salutation": {
+            "none": "Veuillez sélectionner",
+            "mr": "M.",
+            "mrs": "Mme"
+        },
+        "placeholder": {
+            "street": "Nom de rue",
+            "houseNumber": "12A",
+            "zip": "8000",
+            "city": "Nom de ville",
+            "selectCountry": "Sélectionner un pays"
+        },
+        "btn": {
+            "login": "Connexion",
+            "register": "S'inscrire",
+            "logout": "Déconnexion",
+            "save": "Enregistrer le profil"
+        },
+        "error": {
+            "emptyFields": "Veuillez remplir tous les champs.",
+            "invalidEmail": "Adresse e-mail invalide.",
+            "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères.",
+            "passwordMismatch": "Les mots de passe ne correspondent pas.",
+            "emailExists": "Un compte avec cet e-mail existe déjà.",
+            "invalidCredentials": "E-mail ou mot de passe invalide.",
+            "registrationFailed": "L'inscription a échoué. Veuillez réessayer.",
+            "notLoggedIn": "Vous devez être connecté pour mettre à jour votre profil.",
+            "mustAcceptTerms": "Vous devez accepter la politique de confidentialité et les conditions générales avant d'enregistrer votre profil.",
+            "updateFailed": "Échec de la mise à jour du profil.",
+            "noEmail": "Impossible de mettre à jour le profil : votre session ne contient pas d'informations d'e-mail. Veuillez vous déconnecter et vous reconnecter.",
+            "saveFailed": "Échec de la mise à jour du profil en raison d'une erreur interne du serveur. Veuillez réessayer plus tard."
+        },
+        "success": {
+            "registered": "Compte créé avec succès ! Bienvenue !",
+            "profileUpdated": "Profil mis à jour avec succès !"
+        },
+        "info": {
+            "loginForFavorites": "Veuillez vous connecter ou vous inscrire pour utiliser les favoris."
+        },
+        "welcome": "Bienvenue",
+        "profile": "Profil",
+        "orders": {
+            "empty": "Aucune commande pour le moment",
+            "emptyDesc": "Votre historique de commandes apparaîtra ici.",
+            "browseCatalog": "Parcourir le catalogue"
+        },
+        "favorites": {
+            "title": "Mes Favoris",
+            "empty": "Aucun favori pour le moment",
+            "emptyDesc": "Commencez à ajouter des produits à vos favoris en cliquant sur l'icône cœur.",
+            "browseCatalog": "Parcourir le catalogue"
+        },
+        "logout": "Déconnexion",
+        "acceptTerms": "J'accepte la politique de confidentialité et les conditions générales",
+        "consentLabel": "J'ai lu et j'accepte les {terms} et la {privacy}, et je consens au traitement de mes données personnelles à des fins de gestion de profil.",
+        "consentTermsLink": "Conditions Générales",
+        "consentPrivacyLink": "Politique de confidentialité",
+        "backToOrders": "Retour aux commandes",
+        "orderDetails": "Détails de la commande",
+        "orderId": "Numéro de commande",
+        "orderDate": "Date",
+        "orderStatus": "Statut",
+        "orderTotal": "Total",
+        "orderItems": "Articles",
+        "forgotPassword": "Mot de passe oublié ?",
+        "resetPassword": "Réinitialiser le mot de passe",
+        "sendResetCode": "Envoyer le code",
+        "enterResetCode": "Entrer le code",
+        "verificationCode": "Code de vérification",
+        "newPassword": "Nouveau mot de passe",
+        "confirmNewPassword": "Confirmer le nouveau mot de passe",
+        "resetPasswordInstructions": "Entrez votre adresse e-mail et nous vous enverrons un code de vérification pour réinitialiser votre mot de passe.",
+        "codeEmailSent": "Un code de vérification a été envoyé à votre adresse e-mail.",
+        "enterCodeInstructions": "Entrez le code de vérification que nous avons envoyé à votre e-mail, ainsi que votre nouveau mot de passe.",
+        "passwordResetSuccess": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+        "invalidCode": "Code de vérification invalide ou expiré.",
+        "codeSentRecently": "Un code a été envoyé récemment. Veuillez patienter avant d'en demander un autre.",
+        "tooManyAttempts": "Trop de tentatives. Veuillez demander un nouveau code.",
+        "acceptTermsAndPrivacy": "J'accepte les {terms} et la {privacy}",
+        "termsAndConditions": "Conditions Générales",
+        "privacyPolicy": "Politique de Confidentialité",
+        "mustAcceptTerms": "Vous devez accepter les Conditions Générales et la Politique de Confidentialité pour vous inscrire",
+        "backToLogin": "Retour à la connexion",
+        "newsletterOptIn": "J'accepte de recevoir des newsletters et des e-mails promotionnels"
+    },
+    "contact": {
+        "address": "Adresse"
+    },
+    "validation": {
+        "acceptTermsTooltip": "Pour continuer, veuillez cocher cette case."
+    },
+    "email": {
+        "passwordReset": {
+            "subject": "Code de réinitialisation du mot de passe",
+            "greeting": "Bonjour",
+            "body": "Vous avez demandé à réinitialiser votre mot de passe. Votre code de vérification est :",
+            "expiry": "Ce code expirera dans 15 minutes.",
+            "ignore": "Si vous n'avez pas demandé cela, veuillez ignorer cet e-mail."
+        }
+    }
+}

@@ -1,0 +1,129 @@
+{
+    "fragrance": {
+        "cherry_blossom": {
+            "name": "Cherry Blossom",
+            "short": "Ein süßes und würziges Aroma von reichem Kirschlikör und Frühlingsblumen.",
+            "full": "Ein intensiv gesättigter Duft, der die gesamte Atmosphäre des Raumes verstärkt. Die Kopfnoten von Kirsche und Bittermandel entwickeln sich zu einem lebendigen, säuerlichen Kirschlikör-Duft. Rosen- und Jasminakkorde verschmelzen zu einer sanften Blumenspur, angereichert mit einem süßen Hauch von Vanille.\n\nSie werden CHERRY BLOSSOM lieben, wenn Sie zarte, süße Düfte und den Geruch von reifen, saftigen Kirschen mögen.\n\nDuftpyramide:\nKopfnoten: Kirsche, Likör, Bittermandel\nHerznoten: Kirsche, Türkische Rose, Jasmin Sambac, Pflaume\nBasisnoten: Perubalsam, Tonkabohnen, Sandelholz, Vetiver, Vanille"
+        },
+        "bellini": {
+            "name": "Bellini",
+            "short": "Ein samtiger Duft von saftigem Pfirsich und intensivem Rum.",
+            "full": "Dieser pudrige Duft, reich an aromatischen Verbindungen, füllt Ihren Raum schnell mit verspielten Noten von süßem Pfirsich, Blutorange und Vanille. Die bitter-würzigen Akkorde von Cognac, Rum und Kaschmir verleihen eine subtile Note und vertiefen den Charakter.\n\nBELLINI ist perfekt, wenn Sie eine festliche, feierliche Atmosphäre aufrechterhalten möchten.\n\nDuftpyramide:\nKopfnoten: Pfirsich, Blutorange, Kardamom, Heliotrop\nHerznoten: Rum, Cognac, Davana, Jasmin\nBasisnoten: Patchouli, Sandelholz, Vanille, Tonkabohne"
+        },
+        "eden": {
+            "name": "Eden",
+            "short": "Ein fruchtiger Duft mit einer sanften Blumenspur.",
+            "full": "Intensiv und lebendig, erfüllt dieses Aroma den gesamten Raum. Maracuja- und Himbeernoten entfalten sich zu einem saftigen, frischen Duft von reifen Früchten und Beeren. Die Süße wird durch Lilien- und Vanilleakkorde verstärkt.\n\nDuftpyramide:\nKopfnoten: Maracuja, Pfirsich, Birne, Himbeere\nHerznoten: Lilie\nBasisnoten: Vanille, Moschus, Sandelholz"
+        },
+        "rosso": {
+            "name": "Rosso",
+            "short": "Ein üppiges Aroma von reifen roten Trauben und saftigen Beeren.",
+            "full": "Dieser Duft erfüllt den gesamten Raum mit einem pflanzlichen Geruch von Himbeere und Birkenrinde. Der dominante Akkord von saftigen roten Trauben durchdringt den Raum mit dem durchdringenden Aroma von trockenem Wein.\n\nDuftpyramide:\nKopfnoten: Orange, Veilchen, Magnolie\nHerznoten: Pflaume, Erdbeere, Wilde Beeren\nBasisnoten: Trockenes Holz, Birke"
+        },
+        "salted_caramel": {
+            "name": "Salted Caramel",
+            "short": "Eine helle Komposition mit Noten von Weizen und Vanille.",
+            "full": "Noten von Weizen und Vanille erfüllen den Duft mit Süße und einer köstlichen, appetitanregenden Spur. Karamell und Salz verschmelzen zu einem reichhaltigen, umhüllenden Duft, der aus der Kindheit bekannt ist.\n\nDuftpyramide:\nKopfnoten: Meersalz\nHerznoten: Birne, Vanille, Pudrige Noten, Weizen\nBasisnoten: Toffee, Brauner Zucker"
+        },
+        "santal": {
+            "name": "Santal",
+            "short": "Ein pudriger Duft mit Leder, Kardamom und orientalischem Sandelholz.",
+            "full": "Dieser aromatische Duft verbreitet sich langsam und sanft im Raum. Auftauchende Noten von Kardamom und Sandelholz vermischen sich mit starken Akkorden von Iris und Amber.\n\nDuftpyramide:\nKopfnoten: Sandelholz, Papyrus, Leder\nHerznoten: Virginia-Zeder, Kardamom, Veilchen\nBasisnoten: Iris, Amber"
+        },
+        "lime_basil": {
+            "name": "Lime Basil",
+            "short": "Ein frischer Zitrusduft von saftigem Limette und aromatischem Basilikum.",
+            "full": "Dieser intensiv gesättigte Duft entfaltet sich schnell in der Luft. Noten von Limette und reifer Mandarine erzeugen ein leicht süßes Aroma, während würzige Basilikum- und Thymianakkorde sich in angenehmer Bitterkeit auflösen.\n\nDuftpyramide:\nKopfnoten: Mandarine, Bergamotte\nHerznoten: Basilikum, Iris, Flieder, Thymian\nBasisnoten: Limette, Patchouli, Vetiver"
+        },
+        "bamboo": {
+            "name": "Bamboo",
+            "short": "Ein grüner, frischer Duft von Frühlingsblumen und Bambusstängeln.",
+            "full": "Dieser mäßig intensive Duft füllt Ihren Raum sanft, ohne ihn zu überwältigen. Kopfnoten von Bergamotte und Bambus erzeugen einen zarten pflanzlichen Nebel.\n\nDuftpyramide:\nKopfnoten: Bambus, Bergamotte\nHerznoten: Ylang-Ylang, Lilie, Orangenblüte\nBasisnoten: Vanille, Sandelholz, Amber"
+        },
+        "tobacco_vanilla": {
+            "name": "Tobacco Vanilla",
+            "short": "Ein warmer und weicher Duft von Tabakblättern und süßer Vanille.",
+            "full": "Noten von Gewürzen und Tabakblättern entfalten sich allmählich zu einem reichhaltigen, zarten Vanille- und Kakaoduft. Die Spur wird mit leichten Holzrinden- und Trockenfruchtnoten enthüllt.\n\nDuftpyramide:\nKopfnoten: Tabakblätter, Gewürze\nHerznoten: Tonkabohnen, Vanille, Kakao, Tabakblüte\nBasisnoten: Holzige Noten, Trockenfrüchte"
+        },
+        "salty_water": {
+            "name": "Salty Water",
+            "short": "Ein frischer Duft von salzigem Wasser und alten Mineralien.",
+            "full": "Dies ist ein Duft mit leichter Intensität, der zarteste der gesamten Linie. Meersalz und Amber lösen sich in einem erfrischenden salzigen Tau-Aroma auf.\n\nDuftpyramide:\nKopfnoten: Amber, Meersalz\nHerznoten: Salbei\nBasisnoten: Grapefruit, Meeresalgen"
+        },
+        "christmas_tree": {
+            "name": "Christmas Tree",
+            "short": "Ein sanfter und festlicher Duft von Weihnachtskiefer und saftigen Mandarinen.",
+            "full": "Dies ist ein Duft mittlerer Intensität, der den Raum sanft erfüllt. Die helle und süße Mandarinennote entfaltet sich zu einem vertrauten und nostalgischen Aroma.\n\nDuftpyramide:\nKopfnoten: Vanille\nHerznoten: Orange, Zimt\nBasisnoten: Kiefer, Mandarine"
+        },
+        "fleur": {
+            "name": "Fleur",
+            "short": "Ein kühles, saftiges, blumig-fruchtiges Aroma.",
+            "full": "Die Komposition öffnet sich mit hellen Noten von Bergamotte, Litschi und Pfirsich und führt in ein blumiges Herz aus Orangenblüte, Jasmin und Pfingstrose.\n\nDuftpyramide:\nKopfnoten: Bergamotte, Litschi, Pfirsich\nHerznoten: Orangenblüte, Jasmin, Pfingstrose\nBasisnoten: Holzige Noten, Moos, Moschus"
+        },
+        "blanc": {
+            "name": "Blanc",
+            "short": "Ein weicher, frischer Duft von weißer Baumwolle und Reinheit.",
+            "full": "Dieser mäßig konzentrierte Duft verbindet leichte Blumenakkorde mit hellen Aldehyden und ruft das Aroma eines knackigen weißen Hemdes und frisch gewaschener Bettwäsche hervor.\n\nDuftpyramide:\nKopfnoten: Aldehyde, Rose, Rosa Pfeffer\nHerznoten: Pfingstrose, Veilchen, Orangenblüte\nBasisnoten: Weißer Moschus, Holzige Noten, Sandelholz"
+        },
+        "green_mango": {
+            "name": "Green Mango",
+            "short": "Ein saftiger Duft von frischer Mango und knackiger Ananas.",
+            "full": "Dieser hoch konzentrierte Duft erfüllt den gesamten Raum mit hellem und frischem Aroma von frisch geschnittenen Früchten.\n\nDuftpyramide:\nKopfnoten: Mango, Melone\nHerznoten: Pfirsich, Ananas\nBasisnoten: Mangoschale, Kiefernadeln"
+        },
+        "carolina": {
+            "name": "Carolina",
+            "short": "Ein zartes, leichtes Aroma von süßem Cappuccino und Frühlingsblüten.",
+            "full": "Kaffee- und Mandelnoten lösen sich in einem warmen, umhüllenden süß-bitteren Akkord auf. Jasmin, Iris und Bergamotte erzeugen frische Blumenakzente.\n\nDuftpyramide:\nKopfnoten: Mandel, Kaffee, Bergamotte, Zitrone\nHerznoten: Jasmin Sambac, Tuberose, Iris, Bulgarische Rose\nBasisnoten: Tonkabohne, Kakao, Sandelholz, Vanille"
+        },
+        "sugar": {
+            "name": "Sugar",
+            "short": "Ein süßer und klebriger Duft von gebranntem Zucker und Holzharz.",
+            "full": "Ausgeprägte Noten von Safran und Jasmin schmelzen in ein süßes und würziges Aroma. Der holzig-bernsteinfarbene Hauptakkord hüllt die Luft in Süße.\n\nDuftpyramide:\nKopfnoten: Jasmin, Safran\nHerznoten: Holziger Bernstein\nBasisnoten: Weiße Zeder, Kiefernharz"
+        },
+        "dubai": {
+            "name": "Dubai",
+            "short": "Ein reichhaltiger orientalischer Duft von Damaszener Rose und Oud-Holz.",
+            "full": "Ein intensives und hoch konzentriertes Aroma. Noten von Geranie und Veilchen umhüllen den Raum sanft mit einem leicht bitteren Blumenduft.\n\nDuftpyramide:\nKopfnoten: Geranie, Veilchen\nHerznoten: Zimt, Damaszener Rose, Türkische Rose\nBasisnoten: Oud, Vanille"
+        },
+        "africa": {
+            "name": "Africa",
+            "short": "Ein warmer, würziger Duft von Kardamomholz und weichem Leder.",
+            "full": "Dieser intensiv konzentrierte Duft erfüllt den gesamten Raum. Helle Noten von Bergamotte und Moschus werden durch eine leuchtende Holznuance verstärkt.\n\nDuftpyramide:\nKopfnoten: Bergamotte, Vetiver, Geranie\nHerznoten: Kardamom, Leder, Moschus\nBasisnoten: Patchouli, Kreuzkümmel, Oud, Safran"
+        },
+        "dune": {
+            "name": "Dune",
+            "short": "Ein kühner und würziger Duft von brennender Sonne und scharfem Pfeffer.",
+            "full": "Zitrusnoten von Orange und Grapefruit fügen eine angenehm süße Spur hinzu. Ausgeprägte Pfefferakkorde lösen sich in einem hellen, feurigen Aroma auf.\n\nDuftpyramide:\nKopfnoten: Orange, Grapefruit\nHerznoten: Pfeffer, Rosa Pfeffer\nBasisnoten: Vetiver, Zeder, Patchouli, Benzoe"
+        },
+        "valencia": {
+            "name": "Valencia",
+            "short": "Ein luftiger Duft von frischen Zitrusfrüchten und zartem Jasmin.",
+            "full": "Noten von Zitrone und Bergamotte erfüllen den Raum mit einem frischen Zitrusduft. Die Hauptakkorde von Jasmin und Rose schmelzen in eine süße Blumenkomposition.\n\nDuftpyramide:\nKopfnoten: Bergamotte, Zitrone\nHerznoten: Jasmin, Weiße Akazie, Rose\nBasisnoten: Holzige Noten, Moschus"
+        },
+        "etna": {
+            "name": "Etna",
+            "short": "Ein würziges und warmes Aroma von Leder, Tabak und Karamell.",
+            "full": "Starke Leder- und schwarze Pfeffernoten entstehen sofort, während Nelke, Salbei und Honig zu einer intensiven Komposition verschmelzen.\n\nDuftpyramide:\nKopfnoten: Leder, Safran, Schwarzer Pfeffer\nHerznoten: Honig, Nelke, Iris, Salbei\nBasisnoten: Tabak, Oud, Karamell, Patchouli"
+        },
+        "new_york": {
+            "name": "New York",
+            "short": "Eine lebhafte Party, scharfe Cocktails und würzige Frische.",
+            "full": "A vibrant party, sharp cocktails, and the spicy freshness of the city of lights, skyscrapers, and unexpected encounters…\n\nYour night will be remembered by the scent of dark wood, smoky amber, and bold citrus notes.\n\nDesigned in an elegant minimalist style, this candle suits both modern and classic interiors. It brings the atmosphere of a big city evening and serves as a chic decorative accent for your home.\n\nCrafted using only high-quality vegetable waxes — coconut and soy — it offers excellent scent diffusion. Within minutes of lighting, your space is filled with a deep, rich, and long-lasting fragrance trail.\n\nThis limited edition BY VELCHEVA candle is both a stylish home décor piece and a wonderful gift for friends, loved ones, or colleagues.\n\nFeatures:\nVolume: 270 ml\nBurn time: approx. 40 hours\nPremium vegetable waxes: coconut and soy\nFragrance: woody-amber with citrus notes\nDesign: elegant and minimalist"
+        },
+        "abu_dhabi": {
+            "name": "Abu Dhabi",
+            "short": "Warme Nächte unter einem Sternenhimmel umarmend.",
+            "full": "Embracing warm nights under a starlit sky and soft sand beneath your feet…\n\nRich spicy notes blend with gentle lavender and a lush bouquet of florals — this is the scent of your unforgettable weekend in Abu Dhabi.\n\nCrafted in an elegant, minimalist design, this candle will complement any interior — from modern to classic. More than just a source of fragrance, it's a refined decorative accent for your home.\n\nWe use only high-quality plant-based waxes — coconut and soy — known for their excellent ability to retain and release fragrance. Within minutes of lighting, your space is filled with a rich, long-lasting, and sophisticated perfumed trail.\n\nA scented candle from the BY VELCHEVA limited collection is a stylish decor element for your home and also a perfect gift for friends, loved ones, or colleagues.\n\nDetails:\nVolume: 270 ml\nBurn time: approx. 40 hours\nPremium plant-based waxes: coconut and soy\nFragrance: oriental-floral with notes of lavender and spices\nDesign: elegant and minimalist"
+        },
+        "palermo": {
+            "name": "Palermo",
+            "short": "Sanfte Sonnenstrahlen und erfrischende Küstenbrise.",
+            "full": "Gentle rays of sunshine, a refreshing coastal breeze, and an abundance of citrus fruits you can pick by hand…\n\nRadiant notes of mandarin and bitter orange blend with the soft scent of peonies and vibrant basil — this is how you'll remember a walk through Palermo.\n\nThe candle is designed in a refined minimalist style and will beautifully complement both modern and classic interiors. Its fragrance fills the space with lightness, joy, and a sunny mood.\n\nWe use only high-quality vegetable waxes — coconut and soy. They ensure even burning and excellent fragrance diffusion, which begins to unfold within the first minutes of lighting.\n\nThe limited-edition BY VELCHEVA scented candle is a stylish piece of home décor and a perfect gift for friends, loved ones, or colleagues.\n\nSpecifications:\nVolume: 270 ml\nBurn time: approximately 40 hours\nPremium vegetable waxes: coconut and soy\nFragrance: citrus-floral with notes of peony and basil\nDesign: elegant and minimalist"
+        },
+        "guggul_louban": {
+            "name": "Guggul und Louban",
+            "short": "Eine warme Harzmischung aus Guggul und Louban.",
+            "full": "Ein mystischer und tief aromatischer Duft, der Sie in alte rituelle Räume entführt. Reichhaltige Noten von Guggulharz und Weihrauch (Louban) erzeugen eine warme, rauchige Spur, die Ihren Raum mit einem Gefühl von Ruhe und spiritueller Tiefe erfüllt.\n\nDieser intensiv konzentrierte Duft kombiniert die erdige Wärme von Guggul mit der heiligen Süße von Louban und schafft eine harmonische Balance, die seit Jahrhunderten geschätzt wird. Die holzigen und harzigen Basisnoten bleiben lange nach dem ersten Eindruck bestehen und hinterlassen eine subtile, aber tiefgreifende Präsenz.\n\nGUGGUL UND LOUBAN ist perfekt für Meditation, Entspannung oder die Schaffung einer kontemplativen Atmosphäre in Ihrem Zuhause.\n\nDuftpyramide:\nKopfnoten: Guggulharz, Weihrauch\nHerznoten: Louban, Amber\nBasisnoten: Holzige Noten, Rauchige Harze"
+        }
+    }
+}

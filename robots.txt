@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and private directories
+Disallow: /admin/
+Disallow: /data/
+Disallow: /includes/
+Disallow: /ajax/
+
+# Allow important files
+Allow: /assets/
+Allow: /img/
+
+# Sitemap location
+Sitemap: https://nichehome.ch/sitemap.xml

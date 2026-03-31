@@ -1,0 +1,35 @@
+# Backup files
+*.backup
+
+# Temporary files
+/tmp/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Email encryption secret (security)
+config/email_secret.php
+config/.email_encryption_key
+
+# Log files (all logs should not be committed)
+logs/*.log
+logs/email_*.log
+
+# Debug mode state files
+data/email_debug.json
+
+# Composer dependencies
+/vendor/
+composer.lock
+
+# Data backups (created by stock import)
+/data/backups/
+/admin/templates/*.xlsx
+/admin/templates/*.csv
+vendor/
+composer.lock

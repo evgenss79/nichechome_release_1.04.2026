@@ -1,0 +1,46 @@
+# NICHEHOME.CH Apache Configuration
+
+# Enable URL Rewriting
+RewriteEngine On
+
+# Ensure static files are served directly (never routed to PHP)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \.(jpg|jpeg|png|gif|svg|css|js|ico|woff|woff2|ttf|eot)$ [NC]
+RewriteRule ^ - [L]
+
+# Force HTTPS on production, but DO NOT force it on localhost/dev
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Prevent directory listing
+Options -Indexes
+
+# Error pages
+ErrorDocument 404 /about.php
+
+# PHP settings (if allowed)
+<IfModule mod_php7.c>
+    php_flag display_errors Off
+    php_value default_charset UTF-8
+</IfModule>
+
+# Cache control for static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+</IfModule>
