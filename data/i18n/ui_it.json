@@ -420,5 +420,12 @@
             "expiry": "Questo codice scadrà tra 15 minuti.",
             "ignore": "Se non hai richiesto questo, ignora questa email."
         }
+    },
+    "category": {
+        "qa_full_cycle_category_20260401": {
+            "name": "QA Full Cycle Category 20260401 IT",
+            "short": "QA short description IT",
+            "long": "QA long description IT"
+        }
     }
 }

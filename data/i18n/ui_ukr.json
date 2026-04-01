@@ -420,5 +420,12 @@
             "expiry": "Цей код буде дійсний протягом 15 хвилин.",
             "ignore": "Якщо ви не запитували це, будь ласка, ігноруйте цей лист."
         }
+    },
+    "category": {
+        "qa_full_cycle_category_20260401": {
+            "name": "QA Full Cycle Category 20260401 UKR",
+            "short": "QA short description UKR",
+            "long": "QA long description UKR"
+        }
     }
 }

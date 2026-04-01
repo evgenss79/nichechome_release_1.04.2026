@@ -402,5 +402,12 @@
             "expiry": "Dieser Code läuft in 15 Minuten ab.",
             "ignore": "Wenn Sie dies nicht angefordert haben, ignorieren Sie diese E-Mail bitte."
         }
+    },
+    "category": {
+        "qa_full_cycle_category_20260401": {
+            "name": "QA Full Cycle Category 20260401 DE",
+            "short": "QA short description DE",
+            "long": "QA long description DE"
+        }
     }
 }

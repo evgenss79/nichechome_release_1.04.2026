@@ -422,5 +422,12 @@
             "expiry": "Этот код истечет через 15 минут.",
             "ignore": "Если вы не запрашивали это, пожалуйста, игнорируйте это письмо."
         }
+    },
+    "category": {
+        "qa_full_cycle_category_20260401": {
+            "name": "QA Full Cycle Category 20260401 RU",
+            "short": "QA short description RU",
+            "long": "QA long description RU"
+        }
     }
 }
