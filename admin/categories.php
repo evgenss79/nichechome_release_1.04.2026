@@ -41,13 +41,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save_
         $allowedFragrances = $hasFragrance && isset($_POST['allowed_fragrances']) && is_array($_POST['allowed_fragrances'])
             ? array_values(array_filter($_POST['allowed_fragrances'], 'strlen'))
             : [];
+        $primaryImage = trim((string)($_POST['image'] ?? ''));
+        $categoryImages = normalizeImageFilenameList((string)($_POST['images'] ?? ''));
+        if ($primaryImage !== '') {
+            array_unshift($categoryImages, $primaryImage);
+            $categoryImages = normalizeImageFilenameList($categoryImages);
+        }
+        if ($primaryImage === '' && !empty($categoryImages)) {
+            $primaryImage = $categoryImages[0];
+        }
 
         $category = $existing;
         $category['id'] = $categoryId;
         $category['name_key'] = 'category.' . $categoryId . '.name';
         $category['short_key'] = 'category.' . $categoryId . '.short';
         $category['long_key'] = 'category.' . $categoryId . '.long';
-        $category['image'] = trim((string)($_POST['image'] ?? ''));
+        $category['image'] = $primaryImage;
+        $category['images'] = $categoryImages;
         $category['use_custom_image'] = isset($_POST['use_custom_image']) || !$isEdit;
         $category['sort_order'] = (int)($_POST['sort_order'] ?? 999);
         $category['active'] = isset($_POST['active']);
@@ -104,6 +114,7 @@ if ($editingId && !isset($categories[$editingId])) {
 $defaultCategory = [
     'id' => '',
     'image' => '',
+    'images' => [],
     'sort_order' => !empty($categories) ? (max(array_map(function ($category) {
         return (int)($category['sort_order'] ?? 0);
     }, $categories)) + 1) : 1,
@@ -187,6 +198,10 @@ $translations = $editingId ? loadEntityTranslations('category', $editingId, ['na
                         <div class="form-group">
                             <label>Image filename (img/)</label>
                             <input type="text" name="image" value="<?php echo htmlspecialchars($editingCategory['image']); ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Slider images (one filename per line or comma separated)</label>
+                            <textarea name="images" rows="3"><?php echo htmlspecialchars(implode("\n", normalizeImageFilenameList($editingCategory['images'] ?: ($editingCategory['image'] ? [$editingCategory['image']] : [])))); ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Sort order</label>

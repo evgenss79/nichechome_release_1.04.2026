@@ -51,7 +51,8 @@ try {
         'name_key' => 'category.' . $categoryId . '.name',
         'short_key' => 'category.' . $categoryId . '.short',
         'long_key' => 'category.' . $categoryId . '.long',
-        'image' => 'placeholder.jpg',
+        'image' => 'Dubai.jpg',
+        'images' => ['Dubai.jpg', 'Palermo.jpg'],
         'use_custom_image' => true,
         'volumes' => ['100ml', '200ml'],
         'has_fragrance' => true,
@@ -80,8 +81,8 @@ try {
         'category' => $categoryId,
         'name_key' => 'product.' . $productId . '.name',
         'desc_key' => 'product.' . $productId . '.desc',
-        'image' => 'placeholder.jpg',
-        'images' => ['placeholder.jpg', 'Bellini.jpg'],
+        'image' => 'Etna.jpg',
+        'images' => ['Etna.jpg', 'Bellini.jpg'],
         'allowed_fragrances' => ['bellini', 'eden'],
         'has_fragrance_selector' => true,
         'active' => true,
@@ -134,12 +135,15 @@ try {
 
     $categoryHtml = renderPhpPage($repoRoot . '/category.php', ['slug' => $categoryId, 'lang' => 'en']);
     assertTrue(strpos($categoryHtml, 'Admin Test Product') !== false, 'New product missing from category page.');
+    assertTrue(strpos($categoryHtml, 'data-category-gallery') !== false, 'Category gallery slider markup missing from category page.');
     assertTrue(strpos($categoryHtml, 'value="200ml"') !== false, 'Volume selector missing 200ml option.');
     assertTrue(strpos($categoryHtml, 'value="eden"') !== false, 'Fragrance selector missing eden option.');
+    assertTrue(strpos($categoryHtml, '/img/Etna.jpg') !== false, 'Category product card did not render the admin product image.');
 
     $productHtml = renderPhpPage($repoRoot . '/product.php', ['id' => $productId, 'lang' => 'en']);
     assertTrue(strpos($productHtml, 'Admin Test Product') !== false, 'Product page did not render test product.');
     assertTrue(strpos($productHtml, '"admin_test_product"') !== false, 'Product pricing payload missing product key.');
+    assertTrue(strpos($productHtml, '/img/Etna.jpg') !== false, 'Product page did not render the primary admin product image.');
     assertTrue(strpos($productHtml, 'Bellini.jpg') !== false, 'Product gallery did not render custom images.');
 
     echo "PASS\n";

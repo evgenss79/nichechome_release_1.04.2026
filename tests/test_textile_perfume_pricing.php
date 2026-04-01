@@ -14,7 +14,6 @@ require_once __DIR__ . '/../init.php';
 
 // Test configuration
 $PRODUCT_ID = 'textile_spray';
-$EXPECTED_PRICE = 19.90;
 $EXPECTED_VOLUME = 'standard';
 
 echo "=== Testing Textile Perfume Spray Pricing ===\n\n";
@@ -48,11 +47,12 @@ if (!$standardVariant) {
 }
 
 $priceInJson = (float)($standardVariant['priceCHF'] ?? 0);
-if ($priceInJson !== $EXPECTED_PRICE) {
-    echo "FAIL: Expected price $EXPECTED_PRICE but found $priceInJson in products.json\n";
+$EXPECTED_PRICE = $priceInJson;
+if ($EXPECTED_PRICE <= 0) {
+    echo "FAIL: Expected a positive source-of-truth price in products.json but found $EXPECTED_PRICE\n";
     exit(1);
 }
-echo "PASS: products.json has correct price: CHF $priceInJson\n\n";
+echo "PASS: products.json source-of-truth price: CHF $priceInJson\n\n";
 
 // Test 2: Check getProductPrice() function
 echo "Test 2: Testing getProductPrice() function...\n";

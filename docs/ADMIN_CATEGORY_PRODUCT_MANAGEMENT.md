@@ -22,6 +22,7 @@ The category form now supports:
 - create category
 - edit category
 - category image filename
+- category slider image list (multiline / comma separated)
 - multilingual name, short description, and long description
 - default volume options
 - default fragrance support and allowed fragrance list
@@ -40,8 +41,9 @@ Additional category flags:
 - `show_in_navigation`
 - `show_in_footer`
 - `use_custom_image`
+- `images`
 
-`use_custom_image=true` activates the category image stored in `categories.json`. Legacy categories keep the previous storefront image mapping until an admin explicitly switches them to a custom image.
+`use_custom_image=true` activates the category image(s) stored in `categories.json`. Legacy categories keep the previous storefront image mapping until an admin explicitly switches them to a custom image. When `images[]` is present, `image` remains the primary/first hero image and the full list is rendered as the category hero slider.
 
 ## Product Admin Workflow
 
@@ -69,6 +71,8 @@ Each sellable row is stored in `products.json` as a variant with:
 
 This keeps existing volume-only products compatible while also supporting price-per-volume and price-per-volume+fragrance combinations.
 
+`image` remains the primary product image and `images[]` remains the canonical storefront gallery list. Product/category cards keep using the product-managed image when a product has an explicit gallery, while legacy fragrance-image swaps stay available for older products that do not define a gallery list.
+
 ## Storefront Rendering Rules
 
 `category.php` and `product.php` now derive selectors from the product record first:
@@ -84,6 +88,9 @@ Rendering invariants:
 - no-fragrance products submit `none` and generate `NA` SKUs
 - fixed-fragrance products render hidden fragrance state
 - dynamic prices are keyed by product ID, not category slug, so multiple products can safely coexist inside the same category
+- product detail heroes render `images[]` as the canonical gallery when present
+- category heroes render category `images[]` as the canonical slider when present
+- category/product cards default to the primary product image when an explicit product gallery exists
 
 ## SKU + Stock Initialization
 
@@ -111,9 +118,9 @@ Initial quantity remains `0` everywhere.
 
 - JSON files remain the single source of truth
 - cart and checkout still use canonical SKU generation
-- `add_to_cart.php` now resolves price with volume + fragrance when needed
+- `add_to_cart.php` resolves price with volume + fragrance for both add and sync flows
 - existing accessory management remains separate and compatible
-- checkout/payment stock handling is unchanged
+- stock decreases use the canonical order SKU list for cash pickup and confirmed online-payment flows
 
 ## Verification Commands
 
@@ -134,14 +141,18 @@ php -l includes/header.php
 php -l includes/footer.php
 
 php tests/test_admin_catalog_management.php
+php tests/test_cart_sync_variant_price.php
+php tests/test_payment_stock_paths.php
 php tests/test_sku_generation.php
+php tests/test_textile_perfume_pricing.php
 php tests/test_branch_stock_pickup_alignment.php
 php tests/test_stock_single_source_of_truth.php
 php tools/sku_universe_selftest.php
 php tools/validate_catalog_consistency.php
-php tests/test_admin_price_change.php
 php tests/test_interior_perfume_pricing.php
 php tests/test_e2e_price_change.php
+php tools/verify_pricing_consistency.php
+php tools/verify_storefront_vs_cart_prices.php
 ```
 
 ## Regression Coverage Added
@@ -153,11 +164,21 @@ php tests/test_e2e_price_change.php
 - multilingual content persistence
 - category catalog visibility
 - category page rendering
+- category gallery slider rendering
 - product page rendering
+- product gallery rendering
 - product selector rendering
 - exact variant pricing
+- cart/checkout non-zero price propagation through sync
 - SKU generation
 - stock initialization in main and branch stock
+
+`tests/test_cart_sync_variant_price.php` verifies that fragrance-sensitive cart sync keeps a non-zero server-resolved price all the way into cart/checkout output.
+
+`tests/test_payment_stock_paths.php` verifies:
+
+- confirmed payment webhook decrements the correct SKU and persists `paid`
+- cancellation marks the order failed/cancelled without decrementing stock
 
 ## Known Existing Warnings
 

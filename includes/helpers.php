@@ -302,6 +302,23 @@ function productHasFragranceSelector(array $product, string $category = '', ?arr
 }
 
 /**
+ * Normalize image filename lists from JSON/admin input.
+ */
+function normalizeImageFilenameList($images): array {
+    if (is_string($images)) {
+        $images = preg_split('/[\r\n,]+/', $images) ?: [];
+    }
+
+    if (!is_array($images)) {
+        return [];
+    }
+
+    return array_values(array_unique(array_filter(array_map(function ($image) {
+        return trim((string)$image);
+    }, $images), 'strlen')));
+}
+
+/**
  * Build product image list.
  */
 function getProductImageList(array $product, ?array $accessoryData = null): array {
@@ -314,8 +331,33 @@ function getProductImageList(array $product, ?array $accessoryData = null): arra
         $images = [$product['image']];
     }
 
-    $images = array_values(array_unique(array_filter(array_map('trim', $images), 'strlen')));
+    $images = normalizeImageFilenameList($images);
     return empty($images) ? ['placeholder.jpg'] : $images;
+}
+
+/**
+ * Build category image list.
+ */
+function getCategoryImageList(string $categorySlug, ?array $categoryData = null): array {
+    $categories = $categoryData === null ? loadJSON('categories.json') : [];
+    $categoryData = $categoryData ?? ($categories[$categorySlug] ?? []);
+
+    if (!empty($categoryData['use_custom_image'])) {
+        $customImages = normalizeImageFilenameList($categoryData['images'] ?? []);
+        if (empty($customImages) && !empty($categoryData['image'])) {
+            $customImages = normalizeImageFilenameList([$categoryData['image']]);
+        }
+        if (!empty($customImages)) {
+            return $customImages;
+        }
+    }
+
+    $fallbackPath = getCategoryImage($categorySlug);
+    if (strpos($fallbackPath, '/img/') === 0) {
+        return [rawurldecode(substr($fallbackPath, 5))];
+    }
+
+    return ['placeholder.svg'];
 }
 
 /**
@@ -1092,8 +1134,14 @@ function getProductImagePath(string $productId): string {
 function getCategoryImage(string $category): string {
     $categories = loadJSON('categories.json');
     $categoryData = $categories[$category] ?? [];
-    if (!empty($categoryData['image']) && !empty($categoryData['use_custom_image'])) {
-        return '/img/' . rawurlencode($categoryData['image']);
+    if (!empty($categoryData['use_custom_image'])) {
+        $customImages = normalizeImageFilenameList($categoryData['images'] ?? []);
+        if (empty($customImages) && !empty($categoryData['image'])) {
+            $customImages = normalizeImageFilenameList([$categoryData['image']]);
+        }
+        if (!empty($customImages)) {
+            return '/img/' . rawurlencode($customImages[0]);
+        }
     }
 
     $imageMap = [
@@ -1754,6 +1802,78 @@ function decreaseBranchStock(string $branchId, string $sku, int $amount = 1): bo
     error_log("decreaseBranchStock: VERIFICATION - Stock total now: $newTotal");
     error_log("=== decreaseBranchStock END (SUCCESS) ===");
     return true;
+}
+
+/**
+ * Decrease stock for every sellable SKU contained in an order.
+ *
+ * @return array{success:bool,errors:array,applied:array,is_pickup:bool,branch_id:string}
+ */
+function decreaseOrderStock(array $order): array {
+    $cart = is_array($order['items'] ?? null) ? $order['items'] : [];
+    $isPickup = !empty($order['pickup_in_branch']);
+    $pickupBranchId = trim((string)($order['pickup_branch_id'] ?? ''));
+    $errors = [];
+    $applied = [];
+
+    if ($isPickup && $pickupBranchId === '') {
+        $errors[] = 'Pickup order is missing pickup_branch_id.';
+        return [
+            'success' => false,
+            'errors' => $errors,
+            'applied' => $applied,
+            'is_pickup' => $isPickup,
+            'branch_id' => $pickupBranchId
+        ];
+    }
+
+    foreach ($cart as $item) {
+        $category = $item['category'] ?? '';
+        $skuMap = [];
+
+        if ($category === 'gift_sets') {
+            $giftSetItems = $item['meta']['gift_set_items'] ?? $item['items'] ?? [];
+            if (empty($giftSetItems)) {
+                $errors[] = 'Gift set item is missing gift_set_items metadata.';
+                break;
+            }
+            $skuMap = expandGiftSetToSkuMap($giftSetItems);
+        } else {
+            $sku = trim((string)($item['sku'] ?? ''));
+            $quantity = max(1, (int)($item['quantity'] ?? 1));
+            if ($sku === '') {
+                $errors[] = 'Order item is missing SKU.';
+                break;
+            }
+            $skuMap[$sku] = $quantity;
+        }
+
+        foreach ($skuMap as $orderSku => $quantity) {
+            $decreased = $isPickup
+                ? decreaseBranchStock($pickupBranchId, $orderSku, $quantity)
+                : decreaseStock($orderSku, $quantity);
+
+            if (!$decreased) {
+                $errors[] = ($isPickup ? "Failed to decrease branch stock for branch $pickupBranchId" : 'Failed to decrease stock')
+                    . " for SKU $orderSku (quantity $quantity).";
+                break 2;
+            }
+
+            $applied[] = [
+                'sku' => $orderSku,
+                'quantity' => $quantity,
+                'branch_id' => $isPickup ? $pickupBranchId : ''
+            ];
+        }
+    }
+
+    return [
+        'success' => empty($errors),
+        'errors' => $errors,
+        'applied' => $applied,
+        'is_pickup' => $isPickup,
+        'branch_id' => $pickupBranchId
+    ];
 }
 
 /**
