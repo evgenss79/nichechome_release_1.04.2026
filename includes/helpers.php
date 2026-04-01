@@ -3702,6 +3702,136 @@ function deleteProduct(string $productId): array {
 }
 
 /**
+ * Returns products.json entries whose category field matches the given slug.
+ *
+ * @param string $categoryId Category ID / slug
+ * @return array<string, array>
+ */
+function getProductsInCategory(string $categoryId): array {
+    if ($categoryId === '') {
+        return [];
+    }
+
+    $products = loadJSON('products.json');
+    return array_filter($products, function ($product) use ($categoryId) {
+        return ($product['category'] ?? '') === $categoryId;
+    });
+}
+
+/**
+ * Permanently delete an empty category and its translations.
+ *
+ * The category delete rule is intentionally conservative:
+ * categories with assigned products are blocked until those products are
+ * reassigned or deleted explicitly.
+ *
+ * @param string $categoryId The category ID to delete
+ * @return array ['success' => bool, 'error' => string, 'details' => array]
+ */
+function deleteCategory(string $categoryId): array {
+    if (empty($categoryId)) {
+        return [
+            'success' => false,
+            'error' => 'Category ID cannot be empty',
+            'details' => []
+        ];
+    }
+
+    $details = [
+        'category_removed' => false,
+        'blocked_products' => [],
+        'i18n_keys_removed' => []
+    ];
+
+    $categories = loadJSON('categories.json');
+    if (!isset($categories[$categoryId])) {
+        return [
+            'success' => false,
+            'error' => "Category '$categoryId' not found in categories.json",
+            'details' => $details
+        ];
+    }
+
+    $productsInCategory = getProductsInCategory($categoryId);
+    if (!empty($productsInCategory)) {
+        $details['blocked_products'] = array_keys($productsInCategory);
+        return [
+            'success' => false,
+            'error' => "Category '$categoryId' still has " . count($productsInCategory) . " assigned product(s). Reassign or delete those products first.",
+            'details' => $details
+        ];
+    }
+
+    if (!createStockBackup('categories.json')) {
+        return [
+            'success' => false,
+            'error' => 'Failed to create backup for categories.json. Deletion aborted.',
+            'details' => $details
+        ];
+    }
+
+    foreach (I18N::getSupportedLanguages() as $lang) {
+        foreach (["i18n/ui_$lang.json", "i18n/categories_$lang.json"] as $i18nFile) {
+            $i18nPath = __DIR__ . '/../data/' . $i18nFile;
+            if (!file_exists($i18nPath)) {
+                continue;
+            }
+            if (!createStockBackup($i18nFile)) {
+                return [
+                    'success' => false,
+                    'error' => "Failed to create backup for $i18nFile. Deletion aborted.",
+                    'details' => $details
+                ];
+            }
+        }
+    }
+
+    unset($categories[$categoryId]);
+    $details['category_removed'] = true;
+
+    foreach (I18N::getSupportedLanguages() as $lang) {
+        foreach (["ui_$lang.json", "categories_$lang.json"] as $filename) {
+            $i18nPath = __DIR__ . '/../data/i18n/' . $filename;
+            if (!file_exists($i18nPath)) {
+                continue;
+            }
+
+            $i18nData = json_decode((string)file_get_contents($i18nPath), true);
+            if (!is_array($i18nData)) {
+                continue;
+            }
+
+            if (isset($i18nData['category'][$categoryId])) {
+                unset($i18nData['category'][$categoryId]);
+                $details['i18n_keys_removed'][] = $filename . ':category.' . $categoryId;
+
+                file_put_contents(
+                    $i18nPath,
+                    json_encode($i18nData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+                );
+            }
+        }
+    }
+
+    if (!saveJSON('categories.json', $categories)) {
+        return [
+            'success' => false,
+            'error' => 'Failed to save categories.json',
+            'details' => $details
+        ];
+    }
+
+    updateCatalogVersion();
+    logStockChange("CATEGORY DELETED: $categoryId | Translation groups removed: " . count($details['i18n_keys_removed']));
+
+    return [
+        'success' => true,
+        'error' => '',
+        'details' => $details
+    ];
+}
+
+/**
  * Permanently delete a branch and all its stock entries
  * 
  * This function:

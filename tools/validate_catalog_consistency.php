@@ -25,6 +25,7 @@ $errors = [];
 // Load all data
 echo "📁 Loading data files...\n";
 $products = loadJSON('products.json');
+$categories = loadJSON('categories.json');
 $accessories = loadJSON('accessories.json');
 $stock = loadJSON('stock.json');
 $branchStock = loadBranchStock();
@@ -32,6 +33,7 @@ $branches = getAllBranches();
 $universe = loadSkuUniverse();
 
 echo "   ✓ products.json: " . count($products) . " products\n";
+echo "   ✓ categories.json: " . count($categories) . " categories\n";
 echo "   ✓ accessories.json: " . count($accessories) . " accessories\n";
 echo "   ✓ stock.json: " . count($stock) . " SKUs\n";
 echo "   ✓ branches.json: " . count($branches) . " branches\n";
@@ -113,8 +115,35 @@ if (empty($fragranceViolations)) {
 }
 echo "\n";
 
-// Test 3: Verify accessories visibility/manageability
-echo "🔍 Test 3: Validating accessories are visible/manageable...\n";
+// Test 3: Verify product category references are valid
+echo "🔍 Test 3: Validating product category references...\n";
+$missingCategories = [];
+
+foreach ($products as $productId => $product) {
+    $categoryId = $product['category'] ?? '';
+    if ($categoryId === '' || isset($categories[$categoryId])) {
+        continue;
+    }
+    $missingCategories[] = "$productId -> $categoryId";
+}
+
+if (empty($missingCategories)) {
+    echo "   ✅ PASS: All product category references point to existing categories\n";
+} else {
+    echo "   ❌ FAIL: " . count($missingCategories) . " products reference missing categories:\n";
+    foreach (array_slice($missingCategories, 0, 10) as $reference) {
+        echo "      - $reference\n";
+    }
+    if (count($missingCategories) > 10) {
+        echo "      ... and " . (count($missingCategories) - 10) . " more\n";
+    }
+    $allPassed = false;
+    $errors[] = count($missingCategories) . " products reference missing categories";
+}
+echo "\n";
+
+// Test 4: Verify accessories visibility/manageability
+echo "🔍 Test 4: Validating accessories are visible/manageable...\n";
 $orphanAccessories = [];
 $missingFromProducts = [];
 
@@ -161,8 +190,8 @@ if (empty($orphanAccessories) && empty($missingFromProducts)) {
 }
 echo "\n";
 
-// Test 4: Report branches that exist in data but not in canonical list
-echo "🔍 Test 4: Validating branch consistency...\n";
+// Test 5: Report branches that exist in data but not in canonical list
+echo "🔍 Test 5: Validating branch consistency...\n";
 $extraBranches = [];
 
 // Check for branches in branch_stock.json that aren't in branches.json
@@ -186,8 +215,8 @@ if (empty($extraBranches)) {
 }
 echo "\n";
 
-// Test 5: Universe consistency check
-echo "🔍 Test 5: Checking SKU Universe consistency...\n";
+// Test 6: Universe consistency check
+echo "🔍 Test 6: Checking SKU Universe consistency...\n";
 $diagnostics = getSkuUniverseDiagnostics();
 
 if ($diagnostics['passed']) {
