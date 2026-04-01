@@ -31,7 +31,6 @@ $category = $categories[$categorySlug] ?? [];
 $productName = I18N::t('product.' . $productId . '.name', $product['name_key'] ?? $productId);
 $productDesc = I18N::t('product.' . $productId . '.desc', $product['desc_key'] ?? '');
 $categoryName = I18N::t('category.' . $categorySlug . '.name', ucfirst(str_replace('_', ' ', $categorySlug)));
-$productImage = $product['image'] ?? '';
 $productVariants = getNormalizedProductVariants($product);
 
 // Check if this is an accessory with multiple images
@@ -45,16 +44,19 @@ if ($categorySlug === 'accessories' && isset($accessoriesData[$productId])) {
     // This ensures consistency and proper volume-based pricing
 }
 
-$productImages = getProductImageList($product, $accessoryData);
-$primaryProductImage = asset_url('img/' . rawurlencode($productImages[0] ?? 'placeholder.jpg'));
-
-$errorPlaceholder = '/img/placeholder.svg';
-
 $allowedFrags = getProductFragranceOptions($product, $categorySlug, $accessoryData);
 $volumes = getProductVolumeOptions($product, $categorySlug, $accessoryData);
 $showVolumeSelector = count($volumes) > 1;
 $showFragranceSelector = productHasFragranceSelector($product, $categorySlug, $accessoryData);
 $fixedFragrance = !$showFragranceSelector && !empty($allowedFrags) ? $allowedFrags[0] : '';
+$productImages = getProductImageList($product, $accessoryData);
+$hasExplicitProductImages = !empty($productImages);
+$initialFragranceImage = !empty($allowedFrags[0] ?? '') ? getFragranceImage($allowedFrags[0]) : '/img/placeholder.svg';
+$primaryProductImage = $hasExplicitProductImages
+    ? asset_url('img/' . rawurlencode($productImages[0]))
+    : $initialFragranceImage;
+
+$errorPlaceholder = '/img/placeholder.svg';
 
 // Get default price
 if (!isset($defaultPrice)) {
@@ -134,9 +136,8 @@ include __DIR__ . '/includes/header.php';
                     $firstFragCode = $showFragranceSelector ? ($allowedFrags[0] ?? null) : ($fixedFragrance ?: null);
                     
                     // Determine the image to show - use fragrance image from /img/ folder
-                    $hasExplicitProductImage = !empty(normalizeImageFilenameList($product['images'] ?? [])) || !empty(trim((string)$productImage));
-                    $displayImage = $hasExplicitProductImage ? $primaryProductImage : '/img/placeholder.svg';
-                    if (!$hasExplicitProductImage && $firstFragCode) {
+                    $displayImage = $hasExplicitProductImages ? $primaryProductImage : '/img/placeholder.svg';
+                    if (!$hasExplicitProductImages && $firstFragCode) {
                         $displayImage = getFragranceImage($firstFragCode);
                     }
                     ?>
@@ -147,7 +148,7 @@ include __DIR__ . '/includes/header.php';
                              data-product-image
                              data-product-id="<?php echo htmlspecialchars($productId); ?>"
                              data-default-image="<?php echo htmlspecialchars($displayImage); ?>"
-                             data-allow-fragrance-image="<?php echo empty(normalizeImageFilenameList($product['images'] ?? [])) ? 'true' : 'false'; ?>"
+                             data-allow-fragrance-image="<?php echo $hasExplicitProductImages ? 'false' : 'true'; ?>"
                              onerror="this.src='/img/placeholder.svg'">
                     </div>
                     
@@ -267,14 +268,16 @@ include __DIR__ . '/includes/header.php';
             
             foreach ($recommendedProducts as $recId => $recProduct):
                 $recName = I18N::t('product.' . $recId . '.name', $recProduct['name_key'] ?? $recId);
-                $recImage = $recProduct['image'] ?? '';
                 $recCategory = $recProduct['category'] ?? '';
                 $recVariants = $recProduct['variants'] ?? [];
                 // Always use variants for pricing - first variant's price is the default
                 $recPrice = !empty($recVariants) ? ($recVariants[0]['priceCHF'] ?? 0) : 0;
                 
-                // Determine image path - all images are in /img/ directory
-                $recImgPath = '/img/' . rawurlencode($recImage);
+                $recProductImages = getProductImageList($recProduct, $accessoriesData[$recId] ?? null);
+                $recFragrances = getProductFragranceOptions($recProduct, $recCategory, $accessoriesData[$recId] ?? null);
+                $recImgPath = !empty($recProductImages)
+                    ? asset_url('img/' . rawurlencode($recProductImages[0]))
+                    : (!empty($recFragrances[0]) ? getFragranceImage($recFragrances[0]) : '/img/placeholder.svg');
                 $recPlaceholder = '/img/placeholder.svg';
                 
                 // All recommendations link to category page

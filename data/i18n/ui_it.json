@@ -292,6 +292,10 @@
         "smart": {
             "name": "Aroma Smart",
             "desc": "Aromasmart - la migliore soluzione per voi.\r\nIl dispositivo è facile da trasportare e installare: puoi posizionare la macchina per aromi su una superficie o fissarla al muro con la staffa inclusa.\r\nIl dispositivo funziona sia con la rete elettrica che con batterie AA, disponibili in qualsiasi negozio o supermercato.\r\nSe usi le batterie, ti serviranno circa 6 batterie per un mese di utilizzo."
+        },
+        "qa_full_cycle_product_20260401": {
+            "name": "QA Full Cycle Product 20260401 IT",
+            "desc": "QA product description IT"
         }
     },
     "account": {

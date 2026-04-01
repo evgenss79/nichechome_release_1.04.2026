@@ -28,6 +28,7 @@ $categories = loadJSON('categories.json');
 $products = loadJSON('products.json');
 $fragrances = loadJSON('fragrances.json');
 $stock = loadJSON('stock.json');
+$accessoriesData = loadJSON('accessories.json');
 
 if (!isset($categories[$slug])) {
     header('Location: catalog.php?lang=' . $currentLang);
@@ -274,7 +275,6 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
             <?php
             $productName = I18N::t('product.' . $productId . '.name', $product['name_key'] ?? $productId);
             $productDesc = I18N::t('product.' . $productId . '.desc', $product['desc_key'] ?? '');
-            $productImage = $product['image'] ?? '';
             $productVariants = getNormalizedProductVariants($product);
             $productVolumes = getProductVolumeOptions($product, $slug);
             $productFragrances = getProductFragranceOptions($product, $slug);
@@ -287,9 +287,9 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                 ? ($productFragrances[0] ?? null)
                 : ($fixedFragrance ?: null);
 
-            $hasExplicitProductImage = !empty(normalizeImageFilenameList($product['images'] ?? [])) || !empty(trim((string)($product['image'] ?? '')));
+            $hasExplicitProductImage = !empty($productImages);
             $displayImage = $hasExplicitProductImage
-                ? asset_url('img/' . rawurlencode($productImages[0] ?? 'placeholder.jpg'))
+                ? asset_url('img/' . rawurlencode($productImages[0]))
                 : '/img/placeholder.svg';
             if (!$hasExplicitProductImage && $firstFragCode) {
                 $displayImage = getFragranceImage($firstFragCode);
@@ -308,7 +308,7 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                              data-product-image
                              data-product-id="<?php echo htmlspecialchars($productId); ?>"
                              data-default-image="<?php echo htmlspecialchars($displayImage); ?>"
-                             data-allow-fragrance-image="<?php echo empty(normalizeImageFilenameList($product['images'] ?? [])) ? 'true' : 'false'; ?>"
+                             data-allow-fragrance-image="<?php echo $hasExplicitProductImage ? 'false' : 'true'; ?>"
                              onerror="this.src='/img/placeholder.svg'">
                     </div>
                     
@@ -572,7 +572,6 @@ if ($slug !== 'accessories') {
                 <?php foreach ($recommendedProducts as $recId => $recProduct): ?>
                     <?php
                     $recName = I18N::t('product.' . $recId . '.name', $recProduct['name_key'] ?? $recId);
-                    $recImage = $recProduct['image'] ?? '';
                     $recCategory = $recProduct['category'] ?? '';
                     $recVariants = $recProduct['variants'] ?? [];
                     $recPrice = !empty($recVariants) ? ($recVariants[0]['priceCHF'] ?? 0) : 0;
@@ -582,8 +581,11 @@ if ($slug !== 'accessories') {
                         $recPrice = $accessoriesData[$recId]['priceCHF'];
                     }
                     
-                    // Determine image path - all images are in /img/ directory
-                    $recImgPath = '/img/' . rawurlencode($recImage);
+                    $recProductImages = getProductImageList($recProduct, $accessoriesData[$recId] ?? null);
+                    $recFragrances = getProductFragranceOptions($recProduct, $recCategory, $accessoriesData[$recId] ?? null);
+                    $recImgPath = !empty($recProductImages)
+                        ? asset_url('img/' . rawurlencode($recProductImages[0]))
+                        : (!empty($recFragrances[0]) ? getFragranceImage($recFragrances[0]) : '/img/placeholder.svg');
                     $recPlaceholder = '/img/placeholder.svg';
                     
                     // All recommendations link to category page

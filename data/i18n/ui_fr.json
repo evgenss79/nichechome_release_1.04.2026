@@ -292,6 +292,10 @@
         "smart": {
             "name": "Aroma Smart",
             "desc": "Aromasmart - la meilleure solution pour vous.\r\nL’appareil est facile à transporter et à installer : vous pouvez poser la machine à parfum sur une surface ou la fixer au mur à l’aide du support fourni.\r\nL’appareil fonctionne soit sur secteur, soit avec des piles AA, disponibles dans tous les magasins ou supermarchés.\r\nSi vous utilisez des piles, vous aurez besoin d’environ 6 piles pour un mois d’utilisation.\r\nAromasmart est le choix idéal pour les petits espaces commerciaux."
+        },
+        "qa_full_cycle_product_20260401": {
+            "name": "QA Full Cycle Product 20260401 FR",
+            "desc": "QA product description FR"
         }
     },
     "account": {

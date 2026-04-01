@@ -274,6 +274,10 @@
         "smart": {
             "name": "Aroma Smart",
             "desc": "Aromasmart - die beste Lösung für Sie.\r\nDas Gerät ist leicht zu transportieren und zu installieren: Sie können die Aromamaschine auf eine Oberfläche stellen oder mit der mitgelieferten Halterung an der Wand befestigen.\r\nDas Gerät wird entweder über das Stromnetz oder mit AA-Batterien betrieben, die in jedem Geschäft oder Supermarkt erhältlich sind. Wenn Sie Batterien verwenden, benötigen Sie etwa 6 Batterien für einen Monat Nutzung.\r\nAromasmart ist die ideale Wahl für kleine Geschäftsräume."
+        },
+        "qa_full_cycle_product_20260401": {
+            "name": "QA Full Cycle Product 20260401 DE",
+            "desc": "QA product description DE"
         }
     },
     "account": {
