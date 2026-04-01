@@ -31,10 +31,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $productId = $_POST['product_id'] ?? '';
         
         if (isset($products[$productId])) {
+            $imageInput = (string)($_POST['image'] ?? ($products[$productId]['image'] ?? ''));
+            $imageError = null;
+            $image = normalizeImageFilename($imageInput, true, $imageError);
+            if (trim($imageInput) !== '' && $image === '') {
+                $error = $imageError ?? 'Product image must reference an existing file from img/.';
+            } else {
             // Update basic info
             $products[$productId]['active'] = isset($_POST['active']) ? true : false;
             $products[$productId]['category'] = $_POST['category'] ?? $products[$productId]['category'];
-            $products[$productId]['image'] = $_POST['image'] ?? $products[$productId]['image'];
+                if ($image === '') {
+                    unset($products[$productId]['image']);
+                    if (empty($products[$productId]['images'])) {
+                        unset($products[$productId]['images']);
+                    }
+                } else {
+                    $existingImages = normalizeImageFilenameList($products[$productId]['images'] ?? [], true);
+                    array_unshift($existingImages, $image);
+                    $products[$productId]['image'] = $image;
+                    $products[$productId]['images'] = normalizeImageFilenameList($existingImages);
+                }
             
             // Update variants with prices
             $variants = [];
@@ -59,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $success = 'Product updated successfully.';
             } else {
                 $error = 'Failed to update product.';
+            }
             }
         }
     }

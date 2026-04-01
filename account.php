@@ -933,7 +933,7 @@ include __DIR__ . '/includes/header.php';
                                         <a href="<?php echo $productUrl; ?>" 
                                            style="text-decoration: none; color: inherit;">
                                             <div class="catalog-card-image-wrapper favorites-card__image-wrapper">
-                                                <img src="/<?php echo htmlspecialchars($product['image_url']); ?>" 
+                                                <img src="<?php echo htmlspecialchars($product['image_url']); ?>" 
                                                      alt="<?php echo htmlspecialchars($product['display_name']); ?>"
                                                      class="catalog-card__image favorites-card__image"
                                                      onerror="this.src='/img/placeholder.svg'">

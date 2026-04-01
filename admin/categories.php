@@ -42,68 +42,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save_
         $allowedFragrances = $hasFragrance && isset($_POST['allowed_fragrances']) && is_array($_POST['allowed_fragrances'])
             ? array_values(array_filter($_POST['allowed_fragrances'], 'strlen'))
             : [];
-        $primaryImage = trim((string)($_POST['image'] ?? ''));
-        $categoryImages = normalizeImageFilenameList((string)($_POST['images'] ?? ''));
-        if ($primaryImage !== '') {
+        $primaryImageInput = (string)($_POST['image'] ?? '');
+        $primaryImageError = null;
+        $primaryImage = normalizeImageFilename($primaryImageInput, true, $primaryImageError);
+        $invalidCategoryImages = [];
+        $categoryImages = normalizeImageFilenameList((string)($_POST['images'] ?? ''), true, $invalidCategoryImages);
+        if (trim($primaryImageInput) !== '' && $primaryImage === '') {
+            $error = $primaryImageError ?? 'Category image must reference an existing file from img/.';
+        } elseif (!empty($invalidCategoryImages)) {
+            $error = 'Slider images must reference existing files from img/: ' . implode(', ', array_keys($invalidCategoryImages));
+        } elseif ($primaryImage !== '') {
             array_unshift($categoryImages, $primaryImage);
             $categoryImages = normalizeImageFilenameList($categoryImages);
         }
-        if ($primaryImage === '' && !empty($categoryImages)) {
+        if ($error === '' && $primaryImage === '' && !empty($categoryImages)) {
             $primaryImage = $categoryImages[0];
         }
 
-        $category = $existing;
-        $category['id'] = $categoryId;
-        $category['name_key'] = 'category.' . $categoryId . '.name';
-        $category['short_key'] = 'category.' . $categoryId . '.short';
-        $category['long_key'] = 'category.' . $categoryId . '.long';
-        $category['image'] = $primaryImage;
-        $category['images'] = $categoryImages;
-        $category['use_custom_image'] = isset($_POST['use_custom_image']) || !$isEdit;
-        $category['sort_order'] = (int)($_POST['sort_order'] ?? 999);
-        $category['active'] = isset($_POST['active']);
-        $category['show_in_catalog'] = isset($_POST['show_in_catalog']);
-        $category['show_in_navigation'] = isset($_POST['show_in_navigation']);
-        $category['show_in_footer'] = isset($_POST['show_in_footer']);
-        $category['has_fragrance'] = $hasFragrance;
-        $category['volumes'] = $volumes;
+        if ($error === '') {
+            $category = $existing;
+            $category['id'] = $categoryId;
+            $category['name_key'] = 'category.' . $categoryId . '.name';
+            $category['short_key'] = 'category.' . $categoryId . '.short';
+            $category['long_key'] = 'category.' . $categoryId . '.long';
+            $category['image'] = $primaryImage;
+            $category['images'] = $categoryImages;
+            $category['use_custom_image'] = isset($_POST['use_custom_image']) || !$isEdit;
+            $category['sort_order'] = (int)($_POST['sort_order'] ?? 999);
+            $category['active'] = isset($_POST['active']);
+            $category['show_in_catalog'] = isset($_POST['show_in_catalog']);
+            $category['show_in_navigation'] = isset($_POST['show_in_navigation']);
+            $category['show_in_footer'] = isset($_POST['show_in_footer']);
+            $category['has_fragrance'] = $hasFragrance;
+            $category['volumes'] = $volumes;
 
-        if (!empty($allowedFragrances)) {
-            $category['allowed_fragrances'] = $allowedFragrances;
-        } else {
-            unset($category['allowed_fragrances']);
-        }
+            if (!empty($allowedFragrances)) {
+                $category['allowed_fragrances'] = $allowedFragrances;
+            } else {
+                unset($category['allowed_fragrances']);
+            }
 
-        $redirect = trim((string)($_POST['redirect'] ?? ''));
-        if ($redirect !== '') {
-            $category['redirect'] = $redirect;
-        } else {
-            unset($category['redirect']);
-        }
+            $redirect = trim((string)($_POST['redirect'] ?? ''));
+            if ($redirect !== '') {
+                $category['redirect'] = $redirect;
+            } else {
+                unset($category['redirect']);
+            }
 
-        $translations = [];
-        foreach (I18N::getSupportedLanguages() as $lang) {
-            $translations[$lang] = [
-                'name' => $_POST['name_' . $lang] ?? '',
-                'short' => $_POST['short_' . $lang] ?? '',
-                'long' => $_POST['long_' . $lang] ?? ''
-            ];
-        }
+            $translations = [];
+            foreach (I18N::getSupportedLanguages() as $lang) {
+                $translations[$lang] = [
+                    'name' => $_POST['name_' . $lang] ?? '',
+                    'short' => $_POST['short_' . $lang] ?? '',
+                    'long' => $_POST['long_' . $lang] ?? ''
+                ];
+            }
 
-        $categories[$categoryId] = $category;
-        uasort($categories, function ($a, $b) {
-            return (int)($a['sort_order'] ?? 999) <=> (int)($b['sort_order'] ?? 999);
-        });
+            $categories[$categoryId] = $category;
+            uasort($categories, function ($a, $b) {
+                return (int)($a['sort_order'] ?? 999) <=> (int)($b['sort_order'] ?? 999);
+            });
 
-        if (!saveJSON('categories.json', $categories)) {
-            $error = 'Failed to save categories.json.';
-        } elseif (!saveEntityTranslations('category', $categoryId, $translations)) {
-            $error = 'Category saved, but translations could not be written.';
-        } else {
-            updateCatalogVersion();
-            $success = $isEdit ? 'Category updated successfully.' : 'Category created successfully.';
-            $categories = loadJSON('categories.json');
-            $editingId = $categoryId;
+            if (!saveJSON('categories.json', $categories)) {
+                $error = 'Failed to save categories.json.';
+            } elseif (!saveEntityTranslations('category', $categoryId, $translations)) {
+                $error = 'Category saved, but translations could not be written.';
+            } else {
+                updateCatalogVersion();
+                $success = $isEdit ? 'Category updated successfully.' : 'Category created successfully.';
+                $categories = loadJSON('categories.json');
+                $editingId = $categoryId;
+            }
         }
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_category') {
@@ -232,7 +241,7 @@ $translations = $editingId ? loadEntityTranslations('category', $editingId, ['na
                         </div>
                         <div class="form-group">
                             <label>Image filename (img/)</label>
-                            <input type="text" name="image" value="<?php echo htmlspecialchars($editingCategory['image']); ?>">
+                            <input type="text" name="image" value="<?php echo htmlspecialchars(normalizeImageFilename((string)$editingCategory['image'])); ?>">
                         </div>
                         <div class="form-group">
                             <label>Slider images (one filename per line or comma separated)</label>

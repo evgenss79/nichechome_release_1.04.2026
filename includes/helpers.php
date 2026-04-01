@@ -302,9 +302,59 @@ function productHasFragranceSelector(array $product, string $category = '', ?arr
 }
 
 /**
+ * Get the canonical image directory.
+ */
+function getCanonicalImageDirectory(): string {
+    static $directory = null;
+    if ($directory === null) {
+        $directory = realpath(__DIR__ . '/../img') ?: (__DIR__ . '/../img');
+    }
+
+    return $directory;
+}
+
+/**
+ * Normalize a stored/admin image reference to the canonical img/ filename format.
+ */
+function normalizeImageFilename(string $image, bool $requireExistingFile = false, ?string &$error = null): string {
+    $error = null;
+    $image = trim(rawurldecode($image));
+    if ($image === '') {
+        return '';
+    }
+
+    $image = preg_replace('/[?#].*$/', '', $image) ?? $image;
+    $image = str_replace('\\', '/', $image);
+
+    if (preg_match('#^(?:https?:)?//#i', $image)) {
+        $error = 'Only local image files from img/ are allowed.';
+        return '';
+    }
+
+    $filename = basename($image);
+    if ($filename === '' || $filename === '.' || $filename === '..') {
+        $error = 'Only image filenames from img/ are allowed.';
+        return '';
+    }
+
+    if (!preg_match('/\.(?:jpe?g|png|gif|svg|webp)$/i', $filename)) {
+        $error = 'Only image files from img/ are allowed.';
+        return '';
+    }
+
+    if ($requireExistingFile && !is_file(getCanonicalImageDirectory() . '/' . $filename)) {
+        $error = "Image file '$filename' was not found in img/.";
+        return '';
+    }
+
+    return $filename;
+}
+
+/**
  * Normalize image filename lists from JSON/admin input.
  */
-function normalizeImageFilenameList($images): array {
+function normalizeImageFilenameList($images, bool $requireExistingFiles = false, array &$invalidImages = []): array {
+    $invalidImages = [];
     if (is_string($images)) {
         $images = preg_split('/[\r\n,]+/', $images) ?: [];
     }
@@ -313,9 +363,38 @@ function normalizeImageFilenameList($images): array {
         return [];
     }
 
-    return array_values(array_unique(array_filter(array_map(function ($image) {
-        return trim((string)$image);
-    }, $images), 'strlen')));
+    $normalized = [];
+    foreach ($images as $image) {
+        $rawImage = trim((string)$image);
+        if ($rawImage === '') {
+            continue;
+        }
+
+        $error = null;
+        $canonicalImage = normalizeImageFilename($rawImage, $requireExistingFiles, $error);
+        if ($canonicalImage === '') {
+            if ($error !== null) {
+                $invalidImages[$rawImage] = $error;
+            }
+            continue;
+        }
+
+        $normalized[] = $canonicalImage;
+    }
+
+    return array_values(array_unique($normalized));
+}
+
+/**
+ * Build a canonical absolute /img/... URL.
+ */
+function getCanonicalImageUrl(string $image, string $fallback = 'placeholder.svg'): string {
+    $filename = normalizeImageFilename($image, true);
+    if ($filename === '') {
+        $filename = normalizeImageFilename($fallback, true) ?: 'placeholder.svg';
+    }
+
+    return '/img/' . rawurlencode($filename);
 }
 
 /**
@@ -331,7 +410,7 @@ function getProductImageList(array $product, ?array $accessoryData = null): arra
         $images = [$product['image']];
     }
 
-    $images = normalizeImageFilenameList($images);
+    $images = normalizeImageFilenameList($images, true);
     return $images;
 }
 
@@ -343,9 +422,9 @@ function getCategoryImageList(string $categorySlug, ?array $categoryData = null)
     $categoryData = $categoryData ?? ($categories[$categorySlug] ?? []);
 
     if (!empty($categoryData['use_custom_image'])) {
-        $customImages = normalizeImageFilenameList($categoryData['images'] ?? []);
+        $customImages = normalizeImageFilenameList($categoryData['images'] ?? [], true);
         if (empty($customImages) && !empty($categoryData['image'])) {
-            $customImages = normalizeImageFilenameList([$categoryData['image']]);
+            $customImages = normalizeImageFilenameList([$categoryData['image']], true);
         }
         if (!empty($customImages)) {
             return $customImages;
@@ -353,8 +432,9 @@ function getCategoryImageList(string $categorySlug, ?array $categoryData = null)
     }
 
     $fallbackPath = getCategoryImage($categorySlug);
-    if (strpos($fallbackPath, '/img/') === 0) {
-        return [rawurldecode(substr($fallbackPath, 5))];
+    $fallbackFilename = normalizeImageFilename($fallbackPath, true);
+    if ($fallbackFilename !== '') {
+        return [$fallbackFilename];
     }
 
     return ['placeholder.svg'];
@@ -817,6 +897,16 @@ function getProductPrice(string $productId, string $volume = 'standard', string 
         $variants = getNormalizedProductVariants($product);
         $normalizedVolume = normalizeVariantVolume($volume);
         $normalizedFragrance = normalizeVariantFragrance($fragrance);
+        if ($normalizedFragrance === '') {
+            if (!empty($product['fragrance'])) {
+                $normalizedFragrance = normalizeVariantFragrance((string)$product['fragrance']);
+            } else {
+                $productFragrances = getProductFragranceOptions($product, (string)($product['category'] ?? ''));
+                if (count($productFragrances) === 1) {
+                    $normalizedFragrance = normalizeVariantFragrance((string)$productFragrances[0]);
+                }
+            }
+        }
         $volumeFallback = null;
         $firstVariantPrice = null;
 
@@ -882,13 +972,11 @@ function getProductPrice(string $productId, string $volume = 'standard', string 
  * 
  * @param string $productId Product identifier
  * @param string $volume Volume variant (e.g., '125ml', 'standard')
- * @param string $fragrance Fragrance code (optional, for API compatibility - does not affect pricing)
+ * @param string $fragrance Fragrance code (optional)
  * @return float Price in CHF
  */
 function getVariantPrice(string $productId, string $volume, string $fragrance = 'none'): float {
-    // Fragrance doesn't affect pricing, only volume does
-    // The fragrance parameter exists for API compatibility in case callers want to specify it
-    return getProductPrice($productId, $volume);
+    return getProductPrice($productId, $volume, $fragrance);
 }
 
 /**
@@ -1077,6 +1165,16 @@ function generateOrderId(): string {
  * Get fragrance image path - uses /img/ folder
  */
 function getFragranceImage(string $fragranceCode): string {
+    static $fragrances = null;
+    if ($fragrances === null) {
+        $fragrances = loadJSON('fragrances.json');
+    }
+
+    $storedFilename = normalizeImageFilename((string)($fragrances[$fragranceCode]['image'] ?? ''), true);
+    if ($storedFilename !== '') {
+        return getCanonicalImageUrl($storedFilename);
+    }
+
     $imageMap = [
         'cherry_blossom' => 'Cherry-Blossom.jpg',
         'bellini' => 'Bellini.jpg',
@@ -1105,10 +1203,10 @@ function getFragranceImage(string $fragranceCode): string {
     ];
     
     $filename = $imageMap[$fragranceCode] ?? '';
-    if ($filename) {
-        return '/img/' . rawurlencode($filename);
+    if ($filename !== '') {
+        return getCanonicalImageUrl($filename);
     }
-    return '/img/placeholder.svg';
+    return getCanonicalImageUrl('placeholder.svg');
 }
 
 /**
@@ -1135,12 +1233,12 @@ function getCategoryImage(string $category): string {
     $categories = loadJSON('categories.json');
     $categoryData = $categories[$category] ?? [];
     if (!empty($categoryData['use_custom_image'])) {
-        $customImages = normalizeImageFilenameList($categoryData['images'] ?? []);
+        $customImages = normalizeImageFilenameList($categoryData['images'] ?? [], true);
         if (empty($customImages) && !empty($categoryData['image'])) {
-            $customImages = normalizeImageFilenameList([$categoryData['image']]);
+            $customImages = normalizeImageFilenameList([$categoryData['image']], true);
         }
         if (!empty($customImages)) {
-            return '/img/' . rawurlencode($customImages[0]);
+            return getCanonicalImageUrl($customImages[0]);
         }
     }
 
@@ -1157,13 +1255,14 @@ function getCategoryImage(string $category): string {
     ];
     
     $filename = $imageMap[$category] ?? '';
-    if ($filename) {
-        return '/img/' . rawurlencode($filename);
+    if ($filename !== '') {
+        return getCanonicalImageUrl($filename);
     }
-    if (!empty($categoryData['image'])) {
-        return '/img/' . rawurlencode($categoryData['image']);
+    $storedFilename = normalizeImageFilename((string)($categoryData['image'] ?? ''), true);
+    if ($storedFilename !== '') {
+        return getCanonicalImageUrl($storedFilename);
     }
-    return '/img/placeholder.svg';
+    return getCanonicalImageUrl('placeholder.svg');
 }
 
 /**
@@ -1546,13 +1645,22 @@ function loadFavoriteProducts(string $customerId): array {
             $isAccessory = ($product['category'] ?? '') === 'accessories';
             if ($isAccessory && isset($accessories[$productId]) && !empty($accessories[$productId]['images'])) {
                 // Accessory with multiple images - use first image
-                $product['image_url'] = 'img/' . $accessories[$productId]['images'][0];
+                $productImages = getProductImageList($product, $accessories[$productId]);
+                $product['image_url'] = !empty($productImages)
+                    ? getCanonicalImageUrl($productImages[0])
+                    : getCanonicalImageUrl('placeholder.svg');
             } elseif (!empty($product['image'])) {
                 // Regular product - use image from products.json
-                $product['image_url'] = 'img/' . $product['image'];
+                $productImages = getProductImageList($product);
+                $product['image_url'] = !empty($productImages)
+                    ? getCanonicalImageUrl($productImages[0])
+                    : getCanonicalImageUrl('placeholder.svg');
             } else {
-                // Fallback to placeholder
-                $product['image_url'] = 'img/placeholder.svg';
+                // Fallback to fragrance image when available, otherwise placeholder
+                $fragrances = getProductFragranceOptions($product, (string)($product['category'] ?? ''), $accessories[$productId] ?? null);
+                $product['image_url'] = !empty($fragrances[0])
+                    ? getFragranceImage($fragrances[0])
+                    : getCanonicalImageUrl('placeholder.svg');
             }
             
             $favoriteProducts[] = $product;
