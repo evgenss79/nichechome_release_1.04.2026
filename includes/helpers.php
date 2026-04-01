@@ -218,6 +218,20 @@ function getNormalizedProductVariants(array $product, ?array $accessoryData = nu
 }
 
 /**
+ * Collect unique fragrances declared directly on product variants.
+ */
+function getProductVariantFragrances(array $product, ?array $accessoryData = null): array {
+    $variantFragrances = [];
+    foreach (getNormalizedProductVariants($product, $accessoryData) as $variant) {
+        if ($variant['fragrance'] !== '') {
+            $variantFragrances[] = $variant['fragrance'];
+        }
+    }
+
+    return array_values(array_unique($variantFragrances));
+}
+
+/**
  * Build product price configuration for storefront selectors.
  */
 function buildProductPriceConfig(array $product, ?array $accessoryData = null): array {
@@ -260,28 +274,95 @@ function getProductVolumeOptions(array $product, string $category = '', ?array $
  * Get available product fragrance options.
  */
 function getProductFragranceOptions(array $product, string $category = '', ?array $accessoryData = null): array {
+    $productAllowedFragrances = [];
     if (isset($product['allowed_fragrances']) && is_array($product['allowed_fragrances'])) {
-        return array_values(array_filter($product['allowed_fragrances'], 'strlen'));
+        $productAllowedFragrances = array_values(array_unique(array_filter(array_map('normalizeVariantFragrance', $product['allowed_fragrances']), 'strlen')));
     }
-    if (!empty($product['fragrance'])) {
-        return [trim((string)$product['fragrance'])];
-    }
+    $accessoryAllowedFragrances = [];
     if ($accessoryData && isset($accessoryData['allowed_fragrances']) && is_array($accessoryData['allowed_fragrances'])) {
-        return array_values(array_filter($accessoryData['allowed_fragrances'], 'strlen'));
+        $accessoryAllowedFragrances = array_values(array_unique(array_filter(array_map('normalizeVariantFragrance', $accessoryData['allowed_fragrances']), 'strlen')));
+    }
+    $variantFragrances = getProductVariantFragrances($product, $accessoryData);
+    $storedFragrance = normalizeVariantFragrance((string)($product['fragrance'] ?? ''));
+
+    if (productUsesFixedFragrance($product, $category, $accessoryData)) {
+        return $storedFragrance !== '' ? [$storedFragrance] : [];
     }
 
-    $variantFragrances = [];
-    foreach (getNormalizedProductVariants($product, $accessoryData) as $variant) {
-        if ($variant['fragrance'] !== '') {
-            $variantFragrances[] = $variant['fragrance'];
-        }
+    $options = [];
+    if (!empty($productAllowedFragrances)) {
+        $options = $productAllowedFragrances;
+    } elseif (!empty($accessoryAllowedFragrances)) {
+        $options = $accessoryAllowedFragrances;
+    } elseif (!empty($variantFragrances)) {
+        $options = $variantFragrances;
+    } else {
+        $options = array_values(array_unique(array_filter(array_map('normalizeVariantFragrance', allowedFragrances($category)), 'strlen')));
     }
-    $variantFragrances = array_values(array_unique($variantFragrances));
+
+    if (empty($options) && $storedFragrance !== '') {
+        $options[] = $storedFragrance;
+    } elseif ($storedFragrance !== '' && !in_array($storedFragrance, $options, true)) {
+        array_unshift($options, $storedFragrance);
+    }
+
+    return array_values(array_unique(array_filter($options, 'strlen')));
+}
+
+/**
+ * Determine whether the product-level fragrance should be treated as fixed.
+ */
+function productUsesFixedFragrance(array $product, string $category = '', ?array $accessoryData = null): bool {
+    $storedFragrance = normalizeVariantFragrance((string)($product['fragrance'] ?? ''));
+    if ($storedFragrance === '') {
+        return false;
+    }
+
+    if (array_key_exists('has_fragrance_selector', $product)) {
+        return empty($product['has_fragrance_selector']);
+    }
+    if ($accessoryData && array_key_exists('has_fragrance_selector', $accessoryData)) {
+        return empty($accessoryData['has_fragrance_selector']);
+    }
+    if ($category === 'limited_edition') {
+        return true;
+    }
+
+    $allowedFragrances = [];
+    if (isset($product['allowed_fragrances']) && is_array($product['allowed_fragrances'])) {
+        $allowedFragrances = array_values(array_unique(array_filter(array_map('normalizeVariantFragrance', $product['allowed_fragrances']), 'strlen')));
+    } elseif ($accessoryData && isset($accessoryData['allowed_fragrances']) && is_array($accessoryData['allowed_fragrances'])) {
+        $allowedFragrances = array_values(array_unique(array_filter(array_map('normalizeVariantFragrance', $accessoryData['allowed_fragrances']), 'strlen')));
+    }
+
+    if (!empty($allowedFragrances)) {
+        return count($allowedFragrances) === 1 && $allowedFragrances[0] === $storedFragrance;
+    }
+
+    $variantFragrances = getProductVariantFragrances($product, $accessoryData);
     if (!empty($variantFragrances)) {
-        return $variantFragrances;
+        return count($variantFragrances) === 1 && $variantFragrances[0] === $storedFragrance;
     }
 
-    return allowedFragrances($category);
+    $categoryFragrances = array_values(array_unique(array_filter(array_map('normalizeVariantFragrance', allowedFragrances($category)), 'strlen')));
+    if (!empty($categoryFragrances)) {
+        return count($categoryFragrances) === 1 && $categoryFragrances[0] === $storedFragrance;
+    }
+
+    return true;
+}
+
+/**
+ * Resolve the default fragrance to preselect/render for a product.
+ */
+function getProductDefaultFragrance(array $product, string $category = '', ?array $accessoryData = null): string {
+    $fragrances = getProductFragranceOptions($product, $category, $accessoryData);
+    $storedFragrance = normalizeVariantFragrance((string)($product['fragrance'] ?? ''));
+    if ($storedFragrance !== '' && in_array($storedFragrance, $fragrances, true)) {
+        return $storedFragrance;
+    }
+
+    return $fragrances[0] ?? '';
 }
 
 /**
@@ -294,7 +375,7 @@ function productHasFragranceSelector(array $product, string $category = '', ?arr
     if ($accessoryData && array_key_exists('has_fragrance_selector', $accessoryData)) {
         return !empty($accessoryData['has_fragrance_selector']);
     }
-    if (!empty($product['fragrance'])) {
+    if (productUsesFixedFragrance($product, $category, $accessoryData)) {
         return false;
     }
 
@@ -407,17 +488,41 @@ function getCanonicalImageUrl(string $image, string $fallback = 'placeholder.svg
  * Build product image list.
  */
 function getProductImageList(array $product, ?array $accessoryData = null): array {
-    $images = [];
-    if ($accessoryData && !empty($accessoryData['images']) && is_array($accessoryData['images'])) {
-        $images = $accessoryData['images'];
-    } elseif (!empty($product['images']) && is_array($product['images'])) {
-        $images = $product['images'];
-    } elseif (!empty($product['image'])) {
-        $images = [$product['image']];
+    $imageCandidates = [];
+    if ($accessoryData) {
+        $imageCandidates[] = $accessoryData['images'] ?? null;
+        $imageCandidates[] = $accessoryData['image'] ?? null;
+    }
+    $imageCandidates[] = $product['images'] ?? null;
+    $imageCandidates[] = $product['image'] ?? null;
+
+    foreach ($imageCandidates as $candidate) {
+        $images = normalizeImageFilenameList($candidate ?? [], true);
+        if (!empty($images)) {
+            return $images;
+        }
     }
 
-    $images = normalizeImageFilenameList($images, true);
-    return $images;
+    return [];
+}
+
+/**
+ * Get legacy category fallback image filename.
+ */
+function getLegacyCategoryImageFilename(string $category): string {
+    $imageMap = [
+        'aroma_diffusers' => 'Aroma diffusers_category.jpg',
+        'scented_candles' => 'Candels category.jpg',
+        'home_perfume' => 'home pefume.jpg',
+        'car_perfume' => 'AutoParf.jpg',
+        'textile_perfume' => 'Textile-hero.jpg',
+        'limited_edition' => '3 velas.jpg',
+        'gift_sets' => 'ETSY-foto.jpg',
+        'accessories' => 'ETSY-foto.jpg',
+        'aroma_marketing' => 'ETSY-foto.jpg'
+    ];
+
+    return normalizeImageFilename((string)($imageMap[$category] ?? ''), true);
 }
 
 /**
@@ -427,20 +532,29 @@ function getCategoryImageList(string $categorySlug, ?array $categoryData = null)
     $categories = $categoryData === null ? loadJSON('categories.json') : [];
     $categoryData = $categoryData ?? ($categories[$categorySlug] ?? []);
 
+    $customImages = normalizeImageFilenameList($categoryData['images'] ?? [], true);
+    $storedPrimary = normalizeImageFilename((string)($categoryData['image'] ?? ''), true);
+
     if (!empty($categoryData['use_custom_image'])) {
-        $customImages = normalizeImageFilenameList($categoryData['images'] ?? [], true);
-        if (empty($customImages) && !empty($categoryData['image'])) {
-            $customImages = normalizeImageFilenameList([$categoryData['image']], true);
+        if ($storedPrimary !== '' && !in_array($storedPrimary, $customImages, true)) {
+            array_unshift($customImages, $storedPrimary);
         }
         if (!empty($customImages)) {
-            return $customImages;
+            return array_values(array_unique($customImages));
         }
     }
 
-    $fallbackPath = getCategoryImage($categorySlug);
-    $fallbackFilename = normalizeImageFilename($fallbackPath, true);
-    if ($fallbackFilename !== '') {
-        return [$fallbackFilename];
+    if ($storedPrimary !== '') {
+        return [$storedPrimary];
+    }
+
+    if (!empty($customImages)) {
+        return [$customImages[0]];
+    }
+
+    $legacyFallback = getLegacyCategoryImageFilename($categorySlug);
+    if ($legacyFallback !== '') {
+        return [$legacyFallback];
     }
 
     return ['placeholder.svg'];
@@ -1238,37 +1352,8 @@ function getProductImagePath(string $productId): string {
 function getCategoryImage(string $category): string {
     $categories = loadJSON('categories.json');
     $categoryData = $categories[$category] ?? [];
-    if (!empty($categoryData['use_custom_image'])) {
-        $customImages = normalizeImageFilenameList($categoryData['images'] ?? [], true);
-        if (empty($customImages) && !empty($categoryData['image'])) {
-            $customImages = normalizeImageFilenameList([$categoryData['image']], true);
-        }
-        if (!empty($customImages)) {
-            return getCanonicalImageUrl($customImages[0]);
-        }
-    }
-
-    $imageMap = [
-        'aroma_diffusers' => 'Aroma diffusers_category.jpg',
-        'scented_candles' => 'Candels category.jpg',
-        'home_perfume' => 'home pefume.jpg',
-        'car_perfume' => 'AutoParf.jpg',
-        'textile_perfume' => 'Textile-hero.jpg',
-        'limited_edition' => '3 velas.jpg',
-        'gift_sets' => 'ETSY-foto.jpg',
-        'accessories' => 'ETSY-foto.jpg',
-        'aroma_marketing' => 'ETSY-foto.jpg'
-    ];
-    
-    $filename = $imageMap[$category] ?? '';
-    if ($filename !== '') {
-        return getCanonicalImageUrl($filename);
-    }
-    $storedFilename = normalizeImageFilename((string)($categoryData['image'] ?? ''), true);
-    if ($storedFilename !== '') {
-        return getCanonicalImageUrl($storedFilename);
-    }
-    return getCanonicalImageUrl('placeholder.svg');
+    $images = getCategoryImageList($category, $categoryData);
+    return getCanonicalImageUrl($images[0] ?? 'placeholder.svg');
 }
 
 /**

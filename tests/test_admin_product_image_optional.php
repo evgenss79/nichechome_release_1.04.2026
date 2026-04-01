@@ -41,8 +41,9 @@ foreach ($filesToRestore as $file) {
     $backups[$file] = file_exists($file) ? file_get_contents($file) : null;
 }
 
-$categoryId = 'admin_test_optional_image_category';
-$productId = 'admin_test_optional_image_product';
+$suffix = substr(md5(uniqid('optional_image_', true)), 0, 8);
+$categoryId = 'admin_test_optional_image_category_' . $suffix;
+$productId = 'admin_test_optional_image_product_' . $suffix;
 $oldSession = $_SESSION ?? [];
 $oldPost = $_POST;
 $oldGet = $_GET;
