@@ -47,7 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $originalId = trim($_POST['original_id'] ?? '');
     $isEdit = $originalId !== '' && isset($products[$originalId]);
 
-    if (!preg_match('/^[a-z0-9_]+$/', $postedId)) {
+    if ($postedId === '') {
+        $error = 'Product ID is required.';
+    } elseif (!preg_match('/^[a-z0-9_]+$/', $postedId)) {
         $error = 'Product ID must contain only lowercase letters, numbers, and underscores.';
     } elseif (!$isEdit && isset($products[$postedId])) {
         $error = 'Product ID already exists.';

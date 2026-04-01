@@ -767,7 +767,7 @@ function getStockQuantity(string $sku): int {
 /**
  * Get product price from products.json variants
  */
-function getProductPrice(string $productId, string $volume = 'standard', string $fragrance = 'none'): float {
+function getProductPrice(string $productId, string $volume = 'standard', string $fragrance = ''): float {
     // Try products.json first
     $products = loadJSON('products.json');
     if (isset($products[$productId])) {
@@ -1092,7 +1092,7 @@ function getProductImagePath(string $productId): string {
 function getCategoryImage(string $category): string {
     $categories = loadJSON('categories.json');
     $categoryData = $categories[$category] ?? [];
-    if (!empty($categoryData['image']) && (!isset($categoryData['id']) || !isset($categoryData['use_custom_image']) || !empty($categoryData['use_custom_image']) || !isset($categoryData['name_key']) || !isset($categoryData['short_key']))) {
+    if (!empty($categoryData['image']) && !empty($categoryData['use_custom_image'])) {
         return '/img/' . rawurlencode($categoryData['image']);
     }
 

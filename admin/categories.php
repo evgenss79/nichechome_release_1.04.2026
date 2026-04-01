@@ -21,7 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save_
     $categoryId = trim($_POST['category_id'] ?? '');
     $isEdit = $originalId !== '' && isset($categories[$originalId]);
 
-    if (!preg_match('/^[a-z0-9_]+$/', $categoryId)) {
+    if ($categoryId === '') {
+        $error = 'Category ID is required.';
+    } elseif (!preg_match('/^[a-z0-9_]+$/', $categoryId)) {
         $error = 'Category ID must contain only lowercase letters, numbers, and underscores.';
     } elseif (!$isEdit && isset($categories[$categoryId])) {
         $error = 'Category ID already exists.';
@@ -102,7 +104,9 @@ if ($editingId && !isset($categories[$editingId])) {
 $defaultCategory = [
     'id' => '',
     'image' => '',
-    'sort_order' => count($categories) + 1,
+    'sort_order' => !empty($categories) ? (max(array_map(function ($category) {
+        return (int)($category['sort_order'] ?? 0);
+    }, $categories)) + 1) : 1,
     'active' => true,
     'show_in_catalog' => true,
     'show_in_navigation' => true,
