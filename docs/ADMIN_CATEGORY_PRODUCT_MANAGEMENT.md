@@ -44,7 +44,7 @@ Additional category flags:
 - `use_custom_image`
 - `images`
 
-`use_custom_image=true` activates the category image(s) stored in `categories.json`. Legacy categories keep the previous storefront image mapping until an admin explicitly switches them to a custom image. When `images[]` is present, `image` remains the primary/first hero image and the full list is rendered as the category hero slider.
+`use_custom_image=true` activates the category image(s) stored in `categories.json`. For backward compatibility, legacy categories now always prefer a valid stored `image` filename from `categories.json` first; the old storefront mapping is used only when the stored legacy value no longer resolves in `img/`. When `images[]` is present, `image` remains the primary/first hero image and the full list is rendered as the category hero slider.
 
 Canonical image rule:
 
@@ -114,6 +114,12 @@ Canonical image rule:
 3. category defaults in `categories.json`
 4. legacy helper fallbacks
 
+Legacy fragrance compatibility rule:
+
+- if `has_fragrance_selector` is explicitly stored, that explicit value still wins
+- if a legacy product stores only `fragrance` but the category/product rules still expose multiple fragrances, the stored `fragrance` is treated as the default preselected fragrance rather than as a forced fixed-fragrance lock
+- fixed-fragrance products still stay fixed when they explicitly store `has_fragrance_selector=false` or belong to canonical fixed-fragrance flows such as `limited_edition`
+
 Rendering invariants:
 
 - multi-volume products show a volume selector
@@ -121,6 +127,7 @@ Rendering invariants:
 - fixed-fragrance products render hidden fragrance state
 - dynamic prices are keyed by product ID, not category slug, so multiple products can safely coexist inside the same category
 - product detail heroes render `images[]` as the canonical gallery when present
+- product detail single-image heroes without explicit galleries stay selector-aware and now follow canonical fragrance-image swaps from `/img/...`
 - category heroes render category `images[]` as the canonical slider when present
 - category/product cards default to the primary product image when an explicit product gallery exists
 - fragrance admin previews and storefront fragrance fallbacks render from absolute `/img/...` paths only
@@ -175,6 +182,8 @@ php -l includes/footer.php
 php -l admin/categories.php
 
 php tests/test_admin_catalog_management.php
+php tests/test_admin_product_image_optional.php
+php tests/test_legacy_catalog_compatibility.php
 php tests/test_category_deletion.php
 php tests/test_cart_sync_variant_price.php
 php tests/test_payment_stock_paths.php
@@ -207,6 +216,18 @@ php tools/verify_storefront_vs_cart_prices.php
 - cart/checkout non-zero price propagation through sync
 - SKU generation
 - stock initialization in main and branch stock
+
+`tests/test_admin_product_image_optional.php` verifies:
+
+- product create/edit does not require a product image
+- no-image products save successfully
+- no-image products fall back to fragrance imagery on product/category pages
+
+`tests/test_legacy_catalog_compatibility.php` verifies:
+
+- legacy non-custom category records still render their stored canonical image
+- legacy products with only a stored default fragrance still render selectors when category rules require them
+- selector-driven legacy/new fragrance fallbacks continue to resolve from `/img/...`
 
 `tests/test_category_deletion.php` verifies:
 

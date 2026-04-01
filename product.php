@@ -113,12 +113,16 @@ include __DIR__ . '/includes/header.php';
             </div>
         <?php else: ?>
             <!-- Single image display -->
-            <div class="category-hero__image" data-category="<?php echo htmlspecialchars($categorySlug); ?>">
-                <img src="<?php echo htmlspecialchars($primaryProductImage); ?>" 
-                     alt="<?php echo htmlspecialchars($productName); ?>" 
-                     class="category-hero__image-el"
-                      onerror="this.src='<?php echo $errorPlaceholder; ?>'">
-            </div>
+                <div class="category-hero__image" data-category="<?php echo htmlspecialchars($categorySlug); ?>">
+                    <img src="<?php echo htmlspecialchars($primaryProductImage); ?>" 
+                         alt="<?php echo htmlspecialchars($productName); ?>" 
+                          class="category-hero__image-el"
+                         data-product-image
+                         data-product-id="<?php echo htmlspecialchars($productId); ?>"
+                         data-default-image="<?php echo htmlspecialchars($primaryProductImage); ?>"
+                         data-allow-fragrance-image="<?php echo $hasExplicitProductImages ? 'false' : 'true'; ?>"
+                          onerror="this.src='<?php echo $errorPlaceholder; ?>'">
+                </div>
         <?php endif; ?>
     </div>
 </section>

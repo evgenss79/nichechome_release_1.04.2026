@@ -29,10 +29,13 @@ This document records the minimal architecture-consistent fixes for:
   - added canonical single-image normalization and `/img/...` URL generation helpers
   - added `getCategoryImageList()`
   - updated `getProductImageList()`, `getCategoryImage()`, and `getFragranceImage()` to normalize legacy local paths to canonical `img` filenames and render only `/img/...` URLs
+  - added legacy compatibility helpers so pre-existing products can treat stored `fragrance` as a default selector value when no explicit fixed-fragrance flag exists
+  - changed legacy category resolution so a valid stored `categories.json:image` wins even when `use_custom_image=false`, with the old hard-coded map kept only as the final fallback
 - `product.php`
   - product hero gallery now uses absolute `/img/...` paths for every gallery image
   - product detail card now defaults to the admin-managed primary product image when an explicit product gallery exists
   - no-image fragrance products now fall back directly to fragrance images on the product page and recommended product cards
+  - selector-driven fragrance image swaps now update both the product hero image and the product detail card image for no-image products
 - `category.php`
   - category product cards now default to the admin-managed primary product image when an explicit product gallery exists
   - no-image fragrance products now fall back directly to fragrance images on category cards and recommendations
@@ -99,6 +102,7 @@ This document records the minimal architecture-consistent fixes for:
 - category creation and catalog visibility remain intact
 - product creation and selector rendering remain intact
 - multilingual category/product content remains intact
+- pre-existing categories/products now keep their stored canonical image/default-fragrance behavior
 - SKU initialization remains intact
 - branch-stock aggregate alignment remains intact
 - cart and checkout never show `0.00` for valid sellable variants
@@ -115,6 +119,8 @@ php -l webhook_payrexx.php
 php -l payment_cancel.php
 
 php tests/test_admin_catalog_management.php
+php tests/test_admin_product_image_optional.php
+php tests/test_legacy_catalog_compatibility.php
 php tests/test_cart_sync_variant_price.php
 php tests/test_payment_stock_paths.php
 php tests/test_textile_perfume_pricing.php
@@ -135,14 +141,18 @@ Local verification used the built-in PHP server and the existing demo admin acco
 
 - Admin created a category with `Dubai.jpg` + `Palermo.jpg`; storefront category hero rendered a slider and advanced from `/img/Dubai.jpg` to `/img/Palermo.jpg`.
 - Admin created a product with `Etna.jpg` + `Bellini.jpg`; storefront product hero rendered `/img/Etna.jpg` and the product/category cards kept `/img/Etna.jpg` as the admin-managed image.
+- Pre-existing `aroma_diffusers` catalog/category pages rendered `/img/Mikado-category.jpg` from the stored category record instead of falling back to a broken/non-canonical path.
+- Pre-existing `diffuser_classic` product page rendered `/img/Mikado-category.jpg` and kept a working fragrance selector.
+- Admin-created smoke product `smoke_selector_product_20260401` saved without any product image upload, rendered `/img/Bellini.jpg`, and switched to `/img/Eden.jpg` when the fragrance selector changed.
 - Product page price changed from `CHF 17.50` to `CHF 22.50` when switching from `100ml` to `200ml`.
 - Cart showed `CHF 17.50` for the selected SKU and checkout summary showed `CHF 17.50` subtotal / total for pickup.
 - Cash pickup order completion decremented `BRO-100-BEL` from `5` to `4` in both `data/stock.json` aggregate and `data/branch_stock.json` for `branch_1`.
 
 ## Compatibility Notes
 
-- Legacy categories without `images[]` continue to use the existing mapped single hero image until an admin explicitly enables `use_custom_image`.
+- Legacy categories without `images[]` now prefer their stored canonical `image` value first; the old mapped single hero image remains only as a fallback for unresolved legacy data.
 - Legacy products without explicit gallery lists still keep the previous fragrance-image behavior.
+- Legacy products that stored only `fragrance` now keep that value as the default selected fragrance while still rendering selectors when canonical category/product rules provide multiple fragrances.
 - Legacy local image inputs are normalized to filename-only `img` storage when the corresponding file exists in `img/`.
 - Unsupported or missing image references are rejected on save instead of being silently persisted.
 - The stock-warning output from `tools/validate_catalog_consistency.php` for `STI-5GU-CHE` / `STI-10G-CHE` remains a pre-existing warning and was not changed by this fix set.
