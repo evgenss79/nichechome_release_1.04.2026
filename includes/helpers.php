@@ -291,6 +291,7 @@ function saveJSON(string $filename, array $data): bool {
 
 /**
  * Build a compatibility-only branch stock snapshot derived from stock.json.
+ * Passing null causes the latest stock/branch data to be loaded from disk.
  */
 function buildBranchStockCompatibilitySnapshot(?array $stock = null, ?array $branches = null): array {
     $stock = $stock ?? loadJSON('stock.json');
@@ -331,7 +332,6 @@ function updateStock(string $sku, int $quantity): bool {
     $stock = loadJSON('stock.json');
     if (isset($stock[$sku])) {
         $stock[$sku]['quantity'] = $quantity;
-        $stock[$sku]['total_qty'] = $quantity;
         if (!saveJSON('stock.json', $stock)) {
             return false;
         }
@@ -377,7 +377,6 @@ function decreaseStock(string $sku, int $amount = 1): bool {
     // Decrease stock
     $stock[$sku]['quantity'] -= $amount;
     $newQty = $stock[$sku]['quantity'];
-    $stock[$sku]['total_qty'] = $newQty;
     error_log("decreaseStock: AFTER calculation - SKU '$sku' new quantity: $newQty");
     
     // Save and verify
@@ -1287,6 +1286,7 @@ function loadBranchStock(): array {
 
 /**
  * Save compatibility branch stock mirror derived from stock.json.
+ * The $data argument is ignored and kept only for backward compatibility with legacy callers.
  */
 function saveBranchStock(array $data = []): bool {
     return syncBranchStockCompatibilityFile();
@@ -2925,9 +2925,6 @@ function updateConsolidatedStock(string $sku, int $quantity): array {
     if (!createStockBackup('stock.json')) {
         return ['success' => false, 'error' => 'Failed to create stock backup', 'oldTotal' => 0, 'newTotal' => 0];
     }
-    if (!createStockBackup('branch_stock.json')) {
-        return ['success' => false, 'error' => 'Failed to create branch_stock backup', 'oldTotal' => 0, 'newTotal' => 0];
-    }
 
     $stock = loadJSON('stock.json');
     if (!isset($stock[$sku])) {
@@ -2936,7 +2933,6 @@ function updateConsolidatedStock(string $sku, int $quantity): array {
 
     $oldTotal = (int)($stock[$sku]['quantity'] ?? 0);
     $stock[$sku]['quantity'] = $validation['value'];
-    $stock[$sku]['total_qty'] = $validation['value'];
 
     if (!saveJSON('stock.json', $stock)) {
         return ['success' => false, 'error' => 'Failed to save stock.json', 'oldTotal' => $oldTotal, 'newTotal' => $validation['value']];

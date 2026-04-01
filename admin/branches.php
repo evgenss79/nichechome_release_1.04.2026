@@ -181,6 +181,12 @@ $editingBranch = $editingBranchId && isset($branches[$editingBranchId]) ? $branc
         .branch-status { font-weight: 600; }
         .branch-status--active { color: var(--color-success); }
         .branch-status--inactive { color: var(--color-error); }
+        .read-only-quantity {
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -316,7 +322,7 @@ $editingBranch = $editingBranchId && isset($branches[$editingBranchId]) ? $branc
                                 <th>Fragrance</th>
                                 <th>SKU</th>
                                 <th>Quantity</th>
-                                 <th>Source</th>
+                                <th>Source</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -328,7 +334,7 @@ $editingBranch = $editingBranchId && isset($branches[$editingBranchId]) ? $branc
                                     <td><?php echo htmlspecialchars($item['fragranceName']); ?></td>
                                     <td><code><?php echo htmlspecialchars($item['sku']); ?></code></td>
                                      <td>
-                                         <span style="display: inline-block; min-width: 70px; text-align: center; font-weight: 600;">
+                                         <span class="read-only-quantity">
                                              <?php echo (int)$item['quantity']; ?>
                                          </span>
                                      </td>

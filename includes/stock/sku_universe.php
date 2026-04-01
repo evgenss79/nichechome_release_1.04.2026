@@ -500,6 +500,10 @@ function initializeMissingSkuKeys(bool $dryRun = true): array {
             continue;
         }
 
+        if (!isset($addedToBranches[$sku])) {
+            $addedToBranches[$sku] = [];
+        }
+
         foreach ($branches as $branchId => $branchName) {
             $addedToBranches[$sku][] = $branchId;
         }
