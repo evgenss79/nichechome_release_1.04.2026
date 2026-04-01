@@ -900,7 +900,12 @@ function getCatalogVersion(): int {
  */
 function updateCatalogVersion(): bool {
     $versionFile = __DIR__ . '/../data/catalog_version.json';
-    $version = time();
+    $currentVersion = 0;
+    if (file_exists($versionFile)) {
+        $currentData = json_decode((string)file_get_contents($versionFile), true);
+        $currentVersion = (int)($currentData['version'] ?? 0);
+    }
+    $version = max(time(), $currentVersion + 1);
     $data = [
         'version' => $version,
         'updated_at' => date('Y-m-d H:i:s')
