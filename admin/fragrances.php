@@ -12,16 +12,25 @@ if (!isAdminLoggedIn()) {
 
 $fragrances = loadJSON('fragrances.json');
 $success = '';
+$error = '';
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fragrance_code'])) {
     $code = $_POST['fragrance_code'];
     
     if (isset($fragrances[$code])) {
-        $fragrances[$code]['image'] = $_POST['image'] ?? $fragrances[$code]['image'];
-        
-        if (saveJSON('fragrances.json', $fragrances)) {
-            $success = 'Fragrance updated successfully.';
+        $imageInput = (string)($_POST['image'] ?? $fragrances[$code]['image']);
+        $imageError = null;
+        $image = normalizeImageFilename($imageInput, true, $imageError);
+        if (trim($imageInput) !== '' && $image === '') {
+            $error = $imageError ?? 'Fragrance image must reference an existing file from img/.';
+        } else {
+            $fragrances[$code]['image'] = $image;
+            if (saveJSON('fragrances.json', $fragrances)) {
+                $success = 'Fragrance updated successfully.';
+            } else {
+                $error = 'Failed to save fragrances.json.';
+            }
         }
     }
 }
@@ -72,6 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fragrance_code'])) {
             <?php if ($success): ?>
                 <div class="alert alert--success"><?php echo htmlspecialchars($success); ?></div>
             <?php endif; ?>
+            <?php if ($error): ?>
+                <div class="alert alert--error"><?php echo htmlspecialchars($error); ?></div>
+            <?php endif; ?>
             
             <div class="admin-card">
                 <table class="admin-table">
@@ -94,10 +106,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fragrance_code'])) {
                                 <td><?php echo htmlspecialchars($name); ?></td>
                                 <td>
                                     <?php if (!empty($fragrance['image'])): ?>
-                                        <img src="../assets/img/fragrances/<?php echo htmlspecialchars($fragrance['image']); ?>" 
+                                        <img src="<?php echo htmlspecialchars(getFragranceImage($code)); ?>" 
                                              alt="<?php echo htmlspecialchars($name); ?>" 
                                              style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;"
-                                             onerror="this.style.display='none'">
+                                             onerror="this.src='<?php echo htmlspecialchars(getCanonicalImageUrl('placeholder.svg')); ?>'">
                                     <?php endif; ?>
                                 </td>
                                 <td><?php echo htmlspecialchars($topNotes); ?></td>

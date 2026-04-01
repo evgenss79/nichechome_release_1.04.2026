@@ -58,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($category === '' || !isset($categories[$category])) {
             $error = 'Please choose a valid category.';
         } else {
-            $imagesRaw = preg_split('/[\r\n]+/', (string)($_POST['images'] ?? '')) ?: [];
-            $images = array_values(array_unique(array_filter(array_map('trim', $imagesRaw), 'strlen')));
+            $invalidImages = [];
+            $images = normalizeImageFilenameList((string)($_POST['images'] ?? ''), true, $invalidImages);
 
             $variants = [];
             foreach (($_POST['variants'] ?? []) as $variant) {
@@ -75,7 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ];
             }
 
-            if (empty($variants)) {
+            if (!empty($invalidImages)) {
+                $error = 'Product images must reference existing files from img/: ' . implode(', ', array_keys($invalidImages));
+            } elseif (empty($variants)) {
                 $error = 'At least one priced variant is required.';
             } else {
                 $fragranceMode = $_POST['fragrance_mode'] ?? 'category_default';
@@ -176,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $productName = $productId !== '' ? I18N::t('product.' . $productId . '.name', $productId) : 'New Product';
-$productImages = !empty($product['images']) ? $product['images'] : array_filter([$product['image'] ?? '']);
+$productImages = normalizeImageFilenameList(!empty($product['images']) ? $product['images'] : array_filter([$product['image'] ?? '']));
 $fragranceMode = 'category_default';
 if (!empty($product['fragrance'])) {
     $fragranceMode = 'fixed_fragrance';

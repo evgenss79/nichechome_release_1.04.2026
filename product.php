@@ -51,12 +51,12 @@ $showFragranceSelector = productHasFragranceSelector($product, $categorySlug, $a
 $fixedFragrance = !$showFragranceSelector && !empty($allowedFrags) ? $allowedFrags[0] : '';
 $productImages = getProductImageList($product, $accessoryData);
 $hasExplicitProductImages = !empty($productImages);
-$initialFragranceImage = !empty($allowedFrags[0] ?? '') ? getFragranceImage($allowedFrags[0]) : '/img/placeholder.svg';
+$initialFragranceImage = !empty($allowedFrags[0] ?? '') ? getFragranceImage($allowedFrags[0]) : getCanonicalImageUrl('placeholder.svg');
 $primaryProductImage = $hasExplicitProductImages
-    ? asset_url('img/' . rawurlencode($productImages[0]))
+    ? getCanonicalImageUrl($productImages[0])
     : $initialFragranceImage;
 
-$errorPlaceholder = '/img/placeholder.svg';
+$errorPlaceholder = getCanonicalImageUrl('placeholder.svg');
 
 // Get default price
 if (!isset($defaultPrice)) {
@@ -88,7 +88,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="product-gallery__main">
                     <?php foreach ($productImages as $index => $imgFile): ?>
                         <img 
-                            src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                            src="<?php echo htmlspecialchars(getCanonicalImageUrl($imgFile)); ?>"
                             alt="<?php echo htmlspecialchars($productName); ?>"
                             class="product-gallery__image <?php echo $index === 0 ? 'is-active' : ''; ?>"
                             data-gallery-image="<?php echo $index; ?>"
@@ -102,7 +102,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="product-gallery__thumbs">
                     <?php foreach ($productImages as $index => $imgFile): ?>
                         <img
-                            src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                            src="<?php echo htmlspecialchars(getCanonicalImageUrl($imgFile)); ?>"
                             alt="<?php echo htmlspecialchars($productName); ?>"
                             class="product-gallery__thumb <?php echo $index === 0 ? 'is-active' : ''; ?>"
                             data-gallery-thumb="<?php echo $index; ?>"
@@ -136,7 +136,7 @@ include __DIR__ . '/includes/header.php';
                     $firstFragCode = $showFragranceSelector ? ($allowedFrags[0] ?? null) : ($fixedFragrance ?: null);
                     
                     // Determine the image to show - use fragrance image from /img/ folder
-                    $displayImage = $hasExplicitProductImages ? $primaryProductImage : '/img/placeholder.svg';
+                    $displayImage = $hasExplicitProductImages ? $primaryProductImage : getCanonicalImageUrl('placeholder.svg');
                     if (!$hasExplicitProductImages && $firstFragCode) {
                         $displayImage = getFragranceImage($firstFragCode);
                     }
@@ -276,9 +276,9 @@ include __DIR__ . '/includes/header.php';
                 $recProductImages = getProductImageList($recProduct, $accessoriesData[$recId] ?? null);
                 $recFragrances = getProductFragranceOptions($recProduct, $recCategory, $accessoriesData[$recId] ?? null);
                 $recImgPath = !empty($recProductImages)
-                    ? asset_url('img/' . rawurlencode($recProductImages[0]))
-                    : (!empty($recFragrances[0]) ? getFragranceImage($recFragrances[0]) : '/img/placeholder.svg');
-                $recPlaceholder = '/img/placeholder.svg';
+                    ? getCanonicalImageUrl($recProductImages[0])
+                    : (!empty($recFragrances[0]) ? getFragranceImage($recFragrances[0]) : getCanonicalImageUrl('placeholder.svg'));
+                $recPlaceholder = getCanonicalImageUrl('placeholder.svg');
                 
                 // All recommendations link to category page
                 $recommendationUrl = '/category.php?slug=' . urlencode($recCategory) . '&lang=' . urlencode($currentLang);

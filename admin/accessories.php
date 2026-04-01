@@ -99,6 +99,7 @@ function syncAccessoryToProducts(string $slug, string $category, string $nameKey
         }
     }
 
+    $images = normalizeImageFilenameList($images, true);
     $mainImage = !empty($images) ? $images[0] : '';
 
     // Build variants based on volume selector
@@ -299,27 +300,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             ];
             
             // Process images - can be textarea with one per line or multiple inputs
-            $images = [];
-            if (!empty($_POST['images'])) {
-                if (is_array($_POST['images'])) {
-                    // Multiple text inputs
-                    foreach ($_POST['images'] as $img) {
-                        $img = trim($img);
-                        if ($img !== '') {
-                            $images[] = $img;
-                        }
-                    }
-                } else {
-                    // Textarea - split by newlines
-                    $lines = explode("\n", $_POST['images']);
-                    foreach ($lines as $line) {
-                        $line = trim($line);
-                        if ($line !== '') {
-                            $images[] = $line;
-                        }
-                    }
-                }
-            }
+            $invalidImages = [];
+            $images = normalizeImageFilenameList($_POST['images'] ?? [], true, $invalidImages);
             
             // Process fragrance selector (optional)
             $hasFragranceSelector = !empty($_POST['enable_fragrance_selector']);
@@ -351,7 +333,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
             
             // Validation
-            if (empty($images)) {
+            if (!empty($invalidImages)) {
+                $error = 'Accessory images must reference existing files from img/: ' . implode(', ', array_keys($invalidImages));
+            } elseif (empty($images)) {
                 $error = 'At least one image is required.';
             } elseif ($hasVolumeSelector && empty($volumes)) {
                 $error = 'When volume selector is enabled, you must select at least one volume.';
@@ -838,7 +822,7 @@ foreach ($products as $productId => $product) {
                                   name="images" 
                                   required><?php 
                             if ($editingItem && !empty($editingItem['images'])) {
-                                echo htmlspecialchars(implode("\n", $editingItem['images']));
+                                echo htmlspecialchars(implode("\n", normalizeImageFilenameList($editingItem['images'])));
                             }
                         ?></textarea>
                         <div class="help-text">Enter one image filename per line (e.g., 2-Sashe.jpg). First image will be the main image.</div>

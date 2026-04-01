@@ -41,8 +41,8 @@ $categoryShort = I18N::t('category.' . $slug . '.short', '');
 $categoryLong = I18N::t('category.' . $slug . '.long', '');
 $categoryImages = getCategoryImageList($slug, $category);
 $categoryImage = !empty($categoryImages)
-    ? asset_url('img/' . rawurlencode($categoryImages[0]))
-    : '/img/placeholder.svg';
+    ? getCanonicalImageUrl($categoryImages[0])
+    : getCanonicalImageUrl('placeholder.svg');
 
 // Determine if this is Home Perfume category for hero image scaling
 $heroImageClass = $slug === 'home_perfume' ? 'hero-home-perfume' : '';
@@ -77,7 +77,7 @@ if ($slug === 'accessories') {
                 <div class="category-gallery product-gallery" data-product-gallery data-category-gallery>
                     <div class="product-gallery__main category-gallery__main <?php echo htmlspecialchars($heroImageClass); ?>">
                         <?php foreach ($categoryImages as $index => $imgFile): ?>
-                            <img src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                            <img src="<?php echo htmlspecialchars(getCanonicalImageUrl($imgFile)); ?>"
                                  alt="<?php echo htmlspecialchars($categoryName); ?>"
                                  class="product-gallery__image <?php echo $index === 0 ? 'is-active' : ''; ?>"
                                  data-gallery-image="<?php echo $index; ?>"
@@ -90,7 +90,7 @@ if ($slug === 'accessories') {
                     </div>
                     <div class="product-gallery__thumbs category-gallery__thumbs">
                         <?php foreach ($categoryImages as $index => $imgFile): ?>
-                            <img src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                            <img src="<?php echo htmlspecialchars(getCanonicalImageUrl($imgFile)); ?>"
                                  alt="<?php echo htmlspecialchars($categoryName); ?>"
                                  class="product-gallery__thumb <?php echo $index === 0 ? 'is-active' : ''; ?>"
                                  data-gallery-thumb="<?php echo $index; ?>"
@@ -116,8 +116,8 @@ if ($slug === 'accessories') {
                 $productId   = $accessory['id'] ?? $accessoryId;
                 $productName = I18N::t($accessory['name_key'] ?? '', $productId);
                 $price       = $accessory['priceCHF'] ?? 0;
-                $images      = $accessory['images'] ?? [];
-                $mainImage   = !empty($images) ? '/img/' . rawurlencode($images[0]) : '/img/placeholder.svg';
+                $images      = getProductImageList($products[$productId] ?? [], $accessory);
+                $mainImage   = !empty($images) ? getCanonicalImageUrl($images[0]) : getCanonicalImageUrl('placeholder.svg');
                 ?>
                 <article class="catalog-card"
                          data-product-card
@@ -237,7 +237,7 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
             <div class="category-gallery product-gallery" data-product-gallery data-category-gallery>
                 <div class="product-gallery__main category-gallery__main <?php echo htmlspecialchars($heroImageClass); ?>">
                     <?php foreach ($categoryImages as $index => $imgFile): ?>
-                        <img src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                        <img src="<?php echo htmlspecialchars(getCanonicalImageUrl($imgFile)); ?>"
                              alt="<?php echo htmlspecialchars($categoryName); ?>"
                              class="product-gallery__image <?php echo $index === 0 ? 'is-active' : ''; ?>"
                              data-gallery-image="<?php echo $index; ?>"
@@ -250,7 +250,7 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                 </div>
                 <div class="product-gallery__thumbs category-gallery__thumbs">
                     <?php foreach ($categoryImages as $index => $imgFile): ?>
-                        <img src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                        <img src="<?php echo htmlspecialchars(getCanonicalImageUrl($imgFile)); ?>"
                              alt="<?php echo htmlspecialchars($categoryName); ?>"
                              class="product-gallery__thumb <?php echo $index === 0 ? 'is-active' : ''; ?>"
                              data-gallery-thumb="<?php echo $index; ?>"
@@ -289,8 +289,8 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
 
             $hasExplicitProductImage = !empty($productImages);
             $displayImage = $hasExplicitProductImage
-                ? asset_url('img/' . rawurlencode($productImages[0]))
-                : '/img/placeholder.svg';
+                ? getCanonicalImageUrl($productImages[0])
+                : getCanonicalImageUrl('placeholder.svg');
             if (!$hasExplicitProductImage && $firstFragCode) {
                 $displayImage = getFragranceImage($firstFragCode);
             }
@@ -584,9 +584,9 @@ if ($slug !== 'accessories') {
                     $recProductImages = getProductImageList($recProduct, $accessoriesData[$recId] ?? null);
                     $recFragrances = getProductFragranceOptions($recProduct, $recCategory, $accessoriesData[$recId] ?? null);
                     $recImgPath = !empty($recProductImages)
-                        ? asset_url('img/' . rawurlencode($recProductImages[0]))
-                        : (!empty($recFragrances[0]) ? getFragranceImage($recFragrances[0]) : '/img/placeholder.svg');
-                    $recPlaceholder = '/img/placeholder.svg';
+                        ? getCanonicalImageUrl($recProductImages[0])
+                        : (!empty($recFragrances[0]) ? getFragranceImage($recFragrances[0]) : getCanonicalImageUrl('placeholder.svg'));
+                    $recPlaceholder = getCanonicalImageUrl('placeholder.svg');
                     
                     // All recommendations link to category page
                     $recommendationUrl = '/category.php?slug=' . urlencode($recCategory) . '&lang=' . urlencode($currentLang);
