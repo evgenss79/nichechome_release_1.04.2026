@@ -2070,5 +2070,21 @@
         "quantity": 2,
         "lowStockThreshold": 3,
         "total_qty": 2
+    },
+    "QA_-100-BEL": {
+        "productId": "qa_full_cycle_product_20260401",
+        "volume": "100ml",
+        "fragrance": "bellini",
+        "quantity": 2,
+        "lowStockThreshold": 3,
+        "total_qty": 2
+    },
+    "QA_-200-BEL": {
+        "productId": "qa_full_cycle_product_20260401",
+        "volume": "200ml",
+        "fragrance": "bellini",
+        "quantity": 3,
+        "lowStockThreshold": 3,
+        "total_qty": 3
     }
 }

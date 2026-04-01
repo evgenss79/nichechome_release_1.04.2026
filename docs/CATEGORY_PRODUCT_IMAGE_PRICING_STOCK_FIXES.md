@@ -14,7 +14,8 @@ This document records the minimal architecture-consistent fixes for:
 
 - `data/categories.json`, `data/products.json`, `data/stock.json`, and `data/branch_stock.json` remain the canonical data sources.
 - Category records keep `image` as the primary hero image and may now persist `images[]` for slider rendering.
-- Product records keep `image` as the primary product image and `images[]` as the canonical gallery list.
+- Product records keep `image` as the primary product image and `images[]` as the canonical gallery list when explicit product images exist.
+- Product creation/editing must not require product image upload; fragrance-based products without explicit product images must use fragrance imagery as the storefront fallback.
 - `add_to_cart.php` still resolves prices server-side from `products.json`; it now does so with normalized volume + fragrance for both add and sync actions.
 - Checkout totals still come from the session cart snapshot.
 - Online-payment stock changes still happen through the confirmed payment webhook; cash pickup keeps its immediate stock-decrement path.
@@ -26,12 +27,16 @@ This document records the minimal architecture-consistent fixes for:
 - `includes/helpers.php`
   - added `normalizeImageFilenameList()` for canonical image-list normalization
   - added `getCategoryImageList()`
-  - updated `getProductImageList()` and `getCategoryImage()` to work with canonical image arrays
+  - updated `getProductImageList()` and `getCategoryImage()` to work with canonical image arrays without forcing placeholder product images into storage/rendering
 - `product.php`
   - product hero gallery now uses absolute `/img/...` paths for every gallery image
   - product detail card now defaults to the admin-managed primary product image when an explicit product gallery exists
+  - no-image fragrance products now fall back directly to fragrance images on the product page and recommended product cards
 - `category.php`
   - category product cards now default to the admin-managed primary product image when an explicit product gallery exists
+  - no-image fragrance products now fall back directly to fragrance images on category cards and recommendations
+- `admin/product-edit.php`
+  - removed the required product-image validation and clarified that product images are optional in admin
 - `assets/js/app.js`
   - fragrance-driven image swaps now keep the admin-managed product image for products that explicitly define a gallery list
 

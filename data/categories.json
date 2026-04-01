@@ -144,5 +144,31 @@
         "show_in_catalog": true,
         "show_in_navigation": false,
         "show_in_footer": false
+    },
+    "qa_full_cycle_category_20260401": {
+        "id": "qa_full_cycle_category_20260401",
+        "name_key": "category.qa_full_cycle_category_20260401.name",
+        "short_key": "category.qa_full_cycle_category_20260401.short",
+        "long_key": "category.qa_full_cycle_category_20260401.long",
+        "image": "Dubai.jpg",
+        "images": [
+            "Dubai.jpg",
+            "Palermo.jpg"
+        ],
+        "use_custom_image": true,
+        "sort_order": 10,
+        "active": true,
+        "show_in_catalog": true,
+        "show_in_navigation": true,
+        "show_in_footer": true,
+        "has_fragrance": true,
+        "volumes": [
+            "100ml",
+            "200ml"
+        ],
+        "allowed_fragrances": [
+            "bellini",
+            "eden"
+        ]
     }
 }

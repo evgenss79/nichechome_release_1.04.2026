@@ -3480,5 +3480,53 @@
         "payment_status": "paid",
         "paid_at": "2026-03-31 18:34:19",
         "transaction_id": 35207996
+    },
+    "ORD-20260401-C1C085": {
+        "id": "ORD-20260401-C1C085",
+        "customer_id": null,
+        "date": "2026-04-01 20:57:16",
+        "created_at": "2026-04-01T20:57:16+00:00",
+        "status": "awaiting_cash_pickup",
+        "language": "en",
+        "customer": {
+            "first_name": "QA",
+            "last_name": "Cycle",
+            "email": "",
+            "phone": "+41790000001"
+        },
+        "shipping": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "billing": {
+            "street": "",
+            "house": "",
+            "zip": "",
+            "city": "",
+            "country": "Switzerland"
+        },
+        "comment": "",
+        "payment_method": "cash",
+        "items": [
+            {
+                "sku": "QA_-100-BEL",
+                "productId": "qa_full_cycle_product_20260401",
+                "name": "QA Full Cycle Product 20260401",
+                "category": "qa_full_cycle_category_20260401",
+                "volume": "100ml",
+                "fragrance": "bellini",
+                "price": 11.1,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 11.1,
+        "shipping_cost": 0,
+        "total": 11.1,
+        "pickup_in_branch": true,
+        "pickup_branch_id": "branch_1",
+        "payment_status": "unpaid"
     }
 }

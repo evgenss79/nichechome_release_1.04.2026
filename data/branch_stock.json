@@ -776,6 +776,12 @@
         },
         "REF-STA-SW": {
             "quantity": 0
+        },
+        "QA_-100-BEL": {
+            "quantity": 2
+        },
+        "QA_-200-BEL": {
+            "quantity": 3
         }
     },
     "branch_2": {
@@ -1555,6 +1561,12 @@
         },
         "REF-STA-SW": {
             "quantity": 2
+        },
+        "QA_-100-BEL": {
+            "quantity": 0
+        },
+        "QA_-200-BEL": {
+            "quantity": 0
         }
     },
     "branch_3": {
@@ -2333,6 +2345,12 @@
             "quantity": 0
         },
         "REF-STA-SW": {
+            "quantity": 0
+        },
+        "QA_-100-BEL": {
+            "quantity": 0
+        },
+        "QA_-200-BEL": {
             "quantity": 0
         }
     }

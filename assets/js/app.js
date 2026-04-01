@@ -83,7 +83,8 @@
     // Legacy DEFAULT_PRICES removed to prevent drift between products.json and JavaScript
     // If window.PRICES is not set, log error and use empty object (safer than stale data)
     
-    if (!window.PRICES) {
+    const hasProductCards = document.querySelector('[data-product-card]') !== null;
+    if (hasProductCards && !window.PRICES) {
         console.error('PRICE ERROR: window.PRICES not set. Product pages must pass pricing data from products.json');
     }
     

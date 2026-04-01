@@ -77,8 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (empty($variants)) {
                 $error = 'At least one priced variant is required.';
-            } elseif (empty($images)) {
-                $error = 'At least one product image filename is required.';
             } else {
                 $fragranceMode = $_POST['fragrance_mode'] ?? 'category_default';
                 $candidate = $isEdit ? $products[$originalId] : [];
@@ -87,8 +85,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $candidate['category'] = $category;
                 $candidate['name_key'] = 'product.' . $postedId . '.name';
                 $candidate['desc_key'] = 'product.' . $postedId . '.desc';
-                $candidate['image'] = $images[0];
-                $candidate['images'] = $images;
+                if (!empty($images)) {
+                    $candidate['image'] = $images[0];
+                    $candidate['images'] = $images;
+                } else {
+                    unset($candidate['image'], $candidate['images']);
+                }
                 $candidate['variants'] = array_map(function ($variant) use ($fragranceMode, $fixedFragranceValue) {
                     if ($fragranceMode === 'no_fragrance') {
                         unset($variant['fragrance']);
@@ -262,7 +264,7 @@ if (!empty($product['fragrance'])) {
                     </div>
 
                     <div class="form-group">
-                        <label>Product images (one filename per line, img/ folder)</label>
+                        <label>Product images (optional, one filename per line, img/ folder)</label>
                         <textarea name="images" rows="4"><?php echo htmlspecialchars(implode("\n", $productImages)); ?></textarea>
                     </div>
 

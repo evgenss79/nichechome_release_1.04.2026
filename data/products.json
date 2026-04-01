@@ -250,5 +250,26 @@
             }
         ],
         "active": true
+    },
+    "qa_full_cycle_product_20260401": {
+        "id": "qa_full_cycle_product_20260401",
+        "category": "qa_full_cycle_category_20260401",
+        "name_key": "product.qa_full_cycle_product_20260401.name",
+        "desc_key": "product.qa_full_cycle_product_20260401.desc",
+        "variants": [
+            {
+                "volume": "100ml",
+                "fragrance": "bellini",
+                "priceCHF": 11.1
+            },
+            {
+                "volume": "200ml",
+                "fragrance": "bellini",
+                "priceCHF": 19.9
+            }
+        ],
+        "active": true,
+        "fragrance": "bellini",
+        "has_fragrance_selector": false
     }
 }

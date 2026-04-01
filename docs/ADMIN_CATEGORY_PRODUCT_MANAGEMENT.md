@@ -54,7 +54,7 @@ The product form now supports:
 - create product
 - edit product
 - assign product to an existing category
-- multiline product image list
+- optional multiline product image list
 - multilingual name and description
 - multiple sellable variants
 - fragrance mode:
@@ -71,7 +71,7 @@ Each sellable row is stored in `products.json` as a variant with:
 
 This keeps existing volume-only products compatible while also supporting price-per-volume and price-per-volume+fragrance combinations.
 
-`image` remains the primary product image and `images[]` remains the canonical storefront gallery list. Product/category cards keep using the product-managed image when a product has an explicit gallery, while legacy fragrance-image swaps stay available for older products that do not define a gallery list.
+`image` remains the primary product image and `images[]` remains the canonical storefront gallery list when explicit product images are supplied. Product image upload is not required for creation or editing. For fragrance-based products without explicit product images, product/category cards and the product page must fall back to the fragrance image instead of forcing a product-level upload or showing a placeholder first.
 
 ## Storefront Rendering Rules
 

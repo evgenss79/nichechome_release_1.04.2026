@@ -332,7 +332,7 @@ function getProductImageList(array $product, ?array $accessoryData = null): arra
     }
 
     $images = normalizeImageFilenameList($images);
-    return empty($images) ? ['placeholder.jpg'] : $images;
+    return $images;
 }
 
 /**
