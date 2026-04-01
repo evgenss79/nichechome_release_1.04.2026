@@ -17,6 +17,8 @@ This document describes the complete lifecycle of data management in the NicheHo
 
 ## Creating Data
 
+For the current canonical category/product CRUD flow, see `docs/ADMIN_CATEGORY_PRODUCT_MANAGEMENT.md`.
+
 ### Creating Products
 
 **Location**: `admin/product-edit.php` or `admin/products.php`

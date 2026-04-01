@@ -4,6 +4,7 @@
  */
 
 $currentLang = I18N::getLanguage();
+$footerCategories = getFooterCategories();
 ?>
     </main>
     <footer class="site-footer">
@@ -12,8 +13,13 @@ $currentLang = I18N::getLanguage();
                 <h4><?php echo I18N::t('footer.catalogTitle', 'Catalog'); ?></h4>
                 <ul>
                     <li><a href="catalog.php?lang=<?php echo $currentLang; ?>"><?php echo I18N::t('nav.catalog', 'Catalog'); ?></a></li>
-                    <li><a href="category.php?slug=aroma_diffusers&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.aroma_diffusers.name', 'Aroma Diffusers'); ?></a></li>
-                    <li><a href="category.php?slug=scented_candles&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.scented_candles.name', 'Scented Candles'); ?></a></li>
+                    <?php foreach ($footerCategories as $slug => $category): ?>
+                        <li>
+                            <a href="<?php echo htmlspecialchars(getCategoryUrl($slug, $category, $currentLang)); ?>">
+                                <?php echo I18N::t('category.' . $slug . '.name', ucfirst(str_replace('_', ' ', $slug))); ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
                     <li><a href="gift-sets.php?lang=<?php echo $currentLang; ?>"><?php echo I18N::t('nav.giftSets', 'Gift Sets'); ?></a></li>
                 </ul>
             </div>

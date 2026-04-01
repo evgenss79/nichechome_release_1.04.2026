@@ -5,9 +5,18 @@
         "short_key": "category.aroma_diffusers.short",
         "long_key": "category.aroma_diffusers.long",
         "image": "Mikado-category.jpg",
-        "volumes": ["125ml", "250ml", "500ml"],
+        "volumes": [
+            "125ml",
+            "250ml",
+            "500ml"
+        ],
         "has_fragrance": true,
-        "sort_order": 1
+        "sort_order": 1,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": true,
+        "show_in_navigation": true,
+        "show_in_footer": true
     },
     "scented_candles": {
         "id": "scented_candles",
@@ -15,9 +24,17 @@
         "short_key": "category.scented_candles.short",
         "long_key": "category.scented_candles.long",
         "image": "Candels category.jpg",
-        "volumes": ["160ml", "500ml"],
+        "volumes": [
+            "160ml",
+            "500ml"
+        ],
         "has_fragrance": true,
-        "sort_order": 2
+        "sort_order": 2,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": true,
+        "show_in_navigation": true,
+        "show_in_footer": true
     },
     "home_perfume": {
         "id": "home_perfume",
@@ -25,9 +42,17 @@
         "short_key": "category.home_perfume.short",
         "long_key": "category.home_perfume.long",
         "image": "home pefume.jpg",
-        "volumes": ["10ml", "50ml"],
+        "volumes": [
+            "10ml",
+            "50ml"
+        ],
         "has_fragrance": true,
-        "sort_order": 3
+        "sort_order": 3,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": true,
+        "show_in_navigation": true,
+        "show_in_footer": false
     },
     "car_perfume": {
         "id": "car_perfume",
@@ -37,8 +62,13 @@
         "image": "AutoParf.jpg",
         "volumes": [],
         "has_fragrance": true,
-        "fixed_price": 14.90,
-        "sort_order": 4
+        "fixed_price": 14.9,
+        "sort_order": 4,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": true,
+        "show_in_navigation": true,
+        "show_in_footer": false
     },
     "textile_perfume": {
         "id": "textile_perfume",
@@ -48,8 +78,13 @@
         "image": "Textil-spray.jpg",
         "volumes": [],
         "has_fragrance": true,
-        "fixed_price": 19.90,
-        "sort_order": 5
+        "fixed_price": 19.9,
+        "sort_order": 5,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": true,
+        "show_in_navigation": true,
+        "show_in_footer": false
     },
     "limited_edition": {
         "id": "limited_edition",
@@ -59,8 +94,13 @@
         "image": "3 velas.jpg",
         "volumes": [],
         "has_fragrance": true,
-        "fixed_price": 39.90,
-        "sort_order": 6
+        "fixed_price": 39.9,
+        "sort_order": 6,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": true,
+        "show_in_navigation": true,
+        "show_in_footer": false
     },
     "gift_sets": {
         "id": "gift_sets",
@@ -69,7 +109,12 @@
         "long_key": "category.gift_sets.long",
         "image": "IMG_7321.jpg",
         "redirect": "gift-sets.php",
-        "sort_order": 7
+        "sort_order": 7,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": false,
+        "show_in_navigation": false,
+        "show_in_footer": false
     },
     "accessories": {
         "id": "accessories",
@@ -79,7 +124,12 @@
         "image": "IMG_7321.jpg",
         "volumes": [],
         "has_fragrance": false,
-        "sort_order": 8
+        "sort_order": 8,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": true,
+        "show_in_navigation": true,
+        "show_in_footer": false
     },
     "aroma_marketing": {
         "id": "aroma_marketing",
@@ -88,6 +138,11 @@
         "long_key": "category.aroma_marketing.long",
         "image": "IMG_7348.jpg",
         "redirect": "aroma-marketing.php",
-        "sort_order": 9
+        "sort_order": 9,
+        "active": true,
+        "use_custom_image": false,
+        "show_in_catalog": true,
+        "show_in_navigation": false,
+        "show_in_footer": false
     }
 }

@@ -115,6 +115,7 @@ $filterCategory = $_GET['category'] ?? '';
         <main class="admin-content">
             <div class="admin-header">
                 <h1>Products</h1>
+                <a href="product-edit.php" class="btn btn--gold">Add Product</a>
             </div>
             
             <?php if ($success): ?>

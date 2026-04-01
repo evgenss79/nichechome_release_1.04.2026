@@ -172,14 +172,22 @@ function generateCatalogSkus(array $products, array $accessories, array $fragran
     // Process products from products.json
     foreach ($products as $productId => $product) {
         $category = $product['category'] ?? '';
-        $variants = $product['variants'] ?? [];
+        $variants = getNormalizedProductVariants($product);
         
         // Get product name
         $productName = getProductNameFromId($productId);
-        
+        $productFragranceOptions = getProductFragranceOptions($product, $category, $accessories[$productId] ?? null);
+        $hasExplicitVariantFragrances = false;
+        foreach ($variants as $variant) {
+            if ($variant['fragrance'] !== '') {
+                $hasExplicitVariantFragrances = true;
+                break;
+            }
+        }
+         
         // For limited edition, fragrance is fixed to one specific fragrance
-        if ($category === 'limited_edition') {
-            $fragrance = $product['fragrance'] ?? '';
+        if ($category === 'limited_edition' || !empty($product['fragrance'])) {
+            $fragrance = normalizeVariantFragrance((string)($product['fragrance'] ?? ''));
             foreach ($variants as $variant) {
                 $volume = $variant['volume'] ?? '';
                 $sku = generateSKU($productId, $volume, $fragrance);
@@ -190,6 +198,21 @@ function generateCatalogSkus(array $products, array $accessories, array $fragran
                     'category' => $category,
                     'volume' => $volume,
                     'fragrance' => $fragrance
+                ];
+            }
+        }
+        elseif ($hasExplicitVariantFragrances) {
+            foreach ($variants as $variant) {
+                $volume = $variant['volume'] ?? '';
+                $fragrance = $variant['fragrance'] ?? '';
+                $sku = generateSKU($productId, $volume, $fragrance);
+                $catalogSkus[$sku] = [
+                    'sku' => $sku,
+                    'productId' => $productId,
+                    'product_name' => $productName,
+                    'category' => $category,
+                    'volume' => $volume,
+                    'fragrance' => $fragrance === '' ? 'NA' : $fragrance
                 ];
             }
         }
@@ -284,7 +307,23 @@ function generateCatalogSkus(array $products, array $accessories, array $fragran
                 $productFragrances = $allowedFragrancesInProduct;
             } else {
                 // Use category default fragrances
-                $productFragrances = allowedFragrances($category);
+                $productFragrances = $productFragranceOptions;
+            }
+
+            if (empty($productFragrances)) {
+                foreach ($variants as $variant) {
+                    $volume = $variant['volume'] ?? '';
+                    $sku = generateSKU($productId, $volume, 'NA');
+                    $catalogSkus[$sku] = [
+                        'sku' => $sku,
+                        'productId' => $productId,
+                        'product_name' => $productName,
+                        'category' => $category,
+                        'volume' => $volume,
+                        'fragrance' => 'NA'
+                    ];
+                }
+                continue;
             }
             
             foreach ($variants as $variant) {

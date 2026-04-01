@@ -176,21 +176,7 @@ $categoryProducts = array_filter($products, function($p) use ($slug) {
     return ($p['category'] ?? '') === $slug;
 });
 
-// Get allowed fragrances for this category
-$allowedFrags = allowedFragrances($slug);
-
-// Get volumes for this category
-$volumes = getVolumesForCategory($slug);
-
-// Build multilingual fragrance descriptions from i18n
-$fragranceDescriptions = [];
-foreach ($allowedFrags as $fragCode) {
-    $fragranceDescriptions[$fragCode] = [
-        'name' => I18N::t('fragrance.' . $fragCode . '.name', ucfirst(str_replace('_', ' ', $fragCode))),
-        'short' => I18N::t('fragrance.' . $fragCode . '.short', ''),
-        'full' => I18N::t('fragrance.' . $fragCode . '.full', '')
-    ];
-}
+$categoryDefaultFragrances = allowedFragrances($slug);
 
 include __DIR__ . '/includes/header.php';
 ?>
@@ -232,23 +218,16 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
             $productName = I18N::t('product.' . $productId . '.name', $product['name_key'] ?? $productId);
             $productDesc = I18N::t('product.' . $productId . '.desc', $product['desc_key'] ?? '');
             $productImage = $product['image'] ?? '';
-            $productVariants = $product['variants'] ?? [];
-            
-            // Check if this is a limited edition product with fixed fragrance
-            $isLimitedWithFixed = ($slug === 'limited_edition' && isset($product['fragrance']));
-            
-            // Get first variant price as default
-            $defaultPrice = 0;
-            if (!empty($productVariants)) {
-                $defaultPrice = $productVariants[0]['priceCHF'] ?? 0;
-            }
-            
-            // Get the first fragrance for initial image display (if fragrance select exists)
-            $firstFragCode = !empty($allowedFrags) ? $allowedFrags[0] : null;
-            // For limited edition, use the fixed fragrance
-            if ($isLimitedWithFixed) {
-                $firstFragCode = $product['fragrance'];
-            }
+            $productVariants = getNormalizedProductVariants($product);
+            $productVolumes = getProductVolumeOptions($product, $slug);
+            $productFragrances = getProductFragranceOptions($product, $slug);
+            $showVolumeSelector = count($productVolumes) > 1;
+            $showFragranceSelector = productHasFragranceSelector($product, $slug);
+            $fixedFragrance = !$showFragranceSelector && !empty($productFragrances) ? $productFragrances[0] : '';
+            $defaultPrice = !empty($productVariants) ? (float)($productVariants[0]['priceCHF'] ?? 0) : 0;
+            $firstFragCode = $showFragranceSelector
+                ? ($productFragrances[0] ?? null)
+                : ($fixedFragrance ?: null);
             
             // Determine the image to show - use fragrance image from /img/ folder
             $displayImage = '/img/placeholder.svg';
@@ -300,29 +279,28 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                         </button>
                         
                         <div class="product-card__selectors">
-                            <?php if (!empty($volumes)): ?>
+                            <?php if ($showVolumeSelector): ?>
                                 <div class="product-card__field">
                                     <label><?php echo I18N::t('common.volume', 'Volume'); ?></label>
                                     <select class="product-card__select product-card__select--volume" data-volume-select>
-                                        <?php foreach ($volumes as $vol): ?>
+                                        <?php foreach ($productVolumes as $vol): ?>
                                             <option value="<?php echo htmlspecialchars($vol); ?>">
                                                 <?php echo htmlspecialchars($vol); ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            <?php elseif ($isLimitedWithFixed && !empty($productVariants)): ?>
-                                <!-- Limited Edition products have fixed volume from variants -->
-                                <input type="hidden" data-volume-select value="<?php echo htmlspecialchars($productVariants[0]['volume'] ?? '270ml'); ?>">
+                            <?php else: ?>
+                                <input type="hidden" data-volume-select value="<?php echo htmlspecialchars($productVolumes[0] ?? 'standard'); ?>">
                             <?php endif; ?>
                             
-                            <?php if (!$isLimitedWithFixed && !empty($allowedFrags)): ?>
+                            <?php if ($showFragranceSelector && !empty($productFragrances)): ?>
                                 <div class="product-card__field">
                                     <label><?php echo I18N::t('common.fragrance', 'Fragrance'); ?></label>
                                     <select class="product-card__select product-card__select--fragrance" 
                                             data-fragrance-select
                                             data-product-id="<?php echo htmlspecialchars($productId); ?>">
-                                        <?php foreach ($allowedFrags as $fragCode): ?>
+                                        <?php foreach ($productFragrances as $fragCode): ?>
                                             <?php
                                             $fragName = I18N::t('fragrance.' . $fragCode . '.name', ucfirst(str_replace('_', ' ', $fragCode)));
                                             ?>
@@ -333,8 +311,10 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            <?php elseif ($isLimitedWithFixed): ?>
-                                <input type="hidden" data-fragrance-select value="<?php echo htmlspecialchars($product['fragrance']); ?>">
+                            <?php elseif ($fixedFragrance !== ''): ?>
+                                <input type="hidden" data-fragrance-select value="<?php echo htmlspecialchars($fixedFragrance); ?>">
+                            <?php else: ?>
+                                <input type="hidden" data-fragrance-select value="none">
                             <?php endif; ?>
                         </div>
                         
@@ -367,7 +347,8 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
             <?php
             // Set variables for generic card
             $genericProductId = $slug . '_product';
-            $genericFirstFrag = !empty($allowedFrags) ? $allowedFrags[0] : null;
+            $genericFirstFrag = !empty($categoryDefaultFragrances) ? $categoryDefaultFragrances[0] : null;
+            $genericVolumes = getVolumesForCategory($slug);
             $genericDisplayImage = $genericFirstFrag 
                 ? getFragranceImage($genericFirstFrag) 
                 : $categoryImage;
@@ -413,11 +394,11 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                         </button>
                         
                         <div class="product-card__selectors">
-                            <?php if (!empty($volumes)): ?>
+                            <?php if (!empty($genericVolumes)): ?>
                                 <div class="product-card__field">
                                     <label><?php echo I18N::t('common.volume', 'Volume'); ?></label>
                                     <select class="product-card__select product-card__select--volume" data-volume-select>
-                                        <?php foreach ($volumes as $vol): ?>
+                                        <?php foreach ($genericVolumes as $vol): ?>
                                             <option value="<?php echo htmlspecialchars($vol); ?>">
                                                 <?php echo htmlspecialchars($vol); ?>
                                             </option>
@@ -426,13 +407,13 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                                 </div>
                             <?php endif; ?>
                             
-                            <?php if (!empty($allowedFrags)): ?>
+                            <?php if (!empty($categoryDefaultFragrances)): ?>
                                 <div class="product-card__field">
                                     <label><?php echo I18N::t('common.fragrance', 'Fragrance'); ?></label>
                                     <select class="product-card__select product-card__select--fragrance" 
                                             data-fragrance-select
                                             data-product-id="<?php echo htmlspecialchars($genericProductId); ?>">
-                                        <?php foreach ($allowedFrags as $fragCode): ?>
+                                        <?php foreach ($categoryDefaultFragrances as $fragCode): ?>
                                             <?php
                                             $fragName = I18N::t('fragrance.' . $fragCode . '.name', ucfirst(str_replace('_', ' ', $fragCode)));
                                             ?>
@@ -459,7 +440,7 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                         <div class="product-card__price-row">
                             <span class="product-card__price-label"><?php echo I18N::t('common.price', 'Price'); ?></span>
                             <span class="product-card__price-value" data-price-display>
-                                CHF <?php echo number_format(getPriceByCategory($slug, $volumes[0] ?? ''), 2); ?>
+                                CHF <?php echo number_format(getPriceByCategory($slug, $genericVolumes[0] ?? ''), 2); ?>
                             </span>
                         </div>
                         
@@ -600,6 +581,30 @@ if ($slug !== 'accessories') {
 </main>
 
 <script>
+<?php
+$categoryFragranceSet = [];
+$pricePayload = [];
+foreach ($categoryProducts as $productId => $product) {
+    foreach (getProductFragranceOptions($product, $slug) as $fragCode) {
+        $categoryFragranceSet[$fragCode] = $fragCode;
+    }
+    $pricePayload[$productId] = buildProductPriceConfig($product);
+}
+if (empty($categoryProducts) && !empty($categoryDefaultFragrances)) {
+    foreach ($categoryDefaultFragrances as $fragCode) {
+        $categoryFragranceSet[$fragCode] = $fragCode;
+    }
+}
+$categoryFragranceCodes = array_values($categoryFragranceSet);
+$fragranceDescriptions = [];
+foreach ($categoryFragranceCodes as $fragCode) {
+    $fragranceDescriptions[$fragCode] = [
+        'name' => I18N::t('fragrance.' . $fragCode . '.name', ucfirst(str_replace('_', ' ', $fragCode))),
+        'short' => I18N::t('fragrance.' . $fragCode . '.short', ''),
+        'full' => I18N::t('fragrance.' . $fragCode . '.full', '')
+    ];
+}
+?>
 // Pass fragrance data to JavaScript with correct /img/ paths
 window.FRAGRANCES = <?php echo json_encode(array_map(function($code) {
     return [
@@ -607,51 +612,12 @@ window.FRAGRANCES = <?php echo json_encode(array_map(function($code) {
         'short' => I18N::t('fragrance.' . $code . '.short', ''),
         'image' => getFragranceImage($code)
     ];
-}, array_combine($allowedFrags, $allowedFrags))); ?>;
+}, !empty($categoryFragranceCodes) ? array_combine($categoryFragranceCodes, $categoryFragranceCodes) : [])); ?>;
 
 // Pass multilingual fragrance descriptions from i18n
 window.FRAGRANCE_DESCRIPTIONS = <?php echo json_encode($fragranceDescriptions, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP); ?>;
 
-// CRITICAL: Pass prices indexed by CATEGORY (not productId) from products.json
-// JavaScript updatePrice() looks up by category: PRICES[category]
-// This ensures storefront always matches cart pricing after admin updates
-window.PRICES = <?php 
-$pricesData = [];
-
-// Get pricing for this category from first product's variants
-// NEVER use getPriceByCategory() - it has hardcoded prices that can drift
-if (!empty($categoryProducts)) {
-    $firstProduct = reset($categoryProducts);
-    $variants = $firstProduct['variants'] ?? [];
-    
-    if (!empty($variants)) {
-        if (count($variants) > 1) {
-            // Multiple variants: create volume => price mapping
-            $volumePrices = [];
-            foreach ($variants as $variant) {
-                $vol = $variant['volume'] ?? 'standard';
-                $volumePrices[$vol] = (float)($variant['priceCHF'] ?? 0);
-            }
-            // Index by category slug (what JavaScript looks for)
-            $pricesData[$slug] = $volumePrices;
-        } else {
-            // Single variant: use direct price
-            $firstVariant = $variants[0];
-            $singlePrice = (float)($firstVariant['priceCHF'] ?? 0);
-            
-            // Always index by category
-            $pricesData[$slug] = $singlePrice;
-        }
-    }
-} else {
-    // Empty categoryProducts - should not happen for regular categories
-    // Set empty object to trigger error in JavaScript if price lookup attempted
-    $pricesData[$slug] = null;
-    error_log("WARNING: No products found for category '$slug' when building window.PRICES");
-}
-
-echo json_encode($pricesData);
-?>;
+window.PRICES = <?php echo json_encode($pricePayload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
 
 // Pass I18N labels for JS
 window.I18N_LABELS = {

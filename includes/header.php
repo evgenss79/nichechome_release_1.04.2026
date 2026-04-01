@@ -5,6 +5,7 @@
 
 $currentLang = I18N::getLanguage();
 $cartCount = getCartCount();
+$navigationCategories = getNavigationCategories();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $currentLang; ?>">
@@ -41,13 +42,13 @@ $cartCount = getCartCount();
                         </a>
                         <div class="mega-panel mega-panel--catalog">
                             <ul class="mega-panel__list">
-                                <li><a href="category.php?slug=aroma_diffusers&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.aroma_diffusers.name', 'Aroma Diffusers'); ?></a></li>
-                                <li><a href="category.php?slug=scented_candles&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.scented_candles.name', 'Scented Candles'); ?></a></li>
-                                <li><a href="category.php?slug=home_perfume&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.home_perfume.name', 'Home Perfume'); ?></a></li>
-                                <li><a href="category.php?slug=car_perfume&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.car_perfume.name', 'Car Perfume'); ?></a></li>
-                                <li><a href="category.php?slug=textile_perfume&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.textile_perfume.name', 'Textile Perfume'); ?></a></li>
-                                <li><a href="category.php?slug=limited_edition&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.limited_edition.name', 'Limited Edition'); ?></a></li>
-                                <li><a href="category.php?slug=accessories&lang=<?php echo $currentLang; ?>"><?php echo I18N::t('category.accessories.name', 'Accessories'); ?></a></li>
+                                <?php foreach ($navigationCategories as $slug => $category): ?>
+                                    <li>
+                                        <a href="<?php echo htmlspecialchars(getCategoryUrl($slug, $category, $currentLang)); ?>">
+                                            <?php echo I18N::t('category.' . $slug . '.name', ucfirst(str_replace('_', ' ', $slug))); ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </li>
