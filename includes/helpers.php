@@ -1403,8 +1403,12 @@ function decreaseBranchStock(string $branchId, string $sku, int $amount = 1): bo
 
     if (!saveJSON('stock.json', $stock)) {
         error_log("decreaseBranchStock: ERROR - Failed to save stock.json, attempting rollback");
-        saveBranchStock($originalBranchStock);
-        saveJSON('stock.json', $originalStock);
+        if (!saveBranchStock($originalBranchStock)) {
+            error_log("decreaseBranchStock: ROLLBACK FAILED - Could not restore branch_stock.json");
+        }
+        if (!saveJSON('stock.json', $originalStock)) {
+            error_log("decreaseBranchStock: ROLLBACK FAILED - Could not restore stock.json");
+        }
         error_log("=== decreaseBranchStock END (FAILED - stock.json update failed) ===");
         return false;
     }

@@ -161,7 +161,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['import_file'])) {
                             if ($skuIndex === false) {
                                 $error = 'Invalid template: Missing "sku" column.';
                             } elseif (count($branchIndexes) !== count($branches)) {
-                                $error = 'Invalid template: Missing one or more branch quantity columns.';
+                                $missingBranches = array_diff(array_keys($branches), array_keys($branchIndexes));
+                                $error = 'Invalid template: Missing branch quantity columns for ' . implode(', ', $missingBranches) . '.';
                             } else {
                                 // Load current stock
                                 $currentStock = loadJSON('stock.json');
@@ -318,7 +319,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'confirm_import') {
             $resolutions = $_SESSION['import_resolutions'] ?? [];
             
             // Load current data
-                                $currentBranchStock = loadBranchStock();
+            $currentBranchStock = loadBranchStock();
             
             // Create backups
             createStockBackup('branch_stock.json');

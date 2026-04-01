@@ -444,6 +444,9 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
             gap: 1rem;
             margin-top: 1rem;
         }
+        .inline-row-form {
+            display: contents;
+        }
     </style>
     <script>
         'use strict';
@@ -712,7 +715,7 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
                                     <td><?php echo htmlspecialchars($item['volume']); ?></td>
                                     <td><?php echo htmlspecialchars($item['fragrance']); ?></td>
                                     
-                                    <form method="post" action="" onsubmit="return validateRow(this.closest('tr') || this)" data-sku="<?php echo htmlspecialchars($sku); ?>" style="display: contents;">
+                                    <form method="post" action="" onsubmit="return validateRow(this)" data-sku="<?php echo htmlspecialchars($sku); ?>" class="inline-row-form">
                                         <input type="hidden" name="action" value="update_stock">
                                         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                                         <input type="hidden" name="sku" value="<?php echo htmlspecialchars($sku); ?>">
@@ -724,7 +727,7 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
                                                        name="branch_quantity[<?php echo htmlspecialchars($branchId); ?>]"
                                                        value="<?php echo (int)($item['branches'][$branchId] ?? 0); ?>"
                                                        min="0"
-                                                       oninput="updateRowTotal(this.closest('tr') || this)"
+                                                       oninput="updateRowTotal(this)"
                                                        data-branch-quantity="1">
                                             </td>
                                         <?php endforeach; ?>
@@ -739,7 +742,7 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
                                         </td>
                                         
                                         <td>
-                                            <button type="submit" class="btn btn--text save-btn" onclick="return validateRow(this.closest('tr') || this.form)">💾 Save</button>
+                                            <button type="submit" class="btn btn--text save-btn">💾 Save</button>
                                         </td>
                                     </form>
                                 </tr>
