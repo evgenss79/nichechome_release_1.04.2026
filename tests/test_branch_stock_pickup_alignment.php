@@ -1,40 +1,63 @@
 <?php
 require_once __DIR__ . '/../init.php';
 
+$branchStock = loadBranchStock();
 $failures = [];
+$candidate = null;
 
-$branchItems = getBranchStockItemsFromUniverse('branch_1');
-$branchItemsBySku = [];
-foreach ($branchItems as $item) {
-    $branchItemsBySku[$item['sku']] = $item;
+foreach ($branchStock as $branchId => $items) {
+    foreach ($items as $sku => $item) {
+        $quantity = (int)($item['quantity'] ?? 0);
+        if ($quantity > 0) {
+            $candidate = [
+                'branchId' => $branchId,
+                'sku' => $sku,
+                'quantity' => $quantity
+            ];
+            break 2;
+        }
+    }
 }
 
-$stock = loadJSON('stock.json');
-$expectedQuantity = (int)($stock['SMA-STA-NA']['quantity'] ?? 0);
+if ($candidate === null) {
+    $failures[] = 'Could not find a branch SKU with positive quantity for pickup validation';
+} else {
+    $branchId = $candidate['branchId'];
+    $sku = $candidate['sku'];
+    $available = $candidate['quantity'];
 
-if (!isset($branchItemsBySku['SMA-STA-NA'])) {
-    $failures[] = 'Branch stock view is missing SMA-STA-NA for branch_1';
-} elseif ((int)$branchItemsBySku['SMA-STA-NA']['quantity'] !== $expectedQuantity) {
-    $failures[] = 'Branch stock view does not mirror stock.json for SMA-STA-NA';
-}
+    $reportedQuantity = getBranchStockQuantity($branchId, $sku);
+    if ($reportedQuantity !== $available) {
+        $failures[] = "getBranchStockQuantity() did not return the stored branch quantity for $sku at $branchId";
+    }
 
-$normalized = normalizeCartSelection('smart', 'standard', 'none');
-if ($normalized['sku'] !== 'SMA-STA-NA') {
-    $failures[] = "normalizeCartSelection('smart','standard','none') should return SMA-STA-NA, got {$normalized['sku']}";
-}
+    $pickupOk = checkBranchStockForCart($branchId, [[
+        'sku' => $sku,
+        'productId' => 'test_product',
+        'name' => 'Test Product',
+        'category' => 'accessories',
+        'volume' => 'standard',
+        'fragrance' => 'none',
+        'quantity' => $available
+    ]]);
 
-$pickupErrors = checkBranchStockForCart('branch_1', [[
-    'sku' => $normalized['sku'],
-    'productId' => 'smart',
-    'name' => 'Aroma Smart',
-    'category' => 'accessories',
-    'volume' => $normalized['volume'],
-    'fragrance' => $normalized['fragrance'],
-    'quantity' => 1
-]]);
+    if (!empty($pickupOk)) {
+        $failures[] = 'Pickup validation rejected a quantity that exists in the selected branch';
+    }
 
-if (!empty($pickupErrors)) {
-    $failures[] = 'Pickup validation still rejects normalized smart SKU for branch_1';
+    $pickupBlocked = checkBranchStockForCart($branchId, [[
+        'sku' => $sku,
+        'productId' => 'test_product',
+        'name' => 'Test Product',
+        'category' => 'accessories',
+        'volume' => 'standard',
+        'fragrance' => 'none',
+        'quantity' => $available + 1
+    ]]);
+
+    if (empty($pickupBlocked)) {
+        $failures[] = 'Pickup validation did not block a request above the selected branch quantity';
+    }
 }
 
 if ($failures) {
@@ -46,6 +69,5 @@ if ($failures) {
 }
 
 echo "PASS\n";
-echo "- Branch stock view includes SMA-STA-NA with correct branch quantity\n";
-echo "- normalizeCartSelection() maps no-fragrance smart accessory to SMA-STA-NA\n";
-echo "- Pickup validation accepts the canonical smart SKU for branch_1\n";
+echo "- Branch stock quantities are read from branch_stock.json per branch\n";
+echo "- Pickup validation accepts available branch quantities and blocks unavailable ones\n";

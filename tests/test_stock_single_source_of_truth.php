@@ -1,67 +1,60 @@
 <?php
 require_once __DIR__ . '/../init.php';
 
-$sku = 'SMA-STA-NA';
-$branchId = 'branch_1';
 $stockPath = __DIR__ . '/../data/stock.json';
 $branchStockPath = __DIR__ . '/../data/branch_stock.json';
-
 $originalStockJson = file_get_contents($stockPath);
 $originalBranchStockJson = file_get_contents($branchStockPath);
 $failures = [];
 
 try {
-    $originalStock = loadJSON('stock.json');
-    $originalQuantity = (int)($originalStock[$sku]['quantity'] ?? 0);
-    $updatedQuantity = $originalQuantity + 3;
+    $branchStock = loadBranchStock();
+    $branchIds = array_keys($branchStock);
+    $sku = 'SMA-STA-NA';
 
-    $updateResult = updateConsolidatedStock($sku, $updatedQuantity);
-    if (!$updateResult['success']) {
-        $failures[] = 'Editing STOCK failed: ' . $updateResult['error'];
+    if (count($branchIds) < 3) {
+        $failures[] = 'Expected at least 3 branches for branch editing regression test';
     } else {
-        $branchItems = getBranchStockItemsFromUniverse($branchId);
-        $branchItemsBySku = [];
-        foreach ($branchItems as $item) {
-            $branchItemsBySku[$item['sku']] = $item;
-        }
+        $newBranchQuantities = [
+            $branchIds[0] => 1,
+            $branchIds[1] => 4,
+            $branchIds[2] => 7
+        ];
 
-        $branchViewQuantity = (int)($branchItemsBySku[$sku]['quantity'] ?? -1);
-        if ($branchViewQuantity !== $updatedQuantity) {
-            $failures[] = "Branch stock view did not immediately mirror STOCK for $sku (expected $updatedQuantity, got $branchViewQuantity)";
-        }
+        $updateResult = updateConsolidatedStock($sku, $newBranchQuantities);
+        if (!$updateResult['success']) {
+            $failures[] = 'Editing STOCK failed: ' . $updateResult['error'];
+        } else {
+            $updatedStock = loadJSON('stock.json');
+            $updatedBranchStock = loadBranchStock();
+            $consolidated = getConsolidatedStockViewFromUniverse();
 
-        $mirroredBranchStock = loadJSON('branch_stock.json');
-        $compatibilityQuantity = (int)($mirroredBranchStock[$branchId][$sku]['quantity'] ?? -1);
-        if ($compatibilityQuantity !== $updatedQuantity) {
-            $failures[] = "branch_stock.json compatibility mirror was not refreshed for $sku (expected $updatedQuantity, got $compatibilityQuantity)";
-        }
+            foreach ($newBranchQuantities as $branchId => $expectedQty) {
+                $actualQty = (int)($updatedBranchStock[$branchId][$sku]['quantity'] ?? -1);
+                if ($actualQty !== $expectedQty) {
+                    $failures[] = "Branch quantity mismatch for $branchId (expected $expectedQty, got $actualQty)";
+                }
 
-        $pickupOk = checkBranchStockForCart($branchId, [[
-            'sku' => $sku,
-            'productId' => 'smart',
-            'name' => 'Aroma Smart',
-            'category' => 'accessories',
-            'volume' => 'standard',
-            'fragrance' => 'none',
-            'quantity' => $updatedQuantity
-        ]]);
+                $viewQty = (int)($consolidated[$sku]['branches'][$branchId] ?? -1);
+                if ($viewQty !== $expectedQty) {
+                    $failures[] = "Consolidated stock view mismatch for $branchId (expected $expectedQty, got $viewQty)";
+                }
+            }
 
-        if (!empty($pickupOk)) {
-            $failures[] = 'Pickup validation did not use the updated STOCK quantity for the available case';
-        }
+            $expectedTotal = array_sum($newBranchQuantities);
+            $storedQuantity = (int)($updatedStock[$sku]['quantity'] ?? -1);
+            $storedTotalQty = (int)($updatedStock[$sku]['total_qty'] ?? -1);
+            $viewTotal = (int)($consolidated[$sku]['total'] ?? -1);
 
-        $pickupBlocked = checkBranchStockForCart($branchId, [[
-            'sku' => $sku,
-            'productId' => 'smart',
-            'name' => 'Aroma Smart',
-            'category' => 'accessories',
-            'volume' => 'standard',
-            'fragrance' => 'none',
-            'quantity' => $updatedQuantity + 1
-        ]]);
-
-        if (empty($pickupBlocked)) {
-            $failures[] = 'Pickup validation did not block the unavailable case against the authoritative STOCK quantity';
+            if ($storedQuantity !== $expectedTotal) {
+                $failures[] = "stock.json quantity was not updated to branch sum (expected $expectedTotal, got $storedQuantity)";
+            }
+            if ($storedTotalQty !== $expectedTotal) {
+                $failures[] = "stock.json total_qty was not updated to branch sum (expected $expectedTotal, got $storedTotalQty)";
+            }
+            if ($viewTotal !== $expectedTotal) {
+                $failures[] = "Consolidated stock TOTAL does not equal branch sum (expected $expectedTotal, got $viewTotal)";
+            }
         }
     }
 } finally {
@@ -78,7 +71,6 @@ if ($failures) {
 }
 
 echo "PASS\n";
-echo "- Edited quantity on STOCK and saved successfully\n";
-echo "- Branch stock view immediately reflected the same authoritative value\n";
-echo "- Pickup validation used the same authoritative STOCK value\n";
-echo "- Unavailable pickup case remained blocked correctly\n";
+echo "- Branch quantities remain independently persisted on STOCK\n";
+echo "- TOTAL equals the exact sum of the saved branch quantities\n";
+echo "- stock.json remains aligned with the branch sum for the edited SKU\n";

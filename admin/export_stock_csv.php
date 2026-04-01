@@ -26,14 +26,17 @@ echo "\xEF\xBB\xBF";
 $universe = loadSkuUniverse();
 $branches = getAllBranches();
 $fragrances = loadJSON('fragrances.json');
-$stock = loadJSON('stock.json');
+$branchStock = loadBranchStock();
 
 // Open output stream
 $output = fopen('php://output', 'w');
 
 // Build header row
 $headers = ['sku', 'product_name', 'category', 'volume', 'fragrance_key', 'fragrance_label'];
-$headers[] = 'quantity';
+foreach (array_keys($branches) as $branchId) {
+    $headers[] = $branchId;
+}
+$headers[] = 'total';
 
 // Write header
 fputcsv($output, $headers);
@@ -68,7 +71,13 @@ foreach ($universe as $sku => $data) {
         $fragranceLabel
     ];
     
-    $row[] = (int)($stock[$sku]['quantity'] ?? 0);
+    $total = 0;
+    foreach (array_keys($branches) as $branchId) {
+        $quantity = (int)($branchStock[$branchId][$sku]['quantity'] ?? 0);
+        $row[] = $quantity;
+        $total += $quantity;
+    }
+    $row[] = $total;
     
     // Write row
     fputcsv($output, $row);
