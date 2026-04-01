@@ -213,15 +213,20 @@
         const fragranceSelect = card.querySelector('[data-fragrance-select]');
         
         if (productImage && fragranceSelect && fragranceCode && fragranceCode !== 'none') {
+            const defaultImage = productImage.dataset.defaultImage || '/img/placeholder.svg';
             // Get the image path from the data attribute on the selected option
             const selectedOption = fragranceSelect.querySelector('option:checked');
-            if (selectedOption && selectedOption.dataset.image) {
+            if (selectedOption && selectedOption.dataset.image && !selectedOption.dataset.image.endsWith('/placeholder.svg')) {
                 // Use the data-image directly - it already contains the full /img/ path
                 productImage.src = selectedOption.dataset.image;
             } else if (window.FRAGRANCES && window.FRAGRANCES[fragranceCode] && window.FRAGRANCES[fragranceCode].image) {
-                // Fallback to FRAGRANCES data - image already contains the full /img/ path
-                productImage.src = window.FRAGRANCES[fragranceCode].image;
+                const fragranceImage = window.FRAGRANCES[fragranceCode].image;
+                productImage.src = fragranceImage && !fragranceImage.endsWith('/placeholder.svg') ? fragranceImage : defaultImage;
+            } else {
+                productImage.src = defaultImage;
             }
+        } else if (productImage && productImage.dataset.defaultImage) {
+            productImage.src = productImage.dataset.defaultImage;
         }
         
         // Update fragrance description from FRAGRANCE_DESCRIPTIONS

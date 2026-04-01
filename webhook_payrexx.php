@@ -74,6 +74,8 @@ if (!is_array($orders)) {
 
 // Find the order by reference ID
 $orderFound = false;
+$responseCode = 200;
+$responsePayload = ['status' => 'success', 'message' => 'Order updated'];
 foreach ($orders as $orderId => &$order) {
     if ($orderId === $referenceId || ($order['id'] ?? '') === $referenceId) {
         $orderFound = true;
@@ -85,66 +87,37 @@ foreach ($orders as $orderId => &$order) {
             // Payment successful - only process if not already paid
             $previousStatus = $order['status'] ?? 'unknown';
             $previousPaymentStatus = $order['payment_status'] ?? 'unknown';
-            
-            $order['status'] = 'paid';
-            $order['payment_status'] = 'paid';
-            $order['paid_at'] = date('Y-m-d H:i:s');
-            $order['transaction_id'] = $transactionId;
-            
-            error_log('Payrexx Webhook: Order ' . $orderId . ' marked as paid');
-            
+
             // If this is the first time the order is being marked as paid, process it
             if ($previousPaymentStatus !== 'paid') {
                 error_log('Payrexx Webhook: Processing newly paid order ' . $orderId);
-                
-                // Decrease stock
-                $cart = $order['items'] ?? [];
-                $isPickup = $order['pickup_in_branch'] ?? false;
-                $pickupBranchId = $order['pickup_branch_id'] ?? '';
-                
-                // Validate branch ID if pickup is selected
-                if ($isPickup && empty($pickupBranchId)) {
-                    error_log("Payrexx Webhook WARNING: Pickup order $orderId has no branch ID, treating as delivery order");
-                    $isPickup = false;
+
+                $stockResult = decreaseOrderStock($order);
+                if (!$stockResult['success']) {
+                    $order['status'] = $previousStatus;
+                    $order['payment_status'] = 'inventory_failed';
+                    $order['transaction_id'] = $transactionId;
+                    $order['stock_error'] = implode(' | ', $stockResult['errors']);
+                    $responseCode = 500;
+                    $responsePayload = [
+                        'status' => 'error',
+                        'message' => 'Stock update failed after payment confirmation'
+                    ];
+                    error_log('Payrexx Webhook: Stock deduction failed for order ' . $orderId . ' - ' . $order['stock_error']);
+                    break;
                 }
-                
-                error_log("Payrexx Webhook: Starting stock deduction for order $orderId with " . count($cart) . " items");
-                
-                foreach ($cart as $item) {
-                    $sku = $item['sku'] ?? '';
-                    $qty = $item['quantity'] ?? 1;
-                    $productName = $item['name'] ?? $sku;
-                    $category = $item['category'] ?? '';
-                    
-                    error_log("Payrexx Webhook: Processing item - SKU: $sku, Name: $productName, Qty: $qty");
-                    
-                    // Special handling for gift sets
-                    if ($category === 'gift_sets') {
-                        $giftSetItems = $item['meta']['gift_set_items'] ?? $item['items'] ?? [];
-                        
-                        if (!empty($giftSetItems)) {
-                            $skuMap = expandGiftSetToSkuMap($giftSetItems);
-                            error_log("Payrexx Webhook: Gift set expanded to " . count($skuMap) . " unique SKUs");
-                            
-                            foreach ($skuMap as $giftSku => $giftQty) {
-                                if ($isPickup) {
-                                    decreaseBranchStock($pickupBranchId, $giftSku, $giftQty);
-                                } else {
-                                    decreaseStock($giftSku, $giftQty);
-                                }
-                            }
-                        }
-                        continue;
-                    }
-                    
-                    // Normal product stock decrease
-                    if ($isPickup) {
-                        decreaseBranchStock($pickupBranchId, $sku, $qty);
-                        error_log("Payrexx Webhook: Decreased branch stock - Branch: $pickupBranchId, SKU: $sku, Qty: $qty");
-                    } else {
-                        decreaseStock($sku, $qty);
-                        error_log("Payrexx Webhook: Decreased global stock - SKU: $sku, Qty: $qty");
-                    }
+
+                $order['status'] = 'paid';
+                $order['payment_status'] = 'paid';
+                $order['paid_at'] = date('Y-m-d H:i:s');
+                $order['transaction_id'] = $transactionId;
+                unset($order['stock_error']);
+
+                error_log('Payrexx Webhook: Order ' . $orderId . ' marked as paid after successful stock deduction');
+
+                foreach ($stockResult['applied'] as $appliedChange) {
+                    $branchLabel = !empty($appliedChange['branch_id']) ? ('Branch: ' . $appliedChange['branch_id'] . ', ') : '';
+                    error_log('Payrexx Webhook: Decreased stock - ' . $branchLabel . 'SKU: ' . $appliedChange['sku'] . ', Qty: ' . $appliedChange['quantity']);
                 }
                 
                 // Send confirmation emails
@@ -161,6 +134,8 @@ foreach ($orders as $orderId => &$order) {
                 } catch (Exception $e) {
                     error_log('Payrexx Webhook: Failed to send new order notification for order ' . $orderId . ': ' . $e->getMessage());
                 }
+            } else {
+                error_log('Payrexx Webhook: Order ' . $orderId . ' is already marked as paid; skipping duplicate stock deduction');
             }
         } elseif ($status === 'waiting' || $status === 'pending') {
             // Payment pending
@@ -168,8 +143,11 @@ foreach ($orders as $orderId => &$order) {
             error_log('Payrexx Webhook: Order ' . $orderId . ' payment is pending');
         } elseif ($status === 'cancelled' || $status === 'declined' || $status === 'error') {
             // Payment failed or cancelled
+            $wasPaid = ($order['payment_status'] ?? '') === 'paid';
             $order['payment_status'] = 'failed';
-            $order['status'] = 'cancelled';
+            if (!$wasPaid) {
+                $order['status'] = 'cancelled';
+            }
             error_log('Payrexx Webhook: Order ' . $orderId . ' payment failed or cancelled');
         }
         
@@ -188,8 +166,8 @@ if (!$orderFound) {
 // Save updated orders
 if (saveOrders($orders)) {
     error_log('Payrexx Webhook: Successfully updated order ' . $referenceId);
-    http_response_code(200);
-    echo json_encode(['status' => 'success', 'message' => 'Order updated']);
+    http_response_code($responseCode);
+    echo json_encode($responsePayload);
 } else {
     error_log('Payrexx Webhook: Failed to save order updates for ' . $referenceId);
     http_response_code(500);

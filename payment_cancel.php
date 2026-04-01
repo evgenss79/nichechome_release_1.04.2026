@@ -15,12 +15,19 @@ $orders = loadOrders();
 $order = null;
 
 if (!empty($orderId) && is_array($orders)) {
-    foreach ($orders as $id => $ord) {
+    foreach ($orders as $id => &$ord) {
         if ($id === $orderId || ($ord['id'] ?? '') === $orderId) {
+            if (($ord['payment_status'] ?? '') !== 'paid') {
+                $ord['payment_status'] = 'failed';
+                $ord['status'] = 'cancelled';
+                $ord['payment_failed_at'] = date('Y-m-d H:i:s');
+                saveOrders($orders);
+            }
             $order = $ord;
             break;
         }
     }
+    unset($ord);
 }
 
 include __DIR__ . '/includes/header.php';

@@ -211,6 +211,16 @@ switch ($action) {
             $volume = $normalizedSelection['volume'];
             $fragrance = $normalizedSelection['fragrance'];
             $price = getProductPrice($productId, $volume, $fragrance);
+
+            if ($price <= 0) {
+                error_log("ADD_TO_CART ERROR: Unable to resolve non-zero price for ProductID: $productId, SKU: $sku, Volume: $volume, Fragrance: $fragrance");
+                http_response_code(400);
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Unable to resolve product price for the selected variant.'
+                ]);
+                exit;
+            }
             
             // Debug logging for Limited Edition stock issue investigation
             // NOTE: This logging can be removed once the issue is confirmed resolved
@@ -322,8 +332,13 @@ switch ($action) {
                     $sku = $normalizedSelection['sku'];
                     $volume = $normalizedSelection['volume'];
                     $fragrance = $normalizedSelection['fragrance'];
-                    $price = getProductPrice($productId, $volume);
-                    
+                    $price = getProductPrice($productId, $volume, $fragrance);
+
+                    if ($price <= 0) {
+                        error_log("CART SYNC WARNING: Skipping item with unresolved price - ProductID: $productId, SKU: $sku, Volume: $volume, Fragrance: $fragrance");
+                        continue;
+                    }
+                     
                     $cartItem = [
                         'sku' => $sku,
                         'productId' => $productId,

@@ -38,7 +38,10 @@ $category = $categories[$slug];
 $categoryName = I18N::t('category.' . $slug . '.name', ucfirst(str_replace('_', ' ', $slug)));
 $categoryShort = I18N::t('category.' . $slug . '.short', '');
 $categoryLong = I18N::t('category.' . $slug . '.long', '');
-$categoryImage = getCategoryImage($slug);
+$categoryImages = getCategoryImageList($slug, $category);
+$categoryImage = !empty($categoryImages)
+    ? asset_url('img/' . rawurlencode($categoryImages[0]))
+    : '/img/placeholder.svg';
 
 // Determine if this is Home Perfume category for hero image scaling
 $heroImageClass = $slug === 'home_perfume' ? 'hero-home-perfume' : '';
@@ -69,12 +72,39 @@ if ($slug === 'accessories') {
             </div>
         </div>
         <div class="category-hero-image">
-            <div class="category-hero__image <?php echo $heroImageClass; ?>" data-category="<?php echo htmlspecialchars($slug); ?>">
-                <img src="<?php echo htmlspecialchars($categoryImage); ?>" 
-                     alt="<?php echo htmlspecialchars($categoryName); ?>" 
-                     class="category-hero__image-el" 
-                     onerror="this.src='/img/placeholder.svg'">
-            </div>
+            <?php if (count($categoryImages) > 1): ?>
+                <div class="category-gallery product-gallery" data-product-gallery data-category-gallery>
+                    <div class="product-gallery__main category-gallery__main <?php echo htmlspecialchars($heroImageClass); ?>">
+                        <?php foreach ($categoryImages as $index => $imgFile): ?>
+                            <img src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                                 alt="<?php echo htmlspecialchars($categoryName); ?>"
+                                 class="product-gallery__image <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                                 data-gallery-image="<?php echo $index; ?>"
+                                 onerror="this.src='/img/placeholder.svg'">
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="product-gallery__nav">
+                        <button type="button" class="product-gallery__prev" data-gallery-prev aria-label="Previous image">&lt;</button>
+                        <button type="button" class="product-gallery__next" data-gallery-next aria-label="Next image">&gt;</button>
+                    </div>
+                    <div class="product-gallery__thumbs category-gallery__thumbs">
+                        <?php foreach ($categoryImages as $index => $imgFile): ?>
+                            <img src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                                 alt="<?php echo htmlspecialchars($categoryName); ?>"
+                                 class="product-gallery__thumb <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                                 data-gallery-thumb="<?php echo $index; ?>"
+                                 onerror="this.src='/img/placeholder.svg'">
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="category-hero__image <?php echo $heroImageClass; ?>" data-category="<?php echo htmlspecialchars($slug); ?>">
+                    <img src="<?php echo htmlspecialchars($categoryImage); ?>" 
+                         alt="<?php echo htmlspecialchars($categoryName); ?>" 
+                         class="category-hero__image-el" 
+                         onerror="this.src='/img/placeholder.svg'">
+                </div>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -202,12 +232,39 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
         </div>
     </div>
     <div class="category-hero-image">
-        <div class="category-hero__image <?php echo $heroImageClass; ?>" data-category="<?php echo htmlspecialchars($slug); ?>">
-            <img src="<?php echo htmlspecialchars($categoryImage); ?>" 
-                 alt="<?php echo htmlspecialchars($categoryName); ?>" 
-                 class="category-hero__image-el" 
-                 onerror="this.src='/img/placeholder.svg'">
-        </div>
+        <?php if (count($categoryImages) > 1): ?>
+            <div class="category-gallery product-gallery" data-product-gallery data-category-gallery>
+                <div class="product-gallery__main category-gallery__main <?php echo htmlspecialchars($heroImageClass); ?>">
+                    <?php foreach ($categoryImages as $index => $imgFile): ?>
+                        <img src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                             alt="<?php echo htmlspecialchars($categoryName); ?>"
+                             class="product-gallery__image <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                             data-gallery-image="<?php echo $index; ?>"
+                             onerror="this.src='/img/placeholder.svg'">
+                    <?php endforeach; ?>
+                </div>
+                <div class="product-gallery__nav">
+                    <button type="button" class="product-gallery__prev" data-gallery-prev aria-label="Previous image">&lt;</button>
+                    <button type="button" class="product-gallery__next" data-gallery-next aria-label="Next image">&gt;</button>
+                </div>
+                <div class="product-gallery__thumbs category-gallery__thumbs">
+                    <?php foreach ($categoryImages as $index => $imgFile): ?>
+                        <img src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
+                             alt="<?php echo htmlspecialchars($categoryName); ?>"
+                             class="product-gallery__thumb <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                             data-gallery-thumb="<?php echo $index; ?>"
+                             onerror="this.src='/img/placeholder.svg'">
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="category-hero__image <?php echo $heroImageClass; ?>" data-category="<?php echo htmlspecialchars($slug); ?>">
+                <img src="<?php echo htmlspecialchars($categoryImage); ?>" 
+                     alt="<?php echo htmlspecialchars($categoryName); ?>" 
+                     class="category-hero__image-el" 
+                     onerror="this.src='/img/placeholder.svg'">
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -221,6 +278,7 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
             $productVariants = getNormalizedProductVariants($product);
             $productVolumes = getProductVolumeOptions($product, $slug);
             $productFragrances = getProductFragranceOptions($product, $slug);
+            $productImages = getProductImageList($product);
             $showVolumeSelector = count($productVolumes) > 1;
             $showFragranceSelector = productHasFragranceSelector($product, $slug);
             $fixedFragrance = !$showFragranceSelector && !empty($productFragrances) ? $productFragrances[0] : '';
@@ -228,13 +286,13 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
             $firstFragCode = $showFragranceSelector
                 ? ($productFragrances[0] ?? null)
                 : ($fixedFragrance ?: null);
-            
-            // Determine the image to show - use fragrance image from /img/ folder
-            $displayImage = '/img/placeholder.svg';
-            if ($firstFragCode) {
+
+            $hasExplicitProductImage = !empty(normalizeImageFilenameList($product['images'] ?? [])) || !empty(trim((string)($product['image'] ?? '')));
+            $displayImage = $hasExplicitProductImage
+                ? asset_url('img/' . rawurlencode($productImages[0] ?? 'placeholder.jpg'))
+                : '/img/placeholder.svg';
+            if (!$hasExplicitProductImage && $firstFragCode) {
                 $displayImage = getFragranceImage($firstFragCode);
-            } elseif ($productImage) {
-                $displayImage = '/img/' . rawurlencode($productImage);
             }
             ?>
             <article class="product-card" 

@@ -46,10 +46,9 @@ if ($categorySlug === 'accessories' && isset($accessoriesData[$productId])) {
 }
 
 $productImages = getProductImageList($product, $accessoryData);
+$primaryProductImage = asset_url('img/' . rawurlencode($productImages[0] ?? 'placeholder.jpg'));
 
-// Determine image paths - all images are in img/ folder
-$imgPrefix = 'img/';
-$errorPlaceholder = 'img/placeholder.svg';
+$errorPlaceholder = '/img/placeholder.svg';
 
 $allowedFrags = getProductFragranceOptions($product, $categorySlug, $accessoryData);
 $volumes = getProductVolumeOptions($product, $categorySlug, $accessoryData);
@@ -87,7 +86,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="product-gallery__main">
                     <?php foreach ($productImages as $index => $imgFile): ?>
                         <img 
-                            src="<?php echo $imgPrefix . htmlspecialchars($imgFile); ?>"
+                            src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
                             alt="<?php echo htmlspecialchars($productName); ?>"
                             class="product-gallery__image <?php echo $index === 0 ? 'is-active' : ''; ?>"
                             data-gallery-image="<?php echo $index; ?>"
@@ -101,7 +100,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="product-gallery__thumbs">
                     <?php foreach ($productImages as $index => $imgFile): ?>
                         <img
-                            src="<?php echo $imgPrefix . htmlspecialchars($imgFile); ?>"
+                            src="<?php echo htmlspecialchars(asset_url('img/' . rawurlencode($imgFile))); ?>"
                             alt="<?php echo htmlspecialchars($productName); ?>"
                             class="product-gallery__thumb <?php echo $index === 0 ? 'is-active' : ''; ?>"
                             data-gallery-thumb="<?php echo $index; ?>"
@@ -111,12 +110,11 @@ include __DIR__ . '/includes/header.php';
             </div>
         <?php else: ?>
             <!-- Single image display -->
-            <?php $singleImagePath = !empty($productImages) ? $productImages[0] : 'placeholder.jpg'; ?>
             <div class="category-hero__image" data-category="<?php echo htmlspecialchars($categorySlug); ?>">
-                <img src="<?php echo $imgPrefix . htmlspecialchars($singleImagePath); ?>" 
+                <img src="<?php echo htmlspecialchars($primaryProductImage); ?>" 
                      alt="<?php echo htmlspecialchars($productName); ?>" 
                      class="category-hero__image-el"
-                     onerror="this.src='<?php echo $errorPlaceholder; ?>'">
+                      onerror="this.src='<?php echo $errorPlaceholder; ?>'">
             </div>
         <?php endif; ?>
     </div>
@@ -136,11 +134,10 @@ include __DIR__ . '/includes/header.php';
                     $firstFragCode = $showFragranceSelector ? ($allowedFrags[0] ?? null) : ($fixedFragrance ?: null);
                     
                     // Determine the image to show - use fragrance image from /img/ folder
-                    $displayImage = '/img/placeholder.svg';
-                    if ($firstFragCode) {
+                    $hasExplicitProductImage = !empty(normalizeImageFilenameList($product['images'] ?? [])) || !empty(trim((string)$productImage));
+                    $displayImage = $hasExplicitProductImage ? $primaryProductImage : '/img/placeholder.svg';
+                    if (!$hasExplicitProductImage && $firstFragCode) {
                         $displayImage = getFragranceImage($firstFragCode);
-                    } elseif ($productImage) {
-                        $displayImage = '/img/' . rawurlencode($productImage);
                     }
                     ?>
                     <div class="product-card__image">
