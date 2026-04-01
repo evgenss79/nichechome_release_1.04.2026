@@ -8,28 +8,7 @@ include __DIR__ . '/includes/header.php';
 
 $categories = loadJSON('categories.json');
 $currentLang = I18N::getLanguage();
-
-// Define which categories to display on catalog page
-// We show accessories instead of gift_sets on catalog cards
-// gift_sets is still accessible via navigation
-$catalogCategories = [
-    'aroma_diffusers',
-    'scented_candles',
-    'home_perfume',
-    'car_perfume',
-    'textile_perfume',
-    'limited_edition',
-    'accessories',       // instead of gift_sets
-    'aroma_marketing',
-];
-
-// Filter and keep only catalog categories in the correct order
-$displayCategories = [];
-foreach ($catalogCategories as $slug) {
-    if (isset($categories[$slug])) {
-        $displayCategories[$slug] = $categories[$slug];
-    }
-}
+$displayCategories = getCatalogCategories();
 ?>
 
 <main class="catalog-page">
@@ -45,13 +24,7 @@ foreach ($catalogCategories as $slug) {
             <?php
             $name = I18N::t('category.' . $slug . '.name', ucfirst(str_replace('_', ' ', $slug)));
             $image = getCategoryImage($slug);
-            
-            // Determine link
-            if (isset($category['redirect'])) {
-                $link = $category['redirect'] . '?lang=' . $currentLang;
-            } else {
-                $link = 'category.php?slug=' . urlencode($slug) . '&lang=' . $currentLang;
-            }
+            $link = getCategoryUrl($slug, $category, $currentLang);
             
             // Determine catalog item class with category-specific modifiers
             $catalogItemClass = 'catalog-card';

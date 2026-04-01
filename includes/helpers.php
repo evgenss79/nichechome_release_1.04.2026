@@ -7,6 +7,15 @@
  * Get allowed fragrances for a category
  */
 function allowedFragrances(string $category): array {
+    $categories = loadJSON('categories.json');
+    $categoryData = $categories[$category] ?? [];
+    if (isset($categoryData['allowed_fragrances']) && is_array($categoryData['allowed_fragrances'])) {
+        return array_values(array_filter($categoryData['allowed_fragrances'], 'is_string'));
+    }
+    if (array_key_exists('has_fragrance', $categoryData) && !$categoryData['has_fragrance']) {
+        return [];
+    }
+
     $all = [
         'cherry_blossom', 'bellini', 'eden', 'rosso',
         'salted_caramel', 'santal', 'lime_basil', 'bamboo',
@@ -133,6 +142,12 @@ function getPriceByCategory(string $category, string $volume = ''): float {
  * Get volumes for a category
  */
 function getVolumesForCategory(string $category): array {
+    $categories = loadJSON('categories.json');
+    $categoryData = $categories[$category] ?? [];
+    if (isset($categoryData['volumes']) && is_array($categoryData['volumes'])) {
+        return array_values($categoryData['volumes']);
+    }
+
     switch ($category) {
         case 'aroma_diffusers':
             return ['125ml', '250ml', '500ml'];
@@ -143,6 +158,287 @@ function getVolumesForCategory(string $category): array {
         default:
             return [];
     }
+}
+
+/**
+ * Normalize volume labels for selector and price lookups.
+ */
+function normalizeVariantVolume(string $volume = 'standard'): string {
+    $volume = trim($volume);
+    return $volume !== '' ? $volume : 'standard';
+}
+
+/**
+ * Normalize fragrance value for selector and SKU logic.
+ */
+function normalizeVariantFragrance(string $fragrance = ''): string {
+    $fragrance = trim($fragrance);
+    if ($fragrance === '' || strtolower($fragrance) === 'na' || strtolower($fragrance) === 'none' || strtolower($fragrance) === 'null') {
+        return '';
+    }
+    return $fragrance;
+}
+
+/**
+ * Build normalized product variants for storefront and pricing logic.
+ */
+function getNormalizedProductVariants(array $product, ?array $accessoryData = null): array {
+    $variants = [];
+    foreach (($product['variants'] ?? []) as $variant) {
+        $price = (float)($variant['priceCHF'] ?? 0);
+        if ($price < 0) {
+            $price = 0;
+        }
+        $variants[] = [
+            'volume' => normalizeVariantVolume((string)($variant['volume'] ?? 'standard')),
+            'fragrance' => normalizeVariantFragrance((string)($variant['fragrance'] ?? '')),
+            'priceCHF' => $price
+        ];
+    }
+
+    if (!empty($variants)) {
+        return $variants;
+    }
+
+    if ($accessoryData) {
+        $volumes = !empty($accessoryData['volumes']) && is_array($accessoryData['volumes'])
+            ? $accessoryData['volumes']
+            : ['standard'];
+        $volumePrices = is_array($accessoryData['volume_prices'] ?? null) ? $accessoryData['volume_prices'] : [];
+        foreach ($volumes as $volume) {
+            $variants[] = [
+                'volume' => normalizeVariantVolume((string)$volume),
+                'fragrance' => '',
+                'priceCHF' => (float)($volumePrices[$volume] ?? $accessoryData['priceCHF'] ?? 0)
+            ];
+        }
+    }
+
+    return $variants;
+}
+
+/**
+ * Build product price configuration for storefront selectors.
+ */
+function buildProductPriceConfig(array $product, ?array $accessoryData = null): array {
+    $config = [];
+    foreach (getNormalizedProductVariants($product, $accessoryData) as $variant) {
+        $volume = $variant['volume'];
+        $fragrance = $variant['fragrance'];
+        $price = (float)$variant['priceCHF'];
+
+        if ($fragrance !== '') {
+            if (!isset($config[$volume]) || !is_array($config[$volume])) {
+                $config[$volume] = [];
+            }
+            $config[$volume][$fragrance] = $price;
+        } else {
+            $config[$volume] = $price;
+        }
+    }
+    return $config;
+}
+
+/**
+ * Get available product volume options.
+ */
+function getProductVolumeOptions(array $product, string $category = '', ?array $accessoryData = null): array {
+    $volumes = [];
+    foreach (getNormalizedProductVariants($product, $accessoryData) as $variant) {
+        $volumes[] = $variant['volume'];
+    }
+
+    if (empty($volumes)) {
+        $volumes = getVolumesForCategory($category);
+    }
+
+    $volumes = array_values(array_unique(array_filter($volumes, 'strlen')));
+    return empty($volumes) ? ['standard'] : $volumes;
+}
+
+/**
+ * Get available product fragrance options.
+ */
+function getProductFragranceOptions(array $product, string $category = '', ?array $accessoryData = null): array {
+    if (isset($product['allowed_fragrances']) && is_array($product['allowed_fragrances'])) {
+        return array_values(array_filter($product['allowed_fragrances'], 'strlen'));
+    }
+    if (!empty($product['fragrance'])) {
+        return [trim((string)$product['fragrance'])];
+    }
+    if ($accessoryData && isset($accessoryData['allowed_fragrances']) && is_array($accessoryData['allowed_fragrances'])) {
+        return array_values(array_filter($accessoryData['allowed_fragrances'], 'strlen'));
+    }
+
+    $variantFragrances = [];
+    foreach (getNormalizedProductVariants($product, $accessoryData) as $variant) {
+        if ($variant['fragrance'] !== '') {
+            $variantFragrances[] = $variant['fragrance'];
+        }
+    }
+    $variantFragrances = array_values(array_unique($variantFragrances));
+    if (!empty($variantFragrances)) {
+        return $variantFragrances;
+    }
+
+    return allowedFragrances($category);
+}
+
+/**
+ * Determine whether a product should expose a fragrance selector.
+ */
+function productHasFragranceSelector(array $product, string $category = '', ?array $accessoryData = null): bool {
+    if (array_key_exists('has_fragrance_selector', $product)) {
+        return !empty($product['has_fragrance_selector']);
+    }
+    if ($accessoryData && array_key_exists('has_fragrance_selector', $accessoryData)) {
+        return !empty($accessoryData['has_fragrance_selector']);
+    }
+    if (!empty($product['fragrance'])) {
+        return false;
+    }
+
+    return count(getProductFragranceOptions($product, $category, $accessoryData)) > 1;
+}
+
+/**
+ * Build product image list.
+ */
+function getProductImageList(array $product, ?array $accessoryData = null): array {
+    $images = [];
+    if ($accessoryData && !empty($accessoryData['images']) && is_array($accessoryData['images'])) {
+        $images = $accessoryData['images'];
+    } elseif (!empty($product['images']) && is_array($product['images'])) {
+        $images = $product['images'];
+    } elseif (!empty($product['image'])) {
+        $images = [$product['image']];
+    }
+
+    $images = array_values(array_unique(array_filter(array_map('trim', $images), 'strlen')));
+    return empty($images) ? ['placeholder.jpg'] : $images;
+}
+
+/**
+ * Load categories sorted by sort_order.
+ */
+function getSortedCategories(bool $activeOnly = true): array {
+    $categories = loadJSON('categories.json');
+    if ($activeOnly) {
+        $categories = array_filter($categories, function ($category) {
+            return !array_key_exists('active', $category) || !empty($category['active']);
+        });
+    }
+    uasort($categories, function ($a, $b) {
+        return (int)($a['sort_order'] ?? 999) <=> (int)($b['sort_order'] ?? 999);
+    });
+    return $categories;
+}
+
+/**
+ * Build category URL.
+ */
+function getCategoryUrl(string $slug, array $category, string $lang): string {
+    if (!empty($category['redirect'])) {
+        return $category['redirect'] . '?lang=' . urlencode($lang);
+    }
+    return 'category.php?slug=' . urlencode($slug) . '&lang=' . urlencode($lang);
+}
+
+/**
+ * Categories for storefront catalog page.
+ */
+function getCatalogCategories(): array {
+    $categories = getSortedCategories();
+    return array_filter($categories, function ($category) {
+        return !array_key_exists('show_in_catalog', $category) || !empty($category['show_in_catalog']);
+    });
+}
+
+/**
+ * Categories for the catalog mega menu.
+ */
+function getNavigationCategories(): array {
+    $categories = getSortedCategories();
+    return array_filter($categories, function ($category) {
+        return !array_key_exists('show_in_navigation', $category) || !empty($category['show_in_navigation']);
+    });
+}
+
+/**
+ * Categories for footer catalog section.
+ */
+function getFooterCategories(): array {
+    $categories = getSortedCategories();
+    return array_filter($categories, function ($category) {
+        return !array_key_exists('show_in_footer', $category) || !empty($category['show_in_footer']);
+    });
+}
+
+/**
+ * Load translatable entity content from ui_*.json files.
+ */
+function loadEntityTranslations(string $entityType, string $entityId, array $fields): array {
+    $result = [];
+    foreach (I18N::getSupportedLanguages() as $lang) {
+        $path = __DIR__ . '/../data/i18n/ui_' . $lang . '.json';
+        $result[$lang] = [];
+        if (!file_exists($path)) {
+            continue;
+        }
+
+        $data = json_decode((string)file_get_contents($path), true);
+        if (!is_array($data)) {
+            continue;
+        }
+
+        foreach ($fields as $field) {
+            $result[$lang][$field] = (string)($data[$entityType][$entityId][$field] ?? '');
+        }
+    }
+    return $result;
+}
+
+/**
+ * Persist translatable entity content into ui_*.json files.
+ */
+function saveEntityTranslations(string $entityType, string $entityId, array $translations): bool {
+    foreach (I18N::getSupportedLanguages() as $lang) {
+        $path = __DIR__ . '/../data/i18n/ui_' . $lang . '.json';
+        if (!file_exists($path)) {
+            continue;
+        }
+
+        $data = json_decode((string)file_get_contents($path), true);
+        if (!is_array($data)) {
+            $data = [];
+        }
+        if (!isset($data[$entityType]) || !is_array($data[$entityType])) {
+            $data[$entityType] = [];
+        }
+        if (!isset($data[$entityType][$entityId]) || !is_array($data[$entityType][$entityId])) {
+            $data[$entityType][$entityId] = [];
+        }
+
+        foreach (($translations[$lang] ?? []) as $field => $value) {
+            $value = trim((string)$value);
+            if ($value === '') {
+                unset($data[$entityType][$entityId][$field]);
+            } else {
+                $data[$entityType][$entityId][$field] = $value;
+            }
+        }
+
+        if (empty($data[$entityType][$entityId])) {
+            unset($data[$entityType][$entityId]);
+        }
+
+        if (file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) === false) {
+            return false;
+        }
+    }
+
+    I18N::setLanguage(I18N::getLanguage());
+    return true;
 }
 
 /**
@@ -471,20 +767,46 @@ function getStockQuantity(string $sku): int {
 /**
  * Get product price from products.json variants
  */
-function getProductPrice(string $productId, string $volume = 'standard'): float {
+function getProductPrice(string $productId, string $volume = 'standard', string $fragrance = 'none'): float {
     // Try products.json first
     $products = loadJSON('products.json');
     if (isset($products[$productId])) {
         $product = $products[$productId];
-        $variants = $product['variants'] ?? [];
-        
-        // Always use variants for pricing
+        $variants = getNormalizedProductVariants($product);
+        $normalizedVolume = normalizeVariantVolume($volume);
+        $normalizedFragrance = normalizeVariantFragrance($fragrance);
+        $volumeFallback = null;
+        $firstVariantPrice = null;
+
         foreach ($variants as $variant) {
-            $variantVolume = $variant['volume'] ?? '';
-            // Strict comparison: both are strings
-            if ($variantVolume === $volume) {
-                return (float)($variant['priceCHF'] ?? 0.0);
+            $variantVolume = $variant['volume'];
+            $variantFragrance = $variant['fragrance'];
+            $variantPrice = (float)($variant['priceCHF'] ?? 0.0);
+
+            if ($firstVariantPrice === null) {
+                $firstVariantPrice = $variantPrice;
             }
+
+            if ($variantVolume !== $normalizedVolume) {
+                continue;
+            }
+
+            if ($variantFragrance !== '') {
+                if ($variantFragrance === $normalizedFragrance) {
+                    return $variantPrice;
+                }
+                continue;
+            }
+
+            $volumeFallback = $variantPrice;
+        }
+
+        if ($volumeFallback !== null) {
+            return $volumeFallback;
+        }
+
+        if ($firstVariantPrice !== null && count($variants) === 1) {
+            return $firstVariantPrice;
         }
     }
     
@@ -763,6 +1085,12 @@ function getProductImagePath(string $productId): string {
  * Get category image path - uses /img/ folder
  */
 function getCategoryImage(string $category): string {
+    $categories = loadJSON('categories.json');
+    $categoryData = $categories[$category] ?? [];
+    if (!empty($categoryData['image']) && (!isset($categoryData['id']) || !isset($categoryData['use_custom_image']) || !empty($categoryData['use_custom_image']) || !isset($categoryData['name_key']) || !isset($categoryData['short_key']))) {
+        return '/img/' . rawurlencode($categoryData['image']);
+    }
+
     $imageMap = [
         'aroma_diffusers' => 'Aroma diffusers_category.jpg',
         'scented_candles' => 'Candels category.jpg',
@@ -778,6 +1106,9 @@ function getCategoryImage(string $category): string {
     $filename = $imageMap[$category] ?? '';
     if ($filename) {
         return '/img/' . rawurlencode($filename);
+    }
+    if (!empty($categoryData['image'])) {
+        return '/img/' . rawurlencode($categoryData['image']);
     }
     return '/img/placeholder.svg';
 }

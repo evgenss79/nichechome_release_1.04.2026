@@ -32,7 +32,7 @@ $productName = I18N::t('product.' . $productId . '.name', $product['name_key'] ?
 $productDesc = I18N::t('product.' . $productId . '.desc', $product['desc_key'] ?? '');
 $categoryName = I18N::t('category.' . $categorySlug . '.name', ucfirst(str_replace('_', ' ', $categorySlug)));
 $productImage = $product['image'] ?? '';
-$productVariants = $product['variants'] ?? [];
+$productVariants = getNormalizedProductVariants($product);
 
 // Check if this is an accessory with multiple images
 $productImages = [];
@@ -41,46 +41,21 @@ $accessoryData = null;
 if ($categorySlug === 'accessories' && isset($accessoriesData[$productId])) {
     $isAccessory = true;
     $accessoryData = $accessoriesData[$productId];
-    if (isset($accessoryData['images']) && is_array($accessoryData['images'])) {
-        $productImages = $accessoryData['images'];
-    }
     // DO NOT use priceCHF from accessories.json - always use variants[] from products.json
     // This ensures consistency and proper volume-based pricing
 }
 
-// Fallback to single image if no images in accessories
-if (empty($productImages) && $productImage) {
-    $productImages = [$productImage];
-}
-
-// Ensure we have at least a placeholder if no images at all
-if (empty($productImages)) {
-    $productImages = ['placeholder.jpg'];
-}
+$productImages = getProductImageList($product, $accessoryData);
 
 // Determine image paths - all images are in img/ folder
 $imgPrefix = 'img/';
 $errorPlaceholder = 'img/placeholder.svg';
 
-// Get allowed fragrances and volumes
-// For accessories, use data from accessories.json if available
-if ($isAccessory && isset($accessoryData['allowed_fragrances'])) {
-    $allowedFrags = $accessoryData['allowed_fragrances'];
-} elseif ($categorySlug === 'accessories' && isset($product['allowed_fragrances'])) {
-    $allowedFrags = $product['allowed_fragrances'];
-} else {
-    $allowedFrags = allowedFragrances($categorySlug);
-}
-
-// For accessories with volume selector, use volumes from accessories.json
-if ($isAccessory && isset($accessoryData['has_volume_selector']) && $accessoryData['has_volume_selector'] && !empty($accessoryData['volumes'])) {
-    $volumes = $accessoryData['volumes'];
-} else {
-    $volumes = getVolumesForCategory($categorySlug);
-}
-
-// Check if limited edition with fixed fragrance
-$isLimitedWithFixed = ($categorySlug === 'limited_edition' && isset($product['fragrance']));
+$allowedFrags = getProductFragranceOptions($product, $categorySlug, $accessoryData);
+$volumes = getProductVolumeOptions($product, $categorySlug, $accessoryData);
+$showVolumeSelector = count($volumes) > 1;
+$showFragranceSelector = productHasFragranceSelector($product, $categorySlug, $accessoryData);
+$fixedFragrance = !$showFragranceSelector && !empty($allowedFrags) ? $allowedFrags[0] : '';
 
 // Get default price
 if (!isset($defaultPrice)) {
@@ -158,10 +133,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="product-card__inner">
                     <?php 
                     // Get first fragrance for initial image display
-                    $firstFragCode = !empty($allowedFrags) ? $allowedFrags[0] : null;
-                    if ($isLimitedWithFixed) {
-                        $firstFragCode = $product['fragrance'];
-                    }
+                    $firstFragCode = $showFragranceSelector ? ($allowedFrags[0] ?? null) : ($fixedFragrance ?: null);
                     
                     // Determine the image to show - use fragrance image from /img/ folder
                     $displayImage = '/img/placeholder.svg';
@@ -204,7 +176,7 @@ include __DIR__ . '/includes/header.php';
                         </header>
                         
                         <div class="product-card__selectors">
-                            <?php if (!empty($volumes)): ?>
+                            <?php if ($showVolumeSelector): ?>
                                 <div class="product-card__field">
                                     <label><?php echo I18N::t('common.volume', 'Volume'); ?></label>
                                     <select class="product-card__select product-card__select--volume" data-volume-select>
@@ -215,16 +187,11 @@ include __DIR__ . '/includes/header.php';
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
+                            <?php else: ?>
+                                <input type="hidden" data-volume-select value="<?php echo htmlspecialchars($volumes[0] ?? 'standard'); ?>">
                             <?php endif; ?>
                             
-                            <?php 
-                            // Check if fragrance selector should be shown for accessories
-                            $showFragranceSelector = true;
-                            if ($isAccessory && isset($accessoryData['has_fragrance_selector'])) {
-                                $showFragranceSelector = $accessoryData['has_fragrance_selector'];
-                            }
-                            
-                            if (!$isLimitedWithFixed && !empty($allowedFrags) && $showFragranceSelector): ?>
+                            <?php if (!empty($allowedFrags) && $showFragranceSelector): ?>
                                 <div class="product-card__field">
                                     <label><?php echo I18N::t('common.fragrance', 'Fragrance'); ?></label>
                                     <select class="product-card__select product-card__select--fragrance" 
@@ -241,10 +208,9 @@ include __DIR__ . '/includes/header.php';
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            <?php elseif ($isLimitedWithFixed): ?>
-                                <input type="hidden" data-fragrance-select value="<?php echo htmlspecialchars($product['fragrance']); ?>">
-                            <?php elseif (!$showFragranceSelector): ?>
-                                <!-- No fragrance selector needed for this accessory -->
+                            <?php elseif ($fixedFragrance !== ''): ?>
+                                <input type="hidden" data-fragrance-select value="<?php echo htmlspecialchars($fixedFragrance); ?>">
+                            <?php else: ?>
                                 <input type="hidden" data-fragrance-select value="none">
                             <?php endif; ?>
                         </div>
@@ -362,13 +328,17 @@ include __DIR__ . '/includes/header.php';
 </section>
 
 <script>
+<?php
+$fragranceCodesForPage = array_values(array_unique(array_filter($allowedFrags, 'strlen')));
+$productPriceConfig = buildProductPriceConfig($product, $accessoryData);
+?>
 window.FRAGRANCES = <?php echo json_encode(array_map(function($code) {
     return [
         'name' => I18N::t('fragrance.' . $code . '.name', ucfirst(str_replace('_', ' ', $code))),
         'short' => I18N::t('fragrance.' . $code . '.short', ''),
         'image' => getFragranceImage($code)
     ];
-}, array_combine($allowedFrags, $allowedFrags))); ?>;
+}, !empty($fragranceCodesForPage) ? array_combine($fragranceCodesForPage, $fragranceCodesForPage) : [])); ?>;
 
 // Pass multilingual fragrance descriptions from i18n
 window.FRAGRANCE_DESCRIPTIONS = <?php 
@@ -384,36 +354,8 @@ echo json_encode($fragranceDescriptions, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED
 ?>;
 
 // Pass prices for volume-based pricing
-// This creates a category => price mapping used by app.js
-window.PRICES = <?php 
-$pricesData = [];
-if (!empty($productVariants) && count($productVariants) > 0) {
-    if (count($productVariants) > 1) {
-        // Multiple variants: create volume => price mapping
-        foreach ($productVariants as $variant) {
-            $vol = $variant['volume'] ?? 'standard';
-            $pricesData[$vol] = (float)($variant['priceCHF'] ?? 0);
-        }
-        echo json_encode([$categorySlug => $pricesData]);
-    } else {
-        // Single variant: pass the price directly
-        $firstVariant = $productVariants[0];
-        $singlePrice = (float)($firstVariant['priceCHF'] ?? 0);
-        $firstVolume = $firstVariant['volume'] ?? 'standard';
-        
-        if ($firstVolume === 'standard') {
-            // Standard volume - price is not volume-dependent
-            echo json_encode([$categorySlug => $singlePrice]);
-        } else {
-            // Single non-standard volume - still create mapping
-            echo json_encode([$categorySlug => [$firstVolume => $singlePrice]]);
-        }
-    }
-} else {
-    // Fallback - no variants (shouldn't happen for accessories)
-    echo json_encode([$categorySlug => 0]);
-}
-?>;
+// This creates a productId => pricing map used by app.js
+window.PRICES = <?php echo json_encode([$productId => $productPriceConfig], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
 
 // Pass I18N labels for JS
 window.I18N_LABELS = {

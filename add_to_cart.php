@@ -210,7 +210,7 @@ switch ($action) {
             $sku = $normalizedSelection['sku'];
             $volume = $normalizedSelection['volume'];
             $fragrance = $normalizedSelection['fragrance'];
-            $price = getProductPrice($productId, $volume);
+            $price = getProductPrice($productId, $volume, $fragrance);
             
             // Debug logging for Limited Edition stock issue investigation
             // NOTE: This logging can be removed once the issue is confirmed resolved

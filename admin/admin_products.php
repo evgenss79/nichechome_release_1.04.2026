@@ -141,6 +141,7 @@ foreach ($products as $product) {
             <div class="admin-header">
                 <h1>Products Management</h1>
                 <p>Manage product catalog, prices, and descriptions</p>
+                <a href="product-edit.php" class="btn btn--gold">Add Product</a>
             </div>
             
             <?php if ($success): ?>

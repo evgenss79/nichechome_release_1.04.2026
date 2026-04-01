@@ -98,23 +98,23 @@
         const productCards = document.querySelectorAll('[data-product-card]');
         
         productCards.forEach(card => {
+            const productId = card.dataset.productId;
             const volumeSelect = card.querySelector('[data-volume-select]');
             const fragranceSelect = card.querySelector('[data-fragrance-select]');
-            const priceDisplay = card.querySelector('[data-price-display]');
-            const fragranceInfo = card.querySelector('[data-fragrance-info]');
             const addToCartBtn = card.querySelector('[data-add-to-cart]');
             const category = card.dataset.category;
 
             // Volume change handler
             if (volumeSelect) {
                 volumeSelect.addEventListener('change', () => {
-                    updatePrice(card, category);
+                    updatePrice(card, category, productId);
                 });
             }
 
             // Fragrance change handler
             if (fragranceSelect) {
                 fragranceSelect.addEventListener('change', () => {
+                    updatePrice(card, category, productId);
                     updateFragranceInfo(card, fragranceSelect.value);
                 });
             }
@@ -125,28 +125,85 @@
                     await addToCart(card);
                 });
             }
+
+            updatePrice(card, category, productId);
+            if (fragranceSelect) {
+                updateFragranceInfo(card, fragranceSelect.value);
+            }
         });
     }
 
-    function updatePrice(card, category) {
+    function getPriceConfig(card, category, productId) {
+        if (productId && Object.prototype.hasOwnProperty.call(PRICES, productId)) {
+            return PRICES[productId];
+        }
+        if (category && Object.prototype.hasOwnProperty.call(PRICES, category)) {
+            return PRICES[category];
+        }
+        return null;
+    }
+
+    function isNestedPriceConfig(config) {
+        if (!config || typeof config !== 'object' || Array.isArray(config)) {
+            return false;
+        }
+        return Object.values(config).some(value => value && typeof value === 'object' && !Array.isArray(value));
+    }
+
+    function resolveProductSelection(card, category, productId) {
         const volumeSelect = card.querySelector('[data-volume-select]');
+        const fragranceSelect = card.querySelector('[data-fragrance-select]');
+        const config = getPriceConfig(card, category, productId);
+        let volume = volumeSelect ? volumeSelect.value : 'standard';
+        let fragrance = fragranceSelect ? fragranceSelect.value : 'none';
+        let price = 0;
+
+        if (config && typeof config === 'object') {
+            if (isNestedPriceConfig(config)) {
+                const availableVolumes = Object.keys(config);
+                if (!config[volume] && availableVolumes.length > 0) {
+                    volume = availableVolumes[0];
+                    if (volumeSelect) {
+                        volumeSelect.value = volume;
+                    }
+                }
+
+                const fragranceMap = config[volume] || {};
+                const availableFragrances = Object.keys(fragranceMap);
+                if (!fragranceMap[fragrance] && availableFragrances.length > 0) {
+                    fragrance = availableFragrances[0];
+                    if (fragranceSelect) {
+                        fragranceSelect.value = fragrance;
+                    }
+                }
+
+                price = fragranceMap[fragrance] || 0;
+            } else {
+                if (!Object.prototype.hasOwnProperty.call(config, volume)) {
+                    const availableVolumes = Object.keys(config);
+                    if (availableVolumes.length > 0) {
+                        volume = availableVolumes[0];
+                        if (volumeSelect) {
+                            volumeSelect.value = volume;
+                        }
+                    }
+                }
+                price = config[volume] || config.standard || 0;
+            }
+        } else if (typeof config === 'number') {
+            price = config;
+        }
+
+        return { price, volume, fragrance };
+    }
+
+    function updatePrice(card, category, productId) {
         const priceDisplay = card.querySelector('[data-price-display]');
         
         if (!priceDisplay) return;
 
-        let price = 0;
-        
-        if (volumeSelect && PRICES[category]) {
-            const volume = volumeSelect.value;
-            if (typeof PRICES[category] === 'object') {
-                price = PRICES[category][volume] || 0;
-            } else {
-                price = PRICES[category];
-            }
-        } else if (typeof PRICES[category] === 'number') {
-            price = PRICES[category];
-        }
-
+        const selection = resolveProductSelection(card, category, productId);
+        const price = selection.price || 0;
         priceDisplay.textContent = 'CHF ' + price.toFixed(2);
     }
 
@@ -481,20 +538,10 @@
         const productId = card.dataset.productId;
         const productName = card.dataset.productName;
         const category = card.dataset.category;
-        
-        const volumeSelect = card.querySelector('[data-volume-select]');
-        const fragranceSelect = card.querySelector('[data-fragrance-select]');
-        
-        const volume = volumeSelect ? volumeSelect.value : 'standard';
-        const fragrance = fragranceSelect ? fragranceSelect.value : 'none';
-
-        // Calculate price
-        let price = 0;
-        if (volumeSelect && PRICES[category] && typeof PRICES[category] === 'object') {
-            price = PRICES[category][volume] || 0;
-        } else if (typeof PRICES[category] === 'number') {
-            price = PRICES[category];
-        }
+        const selection = resolveProductSelection(card, category, productId);
+        const volume = selection.volume;
+        const fragrance = selection.fragrance;
+        const price = selection.price;
 
         // Generate SKU
         const sku = generateSKU(productId, volume, fragrance);
