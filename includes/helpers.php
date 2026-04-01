@@ -2831,6 +2831,75 @@ function getConsolidatedStockViewFromUniverse(): array {
 }
 
 /**
+ * Build branch stock rows from the canonical SKU universe.
+ *
+ * This keeps the branch stock page aligned with the consolidated stock page
+ * and ensures non-fragrance / legacy SKUs remain visible when they exist in
+ * stock sources.
+ *
+ * @param string $branchId
+ * @return array
+ */
+function getBranchStockItemsFromUniverse(string $branchId): array {
+    require_once __DIR__ . '/stock/sku_universe.php';
+
+    $consolidated = getConsolidatedStockViewFromUniverse();
+    $items = [];
+
+    foreach ($consolidated as $sku => $data) {
+        $fragrance = (string)($data['fragrance'] ?? '');
+        if ($fragrance === '' || strtoupper($fragrance) === 'NA' || strtolower($fragrance) === 'none') {
+            $fragranceName = 'No fragrance / Device';
+        } else {
+            $fragranceName = I18N::t(
+                'fragrance.' . $fragrance . '.name',
+                ucfirst(str_replace('_', ' ', $fragrance))
+            );
+        }
+
+        $items[] = [
+            'sku' => $sku,
+            'productId' => $data['productId'] ?? '',
+            'productName' => $data['product_name'] ?? ($data['productId'] ?? $sku),
+            'category' => $data['category'] ?? '',
+            'volume' => $data['volume'] ?? '',
+            'fragrance' => $fragrance,
+            'fragranceName' => $fragranceName,
+            'quantity' => (int)($data['branches'][$branchId] ?? 0),
+            'in_catalog' => !empty($data['in_catalog'])
+        ];
+    }
+
+    return $items;
+}
+
+/**
+ * Normalize a regular cart selection to the canonical server SKU.
+ *
+ * Cart requests may contain legacy or browser-generated placeholder fragrance
+ * values such as "none". This helper preserves display-friendly cart metadata
+ * while always deriving the persisted SKU from the PHP source of truth.
+ *
+ * @param string $productId
+ * @param string $volume
+ * @param string $fragrance
+ * @return array{sku:string,volume:string,fragrance:string}
+ */
+function normalizeCartSelection(string $productId, string $volume = 'standard', string $fragrance = 'none'): array {
+    $normalizedVolume = trim($volume) !== '' ? trim($volume) : 'standard';
+    $normalizedFragrance = trim($fragrance);
+    if ($normalizedFragrance === '' || strtolower($normalizedFragrance) === 'na' || strtolower($normalizedFragrance) === 'null') {
+        $normalizedFragrance = 'none';
+    }
+
+    return [
+        'sku' => generateSKU($productId, $normalizedVolume, $normalizedFragrance),
+        'volume' => $normalizedVolume,
+        'fragrance' => $normalizedFragrance
+    ];
+}
+
+/**
  * Update consolidated stock (updates both branch_stock.json and stock.json)
  * @param string $sku The SKU to update
  * @param array $branchQuantities Associative array of branch_id => quantity

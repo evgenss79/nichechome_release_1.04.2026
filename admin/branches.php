@@ -170,56 +170,7 @@ $filterName = $_GET['filter_name'] ?? '';
 $sortBy = $_GET['sort_by'] ?? '';
 
 if ($selectedBranch) {
-    foreach ($products as $productId => $product) {
-        if (empty($product['active'])) continue;
-        
-        $category = $product['category'] ?? '';
-        $nameKey = $product['name_key'] ?? ('product.' . $productId . '.name');
-        $productName = I18N::t($nameKey, ucfirst(str_replace('_', ' ', $productId)));
-        $variants = $product['variants'] ?? [];
-        
-        // Determine allowed fragrances
-        $allowedFragrances = [];
-        if ($category === 'accessories') {
-            if (isset($product['allowed_fragrances'])) {
-                $allowedFragrances = $product['allowed_fragrances'];
-            } elseif (isset($accessories[$productId]['allowed_fragrances'])) {
-                $allowedFragrances = $accessories[$productId]['allowed_fragrances'];
-            } else {
-                $allowedFragrances = allowedFragrances($category);
-            }
-        } elseif ($category === 'limited_edition') {
-            if (isset($product['fragrance'])) {
-                $allowedFragrances = [$product['fragrance']];
-            } else {
-                $allowedFragrances = allowedFragrances($category);
-            }
-        } else {
-            $allowedFragrances = allowedFragrances($category);
-        }
-        
-        foreach ($variants as $variant) {
-            $volume = $variant['volume'] ?? 'standard';
-            
-            foreach ($allowedFragrances as $fragranceCode) {
-                $sku = generateSKU($productId, $volume, $fragranceCode);
-                $fragranceName = I18N::t('fragrance.' . $fragranceCode . '.name', ucfirst(str_replace('_', ' ', $fragranceCode)));
-                
-                $quantity = $branchStock[$selectedBranchId][$sku]['quantity'] ?? 0;
-                
-                $stockItems[] = [
-                    'sku' => $sku,
-                    'productId' => $productId,
-                    'productName' => $productName,
-                    'category' => $category,
-                    'volume' => $volume,
-                    'fragrance' => $fragranceCode,
-                    'fragranceName' => $fragranceName,
-                    'quantity' => $quantity
-                ];
-            }
-        }
-    }
+    $stockItems = getBranchStockItemsFromUniverse($selectedBranchId);
     
     // Apply filters
     $filteredStockItems = $stockItems;
@@ -234,7 +185,9 @@ if ($selectedBranch) {
     // Filter by product name
     if (!empty($filterName)) {
         $filteredStockItems = array_filter($filteredStockItems, function($item) use ($filterName) {
-            return stripos($item['productName'], $filterName) !== false;
+            return stripos($item['productName'], $filterName) !== false
+                || stripos($item['sku'], $filterName) !== false
+                || stripos($item['productId'], $filterName) !== false;
         });
     }
     
