@@ -76,7 +76,7 @@ if (isset($_GET['debug']) && $_GET['debug'] === '1') {
                 <h2>📊 Overview Statistics</h2>
                 <div class="diag-stat"><strong>Universe SKUs:</strong> <?php echo $diagnostics['universe_count']; ?></div>
                 <div class="diag-stat"><strong>stock.json keys:</strong> <?php echo $diagnostics['stock_keys_count']; ?></div>
-                <div class="diag-stat"><strong>branch_stock.json keys:</strong> <?php echo $diagnostics['branch_stock_total_keys_count']; ?></div>
+                <div class="diag-stat"><strong>branch_stock.json mirror keys:</strong> <?php echo $diagnostics['branch_stock_total_keys_count']; ?></div>
                 <div class="diag-stat"><strong>Branches:</strong> <?php echo $diagnostics['branches_count']; ?></div>
             </div>
             
@@ -98,10 +98,10 @@ if (isset($_GET['debug']) && $_GET['debug'] === '1') {
             </div>
             
             <div class="diag-section">
-                <h2>⚠️ Missing in branch_stock.json</h2>
-                <p>SKUs present in Universe but missing in branch_stock.json (<?php echo count($diagnostics['missing_in_branch_stock_json']); ?>):</p>
+                <h2>⚠️ Missing in branch_stock.json mirror</h2>
+                <p>SKUs present in Universe but missing in the compatibility branch_stock.json mirror (<?php echo count($diagnostics['missing_in_branch_stock_json']); ?>):</p>
                 <?php if (empty($diagnostics['missing_in_branch_stock_json'])): ?>
-                    <p style="color: #28a745;">✅ None - All Universe SKUs present in branch_stock.json</p>
+                    <p style="color: #28a745;">✅ None - The compatibility mirror is aligned with stock.json</p>
                 <?php else: ?>
                     <div class="diag-list">
                         <?php foreach (array_slice($diagnostics['missing_in_branch_stock_json'], 0, 100) as $sku): ?>
@@ -129,10 +129,10 @@ if (isset($_GET['debug']) && $_GET['debug'] === '1') {
             </div>
             
             <div class="diag-section">
-                <h2>🔴 Extra in branch_stock.json</h2>
-                <p>SKUs in branch_stock.json but NOT in Universe (<?php echo count($diagnostics['extra_in_branch_stock_json']); ?>):</p>
+                <h2>🔴 Extra in branch_stock.json mirror</h2>
+                <p>SKUs in the compatibility branch_stock.json mirror but NOT in Universe (<?php echo count($diagnostics['extra_in_branch_stock_json']); ?>):</p>
                 <?php if (empty($diagnostics['extra_in_branch_stock_json'])): ?>
-                    <p style="color: #28a745;">✅ None - No orphaned SKUs in branch_stock.json</p>
+                    <p style="color: #28a745;">✅ None - No orphaned SKUs in the compatibility mirror</p>
                 <?php else: ?>
                     <div class="diag-list">
                         <?php foreach ($diagnostics['extra_in_branch_stock_json'] as $sku): ?>
@@ -216,8 +216,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             }
             
             $success = "✅ SKU Universe synchronized successfully! ";
-            $success .= "Added {$addedStockCount} SKUs to stock.json and {$addedBranchCount} SKUs to branch_stock.json ({$totalBranchEntries} total branch entries). ";
-            $success .= "All new entries initialized with qty=0. Backups created in data/backups/.";
+            $success .= "Added {$addedStockCount} SKUs to stock.json and refreshed the compatibility branch_stock.json mirror for {$addedBranchCount} SKUs ({$totalBranchEntries} branch mirror entries). ";
+            $success .= "All new STOCK entries initialized with qty=0. Backups created in data/backups/.";
         } else {
             $error = "Failed to synchronize Universe: " . $result['error'];
         }
@@ -234,38 +234,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $error = 'Invalid security token. Please refresh the page and try again.';
     } else {
         $sku = $_POST['sku'] ?? '';
-        $branchQuantities = [];
-        $total = 0;
-        $hasError = false;
-        
-        // Collect and validate branch quantities
-        foreach ($branches as $branchId => $branchName) {
-            $qty = $_POST['branch_' . $branchId] ?? 0;
-            $validation = validateStockQuantity($qty);
-            
-            if (!$validation['valid']) {
-                $error = "Error in $branchName: " . $validation['error'];
-                $hasError = true;
-                break;
-            }
-            
-            $branchQuantities[$branchId] = $validation['value'];
-            $total += $validation['value'];
-        }
-        
-        // Validate total matches
-        if (!$hasError) {
-            $submittedTotal = intval($_POST['total'] ?? 0);
-            
-            if ($total !== $submittedTotal) {
-                $error = "TOTAL ($submittedTotal) does not match sum of branch quantities ($total). Please adjust branch quantities to match the total.";
-                $hasError = true;
-            }
-        }
-        
-        // Update if no errors
-        if (!$hasError) {
-            $result = updateConsolidatedStock($sku, $branchQuantities);
+        $quantityValidation = validateStockQuantity($_POST['quantity'] ?? 0);
+
+        if (!$quantityValidation['valid']) {
+            $error = $quantityValidation['error'];
+        } else {
+            $result = updateConsolidatedStock($sku, $quantityValidation['value']);
             
             if ($result['success']) {
                 $success = "Stock updated successfully for SKU: $sku (Total: {$result['oldTotal']} → {$result['newTotal']})";
@@ -441,12 +415,15 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
             background: #f0f0f0;
             font-weight: 600;
         }
-        .mismatch-row {
-            background: rgba(199, 74, 74, 0.1) !important;
-        }
         .save-btn {
             padding: 0.25rem 0.75rem;
             font-size: 0.85rem;
+        }
+        .stock-table .read-only-branch {
+            background: #faf7f0;
+            color: #6a6258;
+            font-weight: 600;
+            text-align: center;
         }
         .import-section {
             background: #f9f9f9;
@@ -463,69 +440,16 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
     <script>
         'use strict';
         
-        // Client-side validation for total matching
         function validateRow(formElement) {
-            const inputs = formElement.querySelectorAll('input[name^="branch_"]');
-            const totalInput = formElement.querySelector('input[name="total"]');
-            
-            let sum = 0;
-            inputs.forEach(input => {
-                const val = parseInt(input.value) || 0;
-                if (val < 0) {
-                    alert('Quantities cannot be negative');
-                    return false;
-                }
-                sum += val;
-            });
-            
-            const total = parseInt(totalInput.value) || 0;
-            
-            if (sum !== total) {
-                alert(`TOTAL (${total}) does not match sum of branches (${sum}). Please adjust quantities.`);
+            const quantityInput = formElement.querySelector('input[name="quantity"]');
+            const quantity = parseInt(quantityInput.value, 10);
+
+            if (Number.isNaN(quantity) || quantity < 0) {
+                alert('Stock quantity must be a non-negative number.');
                 return false;
             }
-            
+
             return true;
-        }
-        
-        // Update total when branch quantities change
-        function updateTotal(formElement) {
-            const inputs = formElement.querySelectorAll('input[name^="branch_"]');
-            const totalInput = formElement.querySelector('input[name="total"]');
-            
-            let sum = 0;
-            inputs.forEach(input => {
-                sum += parseInt(input.value) || 0;
-            });
-            
-            // Check if row has mismatch
-            const currentTotal = parseInt(totalInput.value) || 0;
-            const row = formElement.closest('tr');
-            
-            if (sum !== currentTotal) {
-                row.classList.add('mismatch-row');
-            } else {
-                row.classList.remove('mismatch-row');
-            }
-        }
-        
-        // Redistribute total evenly across branches
-        function redistributeEvenly(sku) {
-            const form = document.querySelector(`form[data-sku="${sku}"]`);
-            const totalInput = form.querySelector('input[name="total"]');
-            const total = parseInt(totalInput.value) || 0;
-            
-            const branchInputs = form.querySelectorAll('input[name^="branch_"]');
-            const numBranches = branchInputs.length;
-            
-            const perBranch = Math.floor(total / numBranches);
-            const remainder = total % numBranches;
-            
-            branchInputs.forEach((input, index) => {
-                input.value = perBranch + (index < remainder ? 1 : 0);
-            });
-            
-            updateTotal(form);
         }
     </script>
 </head>
@@ -562,7 +486,7 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
             <div class="admin-header">
                 <h1>Consolidated Stock Management</h1>
                 <p style="color: #666; margin-top: 0.5rem;">
-                    Manage stock quantities across all branches in one view. 
+                    Manage authoritative stock quantities in one place. Branch columns are read-only mirrors of STOCK and pickup uses the same quantity source.
                     Total items: <?php echo count($consolidatedStock); ?> | 
                     Displayed: <?php echo count($filteredStock); ?>
                     <span style="margin-left: 1rem;">|</span>
@@ -608,8 +532,8 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
                     </a>
                 </div>
                 <p style="color: #999; font-size: 0.9em; margin-top: 0.5rem;">
-                    <strong>Sync Universe:</strong> Adds missing SKUs from product catalog to stock files (qty=0). Safe operation - never modifies existing quantities.<br>
-                    <strong>CSV:</strong> Format only (no Excel support). You can convert Excel files to CSV using Excel or Google Sheets.
+                    <strong>Sync Universe:</strong> Adds missing SKUs from product catalog to stock.json (qty=0) and refreshes the compatibility branch_stock.json mirror.<br>
+                    <strong>CSV:</strong> Import/export uses one authoritative quantity column from STOCK (no Excel support). You can convert Excel files to CSV using Excel or Google Sheets.
                 </p>
             </div>
             
@@ -731,27 +655,21 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
                                         
                                         <?php foreach ($branches as $branchId => $branchName): ?>
                                             <td>
-                                                <input type="number" 
-                                                       name="branch_<?php echo htmlspecialchars($branchId); ?>" 
-                                                       value="<?php echo (int)($item['branches'][$branchId] ?? 0); ?>" 
-                                                       min="0" 
-                                                       oninput="updateTotal(this.form)">
+                                                <div class="read-only-branch">
+                                                    <?php echo (int)($item['branches'][$branchId] ?? 0); ?>
+                                                </div>
                                             </td>
                                         <?php endforeach; ?>
                                         
                                         <td class="total-cell">
                                             <input type="number" 
-                                                   name="total" 
+                                                   name="quantity" 
                                                    value="<?php echo (int)$item['total']; ?>" 
-                                                   min="0"
-                                                   oninput="updateTotal(this.form)">
+                                                   min="0">
                                         </td>
                                         
                                         <td>
                                             <button type="submit" class="btn btn--text save-btn">💾 Save</button>
-                                            <button type="button" class="btn btn--text save-btn" onclick="redistributeEvenly('<?php echo htmlspecialchars($sku); ?>')" title="Distribute total evenly across branches">
-                                                ⚖️ Even
-                                            </button>
                                         </td>
                                     </form>
                                 </tr>

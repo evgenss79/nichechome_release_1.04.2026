@@ -1,43 +1,69 @@
-# Branch Stock / Pickup SKU Alignment
+# Stock Source of Truth / Branch Pickup Alignment
 
-## Root cause
+## Architecture now enforced
 
-The consolidated stock page already used the SKU universe (`getConsolidatedStockViewFromUniverse()`), but the branch stock page rebuilt its own SKU list from `products.json`. That parallel path dropped valid branch-stock rows whenever a product had no fragrance selector or existed only as a legacy/orphan SKU in stock files. At the same time, the storefront cart generator could create non-canonical SKUs such as `SMA-STA-NON` for no-fragrance items, while stock files stored the canonical `...-NA` form.
+- `data/stock.json` is the **sole authoritative source of inventory quantities**.
+- Inventory quantities are **manually editable only on `admin/stock.php`**.
+- `admin/branches.php` is **read-only** for stock quantities in both UI and server behavior.
+- Pickup validation and checkout use the **same quantity source** as delivery: `stock.json`.
+- `data/branch_stock.json` remains **compatibility-only**. It is refreshed from `stock.json` and is no longer an independent source of truth.
 
-## What changed
+## File-level evidence of branch write paths removed or neutralized
 
-- `admin/branches.php` now renders branch stock rows from `getBranchStockItemsFromUniverse()` instead of regenerating SKUs locally.
-- `includes/helpers.php` now exposes:
-  - `getBranchStockItemsFromUniverse()` for the branch stock UI
-  - `normalizeCartSelection()` so server-side cart ingestion always derives the canonical SKU with PHP's `generateSKU()`
-- `add_to_cart.php` now normalizes regular product selections before they are stored in the PHP session cart.
-- `assets/js/app.js` now matches the documented SKU rules for no-fragrance items and known prefix/suffix mappings.
+- `includes/helpers.php`
+  - `getBranchStockQuantity()` now returns the authoritative quantity from `stock.json`.
+  - `decreaseBranchStock()` now validates the branch ID and delegates the stock decrease to `decreaseStock()`, so pickup orders reduce the same stock record as delivery orders.
+  - `loadBranchStock()` now builds a derived compatibility snapshot from `stock.json` instead of reading independent branch quantities.
+  - `saveBranchStock()` now only refreshes the compatibility mirror; it no longer accepts independent branch quantities as authoritative input.
+  - `updateConsolidatedStock()` now updates only `stock.json` and then refreshes the compatibility mirror.
+- `admin/branches.php`
+  - The former `action=update_stock` write path is neutralized and now returns a read-only error.
+  - The branch stock table no longer renders editable quantity inputs or Save buttons.
+- `admin/stock.php`
+  - STOCK saves a single authoritative quantity per SKU.
+  - Branch columns are rendered as read-only mirrors of the authoritative STOCK quantity.
+- `admin/stock_import.php`
+  - Import now accepts only the authoritative STOCK quantity column.
+  - Independent branch-level import quantities are no longer parsed or written.
+- `admin/export_stock_csv.php`
+  - Export now produces a single authoritative quantity column instead of branch-level writable data.
 
-## Invariant now enforced
+## What changed functionally
 
-Every branch stock UI and pickup validation path must use the same canonical SKU contract:
+- Branch stock visibility still comes from the SKU universe, but the displayed quantity now mirrors `stock.json`.
+- Canonical SKU handling is still preserved:
+  - session cart SKUs come from PHP `generateSKU()`
+  - no-fragrance items resolve to `...-NA`, never `...-NON`
+- The branch stock compatibility file is kept only so existing exports/backups/tools can continue to operate without becoming an authoritative inventory database.
 
-- branch stock visibility comes from the SKU universe
-- session cart SKUs come from PHP `generateSKU()`
-- no-fragrance items resolve to `...-NA`, never `...-NON`
-
-## How to verify
+## Direct proof
 
 Run:
 
 ```bash
 php tests/test_branch_stock_pickup_alignment.php
+php tests/test_stock_single_source_of_truth.php
 php tools/sku_universe_selftest.php
 ```
 
-Manual spot-check:
+The new direct-proof test performs the requested verification flow:
 
-1. Open **Admin → Stock** and confirm `SMA-STA-NA` is present with branch quantity.
-2. Open **Admin → Branches → branch_1** and confirm the same SKU is visible there.
-3. Add **Aroma Smart** to cart, choose branch pickup for `branch_1`, and confirm checkout no longer reports false out-of-stock.
+1. edit quantity on STOCK
+2. save
+3. verify BRANCH/STOCK immediately reflects the same value
+4. verify pickup validation uses that same value
+5. verify the unavailable case still blocks correctly
+
+## Manual spot-check
+
+1. Open **Admin → Stock** and edit any SKU quantity.
+2. Save the row.
+3. Open **Admin → Branches → any branch** and confirm the quantity shown for the same SKU matches STOCK exactly.
+4. Try checkout with pickup for a quantity within stock and confirm it passes.
+5. Try checkout with pickup for a quantity above stock and confirm it is blocked.
 
 ## Compatibility
 
-- Existing stock data files are unchanged.
-- Legacy/orphan SKUs remain visible in the branch stock UI if they still exist in stock sources.
+- `branch_stock.json` may remain in the repository and backup/export flows, but it is **non-authoritative**.
+- Any quantity shown on branch pages is a derived mirror of `stock.json`.
 - Checkout/cart display still keeps no-fragrance products visually fragrance-free while storing canonical `...-NA` SKUs for stock validation.

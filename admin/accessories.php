@@ -457,7 +457,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                         $catalogVersion = getCatalogVersion();
                         $success = 'Accessory saved successfully! Catalog version: ' . $catalogVersion . '. ';
                         if ($addedStockCount > 0 || $addedBranchCount > 0) {
-                            $success .= "New SKUs initialized in stock ({$addedStockCount} in stock.json, {$addedBranchCount} in branch_stock.json).";
+                            $success .= "New SKUs initialized in STOCK ({$addedStockCount} in stock.json, compatibility mirror refreshed for {$addedBranchCount} SKUs in branch_stock.json).";
                         }
                     } else {
                         $success = 'Accessory saved successfully! (Note: Stock sync failed - run manual sync from Stock page)';

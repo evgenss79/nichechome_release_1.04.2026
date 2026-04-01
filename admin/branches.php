@@ -100,65 +100,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     } elseif ($action === 'update_stock') {
-        $branchId = $_POST['branch_id'] ?? '';
-        $sku = $_POST['sku'] ?? '';
-        $quantity = max(0, intval($_POST['quantity'] ?? 0));
-        
-        // RACE CONDITION PROTECTION: Check if branch_stock.json was modified since page load
-        // This prevents admin from unknowingly overwriting stock changes made by checkouts
-        $branchStockFilePath = __DIR__ . '/../data/branch_stock.json';
-        $currentFileTime = filemtime($branchStockFilePath);
-        $pageLoadFileTime = intval($_POST['file_mtime'] ?? 0);
-        
-        error_log("ADMIN BRANCH STOCK UPDATE: Branch '$branchId', SKU '$sku', New Quantity: $quantity");
-        error_log("ADMIN BRANCH STOCK UPDATE: File time check - Page load: $pageLoadFileTime, Current: $currentFileTime");
-        
-        if ($pageLoadFileTime > 0 && $currentFileTime > $pageLoadFileTime) {
-            // File was modified by another process (likely a checkout) since page load
-            $oldQty = $branchStock[$branchId][$sku]['quantity'] ?? 0;
-            
-            error_log("ADMIN BRANCH STOCK UPDATE: WARNING - Branch stock file was modified since page load!");
-            error_log("ADMIN BRANCH STOCK UPDATE: Branch '$branchId', SKU '$sku' - Current file has: $oldQty");
-            error_log("ADMIN BRANCH STOCK UPDATE: Admin attempted to set: $quantity");
-            
-            $error = "Warning: Branch stock was modified by another process (likely a customer order) since you loaded this page. " .
-                     "The current quantity for branch '$branchId' SKU '$sku' is $oldQty. Please refresh the page and try again if you still want to modify it.";
-        } else {
-            // Safe to proceed - file hasn't changed
-            if ($branchId && $sku) {
-                if (!isset($branchStock[$branchId])) {
-                    $branchStock[$branchId] = [];
-                }
-                
-                $oldQty = $branchStock[$branchId][$sku]['quantity'] ?? 0;
-                $branchStock[$branchId][$sku] = ['quantity' => $quantity];
-                
-                error_log("ADMIN BRANCH STOCK UPDATE: Branch '$branchId', SKU '$sku' quantity changed from $oldQty to $quantity");
-                
-                if (saveBranchStock($branchStock)) {
-                    $success = 'Stock updated successfully.';
-                    error_log("ADMIN BRANCH STOCK UPDATE: Successfully saved branch_stock.json");
-                } else {
-                    $error = 'Failed to update stock.';
-                    error_log("ADMIN BRANCH STOCK UPDATE: ERROR - Failed to save branch_stock.json");
-                }
-            }
-        }
-        
-        // Stay on same branch page
-        $selectedBranchId = $branchId;
+        $selectedBranchId = $_POST['branch_id'] ?? '';
+        $error = 'Branch stock is read-only. Edit inventory quantities on STOCK only.';
     }
 }
 
 // Reload data after changes (to display updated values and avoid stale data)
 $branches = loadBranches();
 $branchStock = loadBranchStock();
-
-// Capture file modification time for race condition detection
-// This timestamp will be included in each form, allowing us to detect if the file
-// was modified between page load and form submission
-$branchStockFilePath = __DIR__ . '/../data/branch_stock.json';
-$branchStockFileMtime = file_exists($branchStockFilePath) ? filemtime($branchStockFilePath) : 0;
 
 // Update selected branch reference after reload
 $selectedBranch = $selectedBranchId && isset($branches[$selectedBranchId]) ? $branches[$selectedBranchId] : null;
@@ -283,8 +232,11 @@ $editingBranch = $editingBranchId && isset($branches[$editingBranchId]) ? $branc
                 <!-- Branch Stock Management -->
                 <div class="admin-card" style="margin-bottom: 1.5rem;">
                     <p style="margin-bottom: 1rem; color: #666;">
-                        Manage stock quantities for <strong><?php echo htmlspecialchars($selectedBranch['name']); ?></strong>
+                        Read-only stock mirror for <strong><?php echo htmlspecialchars($selectedBranch['name']); ?></strong>
                         (<?php echo htmlspecialchars($selectedBranch['address']); ?>)
+                    </p>
+                    <p style="color: #666; margin-bottom: 1rem;">
+                        Quantities on this page are derived from <strong>STOCK</strong> (`data/stock.json`). To change inventory, edit the SKU on the STOCK page.
                     </p>
                     <p style="color: #666; margin-bottom: 1rem;">Total items: <?php echo count($stockItems); ?> | Filtered: <?php echo count($filteredStockItems); ?></p>
                     
@@ -364,7 +316,7 @@ $editingBranch = $editingBranchId && isset($branches[$editingBranchId]) ? $branc
                                 <th>Fragrance</th>
                                 <th>SKU</th>
                                 <th>Quantity</th>
-                                <th>Actions</th>
+                                 <th>Source</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -375,23 +327,14 @@ $editingBranch = $editingBranchId && isset($branches[$editingBranchId]) ? $branc
                                     <td><?php echo htmlspecialchars($item['volume']); ?></td>
                                     <td><?php echo htmlspecialchars($item['fragranceName']); ?></td>
                                     <td><code><?php echo htmlspecialchars($item['sku']); ?></code></td>
-                                    <td>
-                                        <form method="post" action="" style="display: flex; gap: 0.5rem; align-items: center;">
-                                            <input type="hidden" name="action" value="update_stock">
-                                            <input type="hidden" name="branch_id" value="<?php echo htmlspecialchars($selectedBranchId); ?>">
-                                            <input type="hidden" name="sku" value="<?php echo htmlspecialchars($item['sku']); ?>">
-                                            <!-- File modification time for race condition detection -->
-                                            <input type="hidden" name="file_mtime" value="<?php echo $branchStockFileMtime; ?>">
-                                            <input type="number" 
-                                                   name="quantity" 
-                                                   value="<?php echo (int)$item['quantity']; ?>" 
-                                                   min="0" 
-                                                   style="width: 70px; padding: 0.25rem; text-align: center;">
-                                    </td>
-                                    <td>
-                                            <button type="submit" class="btn btn--text">Save</button>
-                                        </form>
-                                    </td>
+                                     <td>
+                                         <span style="display: inline-block; min-width: 70px; text-align: center; font-weight: 600;">
+                                             <?php echo (int)$item['quantity']; ?>
+                                         </span>
+                                     </td>
+                                     <td>
+                                         STOCK mirror
+                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
