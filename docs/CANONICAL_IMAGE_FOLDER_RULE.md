@@ -39,6 +39,7 @@ Rejected on save:
 - All runtime image URLs are emitted as absolute `/img/...` paths.
 - Storefront/admin rendering must not emit `assets/img/fragrances/...` or other local image folders.
 - Helpers normalize legacy local references before rendering and fall back safely to `/img/placeholder.svg` when canonical resolution is impossible at runtime.
+- `img/placeholder.svg` is a required repository asset and is validated by `php tools/check_assets.php`.
 
 ## Affected Flows
 
