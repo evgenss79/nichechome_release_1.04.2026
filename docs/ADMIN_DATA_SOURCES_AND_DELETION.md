@@ -111,6 +111,35 @@ Removed from products.json, accessories.json,
 and 6 i18n keys.
 ```
 
+### Delete Category (permanent, empty categories only)
+
+**Accessible from**:
+- Categories page: Delete button next to each category
+
+**Implementation**: Shared function `deleteCategory($categoryId)` in `includes/helpers.php`
+
+**Canonical rule**:
+- Category deletion is **blocked** if any product in `data/products.json` still references that category slug
+- Admin must reassign or delete dependent products first
+- No cascade delete of products is performed
+
+**Cascade steps for an empty category**:
+1. Creates timestamped backups of:
+   - `categories.json`
+   - All `i18n/ui_*.json` files
+   - All `i18n/categories_*.json` files
+2. Removes category from `data/categories.json`
+3. Removes category i18n keys `category.{categoryId}.*` from both translation file groups
+4. Updates the catalog version
+5. Logs deletion to `logs/stock.log`
+
+**What is NOT deleted**:
+- Products
+- SKUs / stock records
+- Images (only references are removed from category data)
+
+**Confirmation**: JavaScript confirm dialog warns that deletion is permanent and that categories with products cannot be deleted until dependencies are cleared
+
 ### Delete Branch (permanent)
 
 **Accessible from**:
@@ -180,11 +209,12 @@ php tools/validate_catalog_consistency.php
 
 **What it validates**:
 1. **SKU Format**: Verifies all SKUs follow 3-part format (PREFIX-VOLUME-FRAGRANCE)
-2. **Fragrance Rules**: Checks non-fragrance items use fragrance=NA
-3. **Accessories Visibility**: Ensures accessories in products.json are manageable
-4. **Orphan Reporting**: Lists products and accessories without proper configuration
-5. **Branch Consistency**: Reports branches in branch_stock.json but not in branches.json
-6. **Universe Consistency**: Checks SKU Universe matches stock files
+2. **Category References**: Ensures every product category slug still exists in `categories.json`
+3. **Fragrance Rules**: Checks non-fragrance items use fragrance=NA
+4. **Accessories Visibility**: Ensures accessories in products.json are manageable
+5. **Orphan Reporting**: Lists products and accessories without proper configuration
+6. **Branch Consistency**: Reports branches in branch_stock.json but not in branches.json
+7. **Universe Consistency**: Checks SKU Universe matches stock files
 
 **Exit codes**:
 - `0`: All tests passed (with possible warnings)
@@ -296,6 +326,7 @@ All stock changes are logged to `logs/stock.log`
 4. **Use admin UI** for deletes instead of manual JSON editing
 5. **Sync Universe** after adding products to ensure stock files are up-to-date
 6. **Check logs** if unexpected behavior occurs
+7. **Clear category dependencies first** before deleting a category
 
 ## Troubleshooting
 
@@ -324,6 +355,7 @@ All stock changes are logged to `logs/stock.log`
 ### Implementation Files
 - **Delete helpers**: `/includes/helpers.php` (lines ~2350-2650)
   - `deleteProduct($productId)` - Product deletion with full cascade
+  - `deleteCategory($categoryId)` - Category deletion with product-safety validation
   - `deleteBranch($branchId)` - Branch deletion with stock cleanup
   - `createStockBackup($filename)` - Timestamped backup creation
 
@@ -336,6 +368,10 @@ All stock changes are logged to `logs/stock.log`
 - **Products admin**: `/admin/products.php`
   - Reads: products.json
   - Delete action: calls deleteProduct()
+
+- **Categories admin**: `/admin/categories.php`
+  - Reads: categories.json + products.json
+  - Delete action: calls deleteCategory()
 
 - **Accessories admin**: `/admin/accessories.php`
   - Reads: products.json (filtered by category) + accessories.json

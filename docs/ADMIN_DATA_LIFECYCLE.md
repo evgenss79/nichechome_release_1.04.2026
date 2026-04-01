@@ -157,6 +157,47 @@ For the current canonical category/product CRUD flow, see `docs/ADMIN_CATEGORY_P
 
 ## Deleting Data
 
+### Deleting Categories (Permanent, empty categories only)
+
+**Location**:
+- `admin/categories.php` → Delete button next to each category
+
+**Implementation**: Shared function `deleteCategory($categoryId)` in `includes/helpers.php`
+
+**Canonical safety rule**:
+- A category can be deleted only when no product in `data/products.json` still references that category slug
+- The system blocks deletion before any write if dependent products remain
+- Admin must reassign or delete those products first
+
+**Delete Process**:
+
+1. **Validation**
+   - Checks if category exists in `categories.json`
+   - Checks whether any products still reference the category
+   - Aborts with a clear error if products are still assigned
+
+2. **Backup Creation**
+   - Creates timestamped backups of:
+     - `data/categories.json`
+     - All `data/i18n/ui_*.json` files
+     - All `data/i18n/categories_*.json` files
+   - If backup fails, deletion is aborted (no changes made)
+
+3. **Data Removal**
+   - Removes category from `data/categories.json`
+   - Removes `category.{categoryId}.*` translation groups from both translation file sets
+
+4. **Catalog Refresh**
+   - Updates catalog version so storefront/admin consumers see the deletion immediately
+
+5. **Logging**
+   - Logs deletion to `logs/stock.log`
+
+**Resulting storefront behavior**:
+- deleted category disappears from catalog cards
+- deleted category disappears from navigation and footer lists
+- `category.php?slug={categoryId}` redirects back to catalog because the category no longer exists
+
 ### Deleting Products (Permanent)
 
 **Location**: 

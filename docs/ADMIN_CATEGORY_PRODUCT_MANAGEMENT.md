@@ -21,6 +21,7 @@ The category form now supports:
 
 - create category
 - edit category
+- delete category from the existing-category table
 - category image filename
 - category slider image list (multiline / comma separated)
 - multilingual name, short description, and long description
@@ -44,6 +45,25 @@ Additional category flags:
 - `images`
 
 `use_custom_image=true` activates the category image(s) stored in `categories.json`. Legacy categories keep the previous storefront image mapping until an admin explicitly switches them to a custom image. When `images[]` is present, `image` remains the primary/first hero image and the full list is rendered as the category hero slider.
+
+### Category Delete Rule
+
+- Delete is available from the category list in `admin/categories.php`
+- Delete always requires an explicit confirmation dialog
+- Server-side deletion uses `deleteCategory()` in `includes/helpers.php`
+- **Canonical safety rule:** a category cannot be deleted while any product in `data/products.json` still references that category slug
+- To delete a populated category, the admin must first reassign or delete the dependent products
+
+### Category Delete Persistence
+
+Deleting an empty category removes:
+
+- the category record from `data/categories.json`
+- category translations from `data/i18n/ui_*.json`
+- legacy category translations from `data/i18n/categories_*.json`
+- the category from catalog, navigation, footer, and the category route (the page redirects to catalog because the slug no longer exists)
+
+Deleting a non-empty category does **not** change products, stock, SKUs, cart data, or checkout data because the operation is blocked before any write occurs.
 
 ## Product Admin Workflow
 
@@ -139,8 +159,10 @@ php -l admin/admin_products.php
 php -l catalog.php
 php -l includes/header.php
 php -l includes/footer.php
+php -l admin/categories.php
 
 php tests/test_admin_catalog_management.php
+php tests/test_category_deletion.php
 php tests/test_cart_sync_variant_price.php
 php tests/test_payment_stock_paths.php
 php tests/test_sku_generation.php
@@ -172,6 +194,14 @@ php tools/verify_storefront_vs_cart_prices.php
 - cart/checkout non-zero price propagation through sync
 - SKU generation
 - stock initialization in main and branch stock
+
+`tests/test_category_deletion.php` verifies:
+
+- admin categories page renders a delete control and confirmation text
+- deletion succeeds for an empty category
+- deletion is blocked when products still belong to the category
+- deleted category translations are removed from both `ui_*.json` and `categories_*.json`
+- deleted categories disappear from catalog/header/footer output
 
 `tests/test_cart_sync_variant_price.php` verifies that fragrance-sensitive cart sync keeps a non-zero server-resolved price all the way into cart/checkout output.
 

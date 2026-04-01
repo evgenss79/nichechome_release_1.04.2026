@@ -11,6 +11,7 @@ if (!isAdminLoggedIn()) {
 }
 
 $categories = loadJSON('categories.json');
+$products = loadJSON('products.json');
 $fragrances = loadJSON('fragrances.json');
 $success = '';
 $error = '';
@@ -105,6 +106,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save_
             $editingId = $categoryId;
         }
     }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_category') {
+    $categoryId = trim($_POST['category_id'] ?? '');
+
+    if ($categoryId === '') {
+        $error = 'Category ID is required for deletion.';
+    } else {
+        $result = deleteCategory($categoryId);
+
+        if ($result['success']) {
+            $details = $result['details'];
+            $success = "Category '$categoryId' deleted successfully! ";
+            $success .= 'Removed from categories.json and ';
+            $success .= count($details['i18n_keys_removed']) . ' translation group(s).';
+            $categories = loadJSON('categories.json');
+            $products = loadJSON('products.json');
+            if ($editingId === $categoryId) {
+                $editingId = '';
+            }
+        } else {
+            $blockedProducts = $result['details']['blocked_products'] ?? [];
+            $error = 'Failed to delete category: ' . $result['error'];
+            if (!empty($blockedProducts)) {
+                $error .= ' Blocking products: ' . implode(', ', $blockedProducts) . '.';
+            }
+        }
+    }
 }
 
 if ($editingId && !isset($categories[$editingId])) {
@@ -128,6 +155,14 @@ $defaultCategory = [
     'allowed_fragrances' => [],
     'redirect' => ''
 ];
+$productCounts = [];
+foreach ($products as $product) {
+    $categoryId = (string)($product['category'] ?? '');
+    if ($categoryId === '') {
+        continue;
+    }
+    $productCounts[$categoryId] = ($productCounts[$categoryId] ?? 0) + 1;
+}
 $editingCategory = $editingId ? array_merge($defaultCategory, $categories[$editingId]) : $defaultCategory;
 $translations = $editingId ? loadEntityTranslations('category', $editingId, ['name', 'short', 'long']) : [];
 ?>
@@ -271,27 +306,38 @@ $translations = $editingId ? loadEntityTranslations('category', $editingId, ['na
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Image</th>
-                            <th>Sort</th>
-                            <th>Visibility</th>
-                            <th>Action</th>
-                        </tr>
+                             <th>Image</th>
+                             <th>Sort</th>
+                             <th>Products</th>
+                             <th>Visibility</th>
+                             <th>Action</th>
+                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach (getSortedCategories(false) as $id => $category): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($id); ?></td>
                                 <td><?php echo htmlspecialchars(I18N::t('category.' . $id . '.name', ucfirst(str_replace('_', ' ', $id)))); ?></td>
-                                <td><?php echo htmlspecialchars((string)($category['image'] ?? '')); ?></td>
-                                <td><?php echo htmlspecialchars((string)($category['sort_order'] ?? '')); ?></td>
-                                <td>
-                                    C: <?php echo !empty($category['show_in_catalog']) ? 'Y' : 'N'; ?> /
-                                    N: <?php echo !empty($category['show_in_navigation']) ? 'Y' : 'N'; ?> /
-                                    F: <?php echo !empty($category['show_in_footer']) ? 'Y' : 'N'; ?>
-                                </td>
-                                <td><a href="categories.php?edit=<?php echo urlencode($id); ?>" class="btn btn--text">Edit</a></td>
-                            </tr>
-                        <?php endforeach; ?>
+                                 <td><?php echo htmlspecialchars((string)($category['image'] ?? '')); ?></td>
+                                 <td><?php echo htmlspecialchars((string)($category['sort_order'] ?? '')); ?></td>
+                                 <td><?php echo (int)($productCounts[$id] ?? 0); ?></td>
+                                 <td>
+                                     C: <?php echo !empty($category['show_in_catalog']) ? 'Y' : 'N'; ?> /
+                                     N: <?php echo !empty($category['show_in_navigation']) ? 'Y' : 'N'; ?> /
+                                     F: <?php echo !empty($category['show_in_footer']) ? 'Y' : 'N'; ?>
+                                 </td>
+                                 <td>
+                                     <a href="categories.php?edit=<?php echo urlencode($id); ?>" class="btn btn--text">Edit</a>
+                                     <form method="post" action="" style="display: inline;" onsubmit="return confirm('⚠️ PERMANENT DELETION\n\nThis will delete:\n- Category from categories.json\n- Category translations from ui/category language files\n- Catalog, menu, footer, and category-page availability\n\nSafe delete rule:\n- Deletion is blocked if products still belong to this category\n- Reassign or delete products first\n\nBackups will be created.\n\nAre you sure you want to delete <?php echo htmlspecialchars($id); ?>?');">
+                                         <input type="hidden" name="action" value="delete_category">
+                                         <input type="hidden" name="category_id" value="<?php echo htmlspecialchars($id); ?>">
+                                         <button type="submit" class="btn btn--text" style="color: var(--color-error);">
+                                             🗑️ Delete
+                                         </button>
+                                     </form>
+                                 </td>
+                             </tr>
+                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
