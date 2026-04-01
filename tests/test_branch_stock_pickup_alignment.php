@@ -9,10 +9,13 @@ foreach ($branchItems as $item) {
     $branchItemsBySku[$item['sku']] = $item;
 }
 
+$stock = loadJSON('stock.json');
+$expectedQuantity = (int)($stock['SMA-STA-NA']['quantity'] ?? 0);
+
 if (!isset($branchItemsBySku['SMA-STA-NA'])) {
     $failures[] = 'Branch stock view is missing SMA-STA-NA for branch_1';
-} elseif ((int)$branchItemsBySku['SMA-STA-NA']['quantity'] !== 2) {
-    $failures[] = 'Branch stock view shows wrong quantity for SMA-STA-NA (expected 2)';
+} elseif ((int)$branchItemsBySku['SMA-STA-NA']['quantity'] !== $expectedQuantity) {
+    $failures[] = 'Branch stock view does not mirror stock.json for SMA-STA-NA';
 }
 
 $normalized = normalizeCartSelection('smart', 'standard', 'none');

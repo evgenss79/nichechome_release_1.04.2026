@@ -373,8 +373,9 @@ $audit = getSkuAuditReport();
                 
                 <h3>Initialize Missing SKU Keys</h3>
                 <p style="color: #666;">
-                    Add missing SKUs to stock.json and branch_stock.json with quantity=0.
-                    This will NOT modify any existing quantities.
+                    Add missing SKUs to stock.json with quantity=0 and refresh the
+                    compatibility branch_stock.json mirror. This will NOT modify any
+                    existing STOCK quantities.
                 </p>
                 
                 <form method="post" action="" style="margin-top: 1rem;">
@@ -393,8 +394,8 @@ $audit = getSkuAuditReport();
                 </p>
                 <ul style="color: #666;">
                     <li><strong>Catalog SKUs:</strong> All possible SKUs derivable from products.json and accessories.json</li>
-                    <li><strong>Stock SKUs:</strong> All keys present in stock.json (global stock)</li>
-                    <li><strong>Branch SKUs:</strong> All keys present in branch_stock.json (branch stock)</li>
+                    <li><strong>Stock SKUs:</strong> All keys present in stock.json (authoritative inventory)</li>
+                    <li><strong>Branch SKUs:</strong> All keys present in branch_stock.json (compatibility mirror of STOCK)</li>
                 </ul>
                 <p style="color: #666;">
                     The Stock Management page and CSV export now use the complete SKU Universe, ensuring no SKUs are missed.

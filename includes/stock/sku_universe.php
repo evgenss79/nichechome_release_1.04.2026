@@ -5,7 +5,7 @@
  * This module provides a unified view of ALL SKUs from ALL sources:
  * - Catalog-derived SKUs (products.json + accessories.json)
  * - Global stock (stock.json)
- * - Branch stock (branch_stock.json)
+ * - Derived branch compatibility mirror (branch_stock.json)
  * 
  * Purpose: Ensure every UI, export, and stock operation sees the complete SKU list
  */
@@ -463,8 +463,9 @@ function getSkuAuditReport(): array {
 /**
  * Initialize missing SKU keys in stock files
  * 
- * Adds missing SKUs to stock.json and branch_stock.json with quantity=0
- * ONLY adds missing keys, NEVER modifies existing values
+ * Adds missing SKUs to stock.json with quantity=0 and refreshes the
+ * compatibility branch_stock.json mirror derived from stock.json.
+ * ONLY adds missing STOCK keys, NEVER modifies existing stock quantities.
  * 
  * @param bool $dryRun If true, returns what would be changed without saving
  * @return array ['success' => bool, 'added_to_stock' => [...], 'added_to_branches' => [...], 'error' => string]
@@ -472,7 +473,6 @@ function getSkuAuditReport(): array {
 function initializeMissingSkuKeys(bool $dryRun = true): array {
     $universe = loadSkuUniverse();
     $stock = loadJSON('stock.json');
-    $branchStock = loadBranchStock();
     $branches = getAllBranches();
     
     $addedToStock = [];
@@ -494,27 +494,18 @@ function initializeMissingSkuKeys(bool $dryRun = true): array {
         }
     }
     
-    // Find SKUs missing in branch_stock.json (but don't add if not in catalog or stock)
+    // Record branch mirror coverage for compatibility reporting.
     foreach ($universe as $sku => $data) {
-        // Only initialize branch stock for SKUs that are in catalog or already in stock.json
         if (!$data['in_catalog'] && !$data['in_stock_json']) {
             continue;
         }
-        
+
+        if (!isset($addedToBranches[$sku])) {
+            $addedToBranches[$sku] = [];
+        }
+
         foreach ($branches as $branchId => $branchName) {
-            if (!isset($branchStock[$branchId][$sku])) {
-                if (!isset($addedToBranches[$sku])) {
-                    $addedToBranches[$sku] = [];
-                }
-                $addedToBranches[$sku][] = $branchId;
-                
-                if (!$dryRun) {
-                    if (!isset($branchStock[$branchId])) {
-                        $branchStock[$branchId] = [];
-                    }
-                    $branchStock[$branchId][$sku] = ['quantity' => 0];
-                }
-            }
+            $addedToBranches[$sku][] = $branchId;
         }
     }
     
@@ -547,7 +538,7 @@ function initializeMissingSkuKeys(bool $dryRun = true): array {
                 'added_to_branches' => []
             ];
         }
-        if (!saveBranchStock($branchStock)) {
+        if (!saveBranchStock()) {
             return [
                 'success' => false,
                 'error' => 'Failed to save branch_stock.json',
@@ -557,8 +548,7 @@ function initializeMissingSkuKeys(bool $dryRun = true): array {
         }
         
         // Log the initialization
-        logStockChange("SKU Universe Initialization: Added " . count($addedToStock) . " SKUs to stock.json, " . 
-                      count($addedToBranches) . " SKUs to branches");
+        logStockChange("SKU Universe Initialization: Added " . count($addedToStock) . " SKUs to stock.json and refreshed compatibility branch_stock.json mirror");
     }
     
     return [

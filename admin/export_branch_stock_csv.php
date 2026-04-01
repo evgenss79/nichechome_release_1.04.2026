@@ -3,7 +3,8 @@
  * Branch Stock CSV Export with Date Selection
  * 
  * Exports branch stock data as CSV, with support for historical snapshots.
- * Uses SKU Universe for product metadata and branch_stock.json (or snapshots) for quantities.
+ * Uses SKU Universe for product metadata and the compatibility branch_stock.json
+ * mirror (or its snapshots) for display quantities derived from stock.json.
  * 
  * Query Parameters:
  * - branch_id (required): The branch ID to export
