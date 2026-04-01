@@ -16,8 +16,15 @@
   - `saveBranchStock()` preserves the submitted branch quantities instead of mirroring one shared total into every branch.
   - `getBranchStockQuantity()` returns the real quantity for the requested `branchId + SKU`.
   - `decreaseBranchStock()` decrements the selected branch and then realigns `stock.json.quantity` / `stock.json.total_qty` to the new branch sum.
+  - `decreaseOrderStock()` applies the canonical order SKU list to either `decreaseStock()` or `decreaseBranchStock()` depending on delivery vs pickup.
   - `getConsolidatedStockViewFromUniverse()` builds STOCK rows from real branch quantities and computes `TOTAL` from the branch sum.
   - `updateConsolidatedStock()` accepts branch quantities, persists them branch-by-branch, and updates `stock.json` totals to the exact aggregate.
+- `webhook_payrexx.php`
+  - confirmed online-payment webhooks only mark orders `paid` after `decreaseOrderStock()` succeeds
+  - failed stock deduction keeps the order out of `paid` state and returns an error response so the payment webhook can be retried safely
+- `payment_cancel.php`
+  - cancellation/failure redirects mark unpaid orders as `cancelled`/`failed`
+  - cancellation/failure redirects never decrement stock
 - `admin/stock.php`
   - Renders editable inputs for each branch column.
   - Renders `TOTAL` as read-only/computed.
@@ -36,6 +43,8 @@
 4. `TOTAL` is display-only; it must never be the authoritative writer for branch stock.
 5. Pickup validation must pass/fail against the selected branch quantity.
 6. Saving/importing branch quantities must keep `stock.json.quantity` and `stock.json.total_qty` aligned to the branch sum for that SKU.
+7. Confirmed payment/order completion must decrement the exact ordered SKU once.
+8. Cancelled/failed payments must not decrement stock.
 
 ## Verification commands
 
@@ -44,6 +53,7 @@ Run:
 ```bash
 php tests/test_stock_single_source_of_truth.php
 php tests/test_branch_stock_pickup_alignment.php
+php tests/test_payment_stock_paths.php
 php tools/sku_universe_selftest.php
 ```
 
@@ -56,6 +66,8 @@ php tools/sku_universe_selftest.php
 5. Confirm the same branch values remain and `TOTAL` still matches the sum.
 6. Import a branch-aware CSV row and confirm the branch values reappear exactly on STOCK.
 7. At checkout, verify pickup for an available branch quantity passes and pickup above that branch quantity is blocked.
+8. Trigger a confirmed payment webhook and verify the exact ordered SKU decrements.
+9. Trigger a cancellation/failure path and verify stock does not change.
 
 ## Compatibility notes
 

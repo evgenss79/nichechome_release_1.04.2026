@@ -308,6 +308,7 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                              data-product-image
                              data-product-id="<?php echo htmlspecialchars($productId); ?>"
                              data-default-image="<?php echo htmlspecialchars($displayImage); ?>"
+                             data-allow-fragrance-image="<?php echo empty(normalizeImageFilenameList($product['images'] ?? [])) ? 'true' : 'false'; ?>"
                              onerror="this.src='/img/placeholder.svg'">
                     </div>
                     

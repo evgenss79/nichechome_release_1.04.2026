@@ -338,7 +338,7 @@ switch ($action) {
                         error_log("CART SYNC WARNING: Skipping item with unresolved price - ProductID: $productId, SKU: $sku, Volume: $volume, Fragrance: $fragrance");
                         continue;
                     }
-                     
+
                     $cartItem = [
                         'sku' => $sku,
                         'productId' => $productId,

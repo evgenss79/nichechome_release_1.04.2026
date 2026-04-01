@@ -10,7 +10,6 @@ $ordersBackup = file_get_contents($ordersPath);
 $stockBackup = file_get_contents($stockPath);
 $branchStockBackup = file_get_contents($branchStockPath);
 $serverProcess = null;
-$targetSku = generateSKU('limited_palermo', '270ml', 'palermo');
 
 function assertTrue(bool $condition, string $message): void {
     if (!$condition) {
@@ -84,6 +83,7 @@ function httpRequest(string $url, array $options = []): array {
 }
 
 try {
+    $targetSku = generateSKU('limited_palermo', '270ml', 'palermo');
     $stock = loadJSON('stock.json');
     assertTrue(isset($stock[$targetSku]), 'Target SKU missing from stock.json for payment stock test.');
     $stock[$targetSku]['quantity'] = 5;

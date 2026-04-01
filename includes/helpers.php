@@ -1855,7 +1855,7 @@ function decreaseOrderStock(array $order): array {
 
             if (!$decreased) {
                 $errors[] = ($isPickup ? "Failed to decrease branch stock for branch $pickupBranchId" : 'Failed to decrease stock')
-                    . " for SKU $orderSku (qty $quantity).";
+                    . " for SKU $orderSku (quantity $quantity).";
                 break 2;
             }
 

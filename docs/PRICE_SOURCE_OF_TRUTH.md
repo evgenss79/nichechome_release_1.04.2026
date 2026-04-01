@@ -71,20 +71,22 @@ When displaying product prices on storefront:
 
 **File:** `add_to_cart.php`
 
-When adding product to cart:
+When adding product to cart or syncing the browser cart back into the PHP session:
 
 1. Client sends AJAX request with product info
-2. Server calls `getProductPrice($productId, $volume)` (line 86)
+2. Server normalizes the selection with `normalizeCartSelection($productId, $volume, $fragrance)`
+3. Server calls `getProductPrice($productId, $volume, $fragrance)`
 3. `getProductPrice()` in `includes/helpers.php` (line 391-411):
    - Loads `data/products.json`
-   - Finds matching variant by volume
+   - Finds matching variants by volume + fragrance when variants are fragrance-specific
+   - Falls back to the volume-only price only for products intentionally modeled without fragrance-specific prices
    - Returns `priceCHF` value
 4. Price stored in session cart
 
-**Path:** data/products.json → loadJSON() → getProductPrice() → Cart Session → Checkout
+**Path:** data/products.json → loadJSON() → normalizeCartSelection() → getProductPrice() → Cart Session → Checkout
 
 **Key Files:**
-- `add_to_cart.php` line 86: Calls getProductPrice()
+- `add_to_cart.php` add + sync actions: call getProductPrice() with normalized volume + fragrance
 - `includes/helpers.php` lines 391-411: getProductPrice() implementation
 - `cart.php`: Displays cart from session
 - `checkout.php`: Calculates totals from cart session
@@ -102,16 +104,16 @@ Currently no CSV export includes pricing. If added in future, must use:
 **Location:** `includes/helpers.php` lines 391-411
 
 ```php
-function getProductPrice(string $productId, string $volume = 'standard'): float
+function getProductPrice(string $productId, string $volume = 'standard', string $fragrance = ''): float
 ```
 
-**Purpose:** Get price for a specific product and volume variant
+**Purpose:** Get price for a specific product and volume/fragrance selection
 
 **Used by:**
 - `add_to_cart.php` - When adding items to cart
 - Any server-side price calculation
 
-**Returns:** Float price or 0.0 if not found
+**Returns:** Float price or 0.0 if not found. `add_to_cart.php` now rejects unresolved zero-price sellable variants so they do not persist into cart or checkout.
 
 ### Helper Functions (Added)
 
@@ -207,10 +209,12 @@ After admin changes price in `products.json`, storefront showed old price but ca
 
 ### Solution Implemented
 
-1. **Enhanced Price Resolvers** (includes/helpers.php)
-   - Verified getProductPrice() is robust
-   - Added getDefaultDisplayedPrice() helper
-   - Added getVariantPrice() alias for clarity
+1. **Enhanced Price Resolvers** (includes/helpers.php / add_to_cart.php)
+    - Verified getProductPrice() is robust
+    - Added getDefaultDisplayedPrice() helper
+    - Added getVariantPrice() alias for clarity
+    - Cart sync now passes the normalized fragrance to the server-side price lookup
+    - Zero-price sellable variants are rejected instead of being persisted into cart/checkout
 
 2. **Catalog Versioning** (includes/helpers.php)
    - Added getCatalogVersion() function
@@ -236,13 +240,16 @@ After admin changes price in `products.json`, storefront showed old price but ca
 ```bash
 # Verify pricing consistency
 php tools/verify_pricing_consistency.php
+php tools/verify_storefront_vs_cart_prices.php
 
 # Test existing pricing tests
 php tests/test_textile_perfume_pricing.php
-php tests/test_admin_price_change.php
+php tests/test_interior_perfume_pricing.php
+php tests/test_e2e_price_change.php
+php tests/test_cart_sync_variant_price.php
 
-# Validate data integrity
-php tools/validate_integrity.php
+# Validate catalog integrity
+php tools/validate_catalog_consistency.php
 ```
 
 ## Testing Checklist
@@ -256,6 +263,7 @@ php tools/validate_integrity.php
 - [ ] Verify price updates correctly
 - [ ] Add to cart
 - [ ] Verify cart shows correct price
+- [ ] Reload and verify server cart sync still shows the same non-zero price
 - [ ] Proceed to checkout
 - [ ] Verify checkout total is correct
 - [ ] All prices match across flow
