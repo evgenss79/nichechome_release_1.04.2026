@@ -3702,7 +3702,7 @@ function deleteProduct(string $productId): array {
 }
 
 /**
- * Return products assigned to a category.
+ * Returns products.json entries whose category field matches the given slug.
  *
  * @param string $categoryId Category ID / slug
  * @return array<string, array>
@@ -3822,9 +3822,7 @@ function deleteCategory(string $categoryId): array {
     }
 
     updateCatalogVersion();
-    logStockChange(
-        "CATEGORY DELETED: $categoryId | Products blocked: 0 | Translation groups removed: " . count($details['i18n_keys_removed'])
-    );
+    logStockChange("CATEGORY DELETED: $categoryId | Translation groups removed: " . count($details['i18n_keys_removed']));
 
     return [
         'success' => true,

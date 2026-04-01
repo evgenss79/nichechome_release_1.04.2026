@@ -54,7 +54,7 @@ function saveLegacyCategoryTranslations(string $i18nRoot, string $categoryId, st
 {
     foreach (I18N::getSupportedLanguages() as $lang) {
         $path = $i18nRoot . '/categories_' . $lang . '.json';
-        $data = json_decode((string)file_get_contents($path), true);
+        $data = json_decode(file_get_contents($path), true);
         if (!is_array($data)) {
             $data = [];
         }
@@ -199,7 +199,11 @@ try {
         'action' => 'delete_category',
         'category_id' => $emptyCategoryId,
     ]);
-    assertTrue(strpos($emptyDeleteHtml, "Category '$emptyCategoryId' deleted successfully!") !== false, 'Admin success message missing after empty category delete.');
+    assertTrue(
+        strpos($emptyDeleteHtml, 'deleted successfully!') !== false
+        && strpos($emptyDeleteHtml, htmlspecialchars($emptyCategoryId, ENT_QUOTES)) !== false,
+        'Admin success message missing after empty category delete.'
+    );
 
     $categoriesAfterDelete = loadJSON('categories.json');
     assertTrue(!isset($categoriesAfterDelete[$emptyCategoryId]), 'Deleted category still exists in categories.json.');
@@ -207,12 +211,12 @@ try {
 
     foreach (I18N::getSupportedLanguages() as $lang) {
         $uiPath = $i18nRoot . '/ui_' . $lang . '.json';
-        $uiData = json_decode((string)file_get_contents($uiPath), true);
+        $uiData = json_decode(file_get_contents($uiPath), true);
         assertTrue(!isset($uiData['category'][$emptyCategoryId]), "Deleted category still exists in ui_$lang.json.");
         assertTrue(isset($uiData['category'][$blockedCategoryId]), "Blocked category translations were unexpectedly removed from ui_$lang.json.");
 
         $legacyPath = $i18nRoot . '/categories_' . $lang . '.json';
-        $legacyData = json_decode((string)file_get_contents($legacyPath), true);
+        $legacyData = json_decode(file_get_contents($legacyPath), true);
         assertTrue(!isset($legacyData['category'][$emptyCategoryId]), "Deleted category still exists in categories_$lang.json.");
         assertTrue(isset($legacyData['category'][$blockedCategoryId]), "Blocked category translations were unexpectedly removed from categories_$lang.json.");
     }
