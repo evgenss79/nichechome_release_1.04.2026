@@ -202,8 +202,14 @@ switch ($action) {
         } else {
             // Regular product: get price from products.json
             $productId = sanitize($item['productId'] ?? '');
-            $volume = sanitize($item['volume'] ?? 'standard');
-            $fragrance = sanitize($item['fragrance'] ?? 'none');
+            $normalizedSelection = normalizeCartSelection(
+                $productId,
+                sanitize($item['volume'] ?? 'standard'),
+                sanitize($item['fragrance'] ?? 'none')
+            );
+            $sku = $normalizedSelection['sku'];
+            $volume = $normalizedSelection['volume'];
+            $fragrance = $normalizedSelection['fragrance'];
             $price = getProductPrice($productId, $volume);
             
             // Debug logging for Limited Edition stock issue investigation
@@ -308,7 +314,14 @@ switch ($action) {
                 } else {
                     // Regular product: get price from products.json
                     $productId = sanitize($item['productId'] ?? '');
-                    $volume = sanitize($item['volume'] ?? 'standard');
+                    $normalizedSelection = normalizeCartSelection(
+                        $productId,
+                        sanitize($item['volume'] ?? 'standard'),
+                        sanitize($item['fragrance'] ?? 'none')
+                    );
+                    $sku = $normalizedSelection['sku'];
+                    $volume = $normalizedSelection['volume'];
+                    $fragrance = $normalizedSelection['fragrance'];
                     $price = getProductPrice($productId, $volume);
                     
                     $cartItem = [
@@ -317,7 +330,7 @@ switch ($action) {
                         'name' => sanitize($item['name']),
                         'category' => $category,
                         'volume' => $volume,
-                        'fragrance' => sanitize($item['fragrance'] ?? 'none'),
+                        'fragrance' => $fragrance,
                         'price' => $price,
                         'quantity' => $requestedQty
                     ];

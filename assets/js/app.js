@@ -536,16 +536,40 @@
             'limited_abu_dhabi': 'LE',
             'limited_palermo': 'LE',
             'aroma_sashe': 'ARO',
-            'christ_toy': 'CHR'
+            'christ_toy': 'CHR',
+            'refill_125': 'REF',
+            'sticks': 'STI'
         };
-        
+
+        const fragranceSuffixMap = {
+            'salty_water': 'SW',
+            'salted_caramel': 'SC'
+        };
+
         const prefix = prefixMap[productId] || productId.substring(0, 3).toUpperCase();
         let vol = volume.replace('ml', '');
         // Handle "standard" volume for accessories
-        if (vol === 'standard') {
+        if (vol === 'standard' || !vol) {
             vol = 'STA';
         }
-        const frag = fragrance.substring(0, 3).toUpperCase();
+        // Long descriptive accessory volumes (e.g. "5 guggul + 5 louban")
+        // must be compacted to the same sanitized 3-char code that PHP uses.
+        if (vol.length > 10) {
+            vol = vol.replace(/[^0-9a-z]/gi, '').substring(0, 3).toUpperCase();
+        } else {
+            vol = vol.toUpperCase();
+        }
+
+        const normalizedFragrance = (fragrance || '').trim();
+        let frag;
+        if (!normalizedFragrance || normalizedFragrance === 'none' || normalizedFragrance === 'null' || normalizedFragrance === 'NA') {
+            frag = 'NA';
+        } else if (fragranceSuffixMap[normalizedFragrance]) {
+            frag = fragranceSuffixMap[normalizedFragrance];
+        } else {
+            frag = normalizedFragrance.substring(0, 3).toUpperCase();
+        }
+
         return prefix + '-' + vol + '-' + frag;
     }
 
