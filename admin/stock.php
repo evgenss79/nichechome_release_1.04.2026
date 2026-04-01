@@ -234,18 +234,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $error = 'Invalid security token. Please refresh the page and try again.';
     } else {
         $sku = $_POST['sku'] ?? '';
-        $quantityValidation = validateStockQuantity($_POST['quantity'] ?? 0);
+        $submittedBranchQuantities = $_POST['branch_quantity'] ?? [];
 
-        if (!$quantityValidation['valid']) {
-            $error = $quantityValidation['error'];
+        $result = updateConsolidatedStock($sku, $submittedBranchQuantities);
+        
+        if ($result['success']) {
+            $success = "Stock updated successfully for SKU: $sku (Total: {$result['oldTotal']} → {$result['newTotal']})";
         } else {
-            $result = updateConsolidatedStock($sku, $quantityValidation['value']);
-            
-            if ($result['success']) {
-                $success = "Stock updated successfully for SKU: $sku (Total: {$result['oldTotal']} → {$result['newTotal']})";
-            } else {
-                $error = "Failed to update stock: " . $result['error'];
-            }
+            $error = "Failed to update stock: " . $result['error'];
         }
     }
 }
@@ -425,6 +421,18 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
             font-weight: 600;
             text-align: center;
         }
+        .stock-table .branch-input {
+            width: 70px;
+            padding: 0.25rem;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .stock-table .total-display {
+            background: #f5f5f5;
+            color: #333;
+            font-weight: 600;
+        }
         .import-section {
             background: #f9f9f9;
             padding: 1.5rem;
@@ -436,21 +444,80 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
             gap: 1rem;
             margin-top: 1rem;
         }
+        .inline-row-form {
+            display: contents;
+        }
     </style>
     <script>
         'use strict';
         
-        function validateRow(formElement) {
-            const quantityInput = formElement.querySelector('input[name="quantity"]');
-            const quantity = parseInt(quantityInput.value, 10);
-
-            if (Number.isNaN(quantity) || quantity < 0) {
-                alert('Stock quantity must be a non-negative number.');
-                return false;
+        function resolveRowScope(contextElement) {
+            if (!contextElement) {
+                return null;
             }
 
-            return true;
+            if (contextElement.matches && contextElement.matches('tr')) {
+                return contextElement;
+            }
+
+            return contextElement.closest ? contextElement.closest('tr') : null;
         }
+
+        function calculateRowTotal(contextElement, strictMode) {
+            const rowElement = resolveRowScope(contextElement);
+            const scopeElement = rowElement || contextElement;
+            const branchInputs = Array.from(scopeElement.querySelectorAll('input[data-branch-quantity="1"]'));
+            let total = 0;
+
+            for (const input of branchInputs) {
+                const quantity = parseInt(input.value, 10);
+                if (Number.isNaN(quantity) || quantity < 0) {
+                    if (strictMode) {
+                        alert('Branch stock quantities must be non-negative whole numbers.');
+                        input.focus();
+                        return null;
+                    }
+                    return null;
+                }
+                total += quantity;
+            }
+
+            const totalInput = scopeElement.querySelector('input[data-total-display="1"]');
+            if (totalInput) {
+                totalInput.value = total;
+            }
+
+            return total;
+        }
+
+        function validateRow(contextElement) {
+            return calculateRowTotal(contextElement, true) !== null;
+        }
+
+        function updateRowTotal(contextElement) {
+            if (!contextElement) {
+                return;
+            }
+
+            const rowElement = resolveRowScope(contextElement);
+            const total = calculateRowTotal(rowElement || contextElement, false);
+            if (total === null) {
+                const scopeElement = rowElement || contextElement;
+                const totalInput = scopeElement.querySelector('input[data-total-display="1"]');
+                if (totalInput) {
+                    totalInput.value = '';
+                }
+            }
+        }
+
+        document.addEventListener('input', function(event) {
+            if (event.target.matches('input[data-branch-quantity="1"]')) {
+                const row = event.target.closest('tr');
+                if (row) {
+                    updateRowTotal(row);
+                }
+            }
+        });
     </script>
 </head>
 <body>
@@ -486,7 +553,7 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
             <div class="admin-header">
                 <h1>Consolidated Stock Management</h1>
                 <p style="color: #666; margin-top: 0.5rem;">
-                    Manage authoritative stock quantities in one place. Branch columns are read-only mirrors of STOCK and pickup uses the same quantity source.
+                    Manage branch quantities in one place. Each branch stays independently editable and TOTAL is calculated automatically from the branch values.
                     Total items: <?php echo count($consolidatedStock); ?> | 
                     Displayed: <?php echo count($filteredStock); ?>
                     <span style="margin-left: 1rem;">|</span>
@@ -532,8 +599,8 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
                     </a>
                 </div>
                 <p style="color: #999; font-size: 0.9em; margin-top: 0.5rem;">
-                    <strong>Sync Universe:</strong> Adds missing SKUs from product catalog to stock.json (qty=0) and refreshes the compatibility branch_stock.json mirror.<br>
-                    <strong>CSV:</strong> Import/export uses one authoritative quantity column from STOCK (no Excel support). You can convert Excel files to CSV using Excel or Google Sheets.
+                    <strong>Sync Universe:</strong> Adds missing SKUs from product catalog to stock.json (qty=0) and initializes missing branch_stock.json entries.<br>
+                    <strong>CSV:</strong> Import/export uses per-branch quantities plus a computed TOTAL column (no Excel support). You can convert Excel files to CSV using Excel or Google Sheets.
                 </p>
             </div>
             
@@ -648,24 +715,30 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
                                     <td><?php echo htmlspecialchars($item['volume']); ?></td>
                                     <td><?php echo htmlspecialchars($item['fragrance']); ?></td>
                                     
-                                    <form method="post" action="" onsubmit="return validateRow(this)" data-sku="<?php echo htmlspecialchars($sku); ?>" style="display: contents;">
+                                    <form method="post" action="" onsubmit="return validateRow(this)" data-sku="<?php echo htmlspecialchars($sku); ?>" class="inline-row-form">
                                         <input type="hidden" name="action" value="update_stock">
                                         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                                         <input type="hidden" name="sku" value="<?php echo htmlspecialchars($sku); ?>">
                                         
                                         <?php foreach ($branches as $branchId => $branchName): ?>
                                             <td>
-                                                <div class="read-only-branch">
-                                                    <?php echo (int)($item['branches'][$branchId] ?? 0); ?>
-                                                </div>
+                                                <input type="number"
+                                                       class="branch-input"
+                                                       name="branch_quantity[<?php echo htmlspecialchars($branchId); ?>]"
+                                                       value="<?php echo (int)($item['branches'][$branchId] ?? 0); ?>"
+                                                       min="0"
+                                                       oninput="updateRowTotal(this)"
+                                                       data-branch-quantity="1">
                                             </td>
                                         <?php endforeach; ?>
                                         
                                         <td class="total-cell">
                                             <input type="number" 
-                                                   name="quantity" 
+                                                   class="total-display"
                                                    value="<?php echo (int)$item['total']; ?>" 
-                                                   min="0">
+                                                   readonly
+                                                   tabindex="-1"
+                                                   data-total-display="1">
                                         </td>
                                         
                                         <td>
@@ -687,10 +760,9 @@ if ($sortParam === 'qty_asc' || $sortParam === 'total_asc') {
                     <li><strong>Product search:</strong> Search by product name, product ID, or SKU (partial match supported)</li>
                     <li><strong>Branch filter:</strong> Select a branch to focus on specific location stock levels</li>
                     <li><strong>Sorting:</strong> Sort by quantity (low→high or high→low) - when branch is selected, sorts by that branch's quantity</li>
-                    <li><strong>Edit quantities:</strong> Change any branch quantity or total, then click Save</li>
-                    <li><strong>Validation:</strong> TOTAL must equal sum of all branch quantities (enforced on save)</li>
-                    <li><strong>Redistribution:</strong> Click "Even" button to distribute total evenly across branches</li>
-                    <li><strong>Visual feedback:</strong> Rows highlight in red if total doesn't match sum of branches</li>
+                    <li><strong>Edit quantities:</strong> Change branch quantities independently, then click Save</li>
+                    <li><strong>Validation:</strong> Branch quantities must be non-negative integers</li>
+                    <li><strong>TOTAL:</strong> TOTAL is read-only and always equals the sum of branch quantities</li>
                     <li><strong>CSV Import:</strong> Use template above to bulk import stock data</li>
                     <li><strong>Backups:</strong> All changes create timestamped backups in data/backups/</li>
                     <li><strong>Logs:</strong> All changes are logged to logs/stock.log</li>

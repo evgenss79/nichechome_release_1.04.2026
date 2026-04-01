@@ -290,20 +290,50 @@ function saveJSON(string $filename, array $data): bool {
 }
 
 /**
- * Build a compatibility-only branch stock snapshot derived from stock.json.
+ * Build a normalized branch stock snapshot while preserving existing per-branch quantities.
  * Passing null causes the latest stock/branch data to be loaded from disk.
  */
-function buildBranchStockCompatibilitySnapshot(?array $stock = null, ?array $branches = null): array {
+function buildBranchStockCompatibilitySnapshot(?array $stock = null, ?array $branches = null, ?array $branchStock = null): array {
     $stock = $stock ?? loadJSON('stock.json');
     $branches = $branches ?? loadBranches();
+    $branchStock = $branchStock ?? loadJSON('branch_stock.json');
 
     $snapshot = [];
-    foreach ($branches as $branchId => $branch) {
-        $snapshot[$branchId] = [];
+    $branchIds = [];
+
+    if (is_array($branchStock)) {
+        $branchIds = array_keys($branchStock);
+    }
+
+    if (is_array($branches)) {
+        foreach ($branches as $branchId => $branchData) {
+            if (is_string($branchId)) {
+                $branchIds[] = $branchId;
+            } elseif (is_array($branchData) && isset($branchData['id'])) {
+                $branchIds[] = (string)$branchData['id'];
+            }
+        }
+    }
+
+    $branchIds = array_values(array_unique(array_filter($branchIds, 'strlen')));
+
+    foreach ($branchIds as $branchId) {
+        $existingBranchData = $branchStock[$branchId] ?? [];
+        $snapshot[$branchId] = is_array($existingBranchData) ? $existingBranchData : [];
+
+        foreach ($snapshot[$branchId] as $sku => $stockEntry) {
+            if (!is_array($stockEntry)) {
+                $snapshot[$branchId][$sku] = ['quantity' => (int)$stockEntry];
+                continue;
+            }
+
+            $snapshot[$branchId][$sku]['quantity'] = (int)($stockEntry['quantity'] ?? 0);
+        }
+
         foreach ($stock as $sku => $stockData) {
-            $snapshot[$branchId][$sku] = [
-                'quantity' => (int)($stockData['quantity'] ?? 0)
-            ];
+            if (!isset($snapshot[$branchId][$sku])) {
+                $snapshot[$branchId][$sku] = ['quantity' => 0];
+            }
         }
     }
 
@@ -311,10 +341,24 @@ function buildBranchStockCompatibilitySnapshot(?array $stock = null, ?array $bra
 }
 
 /**
- * Persist a compatibility-only branch_stock mirror derived from stock.json.
+ * Persist normalized branch stock data while preserving branch-level quantities.
  */
-function syncBranchStockCompatibilityFile(?array $stock = null, ?array $branches = null): bool {
-    return saveJSON('branch_stock.json', buildBranchStockCompatibilitySnapshot($stock, $branches));
+function syncBranchStockCompatibilityFile(?array $stock = null, ?array $branches = null, ?array $branchStock = null): bool {
+    return saveJSON('branch_stock.json', buildBranchStockCompatibilitySnapshot($stock, $branches, $branchStock));
+}
+
+/**
+ * Calculate the total branch quantity for a SKU.
+ */
+function getBranchStockTotal(string $sku, ?array $branchStock = null): int {
+    $branchStock = $branchStock ?? loadBranchStock();
+    $total = 0;
+
+    foreach ($branchStock as $branchItems) {
+        $total += (int)($branchItems[$sku]['quantity'] ?? 0);
+    }
+
+    return $total;
 }
 
 /**
@@ -332,6 +376,7 @@ function updateStock(string $sku, int $quantity): bool {
     $stock = loadJSON('stock.json');
     if (isset($stock[$sku])) {
         $stock[$sku]['quantity'] = $quantity;
+        $stock[$sku]['total_qty'] = $quantity;
         if (!saveJSON('stock.json', $stock)) {
             return false;
         }
@@ -1285,23 +1330,26 @@ function loadBranchStock(): array {
 }
 
 /**
- * Save compatibility branch stock mirror derived from stock.json.
- * The $data argument is ignored and kept only for backward compatibility with legacy callers.
+ * Save normalized branch stock data while preserving branch-level quantities.
  */
 function saveBranchStock(array $data = []): bool {
-    return syncBranchStockCompatibilityFile();
+    $stock = loadJSON('stock.json');
+    $branches = loadBranches();
+    $branchStock = !empty($data) ? $data : loadJSON('branch_stock.json');
+
+    return syncBranchStockCompatibilityFile($stock, $branches, $branchStock);
 }
 
 /**
  * Get stock quantity for a SKU in a specific branch
  */
 function getBranchStockQuantity(string $branchId, string $sku): int {
-    $branches = loadBranches();
-    if (!isset($branches[$branchId])) {
+    $branchStock = loadBranchStock();
+    if (!isset($branchStock[$branchId])) {
         return 0;
     }
 
-    return getStockQuantity($sku);
+    return (int)($branchStock[$branchId][$sku]['quantity'] ?? 0);
 }
 
 /**
@@ -1312,7 +1360,7 @@ function decreaseBranchStock(string $branchId, string $sku, int $amount = 1): bo
     error_log("=== decreaseBranchStock START ===");
     error_log("decreaseBranchStock: PARAMS - Branch: '$branchId', SKU: '$sku', Amount to decrease: $amount");
     
-    $branches = loadBranches();
+    $branches = getAllBranches();
 
     // Check if branch exists
     if (!isset($branches[$branchId])) {
@@ -1321,7 +1369,16 @@ function decreaseBranchStock(string $branchId, string $sku, int $amount = 1): bo
         return false;
     }
 
-    $currentQty = getStockQuantity($sku);
+    $branchStock = loadBranchStock();
+    $stock = loadJSON('stock.json');
+
+    if (!isset($stock[$sku])) {
+        error_log("decreaseBranchStock: ERROR - SKU '$sku' not found in stock.json");
+        error_log("=== decreaseBranchStock END (FAILED - SKU not found) ===");
+        return false;
+    }
+
+    $currentQty = (int)($branchStock[$branchId][$sku]['quantity'] ?? 0);
     error_log("decreaseBranchStock: BEFORE - Branch '$branchId', SKU '$sku' current quantity: $currentQty");
     
     if ($currentQty < $amount) {
@@ -1329,20 +1386,38 @@ function decreaseBranchStock(string $branchId, string $sku, int $amount = 1): bo
         error_log("=== decreaseBranchStock END (FAILED - insufficient stock) ===");
         return false;
     }
-    
-    $saveResult = decreaseStock($sku, $amount);
-    error_log("decreaseBranchStock: decreaseStock() returned: " . ($saveResult ? 'TRUE (success)' : 'FALSE (failed)'));
 
-    if (!$saveResult) {
+    $originalBranchStock = $branchStock;
+    $originalStock = $stock;
+
+    $branchStock[$branchId][$sku]['quantity'] = $currentQty - $amount;
+    $newTotal = getBranchStockTotal($sku, $branchStock);
+    $stock[$sku]['quantity'] = $newTotal;
+    $stock[$sku]['total_qty'] = $newTotal;
+
+    if (!saveBranchStock($branchStock)) {
+        error_log("decreaseBranchStock: ERROR - Failed to save branch_stock.json");
+        error_log("=== decreaseBranchStock END (FAILED - branch_stock save failed) ===");
+        return false;
+    }
+
+    if (!saveJSON('stock.json', $stock)) {
+        error_log("decreaseBranchStock: ERROR - Failed to save stock.json, attempting rollback");
+        if (!saveBranchStock($originalBranchStock)) {
+            error_log("decreaseBranchStock: ROLLBACK FAILED - Could not restore branch_stock.json");
+        }
+        if (!saveJSON('stock.json', $originalStock)) {
+            error_log("decreaseBranchStock: ROLLBACK FAILED - Could not restore stock.json");
+        }
         error_log("=== decreaseBranchStock END (FAILED - stock.json update failed) ===");
         return false;
     }
 
     $verifiedQty = getBranchStockQuantity($branchId, $sku);
-    error_log("decreaseBranchStock: VERIFICATION - Derived branch quantity now: $verifiedQty");
-
+    error_log("decreaseBranchStock: VERIFICATION - Branch quantity now: $verifiedQty");
+    error_log("decreaseBranchStock: VERIFICATION - Stock total now: $newTotal");
     error_log("=== decreaseBranchStock END (SUCCESS) ===");
-    return $saveResult;
+    return true;
 }
 
 /**
@@ -2759,6 +2834,7 @@ function getAllBranches(): array {
  */
 function getConsolidatedStockView(): array {
     $stock = loadJSON('stock.json');
+    $branchStock = loadBranchStock();
     $branches = getAllBranches();
     $products = loadJSON('products.json');
     $accessories = loadJSON('accessories.json');
@@ -2779,10 +2855,11 @@ function getConsolidatedStockView(): array {
         
         // Get branch quantities
         $branchQuantities = [];
-        $total = (int)($stockData['quantity'] ?? 0);
+        $total = 0;
         foreach ($branches as $branchId => $branchName) {
-            $qty = $total;
+            $qty = (int)($branchStock[$branchId][$sku]['quantity'] ?? 0);
             $branchQuantities[$branchId] = (int)$qty;
+            $total += $qty;
         }
         
         $consolidated[$sku] = [
@@ -2810,6 +2887,7 @@ function getConsolidatedStockViewFromUniverse(): array {
     
     $universe = loadSkuUniverse();
     $stock = loadJSON('stock.json');
+    $branchStock = loadBranchStock();
     $branches = getAllBranches();
     
     $consolidated = [];
@@ -2817,10 +2895,11 @@ function getConsolidatedStockViewFromUniverse(): array {
     foreach ($universe as $sku => $data) {
         // Get branch quantities
         $branchQuantities = [];
-        $total = (int)($stock[$sku]['quantity'] ?? 0);
+        $total = 0;
         foreach ($branches as $branchId => $branchName) {
-            $qty = $total;
+            $qty = (int)($branchStock[$branchId][$sku]['quantity'] ?? 0);
             $branchQuantities[$branchId] = (int)$qty;
+            $total += $qty;
         }
         
         $consolidated[$sku] = [
@@ -2911,40 +2990,65 @@ function normalizeCartSelection(string $productId, string $volume = 'standard', 
 }
 
 /**
- * Update authoritative stock for a SKU and refresh the compatibility branch snapshot.
+ * Update branch stock for a SKU and keep stock.json total aligned with the branch sum.
  * @param string $sku The SKU to update
- * @param int $quantity Authoritative quantity stored in stock.json
+ * @param mixed $branchQuantities Associative array of branch quantities keyed by branch ID
  * @return array ['success' => bool, 'error' => string, 'oldTotal' => int, 'newTotal' => int]
  */
-function updateConsolidatedStock(string $sku, int $quantity): array {
-    $validation = validateStockQuantity($quantity);
-    if (!$validation['valid']) {
-        return ['success' => false, 'error' => $validation['error'], 'oldTotal' => 0, 'newTotal' => 0];
+function updateConsolidatedStock(string $sku, $branchQuantities): array {
+    if (!is_array($branchQuantities)) {
+        return ['success' => false, 'error' => 'Branch quantities are required for this update', 'oldTotal' => 0, 'newTotal' => 0];
     }
 
     if (!createStockBackup('stock.json')) {
         return ['success' => false, 'error' => 'Failed to create stock backup', 'oldTotal' => 0, 'newTotal' => 0];
     }
 
+    if (!createStockBackup('branch_stock.json')) {
+        return ['success' => false, 'error' => 'Failed to create branch stock backup', 'oldTotal' => 0, 'newTotal' => 0];
+    }
+
     $stock = loadJSON('stock.json');
+    $branchStock = loadBranchStock();
+    $branches = getAllBranches();
     if (!isset($stock[$sku])) {
         return ['success' => false, 'error' => "SKU '$sku' not found in stock.json", 'oldTotal' => 0, 'newTotal' => 0];
     }
 
-    $oldTotal = (int)($stock[$sku]['quantity'] ?? 0);
-    $stock[$sku]['quantity'] = $validation['value'];
+    $normalizedBranchQuantities = [];
+    $newTotal = 0;
+
+    foreach ($branches as $branchId => $branchName) {
+        $rawValue = $branchQuantities[$branchId] ?? ($branchStock[$branchId][$sku]['quantity'] ?? 0);
+        $validation = validateStockQuantity($rawValue);
+        if (!$validation['valid']) {
+            return ['success' => false, 'error' => "Branch $branchId: " . $validation['error'], 'oldTotal' => 0, 'newTotal' => 0];
+        }
+
+        $normalizedBranchQuantities[$branchId] = $validation['value'];
+        $newTotal += $validation['value'];
+    }
+
+    $oldTotal = getBranchStockTotal($sku, $branchStock);
+
+    foreach ($normalizedBranchQuantities as $branchId => $quantity) {
+        $branchStock[$branchId][$sku] = ['quantity' => $quantity];
+    }
+
+    $stock[$sku]['quantity'] = $newTotal;
+    $stock[$sku]['total_qty'] = $newTotal;
+
+    if (!saveBranchStock($branchStock)) {
+        return ['success' => false, 'error' => 'Failed to save branch_stock.json', 'oldTotal' => $oldTotal, 'newTotal' => $newTotal];
+    }
 
     if (!saveJSON('stock.json', $stock)) {
-        return ['success' => false, 'error' => 'Failed to save stock.json', 'oldTotal' => $oldTotal, 'newTotal' => $validation['value']];
+        return ['success' => false, 'error' => 'Failed to save stock.json', 'oldTotal' => $oldTotal, 'newTotal' => $newTotal];
     }
 
-    if (!syncBranchStockCompatibilityFile($stock)) {
-        return ['success' => false, 'error' => 'Failed to refresh compatibility branch_stock.json mirror', 'oldTotal' => $oldTotal, 'newTotal' => $validation['value']];
-    }
+    logStockChange("SKU: $sku | branch quantities updated | total: $oldTotal → {$newTotal}");
 
-    logStockChange("SKU: $sku | stock.json quantity: $oldTotal → {$validation['value']} | branch_stock.json mirror refreshed");
-
-    return ['success' => true, 'error' => '', 'oldTotal' => $oldTotal, 'newTotal' => $validation['value']];
+    return ['success' => true, 'error' => '', 'oldTotal' => $oldTotal, 'newTotal' => $newTotal];
 }
 
 /**

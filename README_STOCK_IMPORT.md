@@ -14,7 +14,7 @@ This implementation provides a consolidated stock management system for NicheHom
 ### Primary Files
 
 #### `data/stock.json`
-- **Purpose**: SKU catalog with product metadata and global totals
+- **Purpose**: SKU catalog with product metadata and aggregate totals
 - **Structure**:
 ```json
 {
@@ -33,12 +33,12 @@ This implementation provides a consolidated stock management system for NicheHom
   - `productId`: Product type (e.g., "diffuser_classic")
   - `volume`: Size/volume (e.g., "125ml", "standard")
   - `fragrance`: Fragrance code (e.g., "bellini", "cherry_blossom")
-  - `quantity`: Legacy global quantity (maintained for backward compatibility)
-  - `total_qty`: Sum of all branch quantities (added by this implementation)
+  - `quantity`: Aggregate quantity aligned to the sum of all branch quantities for the SKU
+  - `total_qty`: Sum of all branch quantities
   - `lowStockThreshold`: Alert threshold
 
 #### `data/branch_stock.json`
-- **Purpose**: Per-branch stock quantities
+- **Purpose**: Per-branch stock quantities shown and edited on Admin → STOCK
 - **Structure**:
 ```json
 {
@@ -64,8 +64,6 @@ This implementation provides a consolidated stock management system for NicheHom
 Current branches (from `branch_stock.json`):
 - `branch_1`
 - `branch_2`
-- `branch_central`
-- `branch_zurich`
 - `branch_3`
 
 ## Implementation Changes
@@ -101,15 +99,15 @@ Current branches (from `branch_stock.json`):
 
 **UI Elements**:
 - Table with columns: SKU, Product, Volume, Fragrance, [Branch Columns], TOTAL, Actions
-- Each row allows editing branch quantities and total
-- Real-time validation (highlights mismatches in red)
+- Each row allows editing branch quantities independently
+- TOTAL updates automatically from the branch inputs
+- TOTAL is read-only / computed
 - "Save" button per row
-- "Even" button to distribute total evenly across branches
 
 **Validation Rules**:
 - TOTAL must equal sum of all branch quantities
-- All quantities must be non-negative integers
-- Save is only allowed when validation passes
+- All branch quantities must be non-negative integers
+- TOTAL is never used as an authoritative writer
 
 **Features**:
 - Search/filter by product name or SKU
@@ -130,22 +128,22 @@ Current branches (from `branch_stock.json`):
 
 **Template Format**:
 ```
-| sku         | product_name | volume | fragrance | branch_1 | branch_2 | branch_central | branch_zurich | branch_3 | total |
-|-------------|--------------|--------|-----------|----------|----------|----------------|---------------|----------|-------|
-| DF-125-BEL  | Diffuser     | 125ml  | bellini   | 5        | 10       | 20             | 15            | 0        | 50    |
+| sku         | product_name | category | volume | fragrance_key | fragrance_label | branch_1 | branch_2 | branch_3 | total |
+|-------------|--------------|----------|--------|----------------|-----------------|----------|----------|----------|-------|
+| DF-125-BEL  | Diffuser     | aroma_diffusers | 125ml | bellini | Bellini | 5 | 10 | 0 | 15 |
 ```
 
 **Validation**:
 - All SKUs must exist in system
-- All quantities must be non-negative integers
-- TOTAL must equal sum of branches (if provided)
+- All branch quantities must be non-negative integers
+- TOTAL must equal sum of branches
 - File size limit: 10 MB
 
 **CheckControl Feature**:
 - When enabled: Prompts for each SKU with existing stock
 - Options per SKU:
-  - **Replace**: Overwrite current quantities
-  - **Add**: Add import quantities to current quantities
+  - **Replace**: Overwrite current branch quantities
+  - **Add**: Add import quantities to the current branch quantities
   - **Skip**: Don't import this SKU
 - When disabled: All imports replace existing stock
 
@@ -201,8 +199,8 @@ Current branches (from `branch_stock.json`):
 ### Test 2: Edit Branch Quantity - Valid
 **Steps**:
 1. Find a SKU row
-2. Change a branch quantity
-3. Update TOTAL to match new sum
+2. Change one or more branch quantities
+3. Confirm TOTAL updates automatically to the new sum
 4. Click Save
 
 **Expected**:
@@ -216,67 +214,31 @@ Current branches (from `branch_stock.json`):
 
 ---
 
-### Test 3: Edit Branch Quantity - Mismatch
+### Test 3: TOTAL Is Derived / Read-Only
 **Steps**:
 1. Find a SKU row
-2. Change a branch quantity
-3. Do NOT update TOTAL to match
-4. Click Save
+2. Confirm TOTAL is visible but read-only
+3. Change one branch quantity
+4. Confirm TOTAL updates automatically
 
 **Expected**:
-- Row highlights in red
-- Error message: "TOTAL does not match sum of branches"
-- Save is rejected
-- No changes persisted
-- No backup created
+- TOTAL cannot be submitted as an independent writer
+- Branch quantities remain the only editable inputs
+- Save persists the edited branch quantities only
 
 **Status**: [ ]
 
 ---
 
-### Test 4: Edit TOTAL Only - Mismatch
-**Steps**:
-1. Find a SKU row
-2. Change TOTAL
-3. Do NOT adjust branch quantities
-4. Click Save
-
-**Expected**:
-- Row highlights in red
-- Error message: "TOTAL does not match sum of branches"
-- Save is rejected
-- No changes persisted
-
-**Status**: [ ]
-
----
-
-### Test 5: Redistribute Evenly
-**Steps**:
-1. Find a SKU row
-2. Set TOTAL to a specific number (e.g., 50)
-3. Click "Even" button
-4. Click Save
-
-**Expected**:
-- Branch quantities distributed evenly
-- TOTAL matches sum
-- Row saves successfully
-
-**Status**: [ ]
-
----
-
-### Test 6: Download Templates
+### Test 4: Download Templates
 **Steps**:
 1. Navigate to Admin → Stock
-2. Click "Download Excel Template"
-3. Click "Download CSV Template"
+2. Click "Download CSV Template"
 
 **Expected**:
-- Both files download successfully
-- Files contain all current SKUs
-- Files have columns: sku, product_name, volume, fragrance, [all branches], total
+- CSV file downloads successfully
+- File contains all current SKUs
+- Files have columns: sku, product_name, category, volume, fragrance_key, fragrance_label, [all branches], total
 - Current quantities pre-filled
 
 **Status**: [ ]
@@ -407,7 +369,7 @@ Current branches (from `branch_stock.json`):
 2. Upload file
 
 **Expected**:
-- Error: "Total mismatch... Provided: 50, Calculated: 30"
+- Error: "TOTAL must equal sum of branch quantities"
 - Import rejected
 - No changes made
 
@@ -525,7 +487,7 @@ Current branches (from `branch_stock.json`):
 
 ### Issue: File upload fails
 **Cause**: File too large or wrong format
-**Solution**: Verify file size < 10MB and format is .xlsx, .xls, or .csv
+**Solution**: Verify file size < 10MB and format is .csv
 
 ## Regenerating Templates
 
@@ -541,8 +503,8 @@ This updates both XLSX and CSV templates with current SKUs and branches.
 ## Maintenance Notes
 
 ### Adding New Branches
-1. Add branch to `branch_stock.json` with empty object: `"new_branch_id": {}`
-2. Optionally add to `branches.json` with display name
+1. Add branch to `branches.json`
+2. Create matching branch key in `branch_stock.json`
 3. Regenerate templates
 4. New branch will appear in stock UI automatically
 
@@ -571,11 +533,13 @@ Consider rotating `logs/stock.log`:
 - JSON provides flexibility and version control friendly format
 - Backups are simple file copies
 
-### Why PhpSpreadsheet?
-- Industry standard for PHP Excel handling
-- Supports both XLSX and CSV
-- Well-maintained and secure
-- Minimal dependencies
+### Verification commands used in this implementation
+
+```bash
+php tests/test_stock_single_source_of_truth.php
+php tests/test_branch_stock_pickup_alignment.php
+php tools/sku_universe_selftest.php
+```
 
 ### Why Separate Import Page?
 - Keeps main stock view clean and fast

@@ -103,6 +103,7 @@ $success = '';
 $error = '';
 $conflicts = [];
 $importSummary = null;
+$branches = getAllBranches();
 
 // Handle file upload and parsing
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['import_file'])) {
@@ -145,24 +146,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['import_file'])) {
                         } else {
                             // Find column indices
                             $skuIndex = array_search('sku', array_map('strtolower', $header));
-                            $quantityIndex = array_search('quantity', array_map('strtolower', $header));
-                            if ($quantityIndex === false) {
-                                $quantityIndex = array_search('stock_quantity', array_map('strtolower', $header));
+                            $totalIndex = array_search('total', array_map('strtolower', $header));
+                            if ($totalIndex === false) {
+                                $totalIndex = array_search('total_qty', array_map('strtolower', $header));
                             }
-                            if ($quantityIndex === false) {
-                                $quantityIndex = array_search('total_qty', array_map('strtolower', $header));
-                            }
-                            if ($quantityIndex === false) {
-                                $quantityIndex = array_search('total', array_map('strtolower', $header));
+                            $branchIndexes = [];
+                            foreach (array_keys($branches) as $branchId) {
+                                $branchIndex = array_search(strtolower($branchId), array_map('strtolower', $header));
+                                if ($branchIndex !== false) {
+                                    $branchIndexes[$branchId] = $branchIndex;
+                                }
                             }
                             
                             if ($skuIndex === false) {
                                 $error = 'Invalid template: Missing "sku" column.';
-                            } elseif ($quantityIndex === false) {
-                                $error = 'Invalid template: Missing authoritative "quantity" column.';
+                            } elseif (count($branchIndexes) !== count($branches)) {
+                                $missingBranches = array_diff(array_keys($branches), array_keys($branchIndexes));
+                                $error = 'Invalid template: Missing branch quantity columns for ' . implode(', ', $missingBranches) . '.';
                             } else {
                                 // Load current stock
                                 $currentStock = loadJSON('stock.json');
+                                $currentBranchStock = loadBranchStock();
                                 
                                 // Parse data rows
                                 $parsedData = [];
@@ -183,19 +187,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['import_file'])) {
                                         continue;
                                     }
                                     
-                                    $quantityValidation = validateStockQuantity($row[$quantityIndex] ?? 0);
+                                    $branchQuantities = [];
+                                    $calculatedTotal = 0;
+                                    foreach ($branchIndexes as $branchId => $branchIndex) {
+                                        $quantityValidation = validateStockQuantity($row[$branchIndex] ?? 0);
+                                        if (!$quantityValidation['valid']) {
+                                            $errors[] = "Line $lineNum ($branchId): " . $quantityValidation['error'];
+                                            $lineNum++;
+                                            continue 2;
+                                        }
 
-                                    if (!$quantityValidation['valid']) {
-                                        $errors[] = "Line $lineNum: " . $quantityValidation['error'];
-                                        $lineNum++;
-                                        continue;
+                                        $branchQuantities[$branchId] = $quantityValidation['value'];
+                                        $calculatedTotal += $quantityValidation['value'];
+                                    }
+
+                                    if ($totalIndex !== false) {
+                                        $totalValidation = validateStockQuantity($row[$totalIndex] ?? 0);
+                                        if (!$totalValidation['valid']) {
+                                            $errors[] = "Line $lineNum (total): " . $totalValidation['error'];
+                                            $lineNum++;
+                                            continue;
+                                        }
+
+                                        if ($totalValidation['value'] !== $calculatedTotal) {
+                                            $errors[] = "Line $lineNum: TOTAL must equal sum of branch quantities";
+                                            $lineNum++;
+                                            continue;
+                                        }
                                     }
                                     
                                     // Check for conflicts (existing non-zero stock)
-                                    $hasExistingStock = (int)($currentStock[$sku]['quantity'] ?? 0) > 0;
+                                    $existingTotal = 0;
+                                    foreach (array_keys($branches) as $branchId) {
+                                        $existingTotal += (int)($currentBranchStock[$branchId][$sku]['quantity'] ?? 0);
+                                    }
+                                    $hasExistingStock = $existingTotal > 0;
                                     
                                     $parsedData[$sku] = [
-                                        'quantity' => $quantityValidation['value'],
+                                        'branch_quantities' => $branchQuantities,
+                                        'total' => $calculatedTotal,
                                         'hasConflict' => $hasExistingStock
                                     ];
                                     
@@ -289,7 +319,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'confirm_import') {
             $resolutions = $_SESSION['import_resolutions'] ?? [];
             
             // Load current data
-            $currentStock = loadJSON('stock.json');
+            $currentBranchStock = loadBranchStock();
             
             // Create backups
             createStockBackup('branch_stock.json');
@@ -309,11 +339,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'confirm_import') {
                     continue;
                 }
                 
-                $newQuantity = (int)($data['quantity'] ?? 0);
+                $newBranchQuantities = $data['branch_quantities'] ?? [];
                 
                 // Apply resolution
                 if ($resolution === 'add') {
-                    $newQuantity += (int)($currentStock[$sku]['quantity'] ?? 0);
+                    foreach ($branches as $branchId => $branchName) {
+                        $newBranchQuantities[$branchId] = (int)($newBranchQuantities[$branchId] ?? 0) + (int)($currentBranchStock[$branchId][$sku]['quantity'] ?? 0);
+                    }
                     $added++;
                 } else {
                     // Replace (default)
@@ -321,9 +353,11 @@ if (isset($_GET['action']) && $_GET['action'] === 'confirm_import') {
                 }
                 
                 // Update stock
-                $result = updateConsolidatedStock($sku, $newQuantity);
+                $result = updateConsolidatedStock($sku, $newBranchQuantities);
                 if ($result['success']) {
-                    $currentStock[$sku]['quantity'] = $newQuantity;
+                    foreach ($branches as $branchId => $branchName) {
+                        $currentBranchStock[$branchId][$sku]['quantity'] = (int)($newBranchQuantities[$branchId] ?? 0);
+                    }
                     $updated++;
                 } else {
                     $errors[] = "SKU $sku: " . $result['error'];
@@ -506,7 +540,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'confirm_import') {
                             <div class="conflict-row">
                                 <strong>SKU: <?php echo htmlspecialchars($sku); ?></strong>
                                 <div style="color: #666; margin-top: 0.25rem;">
-                                    Import will set STOCK quantity to: <?php echo $data['quantity']; ?>
+                                    Import will set branch quantities with TOTAL: <?php echo $data['total']; ?>
                                 </div>
                                 <div class="conflict-actions">
                                     <label>
@@ -578,7 +612,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'confirm_import') {
                     <h3 style="margin-top: 0; color: #4a90e2;">ℹ️ Import Instructions</h3>
                     <ol style="color: #666;">
                         <li>Download the CSV template from the Stock page</li>
-                        <li>Fill in the single authoritative <code>quantity</code> column for each SKU</li>
+                        <li>Fill in each branch column for every SKU</li>
+                        <li>Leave the <code>total</code> column equal to the sum of the branch quantities</li>
                         <li>Save the file as CSV format</li>
                         <li>Upload the completed file here</li>
                         <li>If CheckControl is enabled, resolve any conflicts for SKUs with existing stock</li>
@@ -589,7 +624,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'confirm_import') {
                     <ul style="color: #666;">
                         <li>All SKUs must exist in the system</li>
                         <li>All quantities must be non-negative integers</li>
-                        <li>Only the authoritative STOCK quantity column is imported</li>
+                        <li>All branch columns are required and imported independently</li>
+                        <li>TOTAL must equal the sum of all branch quantities</li>
                         <li>Maximum file size: 10 MB</li>
                         <li>CSV delimiter auto-detected (comma, semicolon, or tab)</li>
                     </ul>
