@@ -26,8 +26,9 @@ This document records the minimal architecture-consistent fixes for:
 
 - `includes/helpers.php`
   - added `normalizeImageFilenameList()` for canonical image-list normalization
+  - added canonical single-image normalization and `/img/...` URL generation helpers
   - added `getCategoryImageList()`
-  - updated `getProductImageList()` and `getCategoryImage()` to work with canonical image arrays without forcing placeholder product images into storage/rendering
+  - updated `getProductImageList()`, `getCategoryImage()`, and `getFragranceImage()` to normalize legacy local paths to canonical `img` filenames and render only `/img/...` URLs
 - `product.php`
   - product hero gallery now uses absolute `/img/...` paths for every gallery image
   - product detail card now defaults to the admin-managed primary product image when an explicit product gallery exists
@@ -35,8 +36,19 @@ This document records the minimal architecture-consistent fixes for:
 - `category.php`
   - category product cards now default to the admin-managed primary product image when an explicit product gallery exists
   - no-image fragrance products now fall back directly to fragrance images on category cards and recommendations
+  - category hero slider, product cards, and recommendations now resolve through canonical helper output only
 - `admin/product-edit.php`
-  - removed the required product-image validation and clarified that product images are optional in admin
+  - removed the required product-image validation, clarified that product images are optional in admin, and now rejects unsupported/missing non-`img` image paths on save
+- `admin/categories.php`
+  - category primary and slider images now normalize to filename-only `img` storage and reject unsupported/missing non-`img` image paths on save
+- `admin/accessories.php`
+  - accessory image lists now normalize to filename-only `img` storage and reject unsupported/missing non-`img` image paths on save
+- `admin/products.php` and `admin/admin_products.php`
+  - single-image product edits now normalize to filename-only `img` storage and keep the primary gallery image aligned
+- `admin/fragrances.php`
+  - fragrance previews now render through the canonical `/img/...` helper instead of `assets/img/fragrances/...`
+- `account.php`
+  - favorites image rendering now consumes canonical helper URLs directly
 - `assets/js/app.js`
   - fragrance-driven image swaps now keep the admin-managed product image for products that explicitly define a gallery list
 
@@ -72,6 +84,15 @@ This document records the minimal architecture-consistent fixes for:
   - cancel/failure redirects do not decrement stock
 - `tests/test_payment_stock_paths.php`
   - covers confirmed webhook stock decrement and cancellation-without-decrement behavior
+
+### 5. Full-suite fixed-fragrance regression
+
+- `includes/helpers.php`
+  - `getProductPrice()` now applies the product’s fixed/default fragrance when the caller omits an explicit fragrance
+  - `getVariantPrice()` now forwards the fragrance argument to the canonical resolver
+- Why this was included:
+  - `php tools/verify_storefront_vs_cart_prices.php` must pass as part of the documented verification suite
+  - the failing case was a fixed-fragrance product and was addressed with a localized resolver fix only
 
 ## Invariants Checked
 
@@ -122,4 +143,6 @@ Local verification used the built-in PHP server and the existing demo admin acco
 
 - Legacy categories without `images[]` continue to use the existing mapped single hero image until an admin explicitly enables `use_custom_image`.
 - Legacy products without explicit gallery lists still keep the previous fragrance-image behavior.
+- Legacy local image inputs are normalized to filename-only `img` storage when the corresponding file exists in `img/`.
+- Unsupported or missing image references are rejected on save instead of being silently persisted.
 - The stock-warning output from `tools/validate_catalog_consistency.php` for `STI-5GU-CHE` / `STI-10G-CHE` remains a pre-existing warning and was not changed by this fix set.

@@ -57,6 +57,9 @@ try {
     assertTrue(normalizeImageFilename('/img/Etna.jpg', true) === 'Etna.jpg', 'Failed to normalize /img/Etna.jpg.');
     assertTrue(normalizeImageFilename('img/Bellini.jpg', true) === 'Bellini.jpg', 'Failed to normalize img/Bellini.jpg.');
     assertTrue(normalizeImageFilename('../assets/img/fragrances/Palermo.jpg', true) === 'Palermo.jpg', 'Failed to normalize legacy local image path.');
+    $missingImageError = null;
+    assertTrue(normalizeImageFilename('img/does-not-exist.jpg', true, $missingImageError) === '', 'Missing img file should not normalize successfully.');
+    assertTrue($missingImageError !== null, 'Missing img file should set an explicit error.');
     $remoteImageError = null;
     assertTrue(normalizeImageFilename('https://example.com/test.jpg', true, $remoteImageError) === '', 'Remote image URL should be rejected.');
     assertTrue($remoteImageError !== null, 'Remote image URL rejection should set an error message.');

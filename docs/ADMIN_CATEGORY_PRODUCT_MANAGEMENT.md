@@ -46,6 +46,12 @@ Additional category flags:
 
 `use_custom_image=true` activates the category image(s) stored in `categories.json`. Legacy categories keep the previous storefront image mapping until an admin explicitly switches them to a custom image. When `images[]` is present, `image` remains the primary/first hero image and the full list is rendered as the category hero slider.
 
+Canonical image rule:
+
+- admin category image inputs normalize supported legacy local references to filename-only storage
+- saved `image` / `images[]` values must resolve to files in `img/`
+- remote URLs and missing local files are rejected explicitly
+
 ### Category Delete Rule
 
 - Delete is available from the category list in `admin/categories.php`
@@ -93,6 +99,12 @@ This keeps existing volume-only products compatible while also supporting price-
 
 `image` remains the primary product image and `images[]` remains the canonical storefront gallery list when explicit product images are supplied. Product image upload is not required for creation or editing. For fragrance-based products without explicit product images, product/category cards and the product page must fall back to the fragrance image instead of forcing a product-level upload or showing a placeholder first.
 
+Canonical image rule:
+
+- product/admin image values are stored as filename-only references for the `img/` folder
+- `/img/...`, `img/...`, and other local legacy paths are normalized to filenames when the image exists in `img/`
+- unsupported or missing image paths are rejected on save
+
 ## Storefront Rendering Rules
 
 `category.php` and `product.php` now derive selectors from the product record first:
@@ -111,6 +123,7 @@ Rendering invariants:
 - product detail heroes render `images[]` as the canonical gallery when present
 - category heroes render category `images[]` as the canonical slider when present
 - category/product cards default to the primary product image when an explicit product gallery exists
+- fragrance admin previews and storefront fragrance fallbacks render from absolute `/img/...` paths only
 
 ## SKU + Stock Initialization
 

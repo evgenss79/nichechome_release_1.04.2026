@@ -317,6 +317,7 @@ function getCanonicalImageDirectory(): string {
  * Normalize a stored/admin image reference to the canonical img/ filename format.
  */
 function normalizeImageFilename(string $image, bool $requireExistingFile = false, ?string &$error = null): string {
+    static $existingFileCache = [];
     $error = null;
     $image = trim(rawurldecode($image));
     if ($image === '') {
@@ -342,9 +343,14 @@ function normalizeImageFilename(string $image, bool $requireExistingFile = false
         return '';
     }
 
-    if ($requireExistingFile && !is_file(getCanonicalImageDirectory() . '/' . $filename)) {
-        $error = "Image file '$filename' was not found in img/.";
-        return '';
+    if ($requireExistingFile) {
+        if (!array_key_exists($filename, $existingFileCache)) {
+            $existingFileCache[$filename] = is_file(getCanonicalImageDirectory() . '/' . $filename);
+        }
+        if (!$existingFileCache[$filename]) {
+            $error = "Image file '$filename' was not found in img/.";
+            return '';
+        }
     }
 
     return $filename;

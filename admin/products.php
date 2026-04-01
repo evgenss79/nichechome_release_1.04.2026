@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     $existingImages = normalizeImageFilenameList($products[$productId]['images'] ?? [], true);
                     array_unshift($existingImages, $image);
                     $products[$productId]['image'] = $image;
-                    $products[$productId]['images'] = normalizeImageFilenameList($existingImages);
+                    $products[$productId]['images'] = array_values(array_unique(array_filter($existingImages, 'strlen')));
                 }
             
             saveJSON('products.json', $products);

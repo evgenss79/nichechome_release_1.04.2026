@@ -241,7 +241,16 @@ $translations = $editingId ? loadEntityTranslations('category', $editingId, ['na
                         </div>
                         <div class="form-group">
                             <label>Image filename (img/)</label>
-                            <input type="text" name="image" value="<?php echo htmlspecialchars(normalizeImageFilename((string)$editingCategory['image'])); ?>">
+                            <?php
+                            $displayCategoryImage = normalizeImageFilename((string)$editingCategory['image'], true);
+                            if ($displayCategoryImage === '') {
+                                $displayCategoryImage = normalizeImageFilename((string)$editingCategory['image']);
+                            }
+                            if ($displayCategoryImage === '') {
+                                $displayCategoryImage = trim((string)$editingCategory['image']);
+                            }
+                            ?>
+                            <input type="text" name="image" value="<?php echo htmlspecialchars($displayCategoryImage); ?>">
                         </div>
                         <div class="form-group">
                             <label>Slider images (one filename per line or comma separated)</label>
