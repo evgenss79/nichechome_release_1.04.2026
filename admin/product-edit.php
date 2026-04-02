@@ -228,6 +228,12 @@ if ($isEdit) {
     }
 }
 $usesFragranceVisualsForForm = $usesFragranceVisualModel((string)($product['category'] ?? ''), $fragranceMode);
+$productImagesTextareaValue = htmlspecialchars(implode("\n", $productImages), ENT_QUOTES);
+$productImagesFieldMarkup = '<div class="form-group">'
+    . '<label>Product images (optional, one filename per line, img/ folder)</label>'
+    . '<p class="text-muted">Use this only for non-fragrance visual products. Fragrance-driven products render from fragrance images.</p>'
+    . '<textarea name="images" rows="4">' . $productImagesTextareaValue . '</textarea>'
+    . '</div>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -306,11 +312,7 @@ $usesFragranceVisualsForForm = $usesFragranceVisualModel((string)($product['cate
                         </div>
                     </div>
 
-                    <div class="form-group" id="product-images-wrap" <?php echo $usesFragranceVisualsForForm ? 'hidden' : ''; ?>>
-                        <label>Product images (optional, one filename per line, img/ folder)</label>
-                        <p class="text-muted">Use this only for non-fragrance visual products. Fragrance-driven products render from fragrance images.</p>
-                        <textarea name="images" rows="4"><?php echo htmlspecialchars(implode("\n", $productImages)); ?></textarea>
-                    </div>
+                    <div id="product-images-host"><?php echo !$usesFragranceVisualsForForm ? $productImagesFieldMarkup : ''; ?></div>
 
                     <div class="form-group" id="product-visual-model-note" <?php echo $usesFragranceVisualsForForm ? '' : 'hidden'; ?>>
                         <label>Product visuals</label>
@@ -414,8 +416,9 @@ $usesFragranceVisualsForForm = $usesFragranceVisualModel((string)($product['cate
             const categorySelect = document.querySelector('select[name="category"]');
             const fixedWrap = document.getElementById('fixed-fragrance-wrap');
             const allowedWrap = document.getElementById('allowed-fragrances-wrap');
-            const productImagesWrap = document.getElementById('product-images-wrap');
+            const productImagesHost = document.getElementById('product-images-host');
             const productVisualModelNote = document.getElementById('product-visual-model-note');
+            const productImagesFieldHtml = <?php echo json_encode($productImagesFieldMarkup); ?>;
             const fragranceCapableCategories = <?php
                 $fragranceCapableCategories = [];
                 foreach ($categories as $categorySlug => $categoryData) {
@@ -451,7 +454,7 @@ $usesFragranceVisualsForForm = $usesFragranceVisualModel((string)($product['cate
                 fixedWrap.style.display = mode === 'fixed_fragrance' ? '' : 'none';
                 allowedWrap.style.display = mode === 'selectable_fragrances' ? '' : 'none';
                 const usesFragranceVisualModel = shouldUseFragranceVisualModel();
-                productImagesWrap.hidden = usesFragranceVisualModel;
+                productImagesHost.innerHTML = usesFragranceVisualModel ? '' : productImagesFieldHtml;
                 productVisualModelNote.hidden = !usesFragranceVisualModel;
             }
 
