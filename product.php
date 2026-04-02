@@ -48,10 +48,11 @@ $allowedFrags = getProductFragranceOptions($product, $categorySlug, $accessoryDa
 $volumes = getProductVolumeOptions($product, $categorySlug, $accessoryData);
 $showVolumeSelector = count($volumes) > 1;
 $showFragranceSelector = productHasFragranceSelector($product, $categorySlug, $accessoryData);
-$fixedFragrance = !$showFragranceSelector && !empty($allowedFrags) ? $allowedFrags[0] : '';
+$defaultFragrance = getProductDefaultFragrance($product, $categorySlug, $accessoryData);
+$fixedFragrance = $showFragranceSelector ? '' : $defaultFragrance;
 $productImages = getProductImageList($product, $accessoryData);
 $hasExplicitProductImages = !empty($productImages);
-$initialFragranceImage = !empty($allowedFrags[0] ?? '') ? getFragranceImage($allowedFrags[0]) : getCanonicalImageUrl('placeholder.svg');
+$initialFragranceImage = $defaultFragrance !== '' ? getFragranceImage($defaultFragrance) : getCanonicalImageUrl('placeholder.svg');
 $primaryProductImage = $hasExplicitProductImages
     ? getCanonicalImageUrl($productImages[0])
     : $initialFragranceImage;
@@ -112,12 +113,16 @@ include __DIR__ . '/includes/header.php';
             </div>
         <?php else: ?>
             <!-- Single image display -->
-            <div class="category-hero__image" data-category="<?php echo htmlspecialchars($categorySlug); ?>">
-                <img src="<?php echo htmlspecialchars($primaryProductImage); ?>" 
-                     alt="<?php echo htmlspecialchars($productName); ?>" 
-                     class="category-hero__image-el"
-                      onerror="this.src='<?php echo $errorPlaceholder; ?>'">
-            </div>
+                <div class="category-hero__image" data-category="<?php echo htmlspecialchars($categorySlug); ?>">
+                    <img src="<?php echo htmlspecialchars($primaryProductImage); ?>" 
+                         alt="<?php echo htmlspecialchars($productName); ?>" 
+                          class="category-hero__image-el"
+                         data-product-image
+                         data-product-id="<?php echo htmlspecialchars($productId); ?>"
+                         data-default-image="<?php echo htmlspecialchars($primaryProductImage); ?>"
+                         data-allow-fragrance-image="<?php echo $hasExplicitProductImages ? 'false' : 'true'; ?>"
+                          onerror="this.src='<?php echo $errorPlaceholder; ?>'">
+                </div>
         <?php endif; ?>
     </div>
 </section>
@@ -133,7 +138,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="product-card__inner">
                     <?php 
                     // Get first fragrance for initial image display
-                    $firstFragCode = $showFragranceSelector ? ($allowedFrags[0] ?? null) : ($fixedFragrance ?: null);
+                    $firstFragCode = $defaultFragrance !== '' ? $defaultFragrance : null;
                     
                     // Determine the image to show - use fragrance image from /img/ folder
                     $displayImage = $hasExplicitProductImages ? $primaryProductImage : getCanonicalImageUrl('placeholder.svg');
@@ -201,6 +206,7 @@ include __DIR__ . '/includes/header.php';
                                             $fragName = I18N::t('fragrance.' . $fragCode . '.name', ucfirst(str_replace('_', ' ', $fragCode)));
                                             ?>
                                             <option value="<?php echo htmlspecialchars($fragCode); ?>"
+                                                    <?php echo $fragCode === $defaultFragrance ? 'selected' : ''; ?>
                                                     data-image="<?php echo htmlspecialchars(getFragranceImage($fragCode)); ?>">
                                                 <?php echo htmlspecialchars($fragName); ?>
                                             </option>

@@ -281,11 +281,10 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
             $productImages = getProductImageList($product);
             $showVolumeSelector = count($productVolumes) > 1;
             $showFragranceSelector = productHasFragranceSelector($product, $slug);
-            $fixedFragrance = !$showFragranceSelector && !empty($productFragrances) ? $productFragrances[0] : '';
+            $defaultFragrance = getProductDefaultFragrance($product, $slug);
+            $fixedFragrance = $showFragranceSelector ? '' : $defaultFragrance;
             $defaultPrice = !empty($productVariants) ? (float)($productVariants[0]['priceCHF'] ?? 0) : 0;
-            $firstFragCode = $showFragranceSelector
-                ? ($productFragrances[0] ?? null)
-                : ($fixedFragrance ?: null);
+            $firstFragCode = $defaultFragrance !== '' ? $defaultFragrance : null;
 
             $hasExplicitProductImage = !empty($productImages);
             $displayImage = $hasExplicitProductImage
@@ -364,6 +363,7 @@ $fullCategoryDescription = $categoryLong ?: $categoryShort;
                                             $fragName = I18N::t('fragrance.' . $fragCode . '.name', ucfirst(str_replace('_', ' ', $fragCode)));
                                             ?>
                                             <option value="<?php echo htmlspecialchars($fragCode); ?>"
+                                                    <?php echo $fragCode === $defaultFragrance ? 'selected' : ''; ?>
                                                     data-image="<?php echo htmlspecialchars(getFragranceImage($fragCode)); ?>">
                                                 <?php echo htmlspecialchars($fragName); ?>
                                             </option>
