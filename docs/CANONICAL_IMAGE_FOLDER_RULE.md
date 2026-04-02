@@ -48,7 +48,8 @@ Rejected on save:
 - `admin/categories.php`
   - main category image and category slider images normalize to filename-only storage
 - `admin/product-edit.php`
-  - product gallery images normalize to filename-only storage
+  - product gallery images normalize to filename-only storage when the product uses a non-fragrance visual model
+  - fragrance-driven product classes now hide the standalone gallery field and document that fragrance images remain authoritative while legacy stored galleries are preserved on edit
 - `admin/accessories.php`
   - accessory images normalize to filename-only storage
 - `admin/products.php`
@@ -73,6 +74,7 @@ Rejected on save:
 - Fragrance-driven product visuals still work.
 - Legacy category image mappings still work as a last-resort fallback, but valid stored category images now win for both old and new records.
 - Legacy products that stored `fragrance` as a default selection (without `has_fragrance_selector`) still expose selectors when category/product rules provide multiple fragrances.
+- Shared header/footer includes must not overwrite page-local category slug variables before category/product selector inference runs.
 - Fixed-fragrance products still resolve the correct storefront/cart price after the localized resolver fix required by the full verification suite.
 
 ## Commands Executed

@@ -50,6 +50,9 @@ $oldGet = $_GET;
 $oldRequestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
 try {
+    $_SESSION['admin_logged_in'] = true;
+    $_SESSION['admin_role'] = 'full_access';
+
     $categories = loadJSON('categories.json');
     $categories[$categoryId] = [
         'id' => $categoryId,
@@ -80,8 +83,16 @@ try {
     }
     assertTrue(saveEntityTranslations('category', $categoryId, $categoryTranslations), 'Failed to save optional-image category translations.');
 
-    $_SESSION['admin_logged_in'] = true;
-    $_SESSION['admin_role'] = 'full_access';
+    $_SERVER['REQUEST_METHOD'] = 'GET';
+    $_GET = ['id' => ''];
+    $_POST = [];
+    ob_start();
+    include $repoRoot . '/admin/product-edit.php';
+    $createFormHtml = ob_get_clean();
+
+    assertTrue(strpos($createFormHtml, 'This product class uses fragrance images as the canonical storefront visual model.') !== false, 'Create form did not explain fragrance-driven visual model.');
+    assertTrue(strpos($createFormHtml, 'name="images"') === false, 'Create form still exposed standalone product images for fragrance-driven products.');
+
     $_POST = [
         'product_id' => $productId,
         'original_id' => '',
@@ -110,6 +121,15 @@ try {
     assertTrue(isset($products[$productId]), 'No-image product was not saved.');
     assertTrue(!isset($products[$productId]['image']), 'No-image product unexpectedly stored a primary image.');
     assertTrue(!isset($products[$productId]['images']), 'No-image product unexpectedly stored an image gallery.');
+
+    $_SERVER['REQUEST_METHOD'] = 'GET';
+    $_GET = ['id' => $productId];
+    $_POST = [];
+    ob_start();
+    include $repoRoot . '/admin/product-edit.php';
+    $editFormHtml = ob_get_clean();
+
+    assertTrue(strpos($editFormHtml, 'name="images"') === false, 'Edit form still exposed standalone product images for fragrance-driven products.');
 
     $expectedSku = generateSKU($productId, '100ml', 'bellini');
     $stock = loadJSON('stock.json');

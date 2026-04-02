@@ -42,6 +42,9 @@ This document records the minimal architecture-consistent fixes for:
   - category hero slider, product cards, and recommendations now resolve through canonical helper output only
 - `admin/product-edit.php`
   - removed the required product-image validation, clarified that product images are optional in admin, and now rejects unsupported/missing non-`img` image paths on save
+  - defaults new products to `category_default` fragrance mode
+  - hides the standalone product-image textarea for fragrance-driven product classes so fragrance images remain the canonical visual model
+  - preserves legacy stored product galleries on edit when the standalone image field is hidden for compatibility
 - `admin/categories.php`
   - category primary and slider images now normalize to filename-only `img` storage and reject unsupported/missing non-`img` image paths on save
 - `admin/accessories.php`
@@ -97,12 +100,24 @@ This document records the minimal architecture-consistent fixes for:
   - `php tools/verify_storefront_vs_cart_prices.php` must pass as part of the documented verification suite
   - the failing case was a fixed-fragrance product and was addressed with a localized resolver fix only
 
+### 6. Legacy selector runtime regression
+
+- `includes/header.php`
+  - renamed the catalog-menu loop variables so the shared header no longer overwrites page-local `$slug` / `$category` variables
+- `includes/footer.php`
+  - renamed the footer catalog loop variables for the same isolation rule
+- Why this was included:
+  - `category.php` computes selector rules after including the shared header
+  - the shared include was leaking the last navigation category slug into the page scope, so legacy category cards could inherit the wrong fragrance rule set
+  - the fix is localized to shared template variable names and preserves selector, image, price, SKU, and stock behavior
+
 ## Invariants Checked
 
 - category creation and catalog visibility remain intact
 - product creation and selector rendering remain intact
 - multilingual category/product content remains intact
 - pre-existing categories/products now keep their stored canonical image/default-fragrance behavior
+- legacy category pages keep their own category slug during selector inference instead of inheriting the last navigation entry
 - SKU initialization remains intact
 - branch-stock aggregate alignment remains intact
 - cart and checkout never show `0.00` for valid sellable variants

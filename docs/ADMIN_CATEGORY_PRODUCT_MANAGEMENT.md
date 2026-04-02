@@ -80,7 +80,7 @@ The product form now supports:
 - create product
 - edit product
 - assign product to an existing category
-- optional multiline product image list
+- optional multiline product image list only for non-fragrance visual products
 - multilingual name and description
 - multiple sellable variants
 - fragrance mode:
@@ -98,6 +98,13 @@ Each sellable row is stored in `products.json` as a variant with:
 This keeps existing volume-only products compatible while also supporting price-per-volume and price-per-volume+fragrance combinations.
 
 `image` remains the primary product image and `images[]` remains the canonical storefront gallery list when explicit product images are supplied. Product image upload is not required for creation or editing. For fragrance-based products without explicit product images, product/category cards and the product page must fall back to the fragrance image instead of forcing a product-level upload or showing a placeholder first.
+
+Admin visual-model rule:
+
+- new create forms default to `category_default` fragrance mode instead of `no_fragrance`
+- fragrance-driven product classes (`category_default`, `selectable_fragrances`, `fixed_fragrance`) no longer expose the standalone product-image textarea in `admin/product-edit.php`
+- the admin form now explains that fragrance images are the canonical storefront visual model for those classes
+- existing stored `image` / `images[]` values are preserved on edit when the field is hidden, so legacy products keep working without making standalone product images authoritative for new saves
 
 Canonical image rule:
 
@@ -131,6 +138,7 @@ Rendering invariants:
 - category heroes render category `images[]` as the canonical slider when present
 - category/product cards default to the primary product image when an explicit product gallery exists
 - fragrance admin previews and storefront fragrance fallbacks render from absolute `/img/...` paths only
+- shared includes must not overwrite page-local category variables before selector inference or rendering, otherwise legacy category/product selector rules can silently switch to the wrong category context
 
 ## SKU + Stock Initialization
 
@@ -228,6 +236,12 @@ php tools/verify_storefront_vs_cart_prices.php
 - legacy non-custom category records still render their stored canonical image
 - legacy products with only a stored default fragrance still render selectors when category rules require them
 - selector-driven legacy/new fragrance fallbacks continue to resolve from `/img/...`
+
+`tests/test_legacy_selector_runtime_regression.php` verifies:
+
+- the real legacy `aroma_diffusers` category page still renders the full selector options for `diffuser_classic`
+- the real legacy `limited_edition` product page still does not render a false fragrance selector
+- the admin-created fixed-fragrance regression product still stays selector-free
 
 `tests/test_category_deletion.php` verifies:
 
