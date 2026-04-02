@@ -13,10 +13,10 @@ $footerCategories = getFooterCategories();
                 <h4><?php echo I18N::t('footer.catalogTitle', 'Catalog'); ?></h4>
                 <ul>
                     <li><a href="catalog.php?lang=<?php echo $currentLang; ?>"><?php echo I18N::t('nav.catalog', 'Catalog'); ?></a></li>
-                    <?php foreach ($footerCategories as $slug => $category): ?>
+                    <?php foreach ($footerCategories as $footerSlug => $footerCategory): ?>
                         <li>
-                            <a href="<?php echo htmlspecialchars(getCategoryUrl($slug, $category, $currentLang)); ?>">
-                                <?php echo I18N::t('category.' . $slug . '.name', ucfirst(str_replace('_', ' ', $slug))); ?>
+                            <a href="<?php echo htmlspecialchars(getCategoryUrl($footerSlug, $footerCategory, $currentLang)); ?>">
+                                <?php echo I18N::t('category.' . $footerSlug . '.name', ucfirst(str_replace('_', ' ', $footerSlug))); ?>
                             </a>
                         </li>
                     <?php endforeach; ?>

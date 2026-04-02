@@ -42,10 +42,10 @@ $navigationCategories = getNavigationCategories();
                         </a>
                         <div class="mega-panel mega-panel--catalog">
                             <ul class="mega-panel__list">
-                                <?php foreach ($navigationCategories as $slug => $category): ?>
+                                <?php foreach ($navigationCategories as $navSlug => $navCategory): ?>
                                     <li>
-                                        <a href="<?php echo htmlspecialchars(getCategoryUrl($slug, $category, $currentLang)); ?>">
-                                            <?php echo I18N::t('category.' . $slug . '.name', ucfirst(str_replace('_', ' ', $slug))); ?>
+                                        <a href="<?php echo htmlspecialchars(getCategoryUrl($navSlug, $navCategory, $currentLang)); ?>">
+                                            <?php echo I18N::t('category.' . $navSlug . '.name', ucfirst(str_replace('_', ' ', $navSlug))); ?>
                                         </a>
                                     </li>
                                 <?php endforeach; ?>

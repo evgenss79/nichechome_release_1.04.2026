@@ -42,20 +42,23 @@ foreach ($filesToRestore as $file) {
 }
 
 $suffix = substr(md5(uniqid('optional_image_', true)), 0, 8);
-$categoryId = 'admin_test_optional_image_category_' . $suffix;
-$productId = 'admin_test_optional_image_product_' . $suffix;
+$testCategoryId = 'admin_test_optional_image_category_' . $suffix;
+$testProductId = 'admin_test_optional_image_product_' . $suffix;
 $oldSession = $_SESSION ?? [];
 $oldPost = $_POST;
 $oldGet = $_GET;
 $oldRequestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
 try {
+    $_SESSION['admin_logged_in'] = true;
+    $_SESSION['admin_role'] = 'full_access';
+
     $categories = loadJSON('categories.json');
-    $categories[$categoryId] = [
-        'id' => $categoryId,
-        'name_key' => 'category.' . $categoryId . '.name',
-        'short_key' => 'category.' . $categoryId . '.short',
-        'long_key' => 'category.' . $categoryId . '.long',
+    $categories[$testCategoryId] = [
+        'id' => $testCategoryId,
+        'name_key' => 'category.' . $testCategoryId . '.name',
+        'short_key' => 'category.' . $testCategoryId . '.short',
+        'long_key' => 'category.' . $testCategoryId . '.long',
         'image' => 'Dubai.jpg',
         'images' => ['Dubai.jpg', 'Palermo.jpg'],
         'use_custom_image' => true,
@@ -78,14 +81,22 @@ try {
             'long' => 'Optional image long ' . strtoupper($lang),
         ];
     }
-    assertTrue(saveEntityTranslations('category', $categoryId, $categoryTranslations), 'Failed to save optional-image category translations.');
+    assertTrue(saveEntityTranslations('category', $testCategoryId, $categoryTranslations), 'Failed to save optional-image category translations.');
 
-    $_SESSION['admin_logged_in'] = true;
-    $_SESSION['admin_role'] = 'full_access';
+    $_SERVER['REQUEST_METHOD'] = 'GET';
+    $_GET = ['id' => ''];
+    $_POST = [];
+    ob_start();
+    include $repoRoot . '/admin/product-edit.php';
+    $createFormHtml = ob_get_clean();
+
+    assertTrue(strpos($createFormHtml, 'This product class uses fragrance images as the canonical storefront visual model.') !== false, 'Create form did not explain fragrance-driven visual model.');
+    assertTrue(strpos($createFormHtml, '<textarea name="images"') === false, 'Create form still exposed standalone product images for fragrance-driven products.');
+
     $_POST = [
-        'product_id' => $productId,
+        'product_id' => $testProductId,
         'original_id' => '',
-        'category' => $categoryId,
+        'category' => $testCategoryId,
         'fragrance_mode' => 'fixed_fragrance',
         'fixed_fragrance' => 'bellini',
         'active' => '1',
@@ -107,11 +118,20 @@ try {
     assertTrue(strpos($adminHtml, 'Product created successfully.') !== false, 'Admin product save still failed without product images.');
 
     $products = loadJSON('products.json');
-    assertTrue(isset($products[$productId]), 'No-image product was not saved.');
-    assertTrue(!isset($products[$productId]['image']), 'No-image product unexpectedly stored a primary image.');
-    assertTrue(!isset($products[$productId]['images']), 'No-image product unexpectedly stored an image gallery.');
+    assertTrue(isset($products[$testProductId]), 'No-image product was not saved.');
+    assertTrue(!isset($products[$testProductId]['image']), 'No-image product unexpectedly stored a primary image.');
+    assertTrue(!isset($products[$testProductId]['images']), 'No-image product unexpectedly stored an image gallery.');
 
-    $expectedSku = generateSKU($productId, '100ml', 'bellini');
+    $_SERVER['REQUEST_METHOD'] = 'GET';
+    $_GET = ['id' => $testProductId];
+    $_POST = [];
+    ob_start();
+    include $repoRoot . '/admin/product-edit.php';
+    $editFormHtml = ob_get_clean();
+
+    assertTrue(strpos($editFormHtml, '<textarea name="images"') === false, 'Edit form still exposed standalone product images for fragrance-driven products.');
+
+    $expectedSku = generateSKU($testProductId, '100ml', 'bellini');
     $stock = loadJSON('stock.json');
     $branchStock = loadBranchStock();
     assertTrue(isset($stock[$expectedSku]), 'No-image product SKU missing from stock.json.');
@@ -119,8 +139,8 @@ try {
         assertTrue(isset($branchData[$expectedSku]), "No-image product SKU missing from branch $branchId.");
     }
 
-    $productHtml = renderPhpPage($repoRoot . '/product.php', ['id' => $productId, 'lang' => 'en']);
-    $categoryHtml = renderPhpPage($repoRoot . '/category.php', ['slug' => $categoryId, 'lang' => 'en']);
+    $productHtml = renderPhpPage($repoRoot . '/product.php', ['id' => $testProductId, 'lang' => 'en']);
+    $categoryHtml = renderPhpPage($repoRoot . '/category.php', ['slug' => $testCategoryId, 'lang' => 'en']);
     $fragranceImage = getFragranceImage('bellini');
 
     assertTrue(strpos($productHtml, $fragranceImage) !== false, 'Product page did not fall back to the fragrance image.');

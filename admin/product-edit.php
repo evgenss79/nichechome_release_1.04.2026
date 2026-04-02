@@ -42,6 +42,35 @@ if (!$isEdit && $productId !== '') {
 $product = $isEdit ? array_merge($defaultProduct, $products[$productId]) : $defaultProduct;
 $translations = $isEdit ? loadEntityTranslations('product', $productId, ['name', 'desc']) : [];
 
+$categorySupportsFragrance = static function (string $categorySlug) use ($categories): bool {
+    if ($categorySlug === '' || !isset($categories[$categorySlug])) {
+        return false;
+    }
+
+    $category = $categories[$categorySlug];
+    if (array_key_exists('has_fragrance', $category) && !$category['has_fragrance']) {
+        return !empty($category['allowed_fragrances']);
+    }
+
+    return !empty($category['allowed_fragrances']) || !empty(allowedFragrances($categorySlug));
+};
+
+$usesFragranceVisualModel = static function (string $categorySlug, string $fragranceMode) use ($categorySupportsFragrance): bool {
+    if ($fragranceMode === 'no_fragrance') {
+        return false;
+    }
+
+    if ($fragranceMode === 'selectable_fragrances' || $fragranceMode === 'fixed_fragrance') {
+        return true;
+    }
+
+    if ($fragranceMode === 'category_default' && $categorySlug === '') {
+        return true;
+    }
+
+    return $categorySupportsFragrance($categorySlug);
+};
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $postedId = trim($_POST['product_id'] ?? '');
     $originalId = trim($_POST['original_id'] ?? '');
@@ -58,8 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($category === '' || !isset($categories[$category])) {
             $error = 'Please choose a valid category.';
         } else {
+            $fragranceMode = $_POST['fragrance_mode'] ?? 'category_default';
+            $shouldUseFragranceVisuals = $usesFragranceVisualModel($category, $fragranceMode);
             $invalidImages = [];
-            $images = normalizeImageFilenameList((string)($_POST['images'] ?? ''), true, $invalidImages);
+            $imagesFieldWasSubmitted = array_key_exists('images', $_POST);
+            $images = [];
+            if ($imagesFieldWasSubmitted) {
+                $images = normalizeImageFilenameList((string)($_POST['images'] ?? ''), true, $invalidImages);
+            }
 
             $variants = [];
             foreach (($_POST['variants'] ?? []) as $variant) {
@@ -80,17 +115,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif (empty($variants)) {
                 $error = 'At least one priced variant is required.';
             } else {
-                $fragranceMode = $_POST['fragrance_mode'] ?? 'category_default';
                 $candidate = $isEdit ? $products[$originalId] : [];
                 $fixedFragranceValue = normalizeVariantFragrance((string)($_POST['fixed_fragrance'] ?? ''));
                 $candidate['id'] = $postedId;
                 $candidate['category'] = $category;
                 $candidate['name_key'] = 'product.' . $postedId . '.name';
                 $candidate['desc_key'] = 'product.' . $postedId . '.desc';
-                if (!empty($images)) {
-                    $candidate['image'] = $images[0];
-                    $candidate['images'] = $images;
-                } else {
+                if ($imagesFieldWasSubmitted) {
+                    if (!empty($images)) {
+                        $candidate['image'] = $images[0];
+                        $candidate['images'] = $images;
+                    } else {
+                        unset($candidate['image'], $candidate['images']);
+                    }
+                } elseif (!$shouldUseFragranceVisuals && !$isEdit) {
                     unset($candidate['image'], $candidate['images']);
                 }
                 $candidate['variants'] = array_map(function ($variant) use ($fragranceMode, $fixedFragranceValue) {
@@ -180,13 +218,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $productName = $productId !== '' ? I18N::t('product.' . $productId . '.name', $productId) : 'New Product';
 $productImages = normalizeImageFilenameList(!empty($product['images']) ? $product['images'] : array_filter([$product['image'] ?? '']));
 $fragranceMode = 'category_default';
-if (!empty($product['fragrance'])) {
-    $fragranceMode = 'fixed_fragrance';
-} elseif (isset($product['allowed_fragrances']) && is_array($product['allowed_fragrances']) && !empty($product['allowed_fragrances'])) {
-    $fragranceMode = !empty($product['has_fragrance_selector']) ? 'selectable_fragrances' : 'fixed_fragrance';
-} elseif (array_key_exists('has_fragrance_selector', $product) && !$product['has_fragrance_selector']) {
-    $fragranceMode = 'no_fragrance';
+if ($isEdit) {
+    if (!empty($product['fragrance'])) {
+        $fragranceMode = 'fixed_fragrance';
+    } elseif (isset($product['allowed_fragrances']) && is_array($product['allowed_fragrances']) && !empty($product['allowed_fragrances'])) {
+        $fragranceMode = !empty($product['has_fragrance_selector']) ? 'selectable_fragrances' : 'fixed_fragrance';
+    } elseif (array_key_exists('has_fragrance_selector', $product) && !$product['has_fragrance_selector']) {
+        $fragranceMode = 'no_fragrance';
+    }
 }
+$usesFragranceVisualsForForm = $usesFragranceVisualModel((string)($product['category'] ?? ''), $fragranceMode);
+$productImagesTextareaValue = htmlspecialchars(implode("\n", $productImages), ENT_QUOTES);
+$productImagesFieldMarkup = '<div class="form-group">'
+    . '<label>Product images (optional, one filename per line, img/ folder)</label>'
+    . '<p class="text-muted">Use this only for non-fragrance visual products. Fragrance-driven products render from fragrance images.</p>'
+    . '<textarea name="images" rows="4">' . $productImagesTextareaValue . '</textarea>'
+    . '</div>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -265,9 +312,14 @@ if (!empty($product['fragrance'])) {
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Product images (optional, one filename per line, img/ folder)</label>
-                        <textarea name="images" rows="4"><?php echo htmlspecialchars(implode("\n", $productImages)); ?></textarea>
+                    <div id="product-images-host"><?php echo !$usesFragranceVisualsForForm ? $productImagesFieldMarkup : ''; ?></div>
+
+                    <div class="form-group" id="product-visual-model-note" <?php echo $usesFragranceVisualsForForm ? '' : 'hidden'; ?>>
+                        <label>Product visuals</label>
+                        <p class="text-muted">This product class uses fragrance images as the canonical storefront visual model. Standalone product galleries are kept only for legacy compatibility.</p>
+                        <?php if (!empty($productImages)): ?>
+                            <p class="text-muted">Stored legacy gallery preserved: <?php echo htmlspecialchars(implode(', ', $productImages)); ?></p>
+                        <?php endif; ?>
                     </div>
 
                     <div class="form-row">
@@ -361,14 +413,49 @@ if (!empty($product['fragrance'])) {
             const container = document.getElementById('variants-container');
             const addButton = document.getElementById('add-variant');
             const fragranceMode = document.getElementById('fragrance-mode');
+            const categorySelect = document.querySelector('select[name="category"]');
             const fixedWrap = document.getElementById('fixed-fragrance-wrap');
             const allowedWrap = document.getElementById('allowed-fragrances-wrap');
+            const productImagesHost = document.getElementById('product-images-host');
+            const productVisualModelNote = document.getElementById('product-visual-model-note');
+            const productImagesFieldHtml = <?php echo json_encode($productImagesFieldMarkup); ?>;
+            const fragranceCapableCategories = <?php
+                $fragranceCapableCategories = [];
+                foreach ($categories as $categorySlug => $categoryData) {
+                    if ($categorySupportsFragrance($categorySlug)) {
+                        $fragranceCapableCategories[] = $categorySlug;
+                    }
+                }
+                echo json_encode(array_values($fragranceCapableCategories));
+            ?>;
             let index = <?php echo count($product['variants'] ?? []); ?>;
+
+            function categorySupportsFragrance(categorySlug) {
+                return fragranceCapableCategories.includes(categorySlug);
+            }
+
+            function shouldUseFragranceVisualModel() {
+                const mode = fragranceMode.value;
+                if (mode === 'no_fragrance') {
+                    return false;
+                }
+                if (mode === 'selectable_fragrances' || mode === 'fixed_fragrance') {
+                    return true;
+                }
+                if (mode === 'category_default' && !categorySelect.value) {
+                    return true;
+                }
+
+                return categorySupportsFragrance(categorySelect.value);
+            }
 
             function toggleFragranceFields() {
                 const mode = fragranceMode.value;
                 fixedWrap.style.display = mode === 'fixed_fragrance' ? '' : 'none';
                 allowedWrap.style.display = mode === 'selectable_fragrances' ? '' : 'none';
+                const usesFragranceVisualModel = shouldUseFragranceVisualModel();
+                productImagesHost.innerHTML = usesFragranceVisualModel ? '' : productImagesFieldHtml;
+                productVisualModelNote.hidden = !usesFragranceVisualModel;
             }
 
             function createVariantRow() {
@@ -410,6 +497,7 @@ if (!empty($product['fragrance'])) {
                 }
             });
             fragranceMode.addEventListener('change', toggleFragranceFields);
+            categorySelect.addEventListener('change', toggleFragranceFields);
             toggleFragranceFields();
         }());
     </script>
